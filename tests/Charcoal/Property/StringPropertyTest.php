@@ -2,7 +2,7 @@
 
 namespace Charcoal\Tests\Property;
 
-use \Charcoal\Property\String as String;
+use \Charcoal\Property\StringProperty as StringProperty;
 
 /**
 * ## TODOs
@@ -20,8 +20,8 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
     */
     public function testConstructor()
     {
-        $obj = new String();
-        $this->assertInstanceOf('\Charcoal\Property\String', $obj);
+        $obj = new StringProperty();
+        $this->assertInstanceOf('\Charcoal\Property\StringProperty', $obj);
 
         $this->assertEquals(0, $obj->min_length());
         $this->assertEquals(255, $obj->max_length());
@@ -31,7 +31,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testSetData()
     {
-        $obj = new String();
+        $obj = new StringProperty();
         $data = [
             'min_length'=>5,
             'max_length'=>42,
@@ -52,13 +52,13 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
     public function testSetDataInvalidParameterThrowsException($invalid)
     {
         $this->setExpectedException('\InvalidArgumentException');
-        $obj = new String();
+        $obj = new StringProperty();
         $obj->set_data($invalid);
     }
 
     public function testLength()
     {
-        $obj = new String();
+        $obj = new StringProperty();
 
         $obj->set_val('');
         $this->assertEquals(0, $obj->length());
@@ -76,13 +76,13 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
     public function testLengthWitoutValThrowsException()
     {
         $this->setExpectedException('\Exception');
-        $obj = new String();
+        $obj = new StringProperty();
         $obj->length();
     }
 
     public function testSetMinLength()
     {
-        $obj = new String();
+        $obj = new StringProperty();
 
         $obj->set_min_length(5);
         $this->assertEquals(5, $obj->min_length());
@@ -90,7 +90,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testSetMinLengthIsChainable()
     {
-        $obj = new String();
+        $obj = new StringProperty();
 
         $ret = $obj->set_min_length(5);
         $this->assertSame($ret, $obj);
@@ -103,13 +103,13 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\InvalidArgumentException');
 
-        $obj = new String();
+        $obj = new StringProperty();
         $obj->set_min_length($invalid);
     }
     
     public function testSetMaxLength()
     {
-        $obj = new String();
+        $obj = new StringProperty();
 
         $obj->set_max_length(5);
         $this->assertEquals(5, $obj->max_length());
@@ -117,7 +117,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testSetMaxLengthIsChainable()
     {
-        $obj = new String();
+        $obj = new StringProperty();
 
         $ret = $obj->set_max_length(5);
         $this->assertSame($ret, $obj);
@@ -130,13 +130,13 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\InvalidArgumentException');
 
-        $obj = new String();
+        $obj = new StringProperty();
         $obj->set_max_length($invalid);
     }
 
     public function testSetValidRegexp()
     {
-        $obj = new String();
+        $obj = new StringProperty();
 
         $obj->set_regexp('[a-z]');
         $this->assertEquals('[a-z]', $obj->     regexp());
@@ -144,7 +144,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testSetRegexpIsChainable()
     {
-        $obj = new String();
+        $obj = new StringProperty();
 
         $ret = $obj->set_regexp('[a-z]');
         $this->assertSame($ret, $obj);
@@ -154,13 +154,13 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\InvalidArgumentException');
 
-        $obj = new String();
+        $obj = new StringProperty();
         $obj->set_regexp(null);
     }
 
     public function testValidateMinLength()
     {
-        $obj = new String();
+        $obj = new StringProperty();
         $obj->set_min_length(5);
         $obj->set_val('1234');
         $this->assertNotTrue($obj->validate_min_length());
@@ -174,7 +174,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testValidateMinLengthUTF8()
     {
-        $obj = new String();
+        $obj = new StringProperty();
         $obj->set_min_length(5);
 
         $obj->set_val('Éçä˚');
@@ -189,7 +189,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testValidateMinLengthWithoutValReturnsFalse()
     {
-        $obj = new String();
+        $obj = new StringProperty();
         $obj->set_min_length(5);
 
         $this->assertNotTrue($obj->validate_min_length());
@@ -197,7 +197,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testValidateMinLengthWithoutMinLengthReturnsTrue()
     {
-        $obj = new String();
+        $obj = new StringProperty();
 
         $this->assertTrue($obj->validate_min_length());
 
@@ -207,7 +207,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testValidateMaxLength()
     {
-        $obj = new String();
+        $obj = new StringProperty();
         $obj->set_max_length(5);
         $obj->set_val('1234');
         $this->assertTrue($obj->validate_max_length());
@@ -221,7 +221,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testValidateMaxLengthUTF8()
     {
-        $obj = new String();
+        $obj = new StringProperty();
         $obj->set_max_length(5);
 
         $obj->set_val('Éçä˚');
@@ -236,7 +236,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
     /*public function testValidateMaxLengthWithoutValReturnsFalse()
 	{
-		$obj = new String();
+		$obj = new StringProperty();
 		$obj->set_max_length(5);
 
 		$this->assertNotTrue($obj->validate_max_length());
@@ -244,7 +244,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testValidateMaxLengthWithZeroMaxLengthReturnsTrue()
     {
-        $obj = new String();
+        $obj = new StringProperty();
         $obj->set_max_length(0);
 
         $this->assertTrue($obj->validate_max_length());
@@ -256,7 +256,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testValidateRegexp()
     {
-        $obj = new String();
+        $obj = new StringProperty();
         $obj->set_regexp('/[0-9*]/');
 
         $obj->set_val('123');
@@ -268,7 +268,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testValidateRegexpEmptyRegexpReturnsTrue()
     {
-        $obj = new String();
+        $obj = new StringProperty();
         $this->assertTrue($obj->validate_regexp());
 
         $obj->set_val('123');

@@ -2,9 +2,77 @@
 
 namespace Charcoal\Template;
 
-use \Charcoal\Loader\AbstractLoader as AbstractLoader;
+use \Charcoal\Loader\FileLoader as FileLoader;
 
-class TemplateLoader extends AbstractLoader
+use \Charcoal\Charcoal as Charcoal;
+
+/**
+*
+*/
+class TemplateLoader extends FileLoader
 {
-    // ...
+
+    /**
+    * FileLoader > search_path()
+    *
+    * @return array
+    */
+    public function search_path()
+    {
+        $all_path = parent::search_path();
+
+        $global_path = Charcoal::config()->template_path();
+        if(!empty($global_path)) {
+            $all_path = array_merge($global_path, $all_path);
+        }
+        return $all_path;
+    }
+
+    /**
+    * @return string
+    */
+    public function load($ident=null)
+    {
+        if($ident !== null) {
+            $this->set_ident($ident);
+        }
+
+        // Attempt loading from cache
+        $ret = $this->cache_load();
+        if($ret !== false) {
+            return $ret;
+        }
+
+        $data = '';
+        $filename = $this->_filename_from_ident($ident);
+        $search_path = $this->search_path();
+        foreach($search_path as $path) {
+            $f = $path.'/'.$filename;
+            if(!file_exists($f)) {
+                continue;
+            }
+            $file_content = file_get_contents($f);
+            if($file_content !== '') {
+                $data = $file_content;
+                break;
+            }
+        }
+        $this->set_content($data);
+        $this->cache_store();
+
+        return $data;
+    }
+
+    /**
+    * @param string
+    * @return string
+    */
+    private function _filename_from_ident($ident)
+    {
+        $filename = str_replace(['\\'], '.', $ident);
+        $filename .= '.php';
+
+        return $filename;
+
+    }
 }
