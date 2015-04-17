@@ -18,15 +18,9 @@ class TemplateLoaderTest extends \PHPUnit_Framework_TestCase
     public function testSetIdent()
     {
         $obj = new TemplateLoader();
-        $obj->set_ident('foo');
-        $this->assertEquals('foo', $obj->ident());
-    }
-
-    public function testSetIdentIsChainable()
-    {
-        $obj = new TemplateLoader();
         $ret = $obj->set_ident('foo');
         $this->assertSame($ret, $obj);
+        $this->assertEquals('foo', $obj->ident());
     }
 
     public function testAddPath()

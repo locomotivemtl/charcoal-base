@@ -84,16 +84,9 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
     {
         $obj = new StringProperty();
 
-        $obj->set_min_length(5);
-        $this->assertEquals(5, $obj->min_length());
-    }
-
-    public function testSetMinLengthIsChainable()
-    {
-        $obj = new StringProperty();
-
         $ret = $obj->set_min_length(5);
         $this->assertSame($ret, $obj);
+        $this->assertEquals(5, $obj->min_length());
     }
 
     /**
@@ -111,16 +104,9 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
     {
         $obj = new StringProperty();
 
-        $obj->set_max_length(5);
-        $this->assertEquals(5, $obj->max_length());
-    }
-
-    public function testSetMaxLengthIsChainable()
-    {
-        $obj = new StringProperty();
-
         $ret = $obj->set_max_length(5);
         $this->assertSame($ret, $obj);
+        $this->assertEquals(5, $obj->max_length());
     }
 
     /**
@@ -138,16 +124,9 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
     {
         $obj = new StringProperty();
 
-        $obj->set_regexp('[a-z]');
-        $this->assertEquals('[a-z]', $obj->     regexp());
-    }
-
-    public function testSetRegexpIsChainable()
-    {
-        $obj = new StringProperty();
-
         $ret = $obj->set_regexp('[a-z]');
         $this->assertSame($ret, $obj);
+        $this->assertEquals('[a-z]', $obj->     regexp());
     }
 
     public function testSetRegexpInvalidParameterThrowsException()
