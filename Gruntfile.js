@@ -55,7 +55,7 @@ module.exports = function(grunt) {
 
 			options: {
 				colors: true,
-				//coverageHtml:'tests/tmp/report/',
+				coverageHtml:'tests/tmp/report/',
 				//coverageText:'tests/tmp/report/',
 				testdoxHtml:'tests/tmp/testdox.html',
 				testdoxText:'tests/tmp/testdox.text',
