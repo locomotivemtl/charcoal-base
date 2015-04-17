@@ -5,6 +5,12 @@ namespace Charcoal\Email;
 interface EmailInterface
 {
     /**
+    * @param array $data
+    * @return EmailInterface Chainable
+    */
+    public function set_data($data);
+
+    /**
     * @param string $campaign
     * @return EmailInterface Chainable
     */
@@ -180,6 +186,4 @@ interface EmailInterface
     */
     public function queue();
 
-    public function send_log();
-    public function queue_log();
 }
