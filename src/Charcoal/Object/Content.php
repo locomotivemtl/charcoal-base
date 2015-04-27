@@ -1,6 +1,6 @@
 <?php
 
-namespace \Charcoal\Object;
+namespace Charcoal\Object;
 
 use \Charcoal\Object\AbstractObject as AbstractObject;
 use \Charcoal\Object\ContentInterface as ContentInterface;
@@ -12,9 +12,32 @@ class Content extends AbstractObject implements ContentInterface
     private $_last_modified;
     private $_last_modified_by;
 
+    public function set_data($data)
+    {
+        if (!is_array($data)) {
+            throw new \InvalidArgumentException('Data must be an array');
+        }
+
+        parent::set_data($data);
+        if (isset($data['created']) && $data['created'] !== null) {
+            $this->set_created($data['created']);
+        }
+        if (isset($data['created_by']) && $data['created_by'] !== null) {
+            $this->set_created($data['created_by']);
+        }
+
+        return $this;
+    }
+
     public function set_created($created)
     {
-        $this->_created = new DateTime($created);
+        if (is_string($created)) {
+            $created = new DateTime($created);
+        }
+        if (!($created instanceof DateTime)) {
+            throw new \InvalidArgumentException('Created must be a Datetime object or a valid datetime string');
+        }
+        $this->_created = $created;
         return $this;
     }
 
@@ -36,7 +59,13 @@ class Content extends AbstractObject implements ContentInterface
 
     public function set_last_modified($last_modified)
     {
-        $this->_last_modified = new DateTime($last_modified);
+        if (is_string($last_modified)) {
+            $last_modified = new DateTime($last_modified);
+        }
+        if (!($last_modified instanceof DateTime)) {
+            throw new \InvalidArgumentException('Created must be a Datetime object or a valid datetime string');
+        }
+        $this->_last_modified = $last_modified;
         return $this;
     }
 
@@ -51,10 +80,9 @@ class Content extends AbstractObject implements ContentInterface
         return $this;
     }
 
-    public function last_revision()
+    public function last_modified_by()
     {
-        // @todo
-        return null;
+        return $this->_last_modified_by;
     }
 
     public function pre_save()

@@ -16,6 +16,6 @@ interface ContentInterface
     public function set_last_modified_by($last_modified_by);
     public function last_modified_by();
 
-    public function last_revision();
-    public function revision($revision_num);
+    //public function last_revision();
+    //public function revision($revision_num);
 }
