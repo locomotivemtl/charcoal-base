@@ -149,7 +149,7 @@ class StringProperty extends Property
     */
     public function set_allow_empty($allow_empty)
     {
-        if(!is_bool($allow_empty)) {
+        if (!is_bool($allow_empty)) {
             throw new \InvalidArgumentException('Allow empty must be a boolean');
         }
         $this->_allow_empty = $allow_empty;
@@ -227,7 +227,7 @@ class StringProperty extends Property
             return true;
         }
 
-        if($val === '' && $this->allow_empty()) {
+        if ($val === '' && $this->allow_empty()) {
             // Don't check empty string if they are allowed
             return true;
         }
@@ -264,10 +264,9 @@ class StringProperty extends Property
     */
     public function validate_allow_empty()
     {
-        if(($this->val() === '') && ($this->allow_empty() === false)) {
+        if (($this->val() === '') && ($this->allow_empty() === false)) {
             return false;
-        } 
-        else {
+        } else {
             return true;
         }
     }

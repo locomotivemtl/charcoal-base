@@ -8,4 +8,3 @@ class Widget extends AbstractWidget
 {
     // ...
 }
-

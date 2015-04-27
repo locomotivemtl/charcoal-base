@@ -16,7 +16,7 @@ abstract class AbstractTemplate extends AbstractModel implements
     public function create_view($data=null)
     {
         $view = new TemplateView();
-        if($data !== null) {
+        if ($data !== null) {
             $view->set_data($data);
         }
         return $view;

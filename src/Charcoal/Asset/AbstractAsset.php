@@ -17,4 +17,23 @@ abstract class AbstractAsset implements
 {
     use CacheableTrait;
     use LoadableTrait;
+
+    abstract public function relative_url();
+    abstract public function absolute_url();
+    abstract public function relative_path();
+    abstract public function absolute_path();
+
+    public function cache_data()
+    {
+        return $this;
+    }
+
+    public function create_loader($data=null)
+    {
+        $loader = new AssetLoader();
+        if ($data !== null) {
+            $loader->set_data($data);
+        }
+        return $loader;
+    }
 }

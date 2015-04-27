@@ -18,6 +18,8 @@ class AbstractActionTest extends \PHPUnit_Framework_Testcase
     public function testSetMode()
     {
         $obj = new Action();
+        $this->assertEquals('redirect', $obj->mode());
+
         $ret = $obj->set_mode('json');
 
         $this->assertSame($ret, $obj);
@@ -27,9 +29,12 @@ class AbstractActionTest extends \PHPUnit_Framework_Testcase
         $obj->set_mode([1, 2, 3]);
     }
 
+
     public function testSetSuccess()
     {
         $obj = new Action();
+        $this->assertEquals(false, $obj->success());
+
         $ret = $obj->set_success(true);
 
         $this->assertSame($ret, $obj);
@@ -37,5 +42,19 @@ class AbstractActionTest extends \PHPUnit_Framework_Testcase
 
         $this->setExpectedException('\InvalidArgumentException');
         $obj->set_success('foo');
+    }
+
+    public function testSetOutput()
+    {
+        $obj = new Action();
+        ob_start();
+        $obj->output();
+        $ret = ob_get_clean();
+
+        ob_start();
+        $obj->set_mode('json');
+        $obj->output();
+        $ret = ob_get_clean();
+        
     }
 }

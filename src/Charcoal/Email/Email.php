@@ -11,12 +11,12 @@ class Email extends AbstractEmail
 {
     protected function generate_msg_html()
     {
-
+        return '';
     }
 
     protected function generate_msg_txt()
     {
-
+        return '';
     }
 
     public function send()
