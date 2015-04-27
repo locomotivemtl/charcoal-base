@@ -35,7 +35,8 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
         $data = [
             'min_length'=>5,
             'max_length'=>42,
-            'regexp'=>'/[0-9]*/'
+            'regexp'=>'/[0-9]*/',
+            'allow_empty'=>false
         ];
         $ret = $obj->set_data($data);
 
@@ -44,16 +45,73 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(5, $obj->min_length());
         $this->assertEquals(42, $obj->max_length());
         $this->assertEquals('/[0-9]*/', $obj->regexp());
+        $this->assertEquals(false, $obj->allow_empty());
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $obj->set_data('foo');
     }
 
-    /**
-    * @dataProvider providerInvalidData
-    */
-    public function testSetDataInvalidParameterThrowsException($invalid)
+    public function testSetMinLength()
     {
-        $this->setExpectedException('\InvalidArgumentException');
         $obj = new StringProperty();
-        $obj->set_data($invalid);
+
+        $ret = $obj->set_min_length(5);
+        $this->assertSame($ret, $obj);
+        $this->assertEquals(5, $obj->min_length());
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $obj->set_min_length('foo');
+    }
+
+    public function testSetMinLenghtNegative()
+    {
+        $obj = new StringProperty();
+        $this->setExpectedException('\InvalidArgumentException');
+        $obj->set_min_length(-1);
+    }
+    
+    public function testSetMaxLength()
+    {
+        $obj = new StringProperty();
+
+        $ret = $obj->set_max_length(5);
+        $this->assertSame($ret, $obj);
+        $this->assertEquals(5, $obj->max_length());
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $obj->set_max_length('foo');
+    }
+
+    public function testSetMaxLenghtNegative()
+    {
+        $obj = new StringProperty();
+        $this->setExpectedException('\InvalidArgumentException');
+        $obj->set_max_length(-1);
+    }
+
+    public function testSetRegexp()
+    {
+        $obj = new StringProperty();
+
+        $ret = $obj->set_regexp('[a-z]');
+        $this->assertSame($ret, $obj);
+        $this->assertEquals('[a-z]', $obj->regexp());
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $obj->set_regexp(null);
+    }
+
+    public function testSetAllowempty()
+    {
+        $obj = new StringProperty();
+        $this->assertEquals(true, $obj->allow_empty());
+
+        $ret = $obj->set_allow_empty(false);
+        $this->assertSame($ret, $obj);
+        $this->assertEquals(false, $obj->allow_empty());
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $obj->set_allow_empty('foo');
     }
 
     public function testLength()
@@ -78,63 +136,6 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('\Exception');
         $obj = new StringProperty();
         $obj->length();
-    }
-
-    public function testSetMinLength()
-    {
-        $obj = new StringProperty();
-
-        $ret = $obj->set_min_length(5);
-        $this->assertSame($ret, $obj);
-        $this->assertEquals(5, $obj->min_length());
-    }
-
-    /**
-    * @dataProvider providerInvalidLength
-    */
-    public function testSetMinLengthInvalidParameterThrowsException($invalid)
-    {
-        $this->setExpectedException('\InvalidArgumentException');
-
-        $obj = new StringProperty();
-        $obj->set_min_length($invalid);
-    }
-    
-    public function testSetMaxLength()
-    {
-        $obj = new StringProperty();
-
-        $ret = $obj->set_max_length(5);
-        $this->assertSame($ret, $obj);
-        $this->assertEquals(5, $obj->max_length());
-    }
-
-    /**
-    * @dataProvider providerInvalidLength
-    */
-    public function testSetMaxLengthInvalidParameterThrowsException($invalid)
-    {
-        $this->setExpectedException('\InvalidArgumentException');
-
-        $obj = new StringProperty();
-        $obj->set_max_length($invalid);
-    }
-
-    public function testSetValidRegexp()
-    {
-        $obj = new StringProperty();
-
-        $ret = $obj->set_regexp('[a-z]');
-        $this->assertSame($ret, $obj);
-        $this->assertEquals('[a-z]', $obj->     regexp());
-    }
-
-    public function testSetRegexpInvalidParameterThrowsException()
-    {
-        $this->setExpectedException('\InvalidArgumentException');
-
-        $obj = new StringProperty();
-        $obj->set_regexp(null);
     }
 
     public function testValidateMinLength()
@@ -164,6 +165,19 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
         $obj->set_val('ß¨ˆ®©˜ßG');
         $this->assertTrue($obj->validate_min_length());
+    }
+
+    public function testValidateMinLengthAllowEmpty()
+    {
+        $obj = new StringProperty();
+        $obj->set_min_length(5);
+        $obj->set_val('');
+
+        $obj->set_allow_empty(true);
+        $this->assertTrue($obj->validate_min_length());
+
+        $obj->set_allow_empty(false);
+        $this->assertNotTrue($obj->validate_min_length());
     }
 
     public function testValidateMinLengthWithoutValReturnsFalse()
@@ -254,34 +268,24 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($obj->validate_regexp());
     }
 
-    public function providerInvalidLength()
+    public function testSqlType()
     {
-        $obj = new \StdClass();
-        return [
-            [[]],
-            [null],
-            [true],
-            [false],
-            [[1, 2, 3]],
-            [(-42)], // Values < 0 should not work
-            ['foo'],
-            ['42'],
-            [$obj]
-        ];
+        $obj = new StringProperty();
+        $this->assertEquals('VARCHAR(255)', $obj->sql_type());
+
+        $obj->set_max_length(20);
+        $this->assertEquals('VARCHAR(20)', $obj->sql_type());
+
+        $obj->set_max_length(256);
+        $this->assertEquals('TEXT', $obj->sql_type());
     }
 
-    public function providerInvalidData()
+    public function testSqlTypeMultiple()
     {
-        $obj = new \StdClass();
-        return [
-            [null],
-            [true],
-            [false],
-            [(-42)], // Values < 0 should not work
-            ['foo'],
-            ['42'],
-            [$obj]
-        ];
-    }
+        $obj = new StringProperty();
+        $this->assertEquals('VARCHAR(255)', $obj->sql_type());
 
+        $obj->set_multiple(true);
+        $this->assertEquals('TEXT', $obj->sql_type());
+    }
 }
