@@ -23,11 +23,25 @@ class UserData extends AbstractObject implements UserDataInterface
     */
     private $_ts;
 
+    /**
+    * @param array $data
+    * @throws InvalidArgumentException if data is not an array
+    * @return UserData Chainable
+    */
     public function set_data($data)
     {
-        parent::set_data($data);
+        if(!is_array($data)) {
+            throw new InvalidArgumentException('Data must be an array');
+        }
+        //parent::set_data($data);
         if (isset($data['ip']) && $data['ip'] !== null) {
             $this->set_ip($data['ip']);
+        }
+        if(isset($data['lang']) && $data['lang'] !== null) {
+            $this->set_lang($data['lang']);
+        }
+        if(isset($data['ts']) && $data['ts'] !== null) {
+            $this->set_ts($data['ts']);
         }
 
         return $this;
@@ -53,6 +67,9 @@ class UserData extends AbstractObject implements UserDataInterface
 
     public function set_lang($lang)
     {
+        if(!is_string($lang)) {
+            throw new \InvalidArgumentException('Lang must be a string');
+        }
         $this->_lang = $lang;
         return $this;
     }
@@ -81,7 +98,7 @@ class UserData extends AbstractObject implements UserDataInterface
 
     public function pre_save()
     {
-        parent::pre_save();
+        //parent::pre_save();
 
         $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
         //$lang = Charcoal::lang();

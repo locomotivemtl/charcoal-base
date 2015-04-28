@@ -2,6 +2,9 @@
 
 namespace Charcoal\Object;
 
+use \DateTime as DateTime;
+use \InvalidArgumentException as InvalidArgumentException;
+
 use \Charcoal\Object\AbstractObject as AbstractObject;
 use \Charcoal\Object\ContentInterface as ContentInterface;
 
@@ -15,15 +18,21 @@ class Content extends AbstractObject implements ContentInterface
     public function set_data($data)
     {
         if (!is_array($data)) {
-            throw new \InvalidArgumentException('Data must be an array');
+            throw new InvalidArgumentException('Data must be an array');
         }
 
-        parent::set_data($data);
+        //parent::set_data($data);
         if (isset($data['created']) && $data['created'] !== null) {
             $this->set_created($data['created']);
         }
         if (isset($data['created_by']) && $data['created_by'] !== null) {
-            $this->set_created($data['created_by']);
+            $this->set_created_by($data['created_by']);
+        }
+        if(isset($data['last_modified']) && $data['last_modified'] !== null) {
+            $this->set_last_modified($data['last_modified']);
+        }
+        if(isset($data['last_modified_by']) && $data['last_modified_by'] !== null) {
+            $this->set_last_modified_by($data['last_modified_by']);
         }
 
         return $this;
@@ -35,7 +44,7 @@ class Content extends AbstractObject implements ContentInterface
             $created = new DateTime($created);
         }
         if (!($created instanceof DateTime)) {
-            throw new \InvalidArgumentException('Created must be a Datetime object or a valid datetime string');
+            throw new InvalidArgumentException('Created must be a Datetime object or a valid datetime string');
         }
         $this->_created = $created;
         return $this;
@@ -63,7 +72,7 @@ class Content extends AbstractObject implements ContentInterface
             $last_modified = new DateTime($last_modified);
         }
         if (!($last_modified instanceof DateTime)) {
-            throw new \InvalidArgumentException('Created must be a Datetime object or a valid datetime string');
+            throw new InvalidArgumentException('Created must be a Datetime object or a valid datetime string');
         }
         $this->_last_modified = $last_modified;
         return $this;
@@ -87,7 +96,7 @@ class Content extends AbstractObject implements ContentInterface
 
     public function pre_save()
     {
-        parent::pre_save();
+        //parent::pre_save();
 
         $this->set_created('now');
         $this->set_last_modified('now');
