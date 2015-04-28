@@ -29,7 +29,8 @@ class UserDataTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($ret, $obj);
         $this->assertEquals(ip2long('192.168.1.1'), $obj->ip());
         $this->assertEquals('fr', $obj->lang());
-        $this->assertEquals(new DateTime('2015-01-01 15:05:20'), $obj->ts());
+        $expected = new DateTime('2015-01-01 15:05:20');
+        $this->assertEquals($expected, $obj->ts());
 
         $this->setExpectedException('\InvalidArgumentException');
         $obj->set_data(false);
@@ -65,7 +66,8 @@ class UserDataTest extends \PHPUnit_Framework_TestCase
         $obj = new UserData();
         $ret = $obj->set_ts('July 1st, 2014');
         $this->assertSame($ret, $obj);
-        $this->assertEquals(new DateTime('July 1st, 2014'), $obj->ts());
+        $expected = new DateTime('July 1st, 2014');
+        $this->assertEquals($expected, $obj->ts());
 
         $this->setExpectedException('\InvalidArgumentException');
         $obj->set_ts(false);

@@ -21,17 +21,17 @@ class Content extends AbstractObject implements ContentInterface
             throw new InvalidArgumentException('Data must be an array');
         }
 
-        //parent::set_data($data);
+        parent::set_data($data);
         if (isset($data['created']) && $data['created'] !== null) {
             $this->set_created($data['created']);
         }
         if (isset($data['created_by']) && $data['created_by'] !== null) {
             $this->set_created_by($data['created_by']);
         }
-        if(isset($data['last_modified']) && $data['last_modified'] !== null) {
+        if (isset($data['last_modified']) && $data['last_modified'] !== null) {
             $this->set_last_modified($data['last_modified']);
         }
-        if(isset($data['last_modified_by']) && $data['last_modified_by'] !== null) {
+        if (isset($data['last_modified_by']) && $data['last_modified_by'] !== null) {
             $this->set_last_modified_by($data['last_modified_by']);
         }
 
@@ -96,9 +96,14 @@ class Content extends AbstractObject implements ContentInterface
 
     public function pre_save()
     {
-        //parent::pre_save();
-
+        parent::pre_save();
         $this->set_created('now');
+        $this->set_last_modified('now');
+    }
+
+    public function pre_update($properties=null)
+    {
+        parent::pre_update($properties);
         $this->set_last_modified('now');
     }
 }

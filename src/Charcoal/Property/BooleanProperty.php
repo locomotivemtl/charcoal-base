@@ -2,6 +2,8 @@
 
 namespace Charcoal\Property;
 
+use \PDO as PDO;
+
 use \Charcoal\Model\Property as Property;
 use \Charcoal\Model\Validator\Propertyalidator as Validator;
 
@@ -74,5 +76,10 @@ class BooleanProperty extends Property
     public function sql_type()
     {
         return 'TINYINT(1) UNSIGNED';
+    }
+
+    public function sql_pdo_type()
+    {
+        return PDO::PARAM_BOOL;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Charcoal\Property;
 
+use \PDO as PDO;
+
 use \Charcoal\Model\Property as Property;
 use \Charcoal\Model\Validator\Propertyalidator as Validator;
 
@@ -292,5 +294,10 @@ class StringProperty extends Property
         } else {
             return 'TEXT';
         }
+    }
+
+    public function sql_pdo_type()
+    {
+        return PDO::PARAM_STR;
     }
 }

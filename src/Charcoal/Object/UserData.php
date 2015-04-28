@@ -30,17 +30,17 @@ class UserData extends AbstractObject implements UserDataInterface
     */
     public function set_data($data)
     {
-        if(!is_array($data)) {
+        if (!is_array($data)) {
             throw new InvalidArgumentException('Data must be an array');
         }
         //parent::set_data($data);
         if (isset($data['ip']) && $data['ip'] !== null) {
             $this->set_ip($data['ip']);
         }
-        if(isset($data['lang']) && $data['lang'] !== null) {
+        if (isset($data['lang']) && $data['lang'] !== null) {
             $this->set_lang($data['lang']);
         }
-        if(isset($data['ts']) && $data['ts'] !== null) {
+        if (isset($data['ts']) && $data['ts'] !== null) {
             $this->set_ts($data['ts']);
         }
 
@@ -67,7 +67,7 @@ class UserData extends AbstractObject implements UserDataInterface
 
     public function set_lang($lang)
     {
-        if(!is_string($lang)) {
+        if (!is_string($lang)) {
             throw new \InvalidArgumentException('Lang must be a string');
         }
         $this->_lang = $lang;

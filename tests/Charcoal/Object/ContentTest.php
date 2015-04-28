@@ -25,10 +25,12 @@ class ContentTest extends \PHPUnit_Framework_TestCase
 
         ]);
         $this->assertSame($ret, $obj);
-        $this->assertEquals(new DateTime('2015-01-01 13:05:45'), $obj->created());
+        $expected = new DateTime('2015-01-01 13:05:45');
+        $this->assertEquals($expected, $obj->created());
         $this->assertEquals('Me', $obj->created_by());
-        $this->assertEquals(new DateTime('2015-04-01 22:10:30'), $obj->last_modified());
-        $this->assertEquals('You', $obj->last_modified_by());        
+        $expected = new DateTime('2015-04-01 22:10:30');
+        $this->assertEquals($expected, $obj->last_modified());
+        $this->assertEquals('You', $obj->last_modified_by());
 
         $this->setExpectedException('\InvalidArgumentException');
         $obj->set_data(false);
@@ -39,7 +41,8 @@ class ContentTest extends \PHPUnit_Framework_TestCase
         $obj = new Content();
         $ret = $obj->set_created('2015-01-01 13:05:45');
         $this->assertSame($ret, $obj);
-        $this->assertEquals(new DateTime('2015-01-01 13:05:45'), $obj->created());
+        $expected = new DateTime('2015-01-01 13:05:45');
+        $this->assertEquals($expected, $obj->created());
 
         $this->setExpectedException('\InvalidArgumentException');
         $obj->set_created(false);
@@ -61,7 +64,8 @@ class ContentTest extends \PHPUnit_Framework_TestCase
         $obj = new Content();
         $ret = $obj->set_last_modified('2015-01-01 13:05:45');
         $this->assertSame($ret, $obj);
-        $this->assertEquals(new DateTime('2015-01-01 13:05:45'), $obj->last_modified());
+        $expected = new DateTime('2015-01-01 13:05:45');
+        $this->assertEquals($expected, $obj->last_modified());
 
         $this->setExpectedException('\InvalidArgumentException');
         $obj->set_last_modified(false);
