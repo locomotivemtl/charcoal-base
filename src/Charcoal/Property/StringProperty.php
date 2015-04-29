@@ -4,6 +4,8 @@ namespace Charcoal\Property;
 
 use \PDO as PDO;
 
+use \Charcoal\Core\StringFormat as StringFormat;
+
 use \Charcoal\Model\Property as Property;
 use \Charcoal\Model\Validator\Propertyalidator as Validator;
 
@@ -33,6 +35,11 @@ class StringProperty extends Property
     * @var boolean $_allow_empty
     */
     private $_allow_empty;
+
+    /**
+    * @var StringFormat
+    */
+    private $_formatter;
 
     /**
     * @param array $data
@@ -167,6 +174,15 @@ class StringProperty extends Property
             $this->_allow_empty = self::DEFAULT_ALLOW_EMPTY;
         }
         return $this->_allow_empty;
+    }
+
+    public function formatter()
+    {
+        if ($this->_formatter === null) {
+            $this->_formatter = new StringFormat();
+        }
+        $this->_formatter->set_string($this->val());
+        return $this->_formatter;
     }
 
     /**
