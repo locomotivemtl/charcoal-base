@@ -66,6 +66,9 @@ class DatetimeProperty extends AbstractProperty
         if (is_string($val)) {
             $val = new DateTime($val);
         }
+        if($val == '') {
+            return $this;
+        }
         if (!($val instanceof DateTime)) {
             throw new InvalidArgumentException('Val must be a valid date');
         }
