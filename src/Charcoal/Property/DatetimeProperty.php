@@ -179,6 +179,11 @@ class DatetimeProperty extends AbstractProperty
         return ($this->val() <= $max);
     }
 
+    public function sql_extra()
+    {
+        return '';
+    }
+
     public function sql_type()
     {
         return 'DATETIME';

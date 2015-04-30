@@ -289,6 +289,11 @@ class StringProperty extends Property
         }
     }
 
+    public function sql_extra()
+    {
+        return '';
+    }
+
     /**
     * Get the SQL type (Storage format)
     *
@@ -315,5 +320,10 @@ class StringProperty extends Property
     public function sql_pdo_type()
     {
         return PDO::PARAM_STR;
+    }
+
+    public function save()
+    {
+        return $this->val();
     }
 }
