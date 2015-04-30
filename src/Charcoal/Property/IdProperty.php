@@ -25,12 +25,12 @@ class IdProperty extends AbstractProperty
     */
     public function set_data($data)
     {
-        if(!is_array($data)) {
+        if (!is_array($data)) {
             throw new InvalidArgumentException('Data must be an array');
         }
 
         parent::set_data($data);
-        if(isset($data['mode']) && $data['mode'] !== null) {
+        if (isset($data['mode']) && $data['mode'] !== null) {
             $this->set_mode($data['mode']);
         }
         return $this;
@@ -39,7 +39,7 @@ class IdProperty extends AbstractProperty
     public function set_mode($mode)
     {
         $available_modes = ['auto-increment', 'uniqid', 'uuid'];
-        if(!in_array($mode, $available_modes)) {
+        if (!in_array($mode, $available_modes)) {
             throw new InvalidArgumentException('Mode is not a valid mode');
         }
         $this->_mode = $mode;
@@ -48,7 +48,7 @@ class IdProperty extends AbstractProperty
 
     public function mode()
     {
-        if($this->_mode === null) {
+        if ($this->_mode === null) {
             $this->_mode = self::DEFAULT_MODE;
         }
         return $this->_mode;
@@ -64,7 +64,7 @@ class IdProperty extends AbstractProperty
     public function save()
     {
         $val = $this->val();
-        if(!$val) {
+        if (!$val) {
             $val = $this->auto_generate();
         }
         $this->set_val($val);
@@ -79,14 +79,12 @@ class IdProperty extends AbstractProperty
     public function auto_generate()
     {
         $mode = $this->mode();
-        if($mode == 'auto-increment') {
+        if ($mode == 'auto-increment') {
             // auto-increment is handled at the database level (for now...)
             return '';
-        }
-        else if($mode == 'uniq') {
+        } else if ($mode == 'uniq') {
             return uniqid();
-        }
-        else if($mode == 'uuid') {
+        } else if ($mode == 'uuid') {
             return $this->_generate_uuid();
         }
     }
@@ -94,10 +92,9 @@ class IdProperty extends AbstractProperty
     public function sql_extra()
     {
         $mode = $this->mode();
-        if($mode == 'auto-increment') {
+        if ($mode == 'auto-increment') {
             return 'AUTO_INCREMENT';
-        }
-        else {
+        } else {
             return '';
         }
     }
@@ -110,13 +107,11 @@ class IdProperty extends AbstractProperty
     public function sql_type()
     {
         $mode = $this->mode();
-        if($mode == 'auto-increment') {
+        if ($mode == 'auto-increment') {
             return 'INT(10) UNSIGNED';
-        }
-        else if($mode == 'uniqid') {
+        } else if ($mode == 'uniqid') {
             return 'CHAR(13)';
-        }
-        else if ($mode == 'uuid') {
+        } else if ($mode == 'uuid') {
             return 'CHAR(36)';
         }
     }
@@ -124,7 +119,7 @@ class IdProperty extends AbstractProperty
     public function sql_pdo_type()
     {
         $mode = $this->mode();
-        if($mode == 'auto-increment') {
+        if ($mode == 'auto-increment') {
             return PDO::PARAM_STR;
         }
     }
