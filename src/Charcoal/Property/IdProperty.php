@@ -2,6 +2,7 @@
 
 namespace Charcoal\Property;
 
+use \PDO as PDO;
 use \InvalidArgumentException as InvalidArgumentException;
 
 // In charcoal-core
@@ -65,7 +66,6 @@ class IdProperty extends AbstractProperty
     {
         $val = $this->val();
         if (!$val) {
-
             $val = $this->auto_generate();
             $this->set_val($val);
         }
@@ -91,8 +91,6 @@ class IdProperty extends AbstractProperty
             return $this->_generate_uuid();
         }
     }
-
-
 
     /**
     * Generate a RFC-4122 v4 Universally-Unique Identifier
@@ -166,8 +164,7 @@ class IdProperty extends AbstractProperty
         $mode = $this->mode();
         if ($mode == 'auto-increment') {
             return PDO::PARAM_INT;
-        }
-        else {
+        } else {
             return PDO::PARAM_STR;
         }
     }
