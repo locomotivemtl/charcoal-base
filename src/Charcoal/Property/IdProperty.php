@@ -65,9 +65,11 @@ class IdProperty extends AbstractProperty
     {
         $val = $this->val();
         if (!$val) {
+
             $val = $this->auto_generate();
+            $this->set_val($val);
         }
-        $this->set_val($val);
+        
         return $val;
     }
 
@@ -79,50 +81,18 @@ class IdProperty extends AbstractProperty
     public function auto_generate()
     {
         $mode = $this->mode();
+
         if ($mode == 'auto-increment') {
             // auto-increment is handled at the database level (for now...)
             return '';
-        } else if ($mode == 'uniq') {
-            return uniqid();
+        } else if ($mode == 'uniqid') {
+            return \uniqid();
         } else if ($mode == 'uuid') {
             return $this->_generate_uuid();
         }
     }
 
-    public function sql_extra()
-    {
-        $mode = $this->mode();
-        if ($mode == 'auto-increment') {
-            return 'AUTO_INCREMENT';
-        } else {
-            return '';
-        }
-    }
 
-    /**
-    * Get the SQL type (Storage format)
-    *
-    * @return string The SQL type
-    */
-    public function sql_type()
-    {
-        $mode = $this->mode();
-        if ($mode == 'auto-increment') {
-            return 'INT(10) UNSIGNED';
-        } else if ($mode == 'uniqid') {
-            return 'CHAR(13)';
-        } else if ($mode == 'uuid') {
-            return 'CHAR(36)';
-        }
-    }
-
-    public function sql_pdo_type()
-    {
-        $mode = $this->mode();
-        if ($mode == 'auto-increment') {
-            return PDO::PARAM_STR;
-        }
-    }
 
     /**
     * Generate a RFC-4122 v4 Universally-Unique Identifier
@@ -153,5 +123,52 @@ class IdProperty extends AbstractProperty
             // 48 bits for "node"
             mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
         );
+    }
+
+    /**
+    * @return string
+    * @see AbstractProperty::fields()
+    */
+    public function sql_extra()
+    {
+        $mode = $this->mode();
+        if ($mode == 'auto-increment') {
+            return 'AUTO_INCREMENT';
+        } else {
+            return '';
+        }
+    }
+
+    /**
+    * Get the SQL type (Storage format)
+    *
+    * @return string The SQL type
+    * @see AbstractProperty::fields()
+    */
+    public function sql_type()
+    {
+        $mode = $this->mode();
+        if ($mode == 'auto-increment') {
+            return 'INT(10) UNSIGNED';
+        } else if ($mode == 'uniqid') {
+            return 'CHAR(13)';
+        } else if ($mode == 'uuid') {
+            return 'CHAR(36)';
+        }
+    }
+
+    /**
+    * @return integer
+    * @see AbstractProperty::fields()
+    */
+    public function sql_pdo_type()
+    {
+        $mode = $this->mode();
+        if ($mode == 'auto-increment') {
+            return PDO::PARAM_INT;
+        }
+        else {
+            return PDO::PARAM_STR;
+        }
     }
 }

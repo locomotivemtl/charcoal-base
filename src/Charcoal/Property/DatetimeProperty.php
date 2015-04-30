@@ -153,6 +153,11 @@ class DatetimeProperty extends AbstractProperty
         return $this->_format;
     }
 
+    public function save()
+    {
+        return $this->val();
+    }
+
     public function validate_datetime()
     {
         $min = $this->validate_min();

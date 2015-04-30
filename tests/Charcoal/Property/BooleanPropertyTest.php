@@ -63,4 +63,10 @@ class BooleanPropertyTest extends \PHPUnit_Framework_TestCase
         $obj = new BooleanProperty();
         $this->assertEquals('TINYINT(1) UNSIGNED', $obj->sql_type());
     }
+
+    public function testSqlPdoType()
+    {
+        $obj = new BooleanProperty();
+        $this->assertEquals(\PDO::PARAM_BOOL, $obj->sql_pdo_type());
+    }
 }

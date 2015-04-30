@@ -288,4 +288,10 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
         $obj->set_multiple(true);
         $this->assertEquals('TEXT', $obj->sql_type());
     }
+
+    public function testSqlPdoType()
+    {
+        $obj = new StringProperty();
+        $this->assertEquals(\PDO::PARAM_STR, $obj->sql_pdo_type());
+    }
 }
