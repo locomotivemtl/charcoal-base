@@ -200,22 +200,15 @@ class StringProperty extends Property
         return mb_strlen($val);
     }
 
-    /**
-    * Performs all the string-related validation functions at once
-    * @return boolean
-    */
-    public function validate_string()
+    public function validation_methods()
     {
-        $max_length = $this->validate_max_length();
-        $min_length = $this->validate_min_length();
-        $regexp = $this->validate_regexp();
-        $allow_empty = $htis->validate_allow_empty();
-
-        return ($max_length && $min_length && $regexp && $allow_empty);
+        $parent_methods = parent::validation_methods();
+        return array_merge($parent_methods, ['max_length', 'min_length', 'regexp', 'allow_empty']);
     }
 
     /**
     * @return boolean
+    * @todo Support `multiple` / `l10n`
     */
     public function validate_max_length()
     {
@@ -227,7 +220,7 @@ class StringProperty extends Property
         
         $valid = (mb_strlen($val) <= $max_length);
         if (!$valid) {
-            $this->validator()->error('Max length error');
+            $this->validator()->error('Max length error', 'max_length');
         }
 
         return $valid;
@@ -236,6 +229,7 @@ class StringProperty extends Property
 
     /**
     * @return boolean
+    * @todo Support `multiple` / `l10n`
     */
     public function validate_min_length()
     {
@@ -252,7 +246,7 @@ class StringProperty extends Property
         
         $valid = (mb_strlen($val) >= $min_length);
         if (!$valid) {
-            $this->validator()->error('Min length error');
+            $this->validator()->error('Min length error', 'min_length');
         }
 
         return $valid;
@@ -271,7 +265,7 @@ class StringProperty extends Property
 
         $valid = !!preg_match($regexp, $val);
         if (!$valid) {
-            $this->validator()->error('Regexp error');
+            $this->validator()->error('Regexp error', 'regexp');
         }
 
         return $valid;

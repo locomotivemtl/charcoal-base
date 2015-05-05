@@ -161,30 +161,42 @@ class DatetimeProperty extends AbstractProperty
         return $this->val();
     }
 
-    public function validate_datetime()
+    public function validation_methods()
     {
-        $min = $this->validate_min();
-        $max = $this->validate_max();
-
-        return ($min && $max);
+        $parent_methods = parent::validation_methods();
+        return array_merge($parent_methods, ['min', 'max']);
     }
 
+    /**
+    * @return boolean
+    */
     public function validate_min()
     {
         $min = $this->min();
         if (!$min) {
             return true;
         }
-        return ($this->val() >= $min);
+        $valid = ($this->val() >= $min);
+        if ($valid === false) {
+            $this->validator()->error('The date is smaller than the minimum value', 'min');
+        }
+        return $valid;
     }
 
+    /**
+    * @return boolean
+    */
     public function validate_max()
     {
         $max = $this->max();
         if (!$max) {
             return true;
         }
-        return ($this->val() <= $max);
+        $valid = ($this->val() <= $max);
+        if ($valid === false) {
+            $this->validator()->error('The date is bigger than the maximum value', 'max');
+        }
+        return $valid;
     }
 
     public function sql_extra()
