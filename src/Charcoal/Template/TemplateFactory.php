@@ -2,6 +2,8 @@
 
 namespace Charcoal\Template;
 
+use \InvalidArgumentException as InvalidArgumentException;
+
 use \Charcoal\Core\AbstractFactory as AbstractFactory;
 
 class TemplateFactory extends AbstractFactory
@@ -9,10 +11,10 @@ class TemplateFactory extends AbstractFactory
     public function create($type)
     {
         if (!is_string($type)) {
-            throw new \InvalidArgumentException('Type must be a string');
+            throw new InvalidArgumentException('Type must be a string');
         }
         if (!$this->is_type_available($type)) {
-            throw new \InvalidArgumentException(sprintf('Type "%s" is not a valid type', $type));
+            throw new InvalidArgumentException(sprintf('Type "%s" is not a valid type', $type));
         }
         $class_name = $this->_ident_to_classname($type);
         return new $class_name();

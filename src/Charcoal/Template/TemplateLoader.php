@@ -70,7 +70,7 @@ class TemplateLoader extends FileLoader
     private function _filename_from_ident($ident)
     {
         $filename = str_replace(['\\'], '.', $ident);
-        $filename .= '.php';
+        $filename .= '.mustache';
 
         return $filename;
 
