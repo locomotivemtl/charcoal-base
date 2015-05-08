@@ -5,12 +5,25 @@ namespace Charcoal\Template;
 use \Charcoal\Loader\FileLoader as FileLoader;
 
 use \Charcoal\Charcoal as Charcoal;
+use \Charcoal\View\AbstractView as AbstractView;
 
 /**
 *
 */
 class TemplateLoader extends FileLoader
 {
+    private $_engine = AbstractView::DEFAULT_ENGINE;
+
+    public function set_engine($engine)
+    {
+        $this->_engine = $engine;
+        return $this;
+    }
+
+    public function engine()
+    {
+        return $this->_engine;
+    }
 
     /**
     * FileLoader > search_path()
@@ -43,6 +56,8 @@ class TemplateLoader extends FileLoader
             return $ret;
         }
 
+        $engine = $this->engine();
+
         $data = '';
         $filename = $this->_filename_from_ident($ident);
         $search_path = $this->search_path();
@@ -51,7 +66,16 @@ class TemplateLoader extends FileLoader
             if (!file_exists($f)) {
                 continue;
             }
-            $file_content = file_get_contents($f);
+
+            if($engine == AbstractView::ENGINE_MUSTACHE) {
+                $file_content = file_get_contents($f);
+            }
+            else {
+                ob_start();
+                include $f;
+                $file_content = ob_get_clean();
+
+            }
             if ($file_content !== '') {
                 $data = $file_content;
                 break;
@@ -69,8 +93,14 @@ class TemplateLoader extends FileLoader
     */
     private function _filename_from_ident($ident)
     {
+        $engine = $this->engine();
         $filename = str_replace(['\\'], '.', $ident);
-        $filename .= '.mustache';
+        if($engine == AbstractView::ENGINE_MUSTACHE) {
+            $filename .= '.mustache';
+        }
+        else {
+            $filename .= '.php';
+        }
 
         return $filename;
 

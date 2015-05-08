@@ -24,6 +24,7 @@ class TemplateView extends AbstractView
         }
 
         $template_loader = new TemplateLoader();
+        $template_loader->set_engine($this->engine());
         $template = $template_loader->load($template_ident);
         if ($template) {
             $this->set_template($template);
