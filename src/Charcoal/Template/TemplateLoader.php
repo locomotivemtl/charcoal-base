@@ -12,7 +12,7 @@ use \Charcoal\View\AbstractView as AbstractView;
 */
 class TemplateLoader extends FileLoader
 {
-    private $_engine = AbstractView::DEFAULT_ENGINE;
+    private $_engine = 'mustache';//= AbstractView::DEFAULT_ENGINE;
 
     public function set_engine($engine)
     {
@@ -67,10 +67,9 @@ class TemplateLoader extends FileLoader
                 continue;
             }
 
-            if($engine == AbstractView::ENGINE_MUSTACHE) {
+            if ($engine == AbstractView::ENGINE_MUSTACHE) {
                 $file_content = file_get_contents($f);
-            }
-            else {
+            } else {
                 ob_start();
                 include $f;
                 $file_content = ob_get_clean();
@@ -95,10 +94,9 @@ class TemplateLoader extends FileLoader
     {
         $engine = $this->engine();
         $filename = str_replace(['\\'], '.', $ident);
-        if($engine == AbstractView::ENGINE_MUSTACHE) {
+        if ($engine == AbstractView::ENGINE_MUSTACHE) {
             $filename .= '.mustache';
-        }
-        else {
+        } else {
             $filename .= '.php';
         }
 
