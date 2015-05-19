@@ -13,15 +13,12 @@ abstract class AbstractAction implements ActionInterface
 {
     const MODE_JSON = 'json';
     const MODE_REDIRECT = 'redirect';
+    const MODE_BOOLEAN = 'boolean';
+    const MODE_OUTPUT = 'output';
     const DEFAULT_MODE = self::MODE_REDIRECT;
 
     private $_mode = self::DEFAULT_MODE;
     private $_success = false;
-
-    public function setUp()
-    {
-        setenv('REQUEST_METHOD', 'GET');
-    }
 
     /**
     * @param string

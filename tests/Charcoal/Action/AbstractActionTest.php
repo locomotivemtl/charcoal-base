@@ -9,6 +9,7 @@ use \Charcoal\Action\Action as Action;
 */
 class AbstractActionTest extends \PHPUnit_Framework_Testcase
 {
+
     public function testConstructor()
     {
         $obj = new Action();
@@ -55,6 +56,9 @@ class AbstractActionTest extends \PHPUnit_Framework_Testcase
         $obj->set_mode('json');
         $obj->output();
         $ret = ob_get_clean();
-        
+
+        $this->setExpectedException('\Exception');
+        $obj->set_mode('foo');
+        $obj->output(666);
     }
 }
