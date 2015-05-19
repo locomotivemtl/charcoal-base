@@ -62,13 +62,13 @@ trait CliActionTrait
             throw new InvalidArgumentException('Data must be an array');
         }
 
-        if(isset($data['ident']) && $data['ident'] !== null) {
+        if (isset($data['ident']) && $data['ident'] !== null) {
             $this->set_ident($data['ident']);
         }
-        if(isset($data['description']) && $data['description'] !== null) {
+        if (isset($data['description']) && $data['description'] !== null) {
             $this->set_description($data['description']);
         }
-        if(isset($data['arguments']) && $data['arguments'] !== null) {
+        if (isset($data['arguments']) && $data['arguments'] !== null) {
             $this->set_arguments($data['arguments']);
         }
 

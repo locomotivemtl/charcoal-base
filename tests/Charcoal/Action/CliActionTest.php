@@ -8,7 +8,8 @@ use \Charcoal\Action\CliAction as CliAction;
 * Test the CliAction class AND the CliActionTrait it uses
 */
 class CliActionTest extends \PHPUnit_Framework_Testcase
-{   
+{
+
 
     static public function setUpBeforeClass()
     {
