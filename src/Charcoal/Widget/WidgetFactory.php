@@ -18,7 +18,8 @@ class WidgetFactory extends AbstractFactory
             throw new InvalidArgumentException(sprintf('Type "%s" is not a valid type', $type));
         }
         $class_name = $this->_ident_to_classname($type);
-        return new $class_name();
+        $widget = new $class_name();
+        return $widget;
     }
 
     /**
