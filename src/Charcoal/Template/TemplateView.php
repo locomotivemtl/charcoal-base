@@ -2,6 +2,8 @@
 
 namespace Charcoal\Template;
 
+use \InvalidArgumentException as InvalidArgumentException;
+
 use \Charcoal\View\AbstractView as AbstractView;
 
 use \Charcoal\Template\TemplateFactory as TemplateFactor;
@@ -14,13 +16,13 @@ class TemplateView extends AbstractView
 {
     /**
     * @param string $template_ident
-    * @throws \InvalidArgumentException if the ident is not a string
+    * @throws InvalidArgumentException if the ident is not a string
     * @return string
     */
     public function load_template($template_ident)
     {
         if (!is_string($template_ident)) {
-            throw new \InvalidArgumentException('Template ident must be a string');
+            throw new InvalidArgumentException('Template ident must be a string');
         }
 
         $template_loader = new TemplateLoader();
@@ -35,13 +37,13 @@ class TemplateView extends AbstractView
 
     /**
     * @param string $context_ident
-    * @throws \InvalidArgumentException if the ident is not a string
+    * @throws InvalidArgumentException if the ident is not a string
     * @return mixed
     */
     public function load_context($context_ident)
     {
         if (!is_string($context_ident)) {
-            throw new \InvalidArgumentException('Context ident must be a string');
+            throw new InvalidArgumentException('Context ident must be a string');
         }
 
         $template_factory = TemplateFactory::instance();
@@ -51,6 +53,10 @@ class TemplateView extends AbstractView
         return $template_model;
     }
 
+    /**
+    * @param array $data
+    * @return TemplateViewController
+    */
     public function create_controller($data=null)
     {
         $context = $this->context();
