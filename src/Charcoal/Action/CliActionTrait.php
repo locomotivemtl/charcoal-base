@@ -170,6 +170,31 @@ trait CliActionTrait
     }
 
     /**
+    * Get an argument either from argument list (if set) or else from an input prompt.
+    *
+    * @param string $arg_name
+    * @return string The argument value or prompt value
+    */
+    public function arg_or_input($arg_name)
+    {
+        $climate = $this->climate();
+        $arg = $climate->arguments->get($arg_name);
+        if ($arg) {
+            return $arg;
+        } else {
+            $arguments = $this->arguments();
+            if (isset($arguments[$arg_name])) {
+                $arg_desc = $arguments[$arg_name]['description'];
+            } else {
+                $arg_desc = $arg_name;
+            }
+            $input = $climate->input(sprintf("Enter %s:", $arg_desc));
+            $arg = $input->prompt();
+            return $arg;
+        }
+    }
+
+    /**
     * @return string
     */
     public function help()

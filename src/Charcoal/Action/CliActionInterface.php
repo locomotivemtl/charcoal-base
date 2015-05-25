@@ -57,6 +57,12 @@ interface CliActionInterface
     public function argument($argument_ident);
 
     /**
+    * @param string $arg_name
+    * @return array
+    */
+    public function arg_or_input($arg_name);
+
+    /**
     * @return string
     */
     public function help();
