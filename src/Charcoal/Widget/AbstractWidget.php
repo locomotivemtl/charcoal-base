@@ -4,9 +4,10 @@ namespace Charcoal\Widget;
 
 use \InvalidArgumentException as InvalidArgumentException;
 
+use \Charcoal\Model\AbstractModel as AbstractModel;
 use \Charcoal\Widget\WidgetInterface as WidgetInterface;
 
-abstract class AbstractWidget implements WidgetInterface
+abstract class AbstractWidget extends AbstractModel implements WidgetInterface
 {
     /**
     * @var boolean $_active
