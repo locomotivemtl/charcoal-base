@@ -13,7 +13,7 @@
         "php": ">=5.4.0",
         "ext-pdo":"*",
         "locomotivemtl/charcoal-core":"@dev",
-        "league/climate": "dev-master"
+        "league/climate": "~3.1"
     },
     "repositories":[
         {
