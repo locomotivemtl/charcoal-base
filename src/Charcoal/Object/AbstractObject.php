@@ -18,5 +18,6 @@ abstract class AbstractObject extends AbstractModel implements ObjectInterface, 
     {
         parent::set_data($data);
         $this->set_indexable_data($data);
+        return $this;
     }
 }

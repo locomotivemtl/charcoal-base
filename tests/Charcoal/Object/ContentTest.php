@@ -18,13 +18,16 @@ class ContentTest extends \PHPUnit_Framework_TestCase
     {
         $obj = new Content();
         $ret = $obj->set_data([
+            'active'=>false,
+            'position'=>42,
             'created'=>'2015-01-01 13:05:45',
             'created_by'=>'Me',
             'last_modified'=>'2015-04-01 22:10:30',
-            'last_modified_by'=>'You',
-
+            'last_modified_by'=>'You'
         ]);
         $this->assertSame($ret, $obj);
+        $this->assertNotTrue($obj->active());
+        $this->assertEquals(42, $obj->position());
         $expected = new DateTime('2015-01-01 13:05:45');
         $this->assertEquals($expected, $obj->created());
         $this->assertEquals('Me', $obj->created_by());
@@ -34,6 +37,30 @@ class ContentTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\InvalidArgumentException');
         $obj->set_data(false);
+    }
+
+    public function testSetActive()
+    {
+        $obj = new Content();
+        $this->assertTrue($obj->active());
+        $ret = $obj->set_active(false);
+        $this->assertSame($ret, $obj);
+        $this->assertNotTrue($obj->active());
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $obj->set_active('foo');
+    }
+
+    public function testSetPosition()
+    {
+        $obj = new Content();
+        $this->assertEquals(0, $obj->position());
+        $ret = $obj->set_position(42);
+        $this->assertSame($ret, $obj);
+        $this->assertEquals(42, $obj->position());
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $obj->set_position('foo');
     }
 
     public function testSetCreated()
@@ -92,6 +119,15 @@ class ContentTest extends \PHPUnit_Framework_TestCase
         $this->assertNotSame(null, $obj->created());
         $this->assertNotSame(null, $obj->last_modified());
 
+    }
+
+    public function testSetPreUpdate()
+    {
+        $obj = new Content();
+        $this->assertSame(null, $obj->last_modified());
+
+        $obj->pre_update();
+        $this->assertNotSame(null, $obj->last_modified());
 
     }
 }
