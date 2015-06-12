@@ -14,7 +14,7 @@ class ActionFactory extends AbstractFactory
 {
     public function get($type)
     {
-        $class_name = $this->_ident_to_classname($type);
+        $class_name = $this->ident_to_classname($type);
         if (class_exists($class_name)) {
             $obj = new $class_name();
             if (!($obj instanceof ActionInterface)) {
@@ -24,22 +24,5 @@ class ActionFactory extends AbstractFactory
         } else {
             throw new Exception('Invalid action: '.$type);
         }
-    }
-
-    /**
-    * @param string @ident
-    * @return string
-    */
-    protected function _ident_to_classname($ident)
-    {
-        $class = str_replace('/', '\\', $ident);
-        $expl = explode('\\', $class);
-        array_walk(
-            $expl, function(&$i) {
-                $i = ucfirst($i);
-            }
-        );
-        $class = '\\'.implode('\\', $expl);
-        return $class;
     }
 }
