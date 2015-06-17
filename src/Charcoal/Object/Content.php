@@ -14,7 +14,7 @@ class Content extends AbstractObject implements ContentInterface
     * Objects are active by default
     * @var boolean $_active
     */
-    protected $_active = true;
+    private $_active = true;
 
     /**
     * The position is used for ordering lists
