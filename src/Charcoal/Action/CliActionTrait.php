@@ -26,6 +26,8 @@ trait CliActionTrait
     */
     private $_climate;
 
+    protected $_verbose;
+
     public function climate()
     {
         if ($this->_climate === null) {
@@ -193,6 +195,18 @@ trait CliActionTrait
             return $arg;
         }
     }
+
+    public function set_verbose($verbose)
+    {
+        $this->_verbose = $verbose;
+        return $this;
+    }
+
+    public function verbose()
+    {
+        return $this->_verbose;
+    }
+
 
     /**
     * @return string
