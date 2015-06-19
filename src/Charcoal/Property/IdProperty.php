@@ -10,6 +10,14 @@ use \Charcoal\Property\AbstractProperty as AbstractProperty;
 
 class IdProperty extends AbstractProperty
 {
+    /**
+    * @return string
+    */
+    public function type()
+    {
+        return 'id';
+    }
+
     const DEFAULT_MODE = 'auto-increment';
     /**
     * ID mode. Can be:

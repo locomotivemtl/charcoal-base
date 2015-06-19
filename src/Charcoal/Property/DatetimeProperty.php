@@ -31,6 +31,14 @@ class DatetimeProperty extends AbstractProperty
     private $_format;
 
     /**
+    * @return string
+    */
+    public function type()
+    {
+        return 'datetime';
+    }
+
+    /**
     * @param array $data
     * @throws InvalidArgumentException
     * @return DateTimeProperty Chainable

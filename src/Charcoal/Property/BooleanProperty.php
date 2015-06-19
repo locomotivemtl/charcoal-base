@@ -22,6 +22,14 @@ class BooleanProperty extends Property
     private $_false_label;
 
     /**
+    * @return string
+    */
+    public function type()
+    {
+        return 'boolean';
+    }
+
+    /**
     * @param array $data
     * @throws \InvalidArgumentException if the parameter is not an array
     * @return String (Chainable)
@@ -81,5 +89,21 @@ class BooleanProperty extends Property
     public function sql_pdo_type()
     {
         return PDO::PARAM_BOOL;
+    }
+
+    public function choices()
+    {
+        return [
+            [
+                'label'=>'True',
+                'selected'=>!!($this->val()),
+                'value'=>1
+            ],
+            [
+                'label'=>'False',
+                'selected'=>!($this->val()),
+                'value'=>0
+            ]
+        ];
     }
 }

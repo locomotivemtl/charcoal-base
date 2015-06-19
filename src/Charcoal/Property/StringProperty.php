@@ -42,6 +42,14 @@ class StringProperty extends Property
     private $_formatter;
 
     /**
+    * @return string
+    */
+    public function type()
+    {
+        return 'string';
+    }
+
+    /**
     * @param array $data
     * @throws \InvalidArgumentException if the parameter is not an array
     * @return StringProperty Chainable

@@ -15,6 +15,13 @@ class ObjectProperty extends AbstractProperty
     */
     private $_obj_type;
 
+    /**
+    * @return string
+    */
+    public function type()
+    {
+        return 'object';
+    }
 
     /**
     * @param array $data
