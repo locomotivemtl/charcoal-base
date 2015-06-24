@@ -4,7 +4,9 @@ namespace Charcoal\Widget;
 
 use \InvalidArgumentException as InvalidArgumentException;
 
+// From `charcoal-core`
 use \Charcoal\View\AbstractView as AbstractView;
+use \Charcoal\View\ViewTemplateLoader as ViewTemplateLoader;
 
 class WidgetView extends AbstractView
 {
@@ -18,7 +20,7 @@ class WidgetView extends AbstractView
         if (!is_string($template_ident)) {
             throw new InvalidArgumentException('Template ident must be a string');
         }
-        $template_loader = new WidgetLoader();
+        $template_loader = new ViewTemplateLoader();
         $template = $template_loader->load($template_ident);
         if ($template) {
             $this->set_template($template);

@@ -4,10 +4,14 @@ namespace Charcoal\Template;
 
 use \InvalidArgumentException as InvalidArgumentException;
 
+// From `charcoal-core`
 use \Charcoal\View\AbstractView as AbstractView;
 
-use \Charcoal\Template\TemplateFactory as TemplateFactor;
-use \Charcoal\Template\TemplateLoader as TemplateLoader;
+use \Charcoal\View\ViewTemplateLoader as ViewTemplateLoader;
+
+// From `charcoal-base`
+use \Charcoal\Template\TemplateFactory as TemplateFactory;
+use \Charcoal\Template\TemplateViewController as TemplateViewController;
 
 /**
 * Template View
@@ -25,7 +29,7 @@ class TemplateView extends AbstractView
             throw new InvalidArgumentException('Template ident must be a string');
         }
 
-        $template_loader = new TemplateLoader();
+        $template_loader = new ViewTemplateLoader();
         $template_loader->set_engine($this->engine());
         $template = $template_loader->load($template_ident);
         if ($template) {
