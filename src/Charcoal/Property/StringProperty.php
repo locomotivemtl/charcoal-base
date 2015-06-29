@@ -3,6 +3,7 @@
 namespace Charcoal\Property;
 
 use \PDO as PDO;
+use \InvalidArgumentException as InvalidArgumentException;
 
 use \Charcoal\Core\StringFormat as StringFormat;
 
@@ -51,14 +52,14 @@ class StringProperty extends Property
 
     /**
     * @param array $data
-    * @throws \InvalidArgumentException if the parameter is not an array
+    * @throws InvalidArgumentException if the parameter is not an array
     * @return StringProperty Chainable
     */
     public function set_data($data)
     {
 
         if (!is_array($data)) {
-            throw new \InvalidArgumentException('Data must be an array');
+            throw new InvalidArgumentException('Data must be an array');
         }
 
         parent::set_data($data);
@@ -80,16 +81,16 @@ class StringProperty extends Property
 
     /**
     * @param integer $max_length
-    * @throws \InvalidArgumentException if the parameter is not an integer
+    * @throws InvalidArgumentException if the parameter is not an integer
     * @return StringProperty Chainable
     */
     public function set_max_length($max_length)
     {
         if (!is_integer($max_length)) {
-            throw new \InvalidArgumentException("Max length must be an integer.");
+            throw new InvalidArgumentException("Max length must be an integer.");
         }
         if ($max_length < 0) {
-            throw new \InvalidArgumentException("Max length must be a positive integer (>=0)");
+            throw new InvalidArgumentException("Max length must be a positive integer (>=0)");
         }
         $this->_max_length = $max_length;
         return $this;
@@ -108,16 +109,16 @@ class StringProperty extends Property
 
     /**
     * @param integer $min_length
-    * @throws \InvalidArgumentException if the parameter is not an integer
+    * @throws InvalidArgumentException if the parameter is not an integer
     * @return StringProperty Chainable
     */
     public function set_min_length($min_length)
     {
         if (!is_integer($min_length)) {
-            throw new \InvalidArgumentException("Min length must be an integer.");
+            throw new InvalidArgumentException("Min length must be an integer.");
         }
         if ($min_length < 0) {
-            throw new \InvalidArgumentException("Min length must be a positive integer (>=0)");
+            throw new InvalidArgumentException("Min length must be a positive integer (>=0)");
         }
         $this->_min_length = $min_length;
         return $this;
@@ -136,13 +137,13 @@ class StringProperty extends Property
 
     /**
     * @param string $regexp
-    * @throws \InvalidArgumentException if the parameter is not a string
+    * @throws InvalidArgumentException if the parameter is not a string
     * @return StringProperty Chainable
     */
     public function set_regexp($regexp)
     {
         if (!is_string($regexp)) {
-            throw new \InvalidArgumentException("Regular expression must be a string.");
+            throw new InvalidArgumentException("Regular expression must be a string.");
         }
         $this->_regexp = $regexp;
         return $this;
@@ -161,13 +162,13 @@ class StringProperty extends Property
 
     /**
     * @param bool $allow_empty
-    * @throws \InvalidArgumentException If parameter is invalid
+    * @throws InvalidArgumentException If parameter is invalid
     * @return StringProperty Chainable
     */
     public function set_allow_empty($allow_empty)
     {
         if (!is_bool($allow_empty)) {
-            throw new \InvalidArgumentException('Allow empty must be a boolean');
+            throw new InvalidArgumentException('Allow empty must be a boolean');
         }
         $this->_allow_empty = $allow_empty;
         return $this;
@@ -319,6 +320,9 @@ class StringProperty extends Property
         }
     }
 
+    /**
+    * @return integer
+    */
     public function sql_pdo_type()
     {
         return PDO::PARAM_STR;
