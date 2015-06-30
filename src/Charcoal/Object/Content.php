@@ -46,15 +46,10 @@ class Content extends AbstractObject implements ContentInterface
 
     /**
     * @param array $data
-    * @throws InvalidArgumentException
     * @return Content Chainable
     */
-    public function set_data($data)
+    public function set_data(array $data)
     {
-        if (!is_array($data)) {
-            throw new InvalidArgumentException('Data must be an array');
-        }
-
         parent::set_data($data);
 
         if (isset($data['active']) && $data['active'] !== null) {

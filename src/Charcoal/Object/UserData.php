@@ -25,14 +25,10 @@ class UserData extends AbstractObject implements UserDataInterface
 
     /**
     * @param array $data
-    * @throws InvalidArgumentException if data is not an array
     * @return UserData Chainable
     */
-    public function set_data($data)
+    public function set_data(array $data)
     {
-        if (!is_array($data)) {
-            throw new InvalidArgumentException('Data must be an array');
-        }
         //parent::set_data($data);
         if (isset($data['ip']) && $data['ip'] !== null) {
             $this->set_ip($data['ip']);

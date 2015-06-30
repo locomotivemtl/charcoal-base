@@ -47,11 +47,15 @@ class WidgetView extends AbstractView
         return $template_model;
     }
 
-    public function create_controller($data=null)
+    /**
+    * @param array $data Optional
+    * @return WidgetViewController
+    */
+    public function create_controller(array $data = null)
     {
         $context = $this->context();
         $controller = new WidgetViewController();
-        if ($data !== null) {
+        if (is_array($data)) {
             $controller->set_data($data);
         }
         $controller->set_context($context);

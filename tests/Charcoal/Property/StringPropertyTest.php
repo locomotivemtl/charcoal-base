@@ -47,7 +47,8 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('/[0-9]*/', $obj->regexp());
         $this->assertEquals(false, $obj->allow_empty());
 
-        $this->setExpectedException('\InvalidArgumentException');
+        # $this->setExpectedException('\InvalidArgumentException');
+        $this->setExpectedException('\PHPUnit_Framework_Error');
         $obj->set_data('foo');
     }
 

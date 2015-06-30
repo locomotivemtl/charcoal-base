@@ -13,10 +13,14 @@ use \Charcoal\Template\TemplateInterface as TemplateInterface;
 abstract class AbstractTemplate extends AbstractModel implements
     TemplateInterface
 {
-    public function create_view($data=null)
+    /**
+    * @param array $data Optional
+    * @return TemplateView
+    */
+    public function create_view(array $data = null)
     {
         $view = new TemplateView();
-        if ($data !== null) {
+        if (is_array($data)) {
             $view->set_data($data);
         }
         return $view;

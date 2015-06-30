@@ -52,16 +52,10 @@ class StringProperty extends Property
 
     /**
     * @param array $data
-    * @throws InvalidArgumentException if the parameter is not an array
     * @return StringProperty Chainable
     */
-    public function set_data($data)
+    public function set_data(array $data)
     {
-
-        if (!is_array($data)) {
-            throw new InvalidArgumentException('Data must be an array');
-        }
-
         parent::set_data($data);
 
         if (isset($data['max_length']) && $data['max_length'] !== null) {

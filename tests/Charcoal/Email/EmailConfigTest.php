@@ -37,7 +37,8 @@ class EmailConfigTest extends \PHPUnit_Framework_Testcase
         $this->assertEquals(true, $obj->default_log());
         $this->assertEquals(true, $obj->default_track());
 
-        $this->setExpectedException('\InvalidArgumentException');
+        # $this->setExpectedException('\InvalidArgumentException');
+        $this->setExpectedException('\PHPUnit_Framework_Error');
         $obj->set_data('foo');
     }
 

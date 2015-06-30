@@ -40,15 +40,10 @@ class DatetimeProperty extends AbstractProperty
 
     /**
     * @param array $data
-    * @throws InvalidArgumentException
     * @return DateTimeProperty Chainable
     */
-    public function set_data($data)
+    public function set_data(array $data)
     {
-        if (!is_array($data)) {
-            throw new InvalidArgumentException('Data must be an array');
-        }
-
         parent::set_data($data);
         if (isset($data['min']) && $data['min'] !== null) {
             $this->set_min($data['min']);

@@ -28,20 +28,21 @@ abstract class AbstractWidget implements
     private $_active;
 
     /**
-    * @param array $data
+    * @param array $data Optional
     */
-    public function __construct($data=null)
+    public function __construct(array $data = null)
     {
-        if ($data !== null) {
+        if (is_array($data)) {
             $this->set_data($data);
         }
     }
 
-    public function set_data($data)
+    /**
+    * @param array $data
+    * @return AbstractWidget Chainable
+    */
+    public function set_data(array $data)
     {
-        if (!is_array($data)) {
-            throw new InvalidArgumentException('Data must be an array');
-        }
         $this->set_viewable_data($data);
         if (isset($data['active']) && $data['active'] !== null) {
             $this->set_active($data['active']);
@@ -74,12 +75,13 @@ abstract class AbstractWidget implements
     /**
     * ViewableInterface > create_view().
     *
+    * @param array $data Optional
     * @return ViewInterface
     */
-    protected function create_view($data=null)
+    protected function create_view(array $data = null)
     {
         $view = new WidgetView();
-        if ($data !== null) {
+        if (is_array($data)) {
             $view->set_data($data);
         }
         return $view;

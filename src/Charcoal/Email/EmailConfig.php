@@ -46,12 +46,12 @@ class EmailConfig extends AbstractConfig
         ];
     }
 
-    public function set_data($data)
+    /**
+    * @param array $data
+    * @return EmailConfig Chainable
+    */
+    public function set_data(array $data)
     {
-        if (!is_array($data)) {
-            throw new \InvalidArgumentException('Data must be array');
-        }
-
         if (isset($data['smtp']) && $data['smtp'] !== null) {
             $this->set_smtp($data['smtp']);
         }

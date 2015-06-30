@@ -58,14 +58,14 @@ class TemplateView extends AbstractView
     }
 
     /**
-    * @param array $data
+    * @param array $data Optional
     * @return TemplateViewController
     */
-    public function create_controller($data=null)
+    public function create_controller(array $data = null)
     {
         $context = $this->context();
         $controller = new TemplateViewController();
-        if ($data !== null) {
+        if (is_array($data)) {
             $controller->set_data($data);
         }
         $controller->set_context($context);

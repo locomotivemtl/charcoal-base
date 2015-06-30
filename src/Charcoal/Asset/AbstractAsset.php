@@ -28,10 +28,14 @@ abstract class AbstractAsset implements
         return $this;
     }
 
-    public function create_loader($data=null)
+    /**
+    * @param array $data Optional
+    * @return AssetLoader
+    */
+    public function create_loader(array $data = null)
     {
         $loader = new AssetLoader();
-        if ($data !== null) {
+        if (is_array($data)) {
             $loader->set_data($data);
         }
         return $loader;

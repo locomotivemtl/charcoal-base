@@ -37,15 +37,10 @@ abstract class AbstractEmail implements
 
     /**
     * @param array $data
-    * @throws \InvalidArgumentException if parameter is invalid
-    * @return EmailInterface Chainable
+    * @return AbstractEmail Chainable
     */
-    public function set_data($data)
+    public function set_data(array $data)
     {
-        if (!is_array($data)) {
-            throw new \InvalidArgumentException('Data must be an array');
-        }
-
         if (isset($data['campaign']) && $data['campaign'] !== null) {
             $this->set_campaign($data['campaign']);
         }
@@ -531,12 +526,13 @@ abstract class AbstractEmail implements
     /**
     * ConfigurableInterface > create_config()
     *
+    * @param array $data Optional
     * @return EmailConfig
     */
-    public function create_config($data=null)
+    public function create_config(array $data = null)
     {
         $config = new EmailConfig();
-        if ($data !== null) {
+        if (is_array($data)) {
             $config->set_data($data);
         }
         return $config;

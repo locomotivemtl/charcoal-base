@@ -14,7 +14,11 @@ abstract class AbstractObject extends AbstractModel implements ObjectInterface, 
 {
     use IndexableTrait;
 
-    public function set_data($data)
+    /**
+    * @param array $data
+    * @return AbstractObject Chainable
+    */
+    public function set_data(array $data)
     {
         parent::set_data($data);
         $this->set_indexable_data($data);

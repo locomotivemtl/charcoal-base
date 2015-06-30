@@ -32,7 +32,8 @@ class UserDataTest extends \PHPUnit_Framework_TestCase
         $expected = new DateTime('2015-01-01 15:05:20');
         $this->assertEquals($expected, $obj->ts());
 
-        $this->setExpectedException('\InvalidArgumentException');
+        # $this->setExpectedException('\InvalidArgumentException');
+        $this->setExpectedException('\PHPUnit_Framework_Error');
         $obj->set_data(false);
     }
 
