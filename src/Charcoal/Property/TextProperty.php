@@ -2,6 +2,7 @@
 
 namespace Charcoal\Property;
 
+// From `charcoal-base`
 use \Charcoal\Property\StringProperty as StringProperty;
 
 class TextProperty extends StringProperty

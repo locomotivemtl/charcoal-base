@@ -2,6 +2,7 @@
 
 namespace Charcoal\Property;
 
+use \finfo as finfo;
 use \PDO as PDO;
 use \Exception as Exception;
 use \InvalidArgumentException as InvalidArgumentException;
@@ -10,6 +11,9 @@ use \InvalidArgumentException as InvalidArgumentException;
 use \Charcoal\Charcoal as Charcoal;
 use \Charcoal\Property\AbstractProperty as AbstractProperty;
 
+/**
+*
+*/
 class FileProperty extends AbstractProperty
 {
 
@@ -34,7 +38,10 @@ class FileProperty extends AbstractProperty
     * If null or 0, then no limit.
     * @var integer $_max_filesize
     */
-    private $_max_filesize;
+    private $_max_filesize = 134220000; //128M
+
+    private $_mimetype;
+    private $_filesize;
 
     /**
     * @return string
@@ -162,6 +169,129 @@ class FileProperty extends AbstractProperty
     }
 
     /**
+    * @param string $mimetype
+    * @throws InvalidArgumentException
+    * @return FileProperty Chainable
+    */
+    public function set_mimetype($mimetype)
+    {
+        if (!is_string($mimetype)) {
+            throw new InvalidArgumentException('Mimetype must be a string');
+        }
+        $this->_mimetype = $mimetype;
+        return $this;
+    }
+
+    /**
+    * @return string
+    */
+    public function mimetype()
+    {
+        if (!$this->_mimetype) {
+            // Get mimetype from file
+            $val = $this->val();
+            if (!$val) {
+                return '';
+            }
+            $info = new finfo(FILEINFO_MIME_TYPE);
+            $this->_mimetype = $info->file($val);
+        }
+        return $this->_mimetype;
+    }
+
+    /**
+    * @param integer $size
+    * @throws InvalidArgumentException
+    * @return FileProperty Chainable
+    */
+    public function set_filesize($size)
+    {
+        if (!is_int($size)) {
+            throw new InvalidArgumentException('Filesize must be an integer, in bytes');
+        }
+        $this->_filesize = $size;
+        return $this;
+    }
+
+    /**
+    * @return integer
+    */
+    public function filesize()
+    {
+        if (!$this->_filesize) {
+            $val = $this->val();
+            if (!$val) {
+                return 0;
+            }
+            return 0;
+            //            $this->_filesize = filesize($val);
+        }
+        return $this->_filesize;
+    }
+
+    /**
+    * @return array
+    */
+    public function validation_methods()
+    {
+        $parent_methods = parent::validation_methods();
+        return array_merge($parent_methods, ['accepted_mimetypes', 'max_filesize']);
+    }
+
+    /**
+    * @return boolean
+    */
+    public function validate_accepted_mimetypes()
+    {
+        $accepted_mimetypes = $this->accepted_mimetypes();
+        if (empty($accepted_mimetypes)) {
+            // No validation rules = always true
+            return true;
+        }
+
+        if ($this->_mimetype) {
+            $mimetype = $this->_mimetype;
+        } else {
+            $val = $this->val();
+            $info = new finfo(FILEINFO_MIME_TYPE);
+            $mimetype = $info->file($val);
+        }
+        
+        $valid = false;
+        foreach ($accepted_mimetypes as $m) {
+            if ($m == $mimetype) {
+                $valid = true;
+                break;
+            }
+        }
+        if (!$valid) {
+            $this->validator()->error('Accepted mimetypes error', 'accepted_mimetypes');
+        }
+
+        return $valid;
+    }
+
+    /**
+    * @return boolean
+    */
+    public function validate_max_filesize()
+    {
+        $max_filesize = $this->max_filesize();
+        if ($max_filesize == 0) {
+            // No max size rule = always true
+            return true;
+        }
+
+        $filesize = $this->filesize();
+        $valid = ($filesize <= $max_filesize);
+        if (!$valid) {
+            $this->validator()->error('Max filesize error', 'max_filesize');
+        }
+
+        return $valid;
+    }
+
+    /**
     * @return string
     */
     public function sql_extra()
@@ -194,9 +324,17 @@ class FileProperty extends AbstractProperty
         return PDO::PARAM_STR;
     }
 
+    /**
+    * @return string
+    */
     public function save()
     {
-        if (preg_match('/^data:/', $this->val())) {
+        $i = $this->ident();
+        if (isset($_FILES[$i]) && (isset($_FILES[$i]['name']) && $_FILES[$i]['name']) && (isset($_FILES[$i]['tmp_name']) && $_FILES[$i]['tmp_name'])) {
+            $f = $this->file_upload($_FILES[$i]);
+            $this->set_val($f);
+            return $f;
+        } else if (preg_match('/^data:/', $this->val())) {
             $f = $this->data_upload($this->val());
             $this->set_val($f);
             return $f;
@@ -204,18 +342,61 @@ class FileProperty extends AbstractProperty
         return $this->val();
     }
 
-    public function data_upload($data)
+    /**
+    * @param string $file_data
+    * @throws Exception
+    * @return string
+    */
+    public function data_upload($file_data)
     {
-        $data = explode(',', $data);
-        if (!isset($data[1])) {
-            throw new InvalidArgumentException('Data was not a properly data-encoded, base64-encoded file.');
+        $file_content = file_get_contents($file_data);
+        if ($file_content === false) {
+            throw new Exception('File content could not be decoded.');
         }
-        $file = $this->upload_target();
-        $ret = file_put_contents($file, base64_decode($data[1]));
+        
+        $info = new finfo(FILEINFO_MIME_TYPE);
+        $this->set_mimetype($info->buffer($file_content));
+        $this->set_filesize(strlen($file_content));
+        if (!$this->validate_accepted_mimetypes() || !$this->validate_max_filesize()) {
+            return '';
+        }
+
+        $target = $this->upload_target();
+
+        $ret = file_put_contents($target, $file_content);
         if ($ret === false) {
             return '';
         } else {
-            return $file;
+            return $target;
+        }
+    }
+
+    /**
+    * @param array $file_data
+    * @throws InvalidArgumentException
+    * @return string
+    */
+    public function file_upload(array $file_data)
+    {
+        if (!isset($file_data['name'])) {
+            throw new InvalidArgumentException('File data is invalid');
+        }
+
+        $target = $this->upload_target($file_data['name']);
+        
+        $info = new finfo(FILEINFO_MIME_TYPE);
+        $this->set_mimetype($info->file($file_data['tmp_name']));
+        $this->set_filesize(filesize($file_data['tmp_name']));
+        if (!$this->validate_accepted_mimetypes() || !$this->validate_max_filesize()) {
+            return '';
+        }
+
+
+        $ret = move_uploaded_file($file_data['tmp_name'], $target);
+        if ($ret === false) {
+            return '';
+        } else {
+            return $target;
         }
     }
 
@@ -226,10 +407,11 @@ class FileProperty extends AbstractProperty
     */
     public function upload_target($filename=null)
     {
+
         $base_path = rtrim(Charcoal::config()->ROOT, '/').'/';
         $upload_path = $this->upload_path();
         $dir = $base_path.$upload_path;
-        $filename = ($filename) ? $filename : $this->generate_filename();
+        $filename = ($filename) ? $this->sanitize_filename($filename) : $this->generate_filename();
 
         if (!file_exists($dir)) {
             // @todo: Feedback
@@ -241,20 +423,84 @@ class FileProperty extends AbstractProperty
 
         $target = $dir.$filename;
 
-        if (file_exists($target)) {
+        if ($this->file_exists($target)) {
             if ($this->overwrite() === true) {
                 return $target;
             } else {
                 // Can not overwrite. Must rename file. (@todo)
-                return $target;
+                $info = pathinfo($filename);
+                //var_dump($info);
+
+                $filename = $info['filename'].'-'.uniqid();
+                if (isset($info['extension']) && $info['extension']) {
+                    $filename .= '.'.$info['extension'];
+                }
+                $target = $dir.$filename;
             }
         }
         
         return $target;
     }
 
+    /**
+    * This function checks if a file exist, by default in a case-insensitive manner.
+    *
+    * PHP builtin's `file_exists` is only case-insensitive on case-insensitive filesystem (such as windows)
+    * This method allows to have the same validation across different platforms / filesystem.
+    *
+    * @param string $file
+    * @param boolean $case_insensitive
+    * @return boolean
+    */
+    public function file_exists($file, $case_insensitive=true)
+    {
+        if (file_exists($file)) {
+            return true;
+        }
+        if ($case_insensitive === false) {
+            return false;
+        }
+
+        $files = glob(dirname($file).'/*', GLOB_NOSORT);
+        foreach ($files as $f) {
+            if (preg_match("#{$file}#i", $f)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+    * @return string
+    */
+    public function sanitize_filename($filename)
+    {
+        //$filename = str_replace(['/', '\\'], '_', $filename);
+        //$filename = ltrim($filename, '.');
+        return $filename;
+    }
+
+    /**
+    * @return string
+    */
     public function generate_filename()
     {
-        return $this->label().' '.date('Y-m-d H-i-s');
+        $filename = $this->label().' '.date('Y-m-d H-i-s');
+        $extension = $this->generate_extension();
+        
+        if ($extension) {
+            return $filename.'.'.$extension;
+        } else {
+            return $filename;
+        }
+    }
+
+    /**
+    * @return string
+    */
+    public function generate_extension()
+    {
+        $mimetype = $this->mimetype();
     }
 }

@@ -209,6 +209,9 @@ class StringProperty extends Property
         return mb_strlen($val);
     }
 
+    /**
+    * @return array
+    */
     public function validation_methods()
     {
         $parent_methods = parent::validation_methods();
@@ -292,6 +295,9 @@ class StringProperty extends Property
         }
     }
 
+    /**
+    * @return string
+    */
     public function sql_extra()
     {
         return '';
@@ -328,6 +334,9 @@ class StringProperty extends Property
         return PDO::PARAM_STR;
     }
 
+    /**
+    * @return mixed
+    */
     public function save()
     {
         return $this->val();
