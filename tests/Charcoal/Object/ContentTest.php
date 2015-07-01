@@ -34,10 +34,6 @@ class ContentTest extends \PHPUnit_Framework_TestCase
         $expected = new DateTime('2015-04-01 22:10:30');
         $this->assertEquals($expected, $obj->last_modified());
         $this->assertEquals('You', $obj->last_modified_by());
-
-        # $this->setExpectedException('\InvalidArgumentException');
-        $this->setExpectedException('\PHPUnit_Framework_Error');
-        $obj->set_data(false);
     }
 
     public function testSetActive()

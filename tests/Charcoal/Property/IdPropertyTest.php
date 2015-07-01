@@ -24,10 +24,6 @@ class IdPropertyTest extends \PHPUnit_Framework_TestCase
         ]);
         $this->assertSame($ret, $obj);
         $this->assertEquals('uniqid', $obj->mode());
-
-        # $this->setExpectedException('\InvalidArgumentException');
-        $this->setExpectedException('\PHPUnit_Framework_Error');
-        $obj->set_data(false);
     }
 
     public function testSetMode()

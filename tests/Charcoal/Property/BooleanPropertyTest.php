@@ -29,10 +29,6 @@ class BooleanPropertyTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('foo', $obj->true_label());
         $this->assertEquals('bar', $obj->false_label());
-
-        # $this->setExpectedException('\InvalidArgumentException');
-        $this->setExpectedException('\PHPUnit_Framework_Error');
-        $obj->set_data(false);
     }
 
     public function testSetTrueLabel()

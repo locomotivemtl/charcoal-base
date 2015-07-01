@@ -48,10 +48,6 @@ class AbstractEmailTest extends \PHPUnit_Framework_Testcase
         $this->assertEquals(['foo'], $obj->attachments());
         $this->assertEquals(true, $obj->log());
         $this->assertEquals(true, $obj->track());
-
-        # $this->setExpectedException('\InvalidArgumentException');
-        $this->setExpectedException('\PHPUnit_Framework_Error');
-        $obj->set_data(false);
     }
 
     public function testSetCampaign()

@@ -34,10 +34,6 @@ class CliActionTest extends \PHPUnit_Framework_Testcase
 
         $this->assertEquals('foo', $obj->ident());
         $this->assertEquals('bar', $obj->description());
-
-        # $this->setExpectedException('\InvalidArgumentException');
-        $this->setExpectedException('\PHPUnit_Framework_Error');
-        $obj->set_data(false);
     }
 
     public function testSetIdent()
