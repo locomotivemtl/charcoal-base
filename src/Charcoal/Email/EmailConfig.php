@@ -2,6 +2,10 @@
 
 namespace Charcoal\Email;
 
+// From `PHP`
+use \InvalidArgumentException as InvalidArgumentException;
+
+// From `charcoal-core`
 use \Charcoal\Config\AbstractConfig as AbstractConfig;
 
 class EmailConfig extends AbstractConfig
@@ -52,6 +56,7 @@ class EmailConfig extends AbstractConfig
     */
     public function set_data(array $data)
     {
+
         if (isset($data['smtp']) && $data['smtp'] !== null) {
             $this->set_smtp($data['smtp']);
         }
@@ -76,13 +81,13 @@ class EmailConfig extends AbstractConfig
 
     /**
     * @param boolean
-    * @throws \InvalidArgumentException if parameter is not boolean
+    * @throws InvalidArgumentException if parameter is not boolean
     * @return EmailConfig Chainable
     */
     public function set_smtp($smtp)
     {
         if (!is_bool($smtp)) {
-            throw new \InvalidArgumentException('Smtp needs to be boolean');
+            throw new InvalidArgumentException('Smtp needs to be boolean');
         }
         $this->_smtp = $smtp;
         return $this;
@@ -99,7 +104,7 @@ class EmailConfig extends AbstractConfig
     public function set_smtp_options($smtp_options)
     {
         if (!is_array($smtp_options)) {
-            throw new \InvalidArgumentException('Options need to be an array');
+            throw new InvalidArgumentException('Options need to be an array');
         }
         $this->_smtp_options = $smtp_options;
         return $this;
@@ -152,13 +157,13 @@ class EmailConfig extends AbstractConfig
 
     /**
     * @param boolean
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailConfig Chainable
     */
     public function set_default_log($default_log)
     {
         if (!is_bool($default_log)) {
-            throw new \InvalidArgumentException('Parameter needs to be  a boolean');
+            throw new InvalidArgumentException('Parameter needs to be  a boolean');
         }
         $this->_default_log = $default_log;
         return $this;
@@ -174,13 +179,13 @@ class EmailConfig extends AbstractConfig
 
     /**
     * @param boolean
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailConfig Chainable
     */
     public function set_default_track($default_track)
     {
         if (!is_bool($default_track)) {
-            throw new \InvalidArgumentException('Parameter needs to be  a boolean');
+            throw new InvalidArgumentException('Parameter needs to be  a boolean');
         }
         $this->_default_track = $default_track;
         return $this;
@@ -196,17 +201,17 @@ class EmailConfig extends AbstractConfig
 
     /**
     * @param array
-    * @throws \InvalidArgumentException if parameter is not an array or invalid array
+    * @throws InvalidArgumentException if parameter is not an array or invalid array
     * @return string
     */
     protected function email_from_array($email_array)
     {
         if (!is_array($email_array)) {
-            throw new \InvalidArgumentException('Parameter must be an array');
+            throw new InvalidArgumentException('Parameter must be an array');
         }
 
         if (!isset($email_array['email'])) {
-            throw new \InvalidArgumentException('Array must atleast contain the email key');
+            throw new InvalidArgumentException('Array must atleast contain the email key');
         }
 
         $email = filter_var($email_array['email'], FILTER_SANITIZE_EMAIL);

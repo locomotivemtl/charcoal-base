@@ -2,25 +2,41 @@
 
 namespace Charcoal\Email;
 
+// From `PHP`
+use \InvalidArgumentException as InvalidArgumentException;
+
+// From `phpmailer/phpmailer`
+use \PHPMailer as PHPMailer;
+
 // From `charcoal-core`
 use \Charcoal\Config\ConfigurableInterface as ConfigurableInterface;
 use \Charcoal\Config\ConfigurableTrait as ConfigurableTrait;
+use \Charcoal\View\ViewableInterface as ViewableInterface;
+use \Charcoal\View\ViewableTrait as ViewableTrait;
 
 // From `charcoal-base`
 use \Charcoal\Email\EmailInterface as EmailInterface;
 use \Charcoal\Email\EmailConfig as EmailConfig;
 
 /**
-* Default implementaiton, as abstract class, of the `EmailInterface`.
+* Default implementation, as abstract class, of the `EmailInterface`.
+*
+* This abstract class lets the following methods abstract:
+* - `send()`
+* - `queue()`
+* - `log_send()`
+* - `log_queue()`
 */
 abstract class AbstractEmail implements
     EmailInterface,
-    ConfigurableInterface
+    ConfigurableInterface,
+    ViewableInterface
 {
     use ConfigurableTrait;
+    use ViewableTrait;
 
     /**
-    * @var string
+    * @var string $_campaign
     */
     private $_campaign;
     private $_to = [];
@@ -41,6 +57,7 @@ abstract class AbstractEmail implements
     */
     public function set_data(array $data)
     {
+
         if (isset($data['campaign']) && $data['campaign'] !== null) {
             $this->set_campaign($data['campaign']);
         }
@@ -79,15 +96,24 @@ abstract class AbstractEmail implements
         }
         return $this;
     }
+
+    /**
+    *
+    */
+    public function set_template($template)
+    {
+
+    }
+
     /**
     * @param string $campaign
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
     */
     public function set_campaign($campaign)
     {
         if (!is_string($campaign)) {
-            throw new \InvalidArgumentException('Campaign must be a string');
+            throw new InvalidArgumentException('Campaign must be a string');
         }
         $this->_campaign = $campaign;
         return $this;
@@ -114,7 +140,7 @@ abstract class AbstractEmail implements
 
     /**
     * @param string|array $to
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
     */
     public function set_to($to)
@@ -123,7 +149,7 @@ abstract class AbstractEmail implements
             $to = [$to];
         }
         if (!is_array($to)) {
-            throw new \InvalidArgumentException('To must be an array of recipients');
+            throw new InvalidArgumentException('To must be an array of recipients');
         }
         $this->_to = [];
         foreach ($to as $t) {
@@ -134,7 +160,7 @@ abstract class AbstractEmail implements
 
     /**
     * @param mixed $to
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
     */
     public function add_to($to)
@@ -144,7 +170,7 @@ abstract class AbstractEmail implements
         } else if (is_array($to)) {
             $this->_to[] = $this->email_from_array($to);
         } else {
-            throw new \InvalidArgumentException('Email address must be an array or a string');
+            throw new InvalidArgumentException('Email address must be an array or a string');
         }
         return $this;
     }
@@ -159,7 +185,7 @@ abstract class AbstractEmail implements
 
     /**
     * @param string|array $cc
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
     */
     public function set_cc($cc)
@@ -168,7 +194,7 @@ abstract class AbstractEmail implements
             $cc = [$cc];
         }
         if (!is_array($cc)) {
-            throw new \InvalidArgumentException('CC must be an array of recipients');
+            throw new InvalidArgumentException('CC must be an array of recipients');
         }
         $this->_cc = [];
         foreach ($cc as $t) {
@@ -179,7 +205,7 @@ abstract class AbstractEmail implements
 
     /**
     * @param mixed $cc
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
     */
     public function add_cc($cc)
@@ -189,7 +215,7 @@ abstract class AbstractEmail implements
         } else if (is_array($cc)) {
             $this->_cc[] = $this->email_from_array($cc);
         } else {
-            throw new \InvalidArgumentException('Email address must be an array or a string');
+            throw new InvalidArgumentException('Email address must be an array or a string');
         }
         return $this;
     }
@@ -204,7 +230,7 @@ abstract class AbstractEmail implements
 
     /**
     * @param string|array $bcc
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
     */
     public function set_bcc($bcc)
@@ -213,7 +239,7 @@ abstract class AbstractEmail implements
             $bcc = [$bcc];
         }
         if (!is_array($bcc)) {
-            throw new \InvalidArgumentException('BCC must be an array of recipients');
+            throw new InvalidArgumentException('BCC must be an array of recipients');
         }
         $this->_bcc = [];
         foreach ($bcc as $t) {
@@ -224,7 +250,7 @@ abstract class AbstractEmail implements
 
     /**
     * @param mixed $bcc
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
     */
     public function add_bcc($bcc)
@@ -234,7 +260,7 @@ abstract class AbstractEmail implements
         } else if (is_array($bcc)) {
             $this->_bcc[] = $this->email_from_array($bcc);
         } else {
-            throw new \InvalidArgumentException('Email address must be an array or a string');
+            throw new InvalidArgumentException('Email address must be an array or a string');
         }
         return $this;
     }
@@ -249,17 +275,18 @@ abstract class AbstractEmail implements
 
     /**
     * @param mixed $from
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
     */
     public function set_from($from)
     {
         if (is_string($from)) {
+            // @todo Validation
             $this->_from = $from;
         } else if (is_array($from)) {
             $this->_from = $this->email_from_array($from);
         } else {
-            throw new \InvalidArgumentException('Email address must be an array or a string');
+            throw new InvalidArgumentException('Email address must be an array or a string');
         }
         return $this;
     }
@@ -279,7 +306,7 @@ abstract class AbstractEmail implements
     * Set the "reply-to" header field.
     *
     * @param mixed $reply_to
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
     */
     public function set_reply_to($reply_to)
@@ -289,7 +316,7 @@ abstract class AbstractEmail implements
         } else if (is_array($reply_to)) {
             $this->_reply_to = $this->email_from_array($reply_to);
         } else {
-            throw new \InvalidArgumentException('Email address must be an array or a string');
+            throw new InvalidArgumentException('Email address must be an array or a string');
         }
         return $this;
     }
@@ -307,13 +334,13 @@ abstract class AbstractEmail implements
 
     /**
     * @param string $subject
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
     */
     public function set_subject($subject)
     {
         if (!is_string($subject)) {
-            throw new \InvalidArgumentException('Subject needs to be a string');
+            throw new InvalidArgumentException('Subject needs to be a string');
         }
         $this->_subject = $subject;
         return $this;
@@ -329,13 +356,13 @@ abstract class AbstractEmail implements
 
     /**
     * @param string $msg_html
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
     */
     public function set_msg_html($msg_html)
     {
         if (!is_string($msg_html)) {
-            throw new \InvalidArgumentException('HTML msg must be a string');
+            throw new InvalidArgumentException('HTML msg must be a string');
         }
         $this->_msg_html = $msg_html;
         return $this;
@@ -353,20 +380,31 @@ abstract class AbstractEmail implements
     }
 
     /**
+    * Get the message's HTML content from the template
     *
     */
-    abstract protected function generate_msg_html();
+    protected function generate_msg_html()
+    {
+        $template_ident = $this->template_ident();
+        if (!$template_ident) {
+            $msg_html = '';
+        } else {
+            $msg_html = $this->render_template($template_ident);
+        }
+        return $msg_html;
+    }
+
 
 
     /**
     * @param string $msg_txt
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
     */
     public function set_msg_txt($msg_txt)
     {
         if (!is_string($msg_txt)) {
-            throw new \InvalidArgumentException('Text msg must be a string');
+            throw new InvalidArgumentException('Text msg must be a string');
         }
         $this->_msg_txt = $msg_txt;
         return $this;
@@ -383,17 +421,20 @@ abstract class AbstractEmail implements
         return $this->_msg_txt;
     }
 
-    abstract protected function generate_msg_txt();
+    protected function generate_msg_txt()
+    {
+        $msg_html = $this->msg_html();
+    }
 
     /**
     * @var array $attachments
-    * @throws \InvalidArgumentException if parameter is invalid
+    * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
     */
     public function set_attachments($attachments)
     {
         if (!is_array($attachments)) {
-            throw new \InvalidArgumentException('Attachments need to be an array');
+            throw new InvalidArgumentException('Attachments need to be an array');
         }
         foreach ($attachments as $att) {
             $this->add_attachment($att);
@@ -423,13 +464,13 @@ abstract class AbstractEmail implements
     * Enable or disable logging for this particular email.
     *
     * @param bool $log
-    * @throws \InvalidArgumentException if parameter is not boolean
+    * @throws InvalidArgumentException if parameter is not boolean
     * @return EmailInterface Chainable
     */
     public function set_log($log)
     {
         if (!is_bool($log)) {
-            throw new \InvalidArgumentException('Track must be boolean');
+            throw new InvalidArgumentException('Track must be boolean');
         }
         $this->_log = $log;
         return $this;
@@ -450,13 +491,13 @@ abstract class AbstractEmail implements
     * Enable or disable traking for this particular email.
     *
     * @param bool $track
-    * @throws \InvalidArgumentException if track is not a boolean
+    * @throws InvalidArgumentException if track is not a boolean
     * @return EmailInterface Chainable
     */
     public function set_track($track)
     {
         if (!is_bool($track)) {
-            throw new \InvalidArgumentException('Track must be boolean');
+            throw new InvalidArgumentException('Track must be boolean');
         }
         $this->_track = $track;
         return $this;
@@ -474,44 +515,92 @@ abstract class AbstractEmail implements
     }
 
     /**
-    * Send the email to all recipients.
+    * Send the email to all recipients
     *
-    * @return boolean Success / Failure
+    * @return bool Success / Failure
     */
-    abstract public function send();
+    public function send()
+    {
+        $cfg = $this->config();
+        //var_dump($cfg);
+        $mail = new PHPMailer;
+
+        /*
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = 'user@example.com';                 // SMTP username
+        $mail->Password = 'secret';                           // SMTP password
+        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 587;                                    // TCP port to connect to
+        */
+
+        $mail->setFrom($this->from());
+        //$mail->FromName = 'Mailer';
+        $to = $this->to();
+        foreach ($to as $recipient) {
+            $mail->addAddress($recipient);
+        }
+        $reply_to = $this->reply_to();
+        if ($reply_to) {
+            $mail->addReplyTo($reply_to);
+        }
+        $cc = $this->bcc();
+        foreach ($cc as $cc_recipient) {
+            $mail->addCC($cc_recipient);
+        }
+        $bcc = $this->bcc();
+        foreach ($bcc as $bcc_recipient) {
+            $mail->addBCC($bcc_recipient);
+        }
+
+        $attachments = $this->attachments();
+        foreach ($attachments as $att) {
+            $mail->addAttachment($att);
+        }
+
+        $mail->isHTML(true);                                  // Set email format to HTML
+
+        $mail->Subject = $this->subject();
+        $mail->Body    = $this->msg_html();
+        $mail->AltBody = $this->msg_txt();
+
+        $ret = $mail->send();
+
+        $this->send_log();
+        return $ret;
+    }
+
+    public function queue()
+    {
+
+    }
 
     /**
-    * Add the email to the queue pool.
     *
-    * @return boolean Success / Failure
     */
-    abstract public function queue();
+    protected function send_log()
+    {
 
-    /**
-    * Log the "send" event
-    * @return mixed The (created) log object
-    */
-    abstract protected function send_log();
+    }
 
-    /**
-    * Log the "queue" event
-    * @return mixed The (created) log object
-    */
-    abstract protected function queue_log();
+    protected function queue_log()
+    {
 
+    }
     /**
     * @param array
-    * @throws \InvalidArgumentException if parameter is not an array or invalid array
+    * @throws InvalidArgumentException if parameter is not an array or invalid array
     * @return string
     */
     protected function email_from_array($email_array)
     {
         if (!is_array($email_array)) {
-            throw new \InvalidArgumentException('Parameter must be an array');
+            throw new InvalidArgumentException('Parameter must be an array');
         }
 
         if (!isset($email_array['email'])) {
-            throw new \InvalidArgumentException('Array must atleast contain the email key');
+            throw new InvalidArgumentException('Array must atleast contain the email key');
         }
 
         $email = filter_var($email_array['email'], FILTER_SANITIZE_EMAIL);
@@ -536,5 +625,19 @@ abstract class AbstractEmail implements
             $config->set_data($data);
         }
         return $config;
+    }
+
+    /**
+    * ViewableInterface > create_view()
+    *
+    * @return EmailView
+    */
+    public function create_view($data=null)
+    {
+        $view = new EmailView();
+        if ($data !== null) {
+            $view->set_data($data);
+        }
+        return $view;
     }
 }

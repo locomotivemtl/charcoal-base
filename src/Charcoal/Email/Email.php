@@ -2,40 +2,15 @@
 
 namespace Charcoal\Email;
 
+
+
+// From `charcoal-base`
 use \Charcoal\Email\AbstractEmail as AbstractEmail;
 
 /**
-* Concrete implementation of Email class
+* Concrete implementation of AbstractEmail class
 */
 class Email extends AbstractEmail
 {
-    protected function generate_msg_html()
-    {
-        return '';
-    }
 
-    protected function generate_msg_txt()
-    {
-        return '';
-    }
-
-    public function send()
-    {
-
-    }
-
-    public function queue()
-    {
-
-    }
-
-    protected function send_log()
-    {
-
-    }
-
-    protected function queue_log()
-    {
-
-    }
 }
