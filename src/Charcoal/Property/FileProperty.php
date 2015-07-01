@@ -247,10 +247,13 @@ class FileProperty extends AbstractProperty
             $mimetype = $this->_mimetype;
         } else {
             $val = $this->val();
+            if (!$val) {
+                return true;
+            }
             $info = new finfo(FILEINFO_MIME_TYPE);
             $mimetype = $info->file($val);
         }
-        
+        //var_dump($mimetype);
         $valid = false;
         foreach ($accepted_mimetypes as $m) {
             if ($m == $mimetype) {
@@ -470,8 +473,8 @@ class FileProperty extends AbstractProperty
     */
     public function sanitize_filename($filename)
     {
-        //$filename = str_replace(['/', '\\'], '_', $filename);
-        //$filename = ltrim($filename, '.');
+        $filename = str_replace(['/', '\\', '\0', '*', ':', '?', '"', '<', '>', '|'], '_', $filename);
+        $filename = ltrim($filename, '.');
         return $filename;
     }
 
