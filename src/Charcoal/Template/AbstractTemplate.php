@@ -17,7 +17,7 @@ abstract class AbstractTemplate extends AbstractModel implements
     * @param array $data Optional
     * @return TemplateView
     */
-    public function create_view(array $data = null)
+    public function create_view(array $data=null)
     {
         $view = new TemplateView();
         if (is_array($data)) {

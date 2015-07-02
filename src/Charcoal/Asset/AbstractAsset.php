@@ -32,7 +32,7 @@ abstract class AbstractAsset implements
     * @param array $data Optional
     * @return AssetLoader
     */
-    public function create_loader(array $data = null)
+    public function create_loader(array $data=null)
     {
         $loader = new AssetLoader();
         if (is_array($data)) {

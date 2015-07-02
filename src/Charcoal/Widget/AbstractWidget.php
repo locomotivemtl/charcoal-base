@@ -30,7 +30,7 @@ abstract class AbstractWidget implements
     /**
     * @param array $data Optional
     */
-    public function __construct(array $data = null)
+    public function __construct(array $data=null)
     {
         if (is_array($data)) {
             $this->set_data($data);
@@ -78,7 +78,7 @@ abstract class AbstractWidget implements
     * @param array $data Optional
     * @return ViewInterface
     */
-    protected function create_view(array $data = null)
+    protected function create_view(array $data=null)
     {
         $view = new WidgetView();
         if (is_array($data)) {

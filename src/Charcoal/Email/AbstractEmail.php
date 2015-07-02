@@ -618,7 +618,7 @@ abstract class AbstractEmail implements
     * @param array $data Optional
     * @return EmailConfig
     */
-    public function create_config(array $data = null)
+    public function create_config(array $data=null)
     {
         $config = new EmailConfig();
         if (is_array($data)) {
