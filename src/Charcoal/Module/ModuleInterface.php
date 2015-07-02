@@ -9,7 +9,7 @@ interface ModuleInterface
     * @param array $data
     * @return ModuleInterface Chainable
     */
-    public function init($data);
+    public function init(array $data = null);
 
     /**
     * @return ModuleInterface Chainable
