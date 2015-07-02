@@ -46,23 +46,37 @@ class BooleanProperty extends Property
         return $this;
     }
 
+    /**
+    * @param mixed $label
+    * @return BooleanProperty
+    */
     public function set_true_label($label)
     {
         $this->_true_label = $label;
         return $this;
     }
 
+    /**
+    * @return mixed
+    */
     public function true_label()
     {
         return $this->_true_label;
     }
 
+    /**
+    * @param mixed $label
+    * @return BooleanProperty
+    */
     public function set_false_label($label)
     {
         $this->_false_label = $label;
         return $this;
     }
 
+    /**
+    * @return mixed
+    */
     public function false_label()
     {
         return $this->_false_label;
@@ -80,11 +94,17 @@ class BooleanProperty extends Property
         return 'TINYINT(1) UNSIGNED';
     }
 
+    /**
+    * @return integer
+    */
     public function sql_pdo_type()
     {
         return PDO::PARAM_BOOL;
     }
 
+    /**
+    * @return array
+    */
     public function choices()
     {
         return [

@@ -43,6 +43,11 @@ class UserData extends AbstractObject implements UserDataInterface
         return $this;
     }
 
+    /**
+    * @param string|int $ip
+    * @throws InvalidArgumentException
+    * @return UserDataInterface Chainable
+    */
     public function set_ip($ip)
     {
         if (is_string($ip)) {
@@ -56,25 +61,41 @@ class UserData extends AbstractObject implements UserDataInterface
         return $this;
     }
 
+    /**
+    * @return int
+    */
     public function ip()
     {
         return $this->_ip;
     }
 
+    /**
+    * @param string $lang
+    * @throws InvalidArgumentException
+    * @return UserDataInterface Chainable
+    */
     public function set_lang($lang)
     {
         if (!is_string($lang)) {
-            throw new \InvalidArgumentException('Lang must be a string');
+            throw new InvalidArgumentException('Lang must be a string');
         }
         $this->_lang = $lang;
         return $this;
     }
 
+    /**
+    * @return string
+    */
     public function lang()
     {
         return $this->_lang;
     }
 
+    /**
+    * @param string|Datetime $ts
+    * @throws InvalidArgumentException
+    * @return UserDataInterface Chainable
+    */
     public function set_ts($ts)
     {
         if (is_string($ts)) {
@@ -87,11 +108,17 @@ class UserData extends AbstractObject implements UserDataInterface
         return $this;
     }
 
+    /**
+    * @return Datetime|null
+    */
     public function ts()
     {
         return $this->_ts;
     }
 
+    /**
+    * @return void
+    */
     public function pre_save()
     {
         //parent::pre_save();

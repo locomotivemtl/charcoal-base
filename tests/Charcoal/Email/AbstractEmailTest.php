@@ -18,7 +18,8 @@ class AbstractEmailTest extends \PHPUnit_Framework_Testcase
     public function testSetData()
     {
         $obj = new Email();
-        $ret = $obj->set_data([
+        $ret = $obj->set_data(
+            [
             'campaign'=>'foo',
             'to'=>'test@example.com',
             'cc'=>'cc@example.com',
@@ -33,7 +34,8 @@ class AbstractEmailTest extends \PHPUnit_Framework_Testcase
             ],
             'log'=>true,
             'track'=>true
-        ]);
+            ]
+        );
         $this->assertSame($ret, $obj);
 
         $this->assertEquals('foo', $obj->campaign());
@@ -76,10 +78,12 @@ class AbstractEmailTest extends \PHPUnit_Framework_Testcase
         $this->assertSame($ret, $obj);
         $this->assertEquals(['test@example.com'], $obj->to());
 
-        $obj->set_to([[
+        $obj->set_to(
+            [[
             'name'=>'Test',
             'email'=>'test@example.com'
-        ]]);
+            ]]
+        );
         $this->assertEquals(['"Test" <test@example.com>'], $obj->to());
 
         $obj->set_to('test@example.com');
@@ -111,10 +115,12 @@ class AbstractEmailTest extends \PHPUnit_Framework_Testcase
         $this->assertSame($ret, $obj);
         $this->assertEquals(['test@example.com'], $obj->cc());
 
-        $obj->set_cc([[
+        $obj->set_cc(
+            [[
             'name'=>'Test',
             'email'=>'test@example.com'
-        ]]);
+            ]]
+        );
         $this->assertEquals(['"Test" <test@example.com>'], $obj->cc());
 
         $obj->set_cc('test@example.com');
@@ -146,10 +152,12 @@ class AbstractEmailTest extends \PHPUnit_Framework_Testcase
         $this->assertSame($ret, $obj);
         $this->assertEquals(['test@example.com'], $obj->bcc());
 
-        $obj->set_bcc([[
+        $obj->set_bcc(
+            [[
             'name'=>'Test',
             'email'=>'test@example.com'
-        ]]);
+            ]]
+        );
         $this->assertEquals(['"Test" <test@example.com>'], $obj->bcc());
 
         $obj->set_bcc('test@example.com');
@@ -183,10 +191,12 @@ class AbstractEmailTest extends \PHPUnit_Framework_Testcase
         $this->assertSame($ret, $obj);
         $this->assertEquals('test@example.com', $obj->from());
 
-        $obj->set_from([
+        $obj->set_from(
+            [
             'name'=>'Test',
             'email'=>'test@example.com'
-        ]);
+            ]
+        );
         $this->assertEquals('"Test" <test@example.com>', $obj->from());
 
         $this->setExpectedException('\InvalidArgumentException');
@@ -203,10 +213,12 @@ class AbstractEmailTest extends \PHPUnit_Framework_Testcase
         $this->assertSame($ret, $obj);
         $this->assertEquals('test@example.com', $obj->reply_to());
 
-        $obj->set_reply_to([
+        $obj->set_reply_to(
+            [
             'name'=>'Test',
             'email'=>'test@example.com'
-        ]);
+            ]
+        );
         $this->assertEquals('"Test" <test@example.com>', $obj->reply_to());
 
         $this->setExpectedException('\InvalidArgumentException');

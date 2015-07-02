@@ -52,6 +52,10 @@ class ObjectProperty extends AbstractProperty
         return $this;
     }
 
+    /**
+    * @throws Exception
+    * @return string
+    */
     public function obj_type()
     {
         if (!$this->_obj_type === null) {
@@ -60,23 +64,35 @@ class ObjectProperty extends AbstractProperty
         return $this->_obj_type;
     }
 
+    /**
+    * @return string
+    */
     public function sql_extra()
     {
         return '';
     }
 
+    /**
+    * @return string
+    */
     public function sql_type()
     {
         // @todo
         return 'VARCHAR(255)';
     }
 
+    /**
+    * @return integer
+    */
     public function sql_pdo_type()
     {
         // @tdo
         return \PDO::PARAM_STR;
     }
 
+    /**
+    * @return mixed
+    */
     public function save()
     {
         return $this->val();

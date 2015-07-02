@@ -60,7 +60,7 @@ interface ContentInterface
     */
     public function set_last_modified_by($last_modified_by);
     /**
-    * @return
+    * @return mixed
     */
     public function last_modified_by();
 

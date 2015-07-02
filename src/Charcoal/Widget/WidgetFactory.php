@@ -9,6 +9,11 @@ use \Charcoal\Core\AbstractFactory as AbstractFactory;
 
 class WidgetFactory extends AbstractFactory
 {
+    /**
+    * @param string $type
+    * @throws InvalidArgumentException
+    * @return WidgetInterface
+    */
     public function create($type)
     {
         if (!is_string($type)) {

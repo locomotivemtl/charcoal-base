@@ -197,7 +197,7 @@ class Content extends AbstractObject implements ContentInterface
     }
 
     /**
-    * @return
+    * @return mixed
     */
     public function last_modified_by()
     {
@@ -220,8 +220,10 @@ class Content extends AbstractObject implements ContentInterface
     /**
     * StorableTrait > pre_update(): Called automatically before updating the object to source.
     * For content object, set the `last_modified` property automatically.
+    * @param array $properties
+    * @return void
     */
-    public function pre_update($properties=null)
+    public function pre_update($properties = null)
     {
         parent::pre_update($properties);
         $this->set_last_modified('now');

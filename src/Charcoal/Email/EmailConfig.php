@@ -36,7 +36,7 @@ class EmailConfig extends AbstractConfig
     private $_default_log;
 
     /**
-    *
+    * @return array
     */
     public function default_data()
     {
@@ -80,7 +80,7 @@ class EmailConfig extends AbstractConfig
     }
 
     /**
-    * @param boolean
+    * @param boolean $smtp
     * @throws InvalidArgumentException if parameter is not boolean
     * @return EmailConfig Chainable
     */
@@ -101,15 +101,19 @@ class EmailConfig extends AbstractConfig
         return $this->_smtp;
     }
 
-    public function set_smtp_options($smtp_options)
+    /**
+    * @param array $smtp_options
+    * @return EmailConfig Chainable
+    */
+    public function set_smtp_options(array $smtp_options)
     {
-        if (!is_array($smtp_options)) {
-            throw new InvalidArgumentException('Options need to be an array');
-        }
         $this->_smtp_options = $smtp_options;
         return $this;
     }
 
+    /**
+    * @return array
+    */
     public function smtp_options()
     {
         return $this->_smtp_options;
@@ -117,6 +121,7 @@ class EmailConfig extends AbstractConfig
 
     /**
     * @param mixed $default_from
+    * @return EmailConfig Chainable
     */
     public function set_default_from($default_from)
     {
@@ -137,6 +142,7 @@ class EmailConfig extends AbstractConfig
 
     /**
     * @param mixed $default_reply_to
+    * @return EmailConfig Chainable
     */
     public function set_default_reply_to($default_reply_to)
     {
@@ -156,7 +162,7 @@ class EmailConfig extends AbstractConfig
     }
 
     /**
-    * @param boolean
+    * @param boolean $default_log
     * @throws InvalidArgumentException if parameter is invalid
     * @return EmailConfig Chainable
     */
@@ -178,7 +184,7 @@ class EmailConfig extends AbstractConfig
     }
 
     /**
-    * @param boolean
+    * @param boolean $default_track
     * @throws InvalidArgumentException if parameter is invalid
     * @return EmailConfig Chainable
     */
@@ -200,7 +206,7 @@ class EmailConfig extends AbstractConfig
     }
 
     /**
-    * @param array
+    * @param array $email_array
     * @throws InvalidArgumentException if parameter is not an array or invalid array
     * @return string
     */

@@ -12,6 +12,11 @@ use \Charcoal\Core\AbstractFactory as AbstractFactory;
 */
 class ActionFactory extends AbstractFactory
 {
+    /**
+    * @param string $type
+    * @throws Exception
+    * @return ActionInterface
+    */
     public function get($type)
     {
         $class_name = $this->ident_to_classname($type);

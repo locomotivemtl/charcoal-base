@@ -402,7 +402,7 @@ class FileProperty extends AbstractProperty
     * @throws Exception
     * @return string
     */
-    public function upload_target($filename=null)
+    public function upload_target($filename = null)
     {
 
         $base_path = rtrim(Charcoal::config()->ROOT, '/').'/';
@@ -445,11 +445,11 @@ class FileProperty extends AbstractProperty
     * PHP builtin's `file_exists` is only case-insensitive on case-insensitive filesystem (such as windows)
     * This method allows to have the same validation across different platforms / filesystem.
     *
-    * @param string $file
+    * @param string  $file
     * @param boolean $case_insensitive
     * @return boolean
     */
-    public function file_exists($file, $case_insensitive=true)
+    public function file_exists($file, $case_insensitive = true)
     {
         if (file_exists($file)) {
             return true;
@@ -469,6 +469,7 @@ class FileProperty extends AbstractProperty
     }
 
     /**
+    * @param string $filename
     * @return string
     */
     public function sanitize_filename($filename)

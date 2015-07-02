@@ -28,6 +28,9 @@ trait CliActionTrait
 
     protected $_verbose;
 
+    /**
+    * @return CLImate
+    */
     public function climate()
     {
         if ($this->_climate === null) {
@@ -36,6 +39,9 @@ trait CliActionTrait
         return $this->_climate;
     }
 
+    /**
+    * @return array
+    */
     public function default_arguments()
     {
         return [
@@ -100,7 +106,7 @@ trait CliActionTrait
     }
 
     /**
-    * @param string $ident
+    * @param string $description
     * @throws InvalidArgumentException
     * @return CliActionInterface Chainable
     */
@@ -139,9 +145,10 @@ trait CliActionTrait
 
         return $this;
     }
+
     /**
     * @param string $argument_ident
-    * @param array $argument
+    * @param array  $argument
     * @return CliActionInterface Chainable
     */
     public function add_argument($argument_ident, $argument)
@@ -196,17 +203,27 @@ trait CliActionTrait
         }
     }
 
+    /**
+    * @param boolean $verbose
+    * @throws InvalidArgumentException
+    * @return CliActionTrait Chainable
+    */
     public function set_verbose($verbose)
     {
+        if (!is_bool($verbose)) {
+            throw new InvalidArgumentException('Verbose flag must be a boolean');
+        }
         $this->_verbose = $verbose;
         return $this;
     }
 
+    /**
+    * @return boolean
+    */
     public function verbose()
     {
         return $this->_verbose;
     }
-
 
     /**
     * @return string

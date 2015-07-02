@@ -2,6 +2,8 @@
 
 namespace Charcoal\Action;
 
+use \InvalidArgumentException as InvalidArgumentException;
+
 use \Charcoal\Charcoal as Charcoal;
 
 use \Charcoal\Action\ActionInterface as ActionInterface;
@@ -21,14 +23,14 @@ abstract class AbstractAction implements ActionInterface
     private $_success = false;
 
     /**
-    * @param string
-    * @throws \InvalidArgumentException if mode is not a string
+    * @param string $mode
+    * @throws InvalidArgumentException if mode is not a string
     * @return ActionInterface Chainable
     */
     public function set_mode($mode)
     {
         if (!is_string($mode)) {
-            throw new \InvalidArgumentException('Mode needs to be a string');
+            throw new InvalidArgumentException('Mode needs to be a string');
         }
         $this->_mode = $mode;
         return $this;
@@ -44,13 +46,13 @@ abstract class AbstractAction implements ActionInterface
 
     /**
     * @param bool $success
-    * @throws \InvalidArgumentException if success is not a boolean
+    * @throws InvalidArgumentException if success is not a boolean
     * @return ActionInterface Chainable
     */
     public function set_success($success)
     {
         if (!is_bool($success)) {
-            throw new \InvalidArgumentException('Success needs to be a boolean');
+            throw new InvalidArgumentException('Success needs to be a boolean');
         }
         $this->_success = $success;
         return $this;
@@ -64,13 +66,17 @@ abstract class AbstractAction implements ActionInterface
         return $this->_success;
     }
 
+    /**
+    * @return string
+    */
     abstract public function response();
 
     /**
     * @param integer $http_code
     * @throws \Exception if mode is invalid
+    * @return void
     */
-    public function output($http_code=200)
+    public function output($http_code = 200)
     {
         $response = $this->response();
         $mode = $this->mode();

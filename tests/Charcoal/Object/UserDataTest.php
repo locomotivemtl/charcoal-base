@@ -21,11 +21,13 @@ class UserDataTest extends \PHPUnit_Framework_TestCase
     public function testSetData()
     {
         $obj = new UserData();
-        $ret = $obj->set_data([
+        $ret = $obj->set_data(
+            [
             'ip'=>'192.168.1.1',
             'lang'=>'fr',
             'ts'=>'2015-01-01 15:05:20'
-        ]);
+            ]
+        );
         $this->assertSame($ret, $obj);
         $this->assertEquals(ip2long('192.168.1.1'), $obj->ip());
         $this->assertEquals('fr', $obj->lang());

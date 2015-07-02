@@ -19,9 +19,11 @@ class IdPropertyTest extends \PHPUnit_Framework_TestCase
     public function testSetData()
     {
         $obj = new IdProperty();
-        $ret = $obj->set_data([
+        $ret = $obj->set_data(
+            [
             'mode'=>'uniqid'
-        ]);
+            ]
+        );
         $this->assertSame($ret, $obj);
         $this->assertEquals('uniqid', $obj->mode());
     }

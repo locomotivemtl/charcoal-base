@@ -10,7 +10,6 @@
  		<severity>0</severity>
  	</rule>
 
-
  	<!-- Include the whole PSR-2 standard -->
  	<!--<rule ref="PSR2"/>-->
 
@@ -74,7 +73,12 @@
 	<!-- @todo Doc me -->
 	<!--<rule ref="PEAR.Commenting.ClassComment" />-->
 	<!-- @todo Doc me -->
-	<!--<rule ref="PEAR.Commenting.FunctionComment.Missing" />-->
+	<rule ref="PEAR.Commenting.FunctionComment.Missing">
+		<exclude-pattern>*/tests/*</exclude-pattern>
+	</rule>
+	<rule ref="PEAR.Commenting.FunctionComment.MissingParamComment">
+ 		<severity>0</severity>
+ 	</rule>
 	<!-- Block comments should be used appropriately -->
 	<!--<rule ref="Squiz.Commenting.BlockComment" />-->
 	<!-- Class comment blocks -->
@@ -105,6 +109,7 @@
 
 	<!-- Inline controls (if, else, for, while) must have brackets -->
 	<rule ref="Generic.ControlStructures.InlineControlStructure" />
+	<!-- Controls signature, such as spacing. if (expr) {... -->
 	<rule ref="Squiz.ControlStructures.ControlSignature" />
 	<rule ref="Squiz.ControlStructures.ElseIfDeclaration" />
 	<!-- @todo Doc me -->
@@ -158,7 +163,7 @@
 	<rule ref="Generic.Formatting.DisallowMultipleStatements" />
 	<!-- Make sure all adjacent assigments are properly aligned, for the extra-pedantic in you -->
 	<!--<rule ref="Generic.Formatting.MultipleStatementAlignment" />-->
-	
+
 	<!-- Ensure there are no spaces after a typecast Ex: (array)$x -->
 	<rule ref="Generic.Formatting.NoSpaceAfterCast" />
 	<!-- Ensure there *is* a space after a typecase. Incompatible with the previous rule -->
@@ -166,10 +171,10 @@
 
 	<!-- Tests that all arithmetic operations are bracketed. -->
 	<rule ref="Squiz.Formatting.OperatorBracket" />
-	
+
 
 <!-- Functions Sniffs -->
-	
+
 	<!-- Ensures that variables are not passed by reference when calling a function -->
 	<rule ref="Generic.Functions.CallTimePassByReference" />
 	<!-- Spaces are required after every commas in function calls -->
@@ -179,7 +184,11 @@
 	<!-- Opening braces should be on the same line for functions. Incompatible with previous rule -->
 	<!--<rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />-->
 	<!-- Checks that arguments in function declarations are spaced correctly. -->
-	<rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing" />
+	<rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
+		<properties>
+			<property name="equalsSpacing" value="1"/>
+		</properties>
+	</rule>
 	<!-- @todo doc me -->
 	<rule ref="Squiz.Functions.FunctionDeclaration" />
 	<!-- @todo doc me -->
@@ -194,6 +203,8 @@
 		<!-- This check is disabled; it breaks lambda functions -->
 		<severity>0></severity>
 	</rule>
+	<rule ref="PEAR.Functions.FunctionCallSignature" />
+	<rule ref="PEAR.Functions.ValidDefaultValue" />
 
 <!-- Metrics Sniffs -->
 
@@ -208,7 +219,7 @@
 	-->
 
 <!-- Naming Conventions Sniffs -->
-	
+
 	<!-- @todo Doc -->
 	<!--<rule ref="Generic.NamingConventions.CamelCapsFunctionName" /> -->
 	<!-- Constructor should be in PHP5 mode (__construct) -->
@@ -231,7 +242,7 @@
 	<rule ref="Squiz.Operators.ValidLogicalOperators" />
 
 <!-- PHP Sniffs -->
-	
+
 	<!-- Checks that the opening PHP tag is the first content in a file -->
 	<!--<rule ref="Generic.PHP.CharacterBeforePHPOpeningTag" />-->
 	<!-- Checks that open PHP tags are paired with closing tags. -->
@@ -264,14 +275,14 @@
 	<!--<rule ref="Squiz.PHP.DisallowMultipleAssignments" />-->
 	<rule ref="Squiz.PHP.DisallowObEndFlush" />
 	<rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops" />
-	<!-- @todo Doc me --> 
+	<!-- @todo Doc me -->
 	<rule ref="Squiz.PHP.DiscouragedFunctions" />
 	<rule ref="Squiz.PHP.EmbeddedPhp" />
 	<rule ref="Squiz.PHP.EmbeddedPhp.Indent">
 		<severity>0</severity>
 	</rule>
 	<rule ref="Squiz.PHP.Eval" />
-	<!-- Disallow usage of functions that should be obsolete but kept for compatibility.  --> 
+	<!-- Disallow usage of functions that should be obsolete but kept for compatibility.  -->
 	<rule ref="Squiz.PHP.ForbiddenFunctions" />
 	<rule ref="Squiz.PHP.GlobalKeyword" />
 	<rule ref="Squiz.PHP.Heredoc" />
@@ -295,7 +306,7 @@
 	<!-- Use one string instead of concatenating 2 strings together -->
 	<rule ref="Generic.Strings.UnnecessaryStringConcat" />
 	<!-- Makes sure there are no spaces between the concatenation operator (.) the strings -->
-	<!--<rule ref="Squiz.Strings.ConcatenationSpacing" />-->
+	<rule ref="Squiz.Strings.ConcatenationSpacing" />
 	<!-- Makes sure that any use of Double Quotes ("") are warranted. @todo Enable me! -->
 	<!--<rule ref="Squiz.Strings.DoubleQuoteUsage" />-->
 	<!-- Makes sure that any strings that are "echoed" are not enclosed in brackets -->

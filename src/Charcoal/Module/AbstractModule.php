@@ -9,10 +9,14 @@ abstract class AbstractModule implements ModuleInterface
     /**
     * @param aray $data
     */
-    public function __construct($data=null)
+    public function __construct(array $data = null)
     {
         $this->init($data);
     }
 
-    abstract public function init($opts=null);
+    /**
+    * @param array $opts
+    * @return void
+    */
+    abstract public function init(array $opts = null);
 }

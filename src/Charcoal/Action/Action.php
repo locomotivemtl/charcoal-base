@@ -11,6 +11,9 @@ use \Charcoal\Action\AbstractAction as AbstractAction;
 */
 class Action extends AbstractAction
 {
+    /**
+    * @return string
+    */
     public function response()
     {
         return '';

@@ -17,14 +17,16 @@ class ContentTest extends \PHPUnit_Framework_TestCase
     public function testSetData()
     {
         $obj = new Content();
-        $ret = $obj->set_data([
+        $ret = $obj->set_data(
+            [
             'active'=>false,
             'position'=>42,
             'created'=>'2015-01-01 13:05:45',
             'created_by'=>'Me',
             'last_modified'=>'2015-04-01 22:10:30',
             'last_modified_by'=>'You'
-        ]);
+            ]
+        );
         $this->assertSame($ret, $obj);
         $this->assertNotTrue($obj->active());
         $this->assertEquals(42, $obj->position());

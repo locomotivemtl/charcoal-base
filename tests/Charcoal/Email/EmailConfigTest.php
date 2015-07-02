@@ -54,12 +54,10 @@ class EmailConfigTest extends \PHPUnit_Framework_Testcase
         $obj = new EmailConfig();
         $ret = $obj->set_smtp_options([
                 'server'=>'localhost'
-            ]);
+        ]);
         $this->assertSame($ret, $obj);
         $this->assertEquals(['server'=>'localhost'], $obj->smtp_options());
 
-        $this->setExpectedException('\InvalidArgumentException');
-        $obj->set_smtp_options('foo');
     }
 
     public function testSetDefaultFrom()
@@ -69,10 +67,12 @@ class EmailConfigTest extends \PHPUnit_Framework_Testcase
         $this->assertSame($ret, $obj);
         $this->assertEquals('test@example.com', $obj->default_from());
 
-        $obj->set_default_from([
+        $obj->set_default_from(
+            [
             'name'=>'Test',
             'email'=>'test@example.com'
-        ]);
+            ]
+        );
         $this->assertEquals('"Test" <test@example.com>', $obj->default_from());
 
         $this->setExpectedException('\InvalidArgumentException');
@@ -86,10 +86,12 @@ class EmailConfigTest extends \PHPUnit_Framework_Testcase
         $this->assertSame($ret, $obj);
         $this->assertEquals('test@example.com', $obj->default_reply_to());
 
-        $obj->set_default_reply_to([
+        $obj->set_default_reply_to(
+            [
             'name'=>'Test',
             'email'=>'test@example.com'
-        ]);
+            ]
+        );
         $this->assertEquals('"Test" <test@example.com>', $obj->default_reply_to());
 
         $this->setExpectedException('\InvalidArgumentException');

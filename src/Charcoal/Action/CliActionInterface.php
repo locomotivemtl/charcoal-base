@@ -23,7 +23,7 @@ interface CliActionInterface
     public function ident();
 
     /**
-    * @param string $ident
+    * @param string $description
     * @return CliActionInterface Chainable
     */
     public function set_description($description);
@@ -40,7 +40,7 @@ interface CliActionInterface
     public function set_arguments($arguments);
     /**
     * @param string $argument_ident
-    * @param array $argument
+    * @param array  $argument
     * @return CliActionInterface Chainable
     */
     public function add_argument($argument_ident, $argument);

@@ -98,14 +98,6 @@ abstract class AbstractEmail implements
     }
 
     /**
-    *
-    */
-    public function set_template($template)
-    {
-
-    }
-
-    /**
     * @param string $campaign
     * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
@@ -381,7 +373,7 @@ abstract class AbstractEmail implements
 
     /**
     * Get the message's HTML content from the template
-    *
+    * @return string
     */
     protected function generate_msg_html()
     {
@@ -421,13 +413,16 @@ abstract class AbstractEmail implements
         return $this->_msg_txt;
     }
 
+    /**
+    * @return string
+    */
     protected function generate_msg_txt()
     {
         $msg_html = $this->msg_html();
     }
 
     /**
-    * @var array $attachments
+    * @param array $attachments
     * @throws InvalidArgumentException if parameter is invalid
     * @return EmailInterface Chainable
     */
@@ -443,7 +438,7 @@ abstract class AbstractEmail implements
     }
 
     /**
-    * @var mixed $attachment
+    * @param mixed $attachment
     * @return EmailInterface Chainable
     */
     public function add_attachment($attachment)
@@ -571,25 +566,32 @@ abstract class AbstractEmail implements
         return $ret;
     }
 
+    /**
+    * @return void
+    */
     public function queue()
     {
 
     }
 
     /**
-    *
+    * @return void
     */
     protected function send_log()
     {
 
     }
 
+    /**
+    * @return void
+    */
     protected function queue_log()
     {
 
+
     }
     /**
-    * @param array
+    * @param array $email_array
     * @throws InvalidArgumentException if parameter is not an array or invalid array
     * @return string
     */
@@ -618,7 +620,7 @@ abstract class AbstractEmail implements
     * @param array $data Optional
     * @return EmailConfig
     */
-    public function create_config(array $data=null)
+    public function create_config(array $data = null)
     {
         $config = new EmailConfig();
         if (is_array($data)) {
@@ -630,9 +632,10 @@ abstract class AbstractEmail implements
     /**
     * ViewableInterface > create_view()
     *
+    * @param array $data
     * @return EmailView
     */
-    public function create_view($data=null)
+    public function create_view($data = null)
     {
         $view = new EmailView();
         if ($data !== null) {

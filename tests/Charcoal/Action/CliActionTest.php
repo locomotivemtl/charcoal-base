@@ -25,11 +25,13 @@ class CliActionTest extends \PHPUnit_Framework_Testcase
     public function testSetCliData()
     {
         $obj = new CliActionClass();
-        $ret = $obj->set_data([
+        $ret = $obj->set_data(
+            [
             'ident'=>'foo',
             'description'=>'bar',
             'arguments'=>[]
-        ]);
+            ]
+        );
         $this->assertSame($ret, $obj);
 
         $this->assertEquals('foo', $obj->ident());

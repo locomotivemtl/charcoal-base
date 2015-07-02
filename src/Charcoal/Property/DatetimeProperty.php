@@ -13,22 +13,22 @@ use \Charcoal\Property\AbstractProperty as AbstractProperty;
 
 class DatetimeProperty extends AbstractProperty
 {
-    const DEFAULT_MIN = 0;
-    const DEFAULT_MAX = 0;
+    const DEFAULT_MIN = null;
+    const DEFAULT_MAX = null;
     const DEFAULT_FORMAT = 'Y-m-d H:i:s';
 
     /**
     * @var DateTime $_min
     */
-    private $_min;
+    private $_min = null;
     /**
     * @var DateTime $_max
     */
-    private $_max;
+    private $_max = null;
     /**
     * @var string $_format
     */
-    private $_format;
+    private $_format = 'Y-m-d H:i:s';
 
     /**
     * @return string
@@ -82,11 +82,11 @@ class DatetimeProperty extends AbstractProperty
     /**
     * AbstractProperty > storage_val(). Convert `DateTime` to SQL-friendly string.
     *
-    * @param string|DateTime Optional value to convert to storage format
+    * @param string|DateTime $val Optional value to convert to storage format
     * @throws Exception if the datetime is invalid
     * @return string|null
     */
-    public function storage_val($val=null)
+    public function storage_val($val = null)
     {
         if ($val === null) {
             $val = $this->val();
@@ -102,6 +102,11 @@ class DatetimeProperty extends AbstractProperty
         }
     }
 
+    /**
+    * @param string|Datetime $min
+    * @throws InvalidArgumentException
+    * @return DatetimeProperty Chainable
+    */
     public function set_min($min)
     {
         if (is_string($min)) {
@@ -114,6 +119,9 @@ class DatetimeProperty extends AbstractProperty
         return $this;
     }
 
+    /**
+    * @return DateTime
+    */
     public function min()
     {
         if ($this->_min === null) {
@@ -122,6 +130,11 @@ class DatetimeProperty extends AbstractProperty
         return $this->_min;
     }
 
+    /**
+    * @param string|Datetime $max
+    * @throws InvalidArgumentException
+    * @return DatetimeProperty Chainable
+    */
     public function set_max($max)
     {
         if (is_string($max)) {
@@ -134,6 +147,9 @@ class DatetimeProperty extends AbstractProperty
         return $this;
     }
 
+    /**
+    * @return Datetime
+    */
     public function max()
     {
         if ($this->_max === null) {
@@ -142,6 +158,11 @@ class DatetimeProperty extends AbstractProperty
         return $this->_max;
     }
 
+    /**
+    * @param string $format
+    * @throws InvalidArgumentException
+    * @return DatetimeProperty Chainable
+    */
     public function set_format($format)
     {
         if (!is_string($format)) {
@@ -151,6 +172,9 @@ class DatetimeProperty extends AbstractProperty
         return $this;
     }
 
+    /**
+    * @return string
+    */
     public function format()
     {
         if ($this->_format === null) {
@@ -159,11 +183,17 @@ class DatetimeProperty extends AbstractProperty
         return $this->_format;
     }
 
+    /**
+    * @return mixed
+    */
     public function save()
     {
         return $this->val();
     }
 
+    /**
+    * @return array
+    */
     public function validation_methods()
     {
         $parent_methods = parent::validation_methods();
@@ -202,16 +232,25 @@ class DatetimeProperty extends AbstractProperty
         return $valid;
     }
 
+    /**
+    * @return string
+    */
     public function sql_extra()
     {
         return '';
     }
 
+    /**
+    * @return string
+    */
     public function sql_type()
     {
         return 'DATETIME';
     }
 
+    /**
+    * @return integer
+    */
     public function sql_pdo_type()
     {
         return PDO::PARAM_STR;

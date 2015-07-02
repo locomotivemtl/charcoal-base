@@ -130,13 +130,13 @@ interface EmailInterface
     public function msg_txt();
 
     /**
-    * @var array $attachments
+    * @param array $attachments
     * @return EmailInterface Chainable
     */
     public function set_attachments($attachments);
 
     /**
-    * @var mixed $attachment
+    * @param mixed $attachment
     * @return EmailInterface Chainable
     */
     public function add_attachment($attachment);

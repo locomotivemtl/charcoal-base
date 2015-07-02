@@ -179,6 +179,9 @@ class StringProperty extends Property
         return $this->_allow_empty;
     }
 
+    /**
+    * @return StringFormat
+    */
     public function formatter()
     {
         if ($this->_formatter === null) {

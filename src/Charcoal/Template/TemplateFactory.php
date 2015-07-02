@@ -8,6 +8,11 @@ use \Charcoal\Core\AbstractFactory as AbstractFactory;
 
 class TemplateFactory extends AbstractFactory
 {
+    /**
+    * @param string $type
+    * @throws InvalidArgumentException
+    * @return TemplateInterface
+    */
     public function create($type)
     {
         if (!is_string($type)) {
