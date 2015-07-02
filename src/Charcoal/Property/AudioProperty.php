@@ -35,7 +35,7 @@ class AudioProperty extends FileProperty
     * @param array $data
     * @return AudioProperty Chainable
     */
-    public function set_data($data)
+    public function set_data(array $data)
     {
 
         parent::set_data($data);
