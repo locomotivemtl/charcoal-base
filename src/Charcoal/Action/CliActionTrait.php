@@ -197,7 +197,7 @@ trait CliActionTrait
             } else {
                 $arg_desc = $arg_name;
             }
-            $input = $climate->input(sprintf("Enter %s:", $arg_desc));
+            $input = $climate->input(sprintf('Enter %s:', $arg_desc));
             $arg = $input->prompt();
             return $arg;
         }

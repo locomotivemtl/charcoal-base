@@ -113,7 +113,7 @@ class AudioProperty extends FileProperty
         $mimetype = $this->mimetype();
         
         $ext = '';
-        switch($mimetype) {
+        switch ($mimetype) {
             case 'audio/mpeg':
                 $ext = 'mp3';
             break;

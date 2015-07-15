@@ -52,9 +52,11 @@ class EmailConfigTest extends \PHPUnit_Framework_Testcase
     public function testSetSmtpOptions()
     {
         $obj = new EmailConfig();
-        $ret = $obj->set_smtp_options([
+        $ret = $obj->set_smtp_options(
+            [
                 'server'=>'localhost'
-        ]);
+            ]
+        );
         $this->assertSame($ret, $obj);
         $this->assertEquals(['server'=>'localhost'], $obj->smtp_options());
 

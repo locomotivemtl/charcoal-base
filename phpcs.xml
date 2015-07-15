@@ -244,7 +244,7 @@
 <!-- PHP Sniffs -->
 
 	<!-- Checks that the opening PHP tag is the first content in a file -->
-	<!--<rule ref="Generic.PHP.CharacterBeforePHPOpeningTag" />-->
+	<rule ref="Generic.PHP.CharacterBeforePHPOpeningTag" />
 	<!-- Checks that open PHP tags are paired with closing tags. -->
 	<!--<rule ref="Generic.PHP.ClosingPHPTag" />-->
 	<!-- Deprecated functions are not allowed. This is a modern codebase -->

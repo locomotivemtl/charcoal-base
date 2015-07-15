@@ -81,10 +81,10 @@ class StringProperty extends Property
     public function set_max_length($max_length)
     {
         if (!is_integer($max_length)) {
-            throw new InvalidArgumentException("Max length must be an integer.");
+            throw new InvalidArgumentException('Max length must be an integer.');
         }
         if ($max_length < 0) {
-            throw new InvalidArgumentException("Max length must be a positive integer (>=0)");
+            throw new InvalidArgumentException('Max length must be a positive integer (>=0)');
         }
         $this->_max_length = $max_length;
         return $this;
@@ -109,10 +109,10 @@ class StringProperty extends Property
     public function set_min_length($min_length)
     {
         if (!is_integer($min_length)) {
-            throw new InvalidArgumentException("Min length must be an integer.");
+            throw new InvalidArgumentException('Min length must be an integer.');
         }
         if ($min_length < 0) {
-            throw new InvalidArgumentException("Min length must be a positive integer (>=0)");
+            throw new InvalidArgumentException('Min length must be a positive integer (>=0)');
         }
         $this->_min_length = $min_length;
         return $this;
@@ -137,7 +137,7 @@ class StringProperty extends Property
     public function set_regexp($regexp)
     {
         if (!is_string($regexp)) {
-            throw new InvalidArgumentException("Regular expression must be a string.");
+            throw new InvalidArgumentException('Regular expression must be a string.');
         }
         $this->_regexp = $regexp;
         return $this;
