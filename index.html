@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Charcoal-base by locomotivemtl</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Charcoal-base</h1>
+      <h2 class="project-tagline"></h2>
+      <a href="https://github.com/locomotivemtl/charcoal-base" class="btn">View on GitHub</a>
+      <a href="https://github.com/locomotivemtl/charcoal-base/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/locomotivemtl/charcoal-base/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="charcoal-base" class="anchor" href="#charcoal-base" aria-hidden="true"><span class="octicon octicon-link"></span></a>Charcoal Base</h1>
+
+<h1>
+<a id="available-classes-and-interfaces" class="anchor" href="#available-classes-and-interfaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Available classes and interfaces</h1>
+
+<p>This package extends the <em>charcoal-core</em> framework with more utilities:</p>
+
+<ul>
+<li>Action</li>
+<li>Asset</li>
+<li>Email</li>
+<li>Image</li>
+<li>Module</li>
+<li>Object
+
+<ul>
+<li>Content</li>
+<li>UserData</li>
+</ul>
+</li>
+<li>Property</li>
+<li>Template</li>
+<li>Widget</li>
+</ul>
+
+<p>Typically, Charcoal projects or modules do not use much of <em>charcoal-core</em> base class, but rather are a collection of <code>Object</code> (class and json metadata), either as <code>UserData</code> or <code>Content</code> and are displayed through a <code>Template</code> and its children <code>Widget</code> (class and template files). External resources, <code>Asset</code> (scripts, styles, images, etc.) are typically included in  project. User input, and some scripts, are provided through <code>Action</code>. All those classes are extended from the base classes in this package, <em>charcoal-base</em>.</p>
+
+<h2>
+<a id="action" class="anchor" href="#action" aria-hidden="true"><span class="octicon octicon-link"></span></a>Action</h2>
+
+<p>A response to an event or request. Typically, an operation to be performed on user input (submit form, etc.) or from system (cron, etc.) The <code>\Charcoal\Action</code> class ensures standards across request handling, response output, etc.</p>
+
+<h2>
+<a id="asset" class="anchor" href="#asset" aria-hidden="true"><span class="octicon octicon-link"></span></a>Asset</h2>
+
+<p>Assets are external resources required by a template or a widget which can be loaded (or searched) from various sources, typically multiple path from the filesystem. Asset types are:</p>
+
+<ul>
+<li>File</li>
+<li>Font</li>
+<li>Image</li>
+<li>Script</li>
+<li>Style</li>
+</ul>
+
+<h2>
+<a id="email" class="anchor" href="#email" aria-hidden="true"><span class="octicon octicon-link"></span></a>Email</h2>
+
+<p>The <code>\Charcoal\Email</code> namespace contains everything required to send, log, queue and track emails as well as generate them from templates.</p>
+
+<h2>
+<a id="image" class="anchor" href="#image" aria-hidden="true"><span class="octicon octicon-link"></span></a>Image</h2>
+
+<p>Image manipulation. This is still <a href="https://github.com/todo" class="user-mention">@todo</a> (port from <em>charcoal-legacy</em>). The plan is to switch to [<a href="http://image.intervention.io/">http://image.intervention.io/</a>].</p>
+
+<h2>
+<a id="module" class="anchor" href="#module" aria-hidden="true"><span class="octicon octicon-link"></span></a>Module</h2>
+
+<p>...</p>
+
+<h2>
+<a id="object" class="anchor" href="#object" aria-hidden="true"><span class="octicon octicon-link"></span></a>Object</h2>
+
+<p>...</p>
+
+<h2>
+<a id="property" class="anchor" href="#property" aria-hidden="true"><span class="octicon octicon-link"></span></a>Property</h2>
+
+<p>The core Property classes and interfaces are found in <code>charcoal-core</code>, however, basic concrete properties are provided within this package:</p>
+
+<ul>
+<li>Boolean</li>
+<li>Choice
+
+<ul>
+<li>Object</li>
+</ul>
+</li>
+<li>Color</li>
+<li>Date
+
+<ul>
+<li>Date</li>
+<li>Datetime</li>
+<li>Day</li>
+<li>Month</li>
+<li>Time</li>
+<li>Year</li>
+</ul>
+</li>
+<li>File
+
+<ul>
+<li>Image</li>
+<li>Video</li>
+</ul>
+</li>
+<li>Number
+
+<ul>
+<li>Float</li>
+<li>Integer</li>
+</ul>
+</li>
+<li>Id</li>
+<li>Image</li>
+<li>String
+
+<ul>
+<li>Html</li>
+<li>Password</li>
+<li>Text</li>
+</ul>
+</li>
+<li>Structure</li>
+</ul>
+
+<h2>
+<a id="template" class="anchor" href="#template" aria-hidden="true"><span class="octicon octicon-link"></span></a>Template</h2>
+
+<p>Templates are renderable top-level models, through <em>charcoal-core</em>'s <code>ViewableInterface</code>. They are typicaly consisted of a Template class and an actual template file (mustache or php). </p>
+
+<blockquote>
+<p>Although it is perfectly fine to use <code>Charcoal\Template</code> directly, most projects will use the specialized <code>Charcoal\Cms\Template</code> from the _charcoal-cms` module.</p>
+</blockquote>
+
+<h3>
+<a id="example-binding-a-template-to-a-url-route" class="anchor" href="#example-binding-a-template-to-a-url-route" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: binding a template to a URL (route)</h3>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-c1">Charcoal</span><span class="pl-k">::</span>app()<span class="pl-k">-&gt;</span>get(<span class="pl-s"><span class="pl-pds">'</span>/example<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">$args</span><span class="pl-k">=</span><span class="pl-c1">null</span>) {</span>
+<span class="pl-s1">    <span class="pl-smi">$view</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">TemplateView</span>();</span>
+<span class="pl-s1">    <span class="pl-smi">$content</span> <span class="pl-k">=</span> <span class="pl-smi">$view</span><span class="pl-k">-&gt;</span>from_ident(<span class="pl-s"><span class="pl-pds">'</span>charcoal/project/template/example<span class="pl-pds">'</span></span>)<span class="pl-k">-&gt;</span>render();</span>
+<span class="pl-s1">    <span class="pl-c1">echo</span> <span class="pl-smi">$content</span>;</span>
+<span class="pl-s1">  })<span class="pl-k">-&gt;</span>name(<span class="pl-s"><span class="pl-pds">'</span>/example<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<h2>
+<a id="widget" class="anchor" href="#widget" aria-hidden="true"><span class="octicon octicon-link"></span></a>Widget</h2>
+
+<p>...</p>
+
+<h1>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors</h1>
+
+<ul>
+<li>Mathieu Ducharme, <a href="mailto:mat@locomotive.ca">mat@locomotive.ca</a>
+</li>
+</ul>
+
+<h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h1>
+
+<ul>
+<li>TBA</li>
+</ul>
+
+<h1>
+<a id="release-history" class="anchor" href="#release-history" aria-hidden="true"><span class="octicon octicon-link"></span></a>Release History</h1>
+
+<p><em>Unreleased</em></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/locomotivemtl/charcoal-base">Charcoal-base</a> is maintained by <a href="https://github.com/locomotivemtl">locomotivemtl</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
