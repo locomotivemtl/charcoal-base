@@ -2,7 +2,8 @@
 
 namespace Charcoal\Object;
 
-use \Datetime as Datetime;
+use \DateTime as DateTime;
+use \DateTimeInterface as DateTimeInterface;
 use \InvalidArgumentException as InvalidArgumentException;
 
 use \Charcoal\Object\AbstractObject as AbstractObject;
@@ -19,7 +20,7 @@ class UserData extends AbstractObject implements UserDataInterface
     */
     private $_lang;
     /**
-    * @var Datetime $_ts
+    * @var DateTime $_ts
     */
     private $_ts;
 
@@ -92,7 +93,7 @@ class UserData extends AbstractObject implements UserDataInterface
     }
 
     /**
-    * @param string|Datetime $ts
+    * @param string|DateTime $ts
     * @throws InvalidArgumentException
     * @return UserDataInterface Chainable
     */
@@ -101,15 +102,15 @@ class UserData extends AbstractObject implements UserDataInterface
         if (is_string($ts)) {
             $ts = new DateTime($ts);
         }
-        if (!($ts instanceof DateTime)) {
-            throw new InvalidArgumentException('Created must be a Datetime object or a valid datetime string');
+        if (!($ts instanceof DateTimeInterface)) {
+            throw new InvalidArgumentException('Invalid "Timestamp" value. Must be a date/time string or a DateTime object.');
         }
         $this->_ts = $ts;
         return $this;
     }
 
     /**
-    * @return Datetime|null
+    * @return DateTime|null
     */
     public function ts()
     {

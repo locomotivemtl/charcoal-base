@@ -16,7 +16,7 @@ interface UserDataInterface
     public function ip();
 
     /**
-    * @param string|Datetime $ts
+    * @param string|DateTime $ts
     * @return UserDataInterface Chainable
     */
     public function set_ts($ts);

@@ -129,7 +129,7 @@ class Content extends AbstractObject implements ContentInterface
             $created = new DateTime($created);
         }
         if (!($created instanceof DateTime)) {
-            throw new InvalidArgumentException('Created must be a Datetime object or a valid datetime string');
+            throw new InvalidArgumentException('Invalid "Created" value. Must be a date/time string or a DateTime object.');
         }
         $this->_created = $created;
         return $this;
@@ -172,7 +172,7 @@ class Content extends AbstractObject implements ContentInterface
             $last_modified = new DateTime($last_modified);
         }
         if (!($last_modified instanceof DateTime)) {
-            throw new InvalidArgumentException('Created must be a Datetime object or a valid datetime string');
+            throw new InvalidArgumentException('Invalid "Last Modified" value. Must be a date/time string or a DateTime object.');
         }
         $this->_last_modified = $last_modified;
         return $this;
