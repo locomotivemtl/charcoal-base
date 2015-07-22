@@ -2,6 +2,9 @@
 
 namespace Charcoal\Widget;
 
+/**
+*
+*/
 interface WidgetInterface
 {
     /**

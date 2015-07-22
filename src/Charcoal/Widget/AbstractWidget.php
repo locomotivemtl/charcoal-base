@@ -2,18 +2,22 @@
 
 namespace Charcoal\Widget;
 
+// Dependencies from `PHP`
 use \InvalidArgumentException as InvalidArgumentException;
 
-// From `charcoal-core`
+// Module `charcoal-core` dependencies
 use \Charcoal\Metadata\DescribableInterface as DescribableInterface;
 use \Charcoal\Metadata\DescribableTrait as DescribableTrait;
 use \Charcoal\View\ViewableInterface as ViewableInterface;
 use \Charcoal\View\ViewableTrait as ViewableTrait;
 
-// From `charcoal-base`
+// Local namespace dependencies
 use \Charcoal\Widget\WidgetInterface as WidgetInterface;
 use \Charcoal\Widget\WidgetView as Widgetiew;
 
+/**
+*
+*/
 abstract class AbstractWidget implements
     WidgetInterface,
     //DescribableInterface,

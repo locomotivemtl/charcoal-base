@@ -2,14 +2,17 @@
 
 namespace Charcoal\Template;
 
-// From `charcoal-core`
+// Module `charcoal-core` dependencies
 use \Charcoal\Model\AbstractModel as AbstractModel;
 use \Charcoal\View\ViewableInterface as ViewableInterface;
 use \Charcoal\View\ViewableTrait as ViewableTrait;
 
-// From `charcoal-base`
+// Local namespace dependencies
 use \Charcoal\Template\TemplateInterface as TemplateInterface;
 
+/**
+*
+*/
 abstract class AbstractTemplate extends AbstractModel implements
     TemplateInterface
 {

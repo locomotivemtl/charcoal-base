@@ -2,14 +2,14 @@
 
 namespace Charcoal\Template;
 
+// Dependencies from `PHP`
 use \InvalidArgumentException as InvalidArgumentException;
 
-// From `charcoal-core`
+// Module `charcoal-core` dependencies
 use \Charcoal\View\AbstractView as AbstractView;
-
 use \Charcoal\View\ViewTemplateLoader as ViewTemplateLoader;
 
-// From `charcoal-base`
+// Local namespace dependencies
 use \Charcoal\Template\TemplateFactory as TemplateFactory;
 use \Charcoal\Template\TemplateViewController as TemplateViewController;
 

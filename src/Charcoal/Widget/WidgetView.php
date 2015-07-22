@@ -4,10 +4,17 @@ namespace Charcoal\Widget;
 
 use \InvalidArgumentException as InvalidArgumentException;
 
-// From `charcoal-core`
+// Module `charcoal-core` dependencies
 use \Charcoal\View\AbstractView as AbstractView;
 use \Charcoal\View\ViewTemplateLoader as ViewTemplateLoader;
 
+// Local namespace dependencies
+use \Charcoal\Widget\WidgetFactory as WidgetFactory;
+use \Charcoal\Widget\WidgetViewController as WidgetViewController;
+
+/**
+*
+*/
 class WidgetView extends AbstractView
 {
     /**
