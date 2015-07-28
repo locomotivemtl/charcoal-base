@@ -23,4 +23,15 @@ class TemplateFactory extends AbstractFactory
             $this->set_data($data);
         }
     }
+
+    /**
+    * AbstractFactory > factory_class()
+    *
+    * @param string
+    * @return string
+    */
+    public function factory_class($class)
+    {
+        return $class.'Template';
+    }
 }
