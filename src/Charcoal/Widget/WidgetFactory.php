@@ -6,7 +6,7 @@ namespace Charcoal\Widget;
 use \Charcoal\Core\AbstractFactory as AbstractFactory;
 
 /**
-*
+* The WidgetFactory creates Widget objects.
 */
 class WidgetFactory extends AbstractFactory
 {
@@ -26,7 +26,7 @@ class WidgetFactory extends AbstractFactory
     /**
     * AbstractFactory > factory_class()
     *
-    * @param string
+    * @param string $class
     * @return string
     */
     public function factory_class($class)

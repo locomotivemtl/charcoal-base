@@ -6,7 +6,7 @@ namespace Charcoal\Template;
 use \Charcoal\Core\AbstractFactory as AbstractFactory;
 
 /**
-*
+* The TemplateFactory creates Factory objects
 */
 class TemplateFactory extends AbstractFactory
 {
@@ -27,7 +27,7 @@ class TemplateFactory extends AbstractFactory
     /**
     * AbstractFactory > factory_class()
     *
-    * @param string
+    * @param string $class
     * @return string
     */
     public function factory_class($class)
