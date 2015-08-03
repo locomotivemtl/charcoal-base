@@ -2,15 +2,26 @@
 
 namespace Charcoal\Object;
 
-// From `charcoal-core`
+// Module `charcoal-core` dependencies
 use \Charcoal\Model\AbstractModel as AbstractModel;
 use \Charcoal\Core\IndexableInterface as IndexableInterface;
 use \Charcoal\Core\IndexableTrait as IndexableTrait;
 
-// From `charcoal-base`
+// Local namespace dependencies
 use \Charcoal\Object\ObjectInterface as ObjectInterface;
 
-abstract class AbstractObject extends AbstractModel implements ObjectInterface, IndexableInterface
+/**
+* Base (abstract) object class.
+*
+* Objects are specialized models that also implements the IndexableInterface.
+*
+* There is 2 default object type available in this module:
+* - `Content`
+* - `UserData`
+*/
+abstract class AbstractObject extends AbstractModel implements
+    ObjectInterface,
+    IndexableInterface
 {
     use IndexableTrait;
 
@@ -20,8 +31,8 @@ abstract class AbstractObject extends AbstractModel implements ObjectInterface, 
     */
     public function set_data(array $data)
     {
-        parent::set_data($data);
         $this->set_indexable_data($data);
+        parent::set_data($data);
         return $this;
     }
 }

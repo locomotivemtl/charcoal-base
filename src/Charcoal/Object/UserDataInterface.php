@@ -2,8 +2,12 @@
 
 namespace Charcoal\Object;
 
+/**
+*
+*/
 interface UserDataInterface
 {
+
     /**
     * @param string|int $ip
     * @return UserDataInterface Chainable

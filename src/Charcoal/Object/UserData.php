@@ -6,9 +6,13 @@ use \DateTime as DateTime;
 use \DateTimeInterface as DateTimeInterface;
 use \InvalidArgumentException as InvalidArgumentException;
 
+// Local namespace dependencies
 use \Charcoal\Object\AbstractObject as AbstractObject;
 use \Charcoal\Object\UserDataInterface as UserDataInterface;
 
+/**
+*
+*/
 class UserData extends AbstractObject implements UserDataInterface
 {
     /**
