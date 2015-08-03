@@ -2,18 +2,21 @@
 
 namespace Charcoal\Property;
 
-use \PDO as PDO;
+
+// Dependencies from `PHP`
 use \InvalidArgumentException as InvalidArgumentException;
 
-use \Charcoal\Core\StringFormat as StringFormat;
+// Dependencies from `PHP` extensions
+use \PDO as PDO;
 
-use \Charcoal\Model\Property as Property;
-use \Charcoal\Model\Validator\Propertyalidator as Validator;
+// Module `charcoal-core` dependencies
+use \Charcoal\Core\StringFormat as StringFormat;
+use \Charcoal\Property\AbstractProperty as AbstractProperty;
 
 /**
-*
+* String Property
 */
-class StringProperty extends Property
+class StringProperty extends AbstractProperty
 {
     const DEFAULT_MIN_LENGTH = 0;
     const DEFAULT_MAX_LENGTH = 255;

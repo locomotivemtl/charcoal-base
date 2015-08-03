@@ -2,12 +2,18 @@
 
 namespace Charcoal\Property;
 
-use \PDO as PDO;
+// Dependencies from `PHP`
 use \InvalidArgumentException as InvalidArgumentException;
 
-// In charcoal-core
+// Dependencies from `PHP` extensions
+use \PDO as PDO;
+
+// Module `charcoal-core` dependencies
 use \Charcoal\Property\AbstractProperty as AbstractProperty;
 
+/**
+* ID Property
+*/
 class IdProperty extends AbstractProperty
 {
     /**

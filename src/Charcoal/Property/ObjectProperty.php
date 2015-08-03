@@ -2,12 +2,16 @@
 
 namespace Charcoal\Property;
 
+// Dependencies from `PHP`
 use \Exception as Exception;
 use \InvalidArgumentException as InvalidArgumentException;
 
-// In charcoal-core
+// Module `charcoal-core` dependencies
 use \Charcoal\Property\AbstractProperty as AbstractProperty;
 
+/**
+* Object Property
+*/
 class ObjectProperty extends AbstractProperty
 {
     /**

@@ -2,9 +2,14 @@
 
 namespace Charcoal\Property;
 
-// In charcoal-core
+// Local namespace dependencies
 use \Charcoal\Property\StringProperty as StringProperty;
 
+/**
+* HTML Property
+*
+* The html property is a specialized string property.
+*/
 class HtmlProperty extends StringProperty
 {
     /**

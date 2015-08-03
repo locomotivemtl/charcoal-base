@@ -2,17 +2,20 @@
 
 namespace Charcoal\Property;
 
-use \finfo as finfo;
-use \PDO as PDO;
+// Dependencies from `PHP`
 use \Exception as Exception;
 use \InvalidArgumentException as InvalidArgumentException;
 
-// In charcoal-core
+// Dependencies from `PHP` extensions
+use \finfo as finfo;
+use \PDO as PDO;
+
+// Module `charcoal-core` dependencies
 use \Charcoal\Charcoal as Charcoal;
 use \Charcoal\Property\AbstractProperty as AbstractProperty;
 
 /**
-*
+* File Property
 */
 class FileProperty extends AbstractProperty
 {
@@ -327,6 +330,7 @@ class FileProperty extends AbstractProperty
     public function save()
     {
         $i = $this->ident();
+        //var_dump($this->val());
         if (isset($_FILES[$i]) && (isset($_FILES[$i]['name']) && $_FILES[$i]['name']) && (isset($_FILES[$i]['tmp_name']) && $_FILES[$i]['tmp_name'])) {
             $f = $this->file_upload($_FILES[$i]);
             $this->set_val($f);
@@ -500,5 +504,6 @@ class FileProperty extends AbstractProperty
     public function generate_extension()
     {
         $mimetype = $this->mimetype();
+        return '';
     }
 }

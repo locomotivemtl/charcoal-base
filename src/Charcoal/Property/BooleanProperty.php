@@ -2,15 +2,17 @@
 
 namespace Charcoal\Property;
 
+// Dependencies from `PHP` extensions
 use \PDO as PDO;
 
-use \Charcoal\Model\Property as Property;
-use \Charcoal\Model\Validator\Propertyalidator as Validator;
+// Module `charcoal-core` dependencies
+use \Charcoal\Property\AbstractProperty as AbstractProperty;
+
 
 /**
-*
+* Boolean Property
 */
-class BooleanProperty extends Property
+class BooleanProperty extends AbstractProperty
 {
     /**
     * @var mixed $_true_label
@@ -83,6 +85,14 @@ class BooleanProperty extends Property
     }
 
     /**
+    * @return string
+    */
+    public function sql_extra()
+    {
+        return '';
+    }
+
+    /**
     * Get the SQL type (Storage format)
     *
     * Stored as `TINYINT(1) UNSIGNED`
@@ -119,5 +129,13 @@ class BooleanProperty extends Property
                 'value'=>0
             ]
         ];
+    }
+
+    /**
+    * @return mixed
+    */
+    public function save()
+    {
+        return $this->val();
     }
 }

@@ -16,6 +16,12 @@ class BooleanPropertyTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Charcoal\Property\BooleanProperty', $obj);
     }
 
+    public function testType()
+    {
+        $obj = new BooleanProperty();
+        $this->assertEquals('boolean', $obj->type());
+    }
+
     public function testSetData()
     {
         $obj = new BooleanProperty();

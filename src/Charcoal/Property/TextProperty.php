@@ -2,9 +2,12 @@
 
 namespace Charcoal\Property;
 
-// From `charcoal-base`
+// Local namespace dependencies
 use \Charcoal\Property\StringProperty as StringProperty;
 
+/**
+* Text Property.
+*/
 class TextProperty extends StringProperty
 {
     /**
@@ -13,5 +16,17 @@ class TextProperty extends StringProperty
     public function type()
     {
         return 'text';
+    }
+
+        /**
+    * Get the SQL type (Storage format)
+    *
+    * Stored as `VARCHAR` for max_length under 255 and `TEXT` for other, longer strings
+    *
+    * @return string The SQL type
+    */
+    public function sql_type()
+    {
+        return 'TEXT';
     }
 }

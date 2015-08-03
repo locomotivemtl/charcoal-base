@@ -29,6 +29,12 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    public function testType()
+    {
+        $obj = new StringProperty();
+        $this->assertEquals('string', $obj->type());
+    }
+
     public function testSetData()
     {
         $obj = new StringProperty();

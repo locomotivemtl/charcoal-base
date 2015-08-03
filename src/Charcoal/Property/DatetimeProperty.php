@@ -2,15 +2,20 @@
 
 namespace Charcoal\Property;
 
-// Global namespaces
+// Dependencies from `PHP`
 use \DateTime as DateTime;
 use \Exception as Exception;
 use \InvalidArgumentException as InvalidArgumentException;
+
+// Dependencies from `PHP` extensions
 use \PDO as PDO;
 
-// In `charcoal-core`
+// Module `charcoal-core` dependencies
 use \Charcoal\Property\AbstractProperty as AbstractProperty;
 
+/**
+* Datetime Property
+*/
 class DatetimeProperty extends AbstractProperty
 {
     const DEFAULT_MIN = null;

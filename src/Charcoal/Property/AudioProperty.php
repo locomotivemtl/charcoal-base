@@ -4,9 +4,14 @@ namespace Charcoal\Property;
 
 use \InvalidArgumentException as InvalidArgumentException;
 
-// From `charcoal-admin`
+// Local namespace dependencies
 use \Charcoal\Property\FileProperty as FileProperty;
 
+/**
+* Audio Property.
+*
+* The audio property is a specialized file property.
+*/
 class AudioProperty extends FileProperty
 {
 
@@ -99,6 +104,7 @@ class AudioProperty extends FileProperty
     public function accepted_mimetypes()
     {
         return [
+            'audio/mp3',
             'audio/mpeg',
             'audio/wav',
             'audio/x-wav'
@@ -114,6 +120,7 @@ class AudioProperty extends FileProperty
         
         $ext = '';
         switch ($mimetype) {
+            case 'audio/mp3':
             case 'audio/mpeg':
                 $ext = 'mp3';
             break;
