@@ -67,21 +67,21 @@ class ImageProperty extends FileProperty
         switch ($mimetype) {
             case 'image/gif':
                 $ext = 'gif';
-            break;
+                break;
 
             case 'image/jpg':
             case 'image/jpeg':
             case 'image/pjpeg':
                 $ext = 'jpg';
-            break;
+                break;
 
             case 'image/png':
                 $ext = 'png';
-            break;
+                break;
 
             case 'image/svg+xml':
                 $ext = 'svg';
-            break;
+                break;
         }
         return $ext;
     }

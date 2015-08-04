@@ -39,11 +39,23 @@ class FileProperty extends AbstractProperty
     /**
     * Maximum allowed file size, in bytes.
     * If null or 0, then no limit.
+    * Default to 128M
     * @var integer $_max_filesize
     */
-    private $_max_filesize = 134220000; //128M
+    private $_max_filesize = 134220000;
 
+    /**
+    * Current file mimetype
+    *
+    * @var string $_mimetype
+    */
     private $_mimetype;
+
+    /**
+    * Current file size, in bytes.
+    *
+    * @var integer $_filesize
+    */
     private $_filesize;
 
     /**
@@ -331,11 +343,13 @@ class FileProperty extends AbstractProperty
     {
         $i = $this->ident();
         //var_dump($this->val());
-        if (isset($_FILES[$i]) && (isset($_FILES[$i]['name']) && $_FILES[$i]['name']) && (isset($_FILES[$i]['tmp_name']) && $_FILES[$i]['tmp_name'])) {
+        if (isset($_FILES[$i])
+            && (isset($_FILES[$i]['name']) && $_FILES[$i]['name'])
+            && (isset($_FILES[$i]['tmp_name']) && $_FILES[$i]['tmp_name'])) {
             $f = $this->file_upload($_FILES[$i]);
             $this->set_val($f);
             return $f;
-        } else if (preg_match('/^data:/', $this->val())) {
+        } elseif (preg_match('/^data:/', $this->val())) {
             $f = $this->data_upload($this->val());
             $this->set_val($f);
             return $f;

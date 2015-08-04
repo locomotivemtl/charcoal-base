@@ -123,14 +123,13 @@ class AudioProperty extends FileProperty
             case 'audio/mp3':
             case 'audio/mpeg':
                 $ext = 'mp3';
-            break;
+                break;
 
             case 'audio/wav':
             case 'audio/x-wav':
                 $ext = 'wav';
-            break;
+                break;
         }
         return $ext;
     }
-
 }

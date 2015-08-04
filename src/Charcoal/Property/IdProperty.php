@@ -25,11 +25,14 @@ class IdProperty extends AbstractProperty
     }
 
     const DEFAULT_MODE = 'auto-increment';
+
     /**
     * ID mode. Can be:
     * - `auto-increment` (default)
     * - `uniq`
     * - `uuid`
+    *
+    * @var string $_mode
     */
     private $_mode;
 
@@ -103,9 +106,9 @@ class IdProperty extends AbstractProperty
         if ($mode == 'auto-increment') {
             // auto-increment is handled at the database level (for now...)
             return '';
-        } else if ($mode == 'uniqid') {
+        } elseif ($mode == 'uniqid') {
             return \uniqid();
-        } else if ($mode == 'uuid') {
+        } elseif ($mode == 'uuid') {
             return $this->_generate_uuid();
         }
     }
@@ -123,7 +126,8 @@ class IdProperty extends AbstractProperty
         return sprintf(
             '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
             // 32 bits for "time_low"
-            mt_rand(0, 0xffff), mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
             // 16 bits for "time_mid"
             mt_rand(0, 0xffff),
             // 16 bits for "time_hi_and_version",
@@ -134,7 +138,9 @@ class IdProperty extends AbstractProperty
             // two most significant bits holds zero and one for variant DCE1.1
             (mt_rand(0, 0x3fff) | 0x8000),
             // 48 bits for "node"
-            mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff),
+            mt_rand(0, 0xffff)
         );
     }
 
@@ -163,9 +169,9 @@ class IdProperty extends AbstractProperty
         $mode = $this->mode();
         if ($mode == 'auto-increment') {
             return 'INT(10) UNSIGNED';
-        } else if ($mode == 'uniqid') {
+        } elseif ($mode == 'uniqid') {
             return 'CHAR(13)';
-        } else if ($mode == 'uuid') {
+        } elseif ($mode == 'uuid') {
             return 'CHAR(36)';
         }
     }

@@ -11,16 +11,31 @@ use \InvalidArgumentException as InvalidArgumentException;
 trait HierarchicalTrait
 {
     /**
+    * The master, if any, in the hierarchy.
+    *
     * @var HierarchicalInterface $_master
     */
     protected $_master = null;
 
     /**
     * In-memory copy of the object's hierarchy.
+    *
     * @var array $_hierarchy
     */
     protected $_hierarchy = null;
+
+    /**
+    * In-memory copy of the object's children
+    *
+    * @var array $_children
+    */
     protected $_children;
+
+    /**
+    * In-memory copy of the object's siblings
+    *
+    * @var array $_siblings
+    */
     protected $_siblings;
 
     /**

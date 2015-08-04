@@ -8,7 +8,6 @@ use \PDO as PDO;
 // Module `charcoal-core` dependencies
 use \Charcoal\Property\AbstractProperty as AbstractProperty;
 
-
 /**
 * Boolean Property
 */

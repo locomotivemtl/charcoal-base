@@ -66,5 +66,4 @@ interface CliActionInterface
     * @return string
     */
     public function help();
-
 }

@@ -39,16 +39,49 @@ abstract class AbstractEmail implements
     * @var string $_campaign
     */
     private $_campaign;
+    /**
+    * @var array $_to
+    */
     private $_to = [];
+    /**
+    * @var array $_cc
+    */
     private $_cc = [];
+    /**
+    * @var array $_bcc
+    */
     private $_bcc = [];
+    /**
+    * @var string $_from
+    */
     private $_from;
+    /**
+    * @var string $_reply_to
+    */
     private $_reply_to;
+    /**
+    * @var string $_subject
+    */
     private $_subject;
+     /**
+    * @var string $_msg_html
+    */
     private $_msg_html;
+     /**
+    * @var string $_msg_txt
+    */
     private $_msg_txt;
+    /**
+    * @var array $_attachments
+    */
     private $_attachments = [];
+    /**
+    * @var boolean $_log
+    */
     private $_log;
+    /**
+    * @var boolean $_track
+    */
     private $_track;
 
     /**
@@ -159,7 +192,7 @@ abstract class AbstractEmail implements
     {
         if (is_string($to)) {
             $this->_to[] = $to;
-        } else if (is_array($to)) {
+        } elseif (is_array($to)) {
             $this->_to[] = $this->email_from_array($to);
         } else {
             throw new InvalidArgumentException('Email address must be an array or a string');
@@ -204,7 +237,7 @@ abstract class AbstractEmail implements
     {
         if (is_string($cc)) {
             $this->_cc[] = $cc;
-        } else if (is_array($cc)) {
+        } elseif (is_array($cc)) {
             $this->_cc[] = $this->email_from_array($cc);
         } else {
             throw new InvalidArgumentException('Email address must be an array or a string');
@@ -249,7 +282,7 @@ abstract class AbstractEmail implements
     {
         if (is_string($bcc)) {
             $this->_bcc[] = $bcc;
-        } else if (is_array($bcc)) {
+        } elseif (is_array($bcc)) {
             $this->_bcc[] = $this->email_from_array($bcc);
         } else {
             throw new InvalidArgumentException('Email address must be an array or a string');
@@ -275,7 +308,7 @@ abstract class AbstractEmail implements
         if (is_string($from)) {
             // @todo Validation
             $this->_from = $from;
-        } else if (is_array($from)) {
+        } elseif (is_array($from)) {
             $this->_from = $this->email_from_array($from);
         } else {
             throw new InvalidArgumentException('Email address must be an array or a string');
@@ -305,7 +338,7 @@ abstract class AbstractEmail implements
     {
         if (is_string($reply_to)) {
             $this->_reply_to = $reply_to;
-        } else if (is_array($reply_to)) {
+        } elseif (is_array($reply_to)) {
             $this->_reply_to = $this->email_from_array($reply_to);
         } else {
             throw new InvalidArgumentException('Email address must be an array or a string');

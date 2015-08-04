@@ -11,7 +11,7 @@ class CliActionTest extends \PHPUnit_Framework_Testcase
 {
 
 
-    static public function setUpBeforeClass()
+    public static function setUpBeforeClass()
     {
         include_once 'CliActionClass.php';
     }

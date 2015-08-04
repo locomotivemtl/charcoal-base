@@ -91,4 +91,3 @@ abstract class AbstractWidget implements
         return $view;
     }
 }
-

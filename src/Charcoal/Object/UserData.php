@@ -57,7 +57,7 @@ class UserData extends AbstractObject implements UserDataInterface
     {
         if (is_string($ip)) {
             $ip = ip2long($ip);
-        } else if (is_int($ip)) {
+        } elseif (is_int($ip)) {
             $ip = $ip;
         } else {
             throw new InvalidArgumentException('Ip must be a string or long integer');
@@ -107,7 +107,9 @@ class UserData extends AbstractObject implements UserDataInterface
             $ts = new DateTime($ts);
         }
         if (!($ts instanceof DateTimeInterface)) {
-            throw new InvalidArgumentException('Invalid "Timestamp" value. Must be a date/time string or a DateTime object.');
+            throw new InvalidArgumentException(
+                'Invalid "Timestamp" value. Must be a date/time string or a DateTime object.'
+            );
         }
         $this->_ts = $ts;
         return $this;

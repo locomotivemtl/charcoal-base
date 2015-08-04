@@ -185,5 +185,4 @@ interface EmailInterface
     * @return boolean Success / Failure
     */
     public function queue();
-
 }

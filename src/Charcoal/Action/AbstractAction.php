@@ -19,7 +19,13 @@ abstract class AbstractAction implements ActionInterface
     const MODE_OUTPUT = 'output';
     const DEFAULT_MODE = self::MODE_REDIRECT;
 
+    /**
+    * @var string $_mode
+    */
     private $_mode = self::DEFAULT_MODE;
+    /**
+    * @var boolean $_success
+    */
     private $_success = false;
 
     /**
@@ -92,7 +98,7 @@ abstract class AbstractAction implements ActionInterface
                 }
             }
             echo json_encode($response);
-        } else if ($mode == self::MODE_REDIRECT) {
+        } elseif ($mode == self::MODE_REDIRECT) {
             Charcoal::app()->response->redirect($this->redirect_url(), $http_code);
         } else {
             throw new \Exception('Invalid mode');

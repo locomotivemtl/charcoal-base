@@ -26,6 +26,9 @@ trait CliActionTrait
     */
     private $_climate;
 
+    /**
+    * @var boolean $_verbose
+    */
     protected $_verbose;
 
     /**

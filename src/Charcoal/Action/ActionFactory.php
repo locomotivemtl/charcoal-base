@@ -2,9 +2,7 @@
 
 namespace Charcoal\Action;
 
-use \Exception as Exception;
-
-// From `charcoal-core`
+// Module `charcoal-core` dependencies
 use \Charcoal\Core\AbstractFactory as AbstractFactory;
 
 /**
