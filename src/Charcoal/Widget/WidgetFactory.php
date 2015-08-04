@@ -26,6 +26,8 @@ class WidgetFactory extends AbstractFactory
     /**
     * AbstractFactory > factory_class()
     *
+    * Widgets class names are always suffixed with "Widget".
+    *
     * @param string $class
     * @return string
     */

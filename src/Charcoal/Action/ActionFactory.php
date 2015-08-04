@@ -8,26 +8,35 @@ use \Exception as Exception;
 use \Charcoal\Core\AbstractFactory as AbstractFactory;
 
 /**
+* The ActionFactory creates Action objects.
 *
+* @see \Charcoal\Core\FactoryInterface
 */
 class ActionFactory extends AbstractFactory
 {
     /**
-    * @param string $type
-    * @throws Exception
-    * @return ActionInterface
+    * @param array $data
     */
-    public function get($type)
+    public function __construct(array $data = null)
     {
-        $class_name = $this->ident_to_classname($type);
-        if (class_exists($class_name)) {
-            $obj = new $class_name();
-            if (!($obj instanceof ActionInterface)) {
-                throw new Exception('Invalid action: '.$type.' (not an action)');
-            }
-            return $obj;
-        } else {
-            throw new Exception('Invalid action: '.$type);
+        $this->set_factory_mode(AbstractFactory::MODE_IDENT);
+        $this->set_base_class('\Charcoal\Action\ActionInterface');
+
+        if ($data !== null) {
+            $this->set_data($data);
         }
+    }
+
+    /**
+    * AbstractFactory > factory_class()
+    *
+    * Actions class names are always suffixed with "Action".
+    *
+    * @param string $class
+    * @return string
+    */
+    public function factory_class($class)
+    {
+        return $class.'Action';
     }
 }
