@@ -16,13 +16,9 @@ use \Charcoal\Property\AbstractProperty as AbstractProperty;
 */
 class IdProperty extends AbstractProperty
 {
-    /**
-    * @return string
-    */
-    public function type()
-    {
-        return 'id';
-    }
+    const MODE_AUTO_INCREMENT = 'auto-increment';
+    const MODE_UNIQID = 'uniqid';
+    const MODE_UUID = 'uuid';
 
     const DEFAULT_MODE = 'auto-increment';
 
@@ -35,6 +31,14 @@ class IdProperty extends AbstractProperty
     * @var string $_mode
     */
     private $_mode;
+
+    /**
+    * @return string
+    */
+    public function type()
+    {
+        return 'id';
+    }
 
     /**
     * @param array $data
@@ -56,7 +60,11 @@ class IdProperty extends AbstractProperty
     */
     public function set_mode($mode)
     {
-        $available_modes = ['auto-increment', 'uniqid', 'uuid'];
+        $available_modes = [
+            self::MODE_AUTO_INCREMENT,
+            self::MODE_UNIQID,
+            self::MODE_UUID
+        ];
         if (!in_array($mode, $available_modes)) {
             throw new InvalidArgumentException('Mode is not a valid mode');
         }
@@ -103,12 +111,12 @@ class IdProperty extends AbstractProperty
     {
         $mode = $this->mode();
 
-        if ($mode == 'auto-increment') {
+        if ($mode == self::MODE_AUTO_INCREMENT) {
             // auto-increment is handled at the database level (for now...)
             return '';
-        } elseif ($mode == 'uniqid') {
+        } elseif ($mode == self::MODE_UNIQID) {
             return \uniqid();
-        } elseif ($mode == 'uuid') {
+        } elseif ($mode == self::MODE_UUID) {
             return $this->_generate_uuid();
         }
     }
@@ -151,7 +159,7 @@ class IdProperty extends AbstractProperty
     public function sql_extra()
     {
         $mode = $this->mode();
-        if ($mode == 'auto-increment') {
+        if ($mode == self::MODE_AUTO_INCREMENT) {
             return 'AUTO_INCREMENT';
         } else {
             return '';
@@ -167,11 +175,11 @@ class IdProperty extends AbstractProperty
     public function sql_type()
     {
         $mode = $this->mode();
-        if ($mode == 'auto-increment') {
+        if ($mode == self::MODE_AUTO_INCREMENT) {
             return 'INT(10) UNSIGNED';
-        } elseif ($mode == 'uniqid') {
+        } elseif ($mode == self::MODE_UNIQID) {
             return 'CHAR(13)';
-        } elseif ($mode == 'uuid') {
+        } elseif ($mode == self::MODE_UUID) {
             return 'CHAR(36)';
         }
     }
