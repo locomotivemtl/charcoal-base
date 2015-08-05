@@ -15,7 +15,7 @@ interface PublishableInterface
 
     /**
     * @param string|DateTime $publish_date
-    * @throws InvalidArgumentException
+    * @return PublishableTrait Chainable
     */
     public function set_publish_date($publish_date);
 
@@ -26,7 +26,7 @@ interface PublishableInterface
 
     /**
     * @param string|DateTime $expiry_date
-    * @throws InvalidArgumentException
+    * @return PublishableTrait Chainable
     */
     public function set_expiry_date($expiry_date);
 
@@ -36,12 +36,18 @@ interface PublishableInterface
     public function expiry_date();
 
     /**
-    * Get the "publish status" from the publish date / expiry date.
-    *
-    * - If no publish date is set, then it is assumed to be "always published." (or expired)
-    * - If no expiry date is set, then it is assumed to never expire.
-    *
+    * @param string $status
+    * @return PublishableTrait Chainable
+    */
+    public function set_publish_status($status);
+
+    /**
     * @return string
     */
     public function publish_status();
+
+    /**
+    * @return boolean
+    */
+    public function is_published();
 }

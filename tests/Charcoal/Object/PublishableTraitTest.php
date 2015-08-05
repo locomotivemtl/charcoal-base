@@ -107,10 +107,24 @@ class PublishableTraitTest extends \PHPUnit_Framework_TestCase
         $obj->set_expiry_date('foobar');
     }
 
+    public function testSetPublishStatus()
+    {
+        $obj = $this->obj;
+        $obj->set_publish_status('draft');
+        $this->assertEquals('draft', $obj->publish_status());
+        $obj->set_publish_status('pending');
+        $this->assertEquals('pending', $obj->publish_status());
+        $obj->set_publish_status('published');
+        $this->assertEquals('published', $obj->publish_status()); // No date set.
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $obj->set_publish_status('foobar');
+    }
+
     /**
     * @dataProvider providerPublishStatus
     */
-    public function testSetPublishStatus($publish_date, $expiry_date, $expected_status)
+    public function testPublishStatusFromDates($publish_date, $expiry_date, $expected_status)
     {
         $obj = $this->obj;
         if ($publish_date !== null) {
@@ -119,6 +133,13 @@ class PublishableTraitTest extends \PHPUnit_Framework_TestCase
         if ($expiry_date !== null) {
             $obj->set_expiry_date($expiry_date);
         }
+
+        $obj->set_publish_status('draft');
+        $this->assertEquals('draft', $obj->publish_status());
+        $obj->set_publish_status('pending');
+        $this->assertEquals('pending', $obj->publish_status());
+
+        $obj->set_publish_status('published');
         $this->assertEquals($expected_status, $obj->publish_status());
     }
 
@@ -133,5 +154,20 @@ class PublishableTraitTest extends \PHPUnit_Framework_TestCase
             [null, 'tomorrow', 'published'],
             [null, 'yesterday', 'expired']
         ];
+    }
+
+    public function testIsPublished()
+    {
+        $obj = $this->obj;
+        $this->assertTrue($obj->is_published());
+
+        $obj->set_publish_status('draft');
+        $this->assertFalse($obj->is_published());
+
+        $obj->set_publish_status('published');
+        $this->assertTrue($obj->is_published());
+
+        $obj->set_expiry_date('yesterday');
+        $this->assertFalse($obj->is_published());
     }
 }

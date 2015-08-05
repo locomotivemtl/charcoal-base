@@ -13,10 +13,6 @@ use \InvalidArgumentException as InvalidArgumentException;
 */
 trait PublishableTrait
 {
-    //const PUBLISH_STATUS_UPCOMING = 'upcoming';
-    //const PUBLISH_STATUS_PUBLISHED = 'published';
-    //const PUBLISH_STATUS_EXPIRED = 'expired';
-
     /**
     * @var DateTime $_publish_date
     */
@@ -25,6 +21,11 @@ trait PublishableTrait
     * @var DateTime $_expiry_date
     */
     protected $_expiry_date;
+
+    /**
+    * @var string $_publish_status
+    */
+    protected $_publish_status;
 
     /**
     * @param array $data
@@ -101,6 +102,50 @@ trait PublishableTrait
         return $this->_expiry_date;
     }
 
+    /**
+    * @param string $status
+    * @throws InvalidArgumentException
+    * @return PublishableTrait Chainable
+    */
+    public function set_publish_status($status)
+    {
+        $valid_status = [
+            'draft',
+            'pending',
+            'published'
+        ];
+        if (!in_array($status, $valid_status)) {
+            throw new InvalidArgumentException(
+                sprintf('Status "%s" is not a valid publish status.', $status)
+            );
+        }
+        $this->_publish_status = $status;
+        return $this;
+    }
+
+    /**
+    * Get the object's publish status.
+    *
+    * Status can be:
+    * - `draft`
+    * - `pending`
+    * - `published`
+    * - `upcoming`
+    * - `expired`
+    *
+    * Note that the `upcoming` and `expired` status are specialized status when
+    * the object is set to `published` but the `publish_date` or `expiry_date` do not match.
+    *
+    * @return string
+    */
+    public function publish_status()
+    {
+        $status = $this->_publish_status;
+        if (!$status || $status == 'published') {
+            $status = $this->publish_date_status();
+        }
+        return $status;
+    }
 
     /**
     * Get the "publish status" from the publish date / expiry date.
@@ -110,7 +155,7 @@ trait PublishableTrait
     *
     * @return string
     */
-    public function publish_status()
+    protected function publish_date_status()
     {
         $now = new DateTime();
         $publish = $this->publish_date();
@@ -133,5 +178,13 @@ trait PublishableTrait
                 }
             }
         }
+    }
+
+    /**
+    * @return boolean
+    */
+    public function is_published()
+    {
+        return ($this->publish_status() == 'published');
     }
 }
