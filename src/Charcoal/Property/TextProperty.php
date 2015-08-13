@@ -10,6 +10,15 @@ use \Charcoal\Property\StringProperty as StringProperty;
 */
 class TextProperty extends StringProperty
 {
+
+    /**
+    * @return integer
+    */
+    public function default_max_length()
+    {
+        return 0;
+    }
+
     /**
     * @return string
     */

@@ -98,9 +98,17 @@ class StringProperty extends AbstractProperty
     public function max_length()
     {
         if ($this->_max_length === null) {
-            $this->_max_length = self::DEFAULT_MAX_LENGTH;
+            $this->_max_length = $this->default_max_length();
         }
         return $this->_max_length;
+    }
+
+    /**
+    * @return integer
+    */
+    public function default_max_length()
+    {
+        return 255;
     }
 
     /**
