@@ -15,12 +15,7 @@ class WidgetFactory extends IdentFactory
     */
     public function __construct()
     {
-       // $this->set_factory_mode(IdentFactory::MODE_IDENT);
         $this->set_base_class('\Charcoal\Widget\WidgetInterface');
-
-        if ($data !== null) {
-            $this->set_data($data);
-        }
     }
 
     /**
