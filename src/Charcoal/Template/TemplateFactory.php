@@ -3,34 +3,28 @@
 namespace Charcoal\Template;
 
 // Module `charcoal-core` dependencies
-use \Charcoal\Core\AbstractFactory as AbstractFactory;
+use \Charcoal\Core\IdentFactory as IdentFactory;
 
 /**
 * The TemplateFactory creates Factory objects
 */
-class TemplateFactory extends AbstractFactory
+class TemplateFactory extends IdentFactory
 {
     /**
     * @param array $data
     */
-    public function __construct(array $data = null)
+    public function __construct()
     {
-        $this->set_factory_mode(AbstractFactory::MODE_IDENT);
         $this->set_base_class('\Charcoal\Template\TemplateInterface');
-        //$this->set_default_class('\Charcoal\Template\Template');
-
-        if ($data !== null) {
-            $this->set_data($data);
-        }
     }
 
     /**
-    * AbstractFactory > factory_class()
+    * IdentFactory > prepare_classname()
     *
     * @param string $class
     * @return string
     */
-    public function factory_class($class)
+    public function prepare_classname($class)
     {
         return $class.'Template';
     }

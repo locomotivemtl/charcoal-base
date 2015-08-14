@@ -3,19 +3,19 @@
 namespace Charcoal\Widget;
 
 // Module `charcoal-core` dependencies
-use \Charcoal\Core\AbstractFactory as AbstractFactory;
+use \Charcoal\Core\IdentFactory as IdentFactory;
 
 /**
 * The WidgetFactory creates Widget objects.
 */
-class WidgetFactory extends AbstractFactory
+class WidgetFactory extends IdentFactory
 {
     /**
     * @param array $data
     */
-    public function __construct(array $data = null)
+    public function __construct()
     {
-        $this->set_factory_mode(AbstractFactory::MODE_IDENT);
+       // $this->set_factory_mode(IdentFactory::MODE_IDENT);
         $this->set_base_class('\Charcoal\Widget\WidgetInterface');
 
         if ($data !== null) {
@@ -24,14 +24,14 @@ class WidgetFactory extends AbstractFactory
     }
 
     /**
-    * AbstractFactory > factory_class()
+    * IdentFactory > prepare_classname()
     *
     * Widgets class names are always suffixed with "Widget".
     *
     * @param string $class
     * @return string
     */
-    public function factory_class($class)
+    public function prepare_classname($class)
     {
         return $class.'Widget';
     }
