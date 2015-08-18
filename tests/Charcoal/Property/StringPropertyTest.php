@@ -66,7 +66,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
         $obj->set_min_length('foo');
     }
 
-    public function testSetMinLenghtNegative()
+    public function testSetMinLenghtNegativeThrowsException()
     {
         $obj = new StringProperty();
         $this->setExpectedException('\InvalidArgumentException');
@@ -85,7 +85,7 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
         $obj->set_max_length('foo');
     }
 
-    public function testSetMaxLenghtNegative()
+    public function testSetMaxLenghtNegativeThrowsException()
     {
         $obj = new StringProperty();
         $this->setExpectedException('\InvalidArgumentException');
