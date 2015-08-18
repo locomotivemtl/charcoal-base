@@ -195,10 +195,14 @@ abstract class AbstractUser extends Content implements
     */
     public function set_password($password)
     {
-        if (!is_string($password)) {
+        if ($password == null) {
+            $this->_password = $password;
+        } elseif (is_string($password)) {
+            $this->_password = $password;
+        } else {
             throw new InvalidArgumentException('Password must be a string');
         }
-        $this->_password = $password;
+        
         return $this;
     }
 
