@@ -2,10 +2,11 @@
 
 namespace Charcoal\Property;
 
-use \InvalidArgumentException as InvalidArgumentException;
+// Dependencies from `PHP`
+use \InvalidArgumentException;
 
 // Local namespace dependencies
-use \Charcoal\Property\FileProperty as FileProperty;
+use \Charcoal\Property\FileProperty;
 
 /**
 * Audio Property.
@@ -14,8 +15,6 @@ use \Charcoal\Property\FileProperty as FileProperty;
 */
 class AudioProperty extends FileProperty
 {
-
-
     /**
     * Minimum audio length, in seconds.
     * @var integer $_min_length

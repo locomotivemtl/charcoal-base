@@ -3,16 +3,16 @@
 namespace Charcoal\Property;
 
 // Dependencies from `PHP`
-use \Exception as Exception;
-use \InvalidArgumentException as InvalidArgumentException;
+use \Exception;
+use \InvalidArgumentException;
 
 // Dependencies from `PHP` extensions
-use \finfo as finfo;
-use \PDO as PDO;
+use \finfo;
+use \PDO;
 
 // Module `charcoal-core` dependencies
-use \Charcoal\Charcoal as Charcoal;
-use \Charcoal\Property\AbstractProperty as AbstractProperty;
+use \Charcoal\Charcoal;
+use \Charcoal\Property\AbstractProperty;
 
 /**
 * File Property

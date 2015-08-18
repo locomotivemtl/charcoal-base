@@ -3,15 +3,16 @@
 namespace Charcoal\Property;
 
 // Dependencies from `PHP`
-use \DateTime as DateTime;
-use \Exception as Exception;
-use \InvalidArgumentException as InvalidArgumentException;
+use \DateTime;
+use \DateTimeInterface;
+use \Exception;
+use \InvalidArgumentException;
 
 // Dependencies from `PHP` extensions
-use \PDO as PDO;
+use \PDO;
 
 // Module `charcoal-core` dependencies
-use \Charcoal\Property\AbstractProperty as AbstractProperty;
+use \Charcoal\Property\AbstractProperty;
 
 /**
 * Datetime Property
@@ -50,10 +51,10 @@ class DatetimeProperty extends AbstractProperty
     public function set_data(array $data)
     {
         parent::set_data($data);
-        if (isset($data['min']) && $data['min'] !== null) {
+        if (isset($data['min'])) {
             $this->set_min($data['min']);
         }
-        if (isset($data['max']) && $data['max'] !== null) {
+        if (isset($data['max'])) {
             $this->set_max($data['max']);
         }
         if (isset($data['format']) && $data['format'] !== null) {
@@ -71,14 +72,23 @@ class DatetimeProperty extends AbstractProperty
     */
     public function set_val($val)
     {
+        if ($val === null) {
+            if ($this->allow_null()) {
+                $this->_val = null;
+                return $this;
+            } else {
+                throw new InvalidArgumentException(
+                    'Val can not be null (Not allowed)'
+                );
+            }
+        }
         if (is_string($val)) {
             $val = new DateTime($val);
         }
-        if ($val == '') {
-            return $this;
-        }
-        if (!($val instanceof DateTime)) {
-            throw new InvalidArgumentException('Val must be a valid date');
+        if (!($val instanceof DateTimeInterface)) {
+            throw new InvalidArgumentException(
+                'Val must be a valid date'
+            );
         }
         $this->_val = $val;
         return $this;
@@ -96,8 +106,8 @@ class DatetimeProperty extends AbstractProperty
         if ($val === null) {
             $val = $this->val();
         }
-        if ($val instanceof DateTime) {
-            return $this->_val->format('Y-m-d H-i-s');
+        if ($val instanceof DateTimeInterface) {
+            return $this->_val->format('Y-m-d H:i:s');
         } else {
             if ($this->allow_null()) {
                 return null;
@@ -114,11 +124,23 @@ class DatetimeProperty extends AbstractProperty
     */
     public function set_min($min)
     {
-        if (is_string($min)) {
-            $min = new DateTime($min);
+        if ($min === null) {
+            $this->_min = null;
+            return $this;
         }
-        if (!($max instanceof DateTime)) {
-            throw new InvalidArgumentException('Invalid min');
+        if (is_string($min)) {
+            try {
+                $min = new DateTime($min);
+            } catch (Exception $e) {
+                throw new InvalidArgumentException(
+                    'Can not set min: '.$e->getMessage()
+                );
+            }
+        }
+        if (!($min instanceof DateTimeInterface)) {
+            throw new InvalidArgumentException(
+                'Invalid min'
+            );
         }
         $this->_min = $min;
         return $this;
@@ -142,11 +164,23 @@ class DatetimeProperty extends AbstractProperty
     */
     public function set_max($max)
     {
-        if (is_string($max)) {
-            $max = new DateTime($max);
+        if ($max === null) {
+            $this->_max = null;
+            return $this;
         }
-        if (!($max instanceof DateTime)) {
-            throw new InvalidArgumentException('Invalid max');
+        if (is_string($max)) {
+            try {
+                $max = new DateTime($max);
+            } catch (Exception $e) {
+                throw new InvalidArgumentException(
+                    'Can not set min: '.$e->getMessage()
+                );
+            }
+        }
+        if (!($max instanceof DateTimeInterface)) {
+            throw new InvalidArgumentException(
+                'Invalid max'
+            );
         }
         $this->_max = $max;
         return $this;

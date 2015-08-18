@@ -8,7 +8,7 @@ use \Charcoal\Property\AbstractProperty as AbstractProperty;
 /**
 * Image Property.
 *
-* The image property is a specialized file property.
+* The image property is a specialized file property that stores image file.
 */
 class ImageProperty extends FileProperty
 {

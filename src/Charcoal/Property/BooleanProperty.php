@@ -6,7 +6,8 @@ namespace Charcoal\Property;
 use \PDO as PDO;
 
 // Module `charcoal-core` dependencies
-use \Charcoal\Property\AbstractProperty as AbstractProperty;
+use \Charcoal\Property\AbstractProperty;
+use \Charcoal\Translation\TranslationString;
 
 /**
 * Boolean Property
@@ -53,7 +54,7 @@ class BooleanProperty extends AbstractProperty
     */
     public function set_true_label($label)
     {
-        $this->_true_label = $label;
+        $this->_true_label = new TranslationString($label);
         return $this;
     }
 
@@ -62,6 +63,9 @@ class BooleanProperty extends AbstractProperty
     */
     public function true_label()
     {
+        if ($this->_true_label === null) {
+            $this->set_true_label('True');
+        }
         return $this->_true_label;
     }
 
@@ -80,6 +84,9 @@ class BooleanProperty extends AbstractProperty
     */
     public function false_label()
     {
+        if ($this->_false_label === null) {
+            $this->set_false_label('False');
+        }
         return $this->_false_label;
     }
 
