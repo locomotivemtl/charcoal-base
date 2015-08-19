@@ -2,6 +2,9 @@
 
 namespace Charcoal\Action;
 
+// Dependencies from `PHP`
+use \Exception;
+
 // Local namespace dependencies
 use \Charcoal\Action\AbstractAction;
 use \Charcoal\Action\CronActionInterface;
@@ -15,12 +18,13 @@ abstract class CronAction extends AbstractAction implements CronActionInterface
     use CronActionTrait;
 
     /**
-    * @param boolean $_use_lock
+    * @var boolean $_use_lock
     */
-    protected $_use_lock;
+    protected $_use_lock = false;
 
     /**
-    * @param
+    * Lock file pointer
+    * @var resource $_lock_fp
     */
     private $_lock_fp;
     
@@ -66,7 +70,8 @@ abstract class CronAction extends AbstractAction implements CronActionInterface
     }
 
     /**
-    *
+    * @throws Exception
+    * @return boolean
     */
     public function start_lock()
     {
@@ -74,12 +79,16 @@ abstract class CronAction extends AbstractAction implements CronActionInterface
         $lock_file = sys_get_temp_dir().'/'.$lock_name;
         $this->_lock_fp = fopen($lock_file, 'w');
         if (!$this->_lock_fp) {
-             throw new Exception('Can not run action. Lock file not available.');
+             throw new Exception(
+                 'Can not run action. Lock file not available.'
+             );
         }
         if (flock($this->_lock_fp, LOCK_EX)) {
             return true;
         } else {
-            throw new Exception('Can not run action. Lock file not available.');
+            throw new Exception(
+                'Can not run action. Lock file not available.'
+            );
         }
     }
 
