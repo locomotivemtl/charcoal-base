@@ -13,9 +13,21 @@ use \Charcoal\Template\TemplateInterface as TemplateInterface;
 /**
 *
 */
-abstract class AbstractTemplate extends AbstractModel implements
-    TemplateInterface
+abstract class AbstractTemplate implements
+    TemplateInterface,
+    ViewableInterface
 {
+
+    use ViewableTrait;
+
+    public function __construct($data)
+    {
+        if ($data !== null) {
+            $this->set_data($data);
+        }
+    }
+//    public function __invoke($re)
+
     /**
     * @param array $data Optional
     * @return TemplateView
