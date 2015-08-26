@@ -10,15 +10,16 @@ use \Charcoal\Action\Action as Action;
 class AbstractActionTest extends \PHPUnit_Framework_Testcase
 {
 
-    public function testConstructor()
+    private $obj;
+
+    public function setUp()
     {
-        $obj = new Action();
-        $this->assertInstanceOf('Charcoal\Action\Action', $obj);
+        $this->obj = $this->getMockForAbstractClass('\Charcoal\Action\AbstractAction');
     }
 
     public function testSetMode()
     {
-        $obj = new Action();
+        $obj = $this->obj;
         $this->assertEquals('redirect', $obj->mode());
 
         $ret = $obj->set_mode('json');
@@ -33,7 +34,7 @@ class AbstractActionTest extends \PHPUnit_Framework_Testcase
 
     public function testSetSuccess()
     {
-        $obj = new Action();
+        $obj = $this->obj;
         $this->assertEquals(false, $obj->success());
 
         $ret = $obj->set_success(true);
@@ -43,22 +44,5 @@ class AbstractActionTest extends \PHPUnit_Framework_Testcase
 
         $this->setExpectedException('\InvalidArgumentException');
         $obj->set_success('foo');
-    }
-
-    public function testSetOutput()
-    {
-        $obj = new Action();
-        ob_start();
-        $obj->output();
-        $ret = ob_get_clean();
-
-        ob_start();
-        $obj->set_mode('json');
-        $obj->output();
-        $ret = ob_get_clean();
-
-        $this->setExpectedException('\Exception');
-        $obj->set_mode('foo');
-        $obj->output(666);
     }
 }

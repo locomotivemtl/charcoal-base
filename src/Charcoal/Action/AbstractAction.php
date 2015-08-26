@@ -2,11 +2,12 @@
 
 namespace Charcoal\Action;
 
-use \InvalidArgumentException as InvalidArgumentException;
+use \Exception;
+use \InvalidArgumentException;
 
-use \Charcoal\Charcoal as Charcoal;
+use \Charcoal\Charcoal;
 
-use \Charcoal\Action\ActionInterface as ActionInterface;
+use \Charcoal\Action\ActionInterface;
 
 /**
 * Default implementation, as abstract class, of `ActionInterface`
@@ -36,7 +37,9 @@ abstract class AbstractAction implements ActionInterface
     public function set_mode($mode)
     {
         if (!is_string($mode)) {
-            throw new InvalidArgumentException('Mode needs to be a string');
+            throw new InvalidArgumentException(
+                'Mode needs to be a string'
+            );
         }
         $this->_mode = $mode;
         return $this;
@@ -58,7 +61,9 @@ abstract class AbstractAction implements ActionInterface
     public function set_success($success)
     {
         if (!is_bool($success)) {
-            throw new InvalidArgumentException('Success needs to be a boolean');
+            throw new InvalidArgumentException(
+                'Success needs to be a boolean'
+            );
         }
         $this->_success = $success;
         return $this;
@@ -79,29 +84,25 @@ abstract class AbstractAction implements ActionInterface
 
     /**
     * @param integer $http_code
-    * @throws \Exception if mode is invalid
+    * @throws Exception if mode is invalid
     * @return void
     */
-    public function output($http_code = 200)
+    public function output($response)
     {
-        $response = $this->response();
+        $res = $this->response();
         $mode = $this->mode();
 
         if ($mode == self::MODE_JSON) {
-            try {
-                Charcoal::app()->response->setStatus($http_code);
-                Charcoal::app()->response->headers->set('Content-Type', 'application/json');
-            } catch (\Exception $e) {
-                http_response_code($http_code);
-                if (!headers_sent()) {
-                    header('Content-Type', 'application/json');
-                }
-            }
-            echo json_encode($response);
+            return $response
+                ->withHeader('Content-Type', 'application/json')
+                ->write(json_encode($response));
         } elseif ($mode == self::MODE_REDIRECT) {
-            Charcoal::app()->response->redirect($this->redirect_url(), $http_code);
+            return $response
+                ->withHeader('Location', $this->redirect_url());
         } else {
-            throw new \Exception('Invalid mode');
+            throw new Exception(
+                sprintf('Invalid mode "%s"', $mode)
+            );
         }
     }
 
@@ -139,8 +140,9 @@ abstract class AbstractAction implements ActionInterface
     public function referer()
     {
         try {
-            return Charcoal::app()->request->getReferrer();
-        } catch (\Exception $e) {
+            $c = Charcoal::app()->getContainer();
+            return $c->get('environment')->get('HTTP_REFERER');
+        } catch (Exception $e) {
             return '';
         }
     }
