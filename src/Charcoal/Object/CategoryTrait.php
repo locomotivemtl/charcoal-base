@@ -1,12 +1,13 @@
 <?php
 
-namespace Charcoal\Model;
+namespace Charcoal\Object;
 
 /**
 *
 */
 trait CategoryTrait
 {
+    private $category_items;
 
     /**
     * @param array
@@ -24,7 +25,11 @@ trait CategoryTrait
     /**
     * @return integer
     */
-    abstract public function num_items();
+    public function num_items()
+    {
+        $items = $this->items();
+        return count($items);
+    }
 
     /**
     * @return boolean
@@ -38,5 +43,13 @@ trait CategoryTrait
     /**
     * @return array
     */
-    abstract public function items();
+    public function items()
+    {
+        if ($this->category_items == null) {
+            $this->category_items = $this->load_items();
+        }
+        return $this->category_items;
+    }
+
+    abstract public function load_items();
 }

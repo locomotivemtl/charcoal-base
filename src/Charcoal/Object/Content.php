@@ -81,10 +81,7 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function set_active($active)
     {
-        if (!is_bool($active)) {
-            throw new InvalidArgumentException('Active must be a boolean');
-        }
-        $this->_active = $active;
+        $this->_active = !!$active;
         return $this;
     }
 
@@ -103,10 +100,14 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function set_position($position)
     {
-        if (!is_int($position)) {
+        if ($position === null) {
+            $this->_position = null;
+            return $this;
+        }
+        if (!is_numeric($position)) {
             throw new InvalidArgumentException('Position must be an integer.');
         }
-        $this->_position = $position;
+        $this->_position = (int)$position;
         return $this;
     }
 
