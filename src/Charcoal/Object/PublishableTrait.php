@@ -48,6 +48,10 @@ trait PublishableTrait
     */
     public function set_publish_date($publish_date)
     {
+        if ($publish_date === null) {
+            $this->_publish_date = null;
+            return $this;
+        }
         if (is_string($publish_date)) {
             try {
                 $publish_date = new DateTime($publish_date);
@@ -78,6 +82,10 @@ trait PublishableTrait
     */
     public function set_expiry_date($expiry_date)
     {
+        if ($expiry_date === null) {
+            $this->_expiry_date = null;
+            return $this;
+        }
         if (is_string($expiry_date)) {
             try {
                 $expiry_date = new DateTime($expiry_date);

@@ -341,6 +341,9 @@ trait HierarchicalTrait
     */
     protected function obj_from_ident($ident)
     {
+        if ($ident === null) {
+            return null;
+        }
         $class = get_called_class();
         if (is_object($ident) && ($ident instanceof $class)) {
             return $ident;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Charcoal\Model;
+namespace Charcoal\Object;
 
 interface CategoryInterface
 {
