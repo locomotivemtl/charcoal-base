@@ -26,7 +26,9 @@ class TemplateView extends AbstractView
     public function load_template($template_ident)
     {
         if (!is_string($template_ident)) {
-            throw new InvalidArgumentException('Template ident must be a string');
+            throw new InvalidArgumentException(
+                'Template ident must be a string'
+            );
         }
 
         $template_loader = new ViewTemplateLoader();
@@ -47,7 +49,9 @@ class TemplateView extends AbstractView
     public function load_context($context_ident)
     {
         if (!is_string($context_ident)) {
-            throw new InvalidArgumentException('Context ident must be a string');
+            throw new InvalidArgumentException(
+                'Context ident must be a string'
+            );
         }
 
         $template_factory = TemplateFactory::instance();

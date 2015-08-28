@@ -7,6 +7,7 @@ use \Charcoal\Charcoal as Charcoal;
 abstract class CliAction extends AbstractAction implements CliActionInterface
 {
     use CliActionTrait;
+    
 
     /**
     * @param array $data
@@ -16,7 +17,9 @@ abstract class CliAction extends AbstractAction implements CliActionInterface
     {
         //parent::set_data($data);
         $this->set_cli_data($data);
+        $this->set_cron_data($data);
 
         return $this;
     }
+
 }
