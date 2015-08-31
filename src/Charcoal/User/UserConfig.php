@@ -1,6 +1,6 @@
 <?php
 
-namespace Charcoal\Admin;
+namespace Charcoal\User;
 
 // From `charcoal-core`
 use \Charcoal\Config\AbstractConfig as AbstractConfig;
