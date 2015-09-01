@@ -45,9 +45,6 @@ class ContentTest extends \PHPUnit_Framework_TestCase
         $ret = $obj->set_active(false);
         $this->assertSame($ret, $obj);
         $this->assertNotTrue($obj->active());
-
-        $this->setExpectedException('\InvalidArgumentException');
-        $obj->set_active('foo');
     }
 
     public function testSetPosition()

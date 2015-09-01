@@ -21,5 +21,4 @@ abstract class CliAction extends AbstractAction implements CliActionInterface
 
         return $this;
     }
-
 }

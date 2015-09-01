@@ -7,6 +7,9 @@ namespace Charcoal\Object;
 */
 trait CategoryTrait
 {
+    /**
+    * @var array $category_items
+    */
     private $category_items;
 
     /**

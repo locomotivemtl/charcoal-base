@@ -206,12 +206,11 @@ trait CliActionTrait
                 $input_type = 'text';
                 $choices = null;
             }
-            if($input_type == 'checkbox') {
+            if ($input_type == 'checkbox') {
                 $input = $climate->checkboxes(sprintf('Select %s', $arg_desc), $choices);
-            }
-            else {
+            } else {
                 $input = $climate->input(sprintf('Enter %s:', $arg_desc));
-                if($choices) {
+                if ($choices) {
                     $input->accept(array_keys($choices), true);
                 }
             }

@@ -40,29 +40,32 @@ class MapStructureProperty extends AbstractProperty
         /**
     * @return string
     */
-    public function sql_extra() {
+    public function sql_extra()
+    {
         return '';
     }
 
     /**
     * @return string
     */
-    public function sql_type() {
+    public function sql_type()
+    {
         return 'TEXT';
     }
 
     /**
     * @return integer
     */
-    public function sql_pdo_type() {
+    public function sql_pdo_type()
+    {
         return PDO::PARAM_STR;
     }
 
     /**
     * @return mixed
     */
-    public function save() {
+    public function save()
+    {
         return $this->val();
     }
-
 }
