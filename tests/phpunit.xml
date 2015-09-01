@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.5/phpunit.xsd"
-	backupGlobals="false" 
-	backupStaticAttributes="false" 
-	bootstrap="bootstrap.php" 
-	convertErrorsToExceptions="true"
-	colors="true" 
-	verbose="true"
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.5/phpunit.xsd"
+    backupGlobals="false"
+    backupStaticAttributes="false"
+    bootstrap="bootstrap.php"
+    convertErrorsToExceptions="true"
+    colors="true"
+    verbose="true"
 >
 	<testsuites>
-		<testsuite name="Charcoal Core Test Suite">
+		<testsuite name="Charcoal Base Test Suite">
 			<directory>Charcoal/</directory>
 		</testsuite>
 	</testsuites>
