@@ -231,6 +231,17 @@ class DatetimeProperty extends AbstractProperty
     }
 
     /**
+    * Format `DateTime` to string.
+    *
+    * @todo   Adapt for l10n
+    * @return string|null
+    */
+    public function display_val()
+    {
+        return ($this->val()) ? $this->val()->format($this->format()) : null;
+    }
+
+    /**
     * @return array
     */
     public function validation_methods()
