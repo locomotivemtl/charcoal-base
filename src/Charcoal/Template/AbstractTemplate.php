@@ -20,7 +20,7 @@ abstract class AbstractTemplate implements
 
     use ViewableTrait;
 
-    public function __construct($data)
+    public function __construct(array $data=null)
     {
         if ($data !== null) {
             $this->set_data($data);
