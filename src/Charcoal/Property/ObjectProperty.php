@@ -8,8 +8,9 @@ use \InvalidArgumentException as InvalidArgumentException;
 
 // Module `charcoal-core` dependencies
 use \Charcoal\Property\AbstractProperty as AbstractProperty;
-use \Charcoal\Model\ModelFactory;   
+use \Charcoal\Model\ModelFactory;
 use \Charcoal\Loader\CollectionLoader;
+
 /**
 * Object Property
 */
@@ -117,11 +118,11 @@ class ObjectProperty extends AbstractProperty
         $loader = new CollectionLoader();
         $loader->set_model($this->proto());
 
-        if($proto->has_property('active')) {
+        if ($proto->has_property('active')) {
             $loader->add_filter('active', true);
         }
         $choices = $loader->load();
-        foreach($choices as $c) {
+        foreach ($choices as $c) {
             $choice = [
                 'value'=>$c->id(),
                 'label'=>'Label '.$c->name()->fr(),
