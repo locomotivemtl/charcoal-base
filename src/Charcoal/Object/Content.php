@@ -14,65 +14,35 @@ class Content extends AbstractObject implements ContentInterface
     * Objects are active by default
     * @var boolean $_active
     */
-    private $_active = true;
+    private $active = true;
 
     /**
     * The position is used for ordering lists
     * @var integer $_position
     */
-    protected $_position = 0;
+    private $position = 0;
 
     /**
     * Object creation date (set automatically on save)
     * @var DateTime $_created
     */
-    protected $_created;
+    private $created;
     
     /**
     * @var mixed
     */
-    protected $_created_by;
+    private $created_by;
 
     /**
     * Object last modified date (set automatically on save and update)
     * @var DateTime $_last_modified
     */
-    protected $_last_modified;
+    private $last_modified;
 
     /**
     * @var mixed
     */
-    protected $_last_modified_by;
-
-    /**
-    * @param array $data
-    * @return Content Chainable
-    */
-    public function set_data(array $data)
-    {
-        parent::set_data($data);
-
-        if (isset($data['active']) && $data['active'] !== null) {
-            $this->set_active($data['active']);
-        }
-        if (isset($data['position']) && $data['position'] !== null) {
-            $this->set_position($data['position']);
-        }
-        if (isset($data['created']) && $data['created'] !== null) {
-            $this->set_created($data['created']);
-        }
-        if (isset($data['created_by']) && $data['created_by'] !== null) {
-            $this->set_created_by($data['created_by']);
-        }
-        if (isset($data['last_modified']) && $data['last_modified'] !== null) {
-            $this->set_last_modified($data['last_modified']);
-        }
-        if (isset($data['last_modified_by']) && $data['last_modified_by'] !== null) {
-            $this->set_last_modified_by($data['last_modified_by']);
-        }
-
-        return $this;
-    }
+    private $last_modified_by;
 
     /**
     * @param boolean $active
@@ -81,7 +51,7 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function set_active($active)
     {
-        $this->_active = !!$active;
+        $this->active = !!$active;
         return $this;
     }
 
@@ -90,7 +60,7 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function active()
     {
-        return $this->_active;
+        return $this->active;
     }
 
     /**
@@ -101,13 +71,13 @@ class Content extends AbstractObject implements ContentInterface
     public function set_position($position)
     {
         if ($position === null) {
-            $this->_position = null;
+            $this->position = null;
             return $this;
         }
         if (!is_numeric($position)) {
             throw new InvalidArgumentException('Position must be an integer.');
         }
-        $this->_position = (int)$position;
+        $this->position = (int)$position;
         return $this;
     }
 
@@ -116,7 +86,7 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function position()
     {
-        return $this->_position;
+        return $this->position;
     }
 
     /**
@@ -126,6 +96,10 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function set_created($created)
     {
+        if($created === null) {
+            $this->created = null;
+            return $this;
+        }
         if (is_string($created)) {
             $created = new DateTime($created);
         }
@@ -134,7 +108,7 @@ class Content extends AbstractObject implements ContentInterface
                 'Invalid "Created" value. Must be a date/time string or a DateTime object.'
             );
         }
-        $this->_created = $created;
+        $this->created = $created;
         return $this;
     }
 
@@ -143,7 +117,7 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function created()
     {
-        return $this->_created;
+        return $this->created;
     }
 
     /**
@@ -152,7 +126,7 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function set_created_by($created_by)
     {
-        $this->_created_by = $created_by;
+        $this->created_by = $created_by;
         return $this;
     }
 
@@ -161,7 +135,7 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function created_by()
     {
-        return $this->_created_by;
+        return $this->created_by;
     }
 
     /**
@@ -171,6 +145,10 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function set_last_modified($last_modified)
     {
+        if($last_modified === null) {
+            $this->last_modified = null;
+            return $this;
+        }
         if (is_string($last_modified)) {
             $last_modified = new DateTime($last_modified);
         }
@@ -179,7 +157,7 @@ class Content extends AbstractObject implements ContentInterface
                 'Invalid "Last Modified" value. Must be a date/time string or a DateTime object.'
             );
         }
-        $this->_last_modified = $last_modified;
+        $this->last_modified = $last_modified;
         return $this;
     }
 
@@ -188,7 +166,7 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function last_modified()
     {
-        return $this->_last_modified;
+        return $this->last_modified;
     }
 
     /**
@@ -197,7 +175,7 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function set_last_modified_by($last_modified_by)
     {
-        $this->_last_modified_by = $last_modified_by;
+        $this->last_modified_by = $last_modified_by;
         return $this;
     }
 
@@ -206,7 +184,7 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function last_modified_by()
     {
-        return $this->_last_modified_by;
+        return $this->last_modified_by;
     }
 
     /**
