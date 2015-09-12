@@ -96,7 +96,7 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function set_created($created)
     {
-        if($created === null) {
+        if ($created === null) {
             $this->created = null;
             return $this;
         }
@@ -145,7 +145,7 @@ class Content extends AbstractObject implements ContentInterface
     */
     public function set_last_modified($last_modified)
     {
-        if($last_modified === null) {
+        if ($last_modified === null) {
             $this->last_modified = null;
             return $this;
         }
