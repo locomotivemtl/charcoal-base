@@ -99,50 +99,6 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
-    * Note that password is not set here. Password should never be stored in the object
-    * but kept in storage.
-    *
-    * @param array $data
-    * @return User Chainable
-    */
-    public function set_data(array $data)
-    {
-        parent::set_data($data);
-
-        if (isset($data['username']) && $data['username'] !== null) {
-            $this->set_username($data['username']);
-        }
-        if (isset($data['email']) && $data['email'] !== null) {
-            $this->set_email($data['email']);
-        }
-        if (isset($data['groups']) && $data['groups'] !== null) {
-            $this->set_groups($data['groups']);
-        }
-        if (isset($data['permissions']) && $data['permissions'] !== null) {
-            $this->set_permissions($data['permissions']);
-        }
-        if (isset($data['active']) && $data['active'] !== null) {
-            $this->set_active($data['active']);
-        }
-        if (isset($data['last_login_date']) && $data['last_login_date'] !== null) {
-            $this->set_last_login_date($data['last_login_date']);
-        }
-        if (isset($data['last_login_ip']) && $data['last_login_ip'] !== null) {
-            $this->set_last_login_ip($data['last_login_ip']);
-        }
-        if (isset($data['last_password_date']) && $data['last_password_date'] !== null) {
-            $this->set_last_password_date($data['last_password_date']);
-        }
-        if (isset($data['last_password_ip']) && $data['last_password_ip'] !== null) {
-            $this->set_last_password_ip($data['last_password_ip']);
-        }
-        if (isset($data['login_token']) && $data['login_token'] !== null) {
-            $this->set_login_token($data['login_token']);
-        }
-        return $this;
-    }
-
-        /**
     * Force a lowercase username
     *
     * @param string $username
@@ -306,10 +262,7 @@ abstract class AbstractUser extends Content implements
     */
     public function set_active($active)
     {
-        if (!is_bool($active)) {
-            throw new InvalidArgumentException('Active must be a boolean');
-        }
-        $this->_active = $active;
+        $this->_active = !!$active;
         return $this;
     }
     /**
