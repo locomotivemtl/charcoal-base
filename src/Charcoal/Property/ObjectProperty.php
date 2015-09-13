@@ -3,11 +3,11 @@
 namespace Charcoal\Property;
 
 // Dependencies from `PHP`
-use \Exception as Exception;
-use \InvalidArgumentException as InvalidArgumentException;
+use \Exception;
+use \InvalidArgumentException;
 
 // Module `charcoal-core` dependencies
-use \Charcoal\Property\AbstractProperty as AbstractProperty;
+use \Charcoal\Property\AbstractProperty;
 use \Charcoal\Model\ModelFactory;
 use \Charcoal\Loader\CollectionLoader;
 
@@ -98,6 +98,9 @@ class ObjectProperty extends AbstractProperty
         return $this->val();
     }
 
+    /**
+    * @return ModelInterface
+    */
     public function proto()
     {
         return ModelFactory::instance()->get($this->obj_type());
@@ -119,8 +122,8 @@ class ObjectProperty extends AbstractProperty
         foreach ($choices as $c) {
             $choice = [
                 'value'=>$c->id(),
-                'label'=>'Label '.$c->name()->fr(),
-                'title'=>'Title '.$c->name()->fr(),
+                'label'=>$c->name()->fr(),
+                'title'=>$c->name()->fr(),
                 'subtext'=>'',
                 'icon'=>'',
                 'selected'=>$this->is_choice_selected($c->id())
@@ -135,11 +138,15 @@ class ObjectProperty extends AbstractProperty
     */
     public function is_choice_selected($c)
     {
+        $val = $this->val();
+        if($val === null) {
+            return false;
+        }
         if($this->multiple()) {
-            return in_array($c, $this->val());
+            return in_array($c, $val);
         }
         else {
-            return $c == $this->val();
+            return $c == $val;
         }
     }
 }

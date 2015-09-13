@@ -17,11 +17,11 @@ class BooleanProperty extends AbstractProperty
     /**
     * @var mixed $_true_label
     */
-    private $_true_label;
+    private $true_label;
     /**
     * @var mixed $_false_label
     */
-    private $_false_label;
+    private $false_label;
 
     /**
     * @return string
@@ -32,12 +32,43 @@ class BooleanProperty extends AbstractProperty
     }
 
     /**
+    * AbstractProperty > set_multiple()
+    *
+    * Ensure multiple can not be true for Datetime property. 
+    *
+    * @param boolean $multiple
+    * @return BooleanProperty Chainable
+    */
+    public function set_multiple($multiple)
+    {
+        $multiple = !!$multiple;
+        if ($multiple === true) {
+            throw new InvalidArgumentException(
+                'Multiple can not be true for boolean property.'
+            );
+        }
+        return $this;
+    }
+
+    /**
+    * AbstractProperty > multiple()
+    *
+    * Multiple is always false for Boolean property.
+    *
+    * @return boolean
+    */
+    public function multiple()
+    {
+        return false;
+    }
+
+    /**
     * @param mixed $label
     * @return BooleanProperty
     */
     public function set_true_label($label)
     {
-        $this->_true_label = new TranslationString($label);
+        $this->true_label = new TranslationString($label);
         return $this;
     }
 
@@ -46,10 +77,10 @@ class BooleanProperty extends AbstractProperty
     */
     public function true_label()
     {
-        if ($this->_true_label === null) {
+        if ($this->true_label === null) {
             $this->set_true_label('True');
         }
-        return $this->_true_label;
+        return $this->true_label;
     }
 
     /**
@@ -58,7 +89,7 @@ class BooleanProperty extends AbstractProperty
     */
     public function set_false_label($label)
     {
-        $this->_false_label = $label;
+        $this->false_label = $label;
         return $this;
     }
 
@@ -67,10 +98,10 @@ class BooleanProperty extends AbstractProperty
     */
     public function false_label()
     {
-        if ($this->_false_label === null) {
+        if ($this->false_label === null) {
             $this->set_false_label('False');
         }
-        return $this->_false_label;
+        return $this->false_label;
     }
 
     /**

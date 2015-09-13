@@ -43,7 +43,7 @@ class IdProperty extends AbstractProperty
     /**
     * AbstractProperty > set_multiple()
     *
-    * Ensure multiple is always false
+    * Ensure multiple can not be true for ID property. 
     *
     * @param boolean $multiple
     * @return IdProperty Chainable
@@ -57,6 +57,18 @@ class IdProperty extends AbstractProperty
             );
         }
         return $this;
+    }
+
+    /**
+    * AbstractProperty > multiple()
+    *
+    * Multiple is always false for ID property.
+    *
+    * @return boolean
+    */
+    public function multiple()
+    {
+        return false;
     }
 
     /**

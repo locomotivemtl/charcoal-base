@@ -26,15 +26,15 @@ class DatetimeProperty extends AbstractProperty
     /**
     * @var DateTime $_min
     */
-    private $_min = null;
+    private $min = null;
     /**
     * @var DateTime $_max
     */
-    private $_max = null;
+    private $max = null;
     /**
     * @var string $_format
     */
-    private $_format = 'Y-m-d H:i:s';
+    private $format = 'Y-m-d H:i:s';
 
     /**
     * @return string
@@ -42,6 +42,37 @@ class DatetimeProperty extends AbstractProperty
     public function type()
     {
         return 'datetime';
+    }
+
+    /**
+    * AbstractProperty > set_multiple()
+    *
+    * Ensure multiple can not be true for Datetime property. 
+    *
+    * @param boolean $multiple
+    * @return DatetimeProperty Chainable
+    */
+    public function set_multiple($multiple)
+    {
+        $multiple = !!$multiple;
+        if ($multiple === true) {
+            throw new InvalidArgumentException(
+                'Multiple can not be true for datetime property.'
+            );
+        }
+        return $this;
+    }
+
+    /**
+    * AbstractProperty > multiple()
+    *
+    * Multiple is always false for Date property.
+    *
+    * @return boolean
+    */
+    public function multiple()
+    {
+        return false;
     }
 
     /**
@@ -55,7 +86,7 @@ class DatetimeProperty extends AbstractProperty
     {
         if ($val === null) {
             if ($this->allow_null()) {
-                $this->_val = null;
+                $this->val = null;
                 return $this;
             } else {
                 throw new InvalidArgumentException(
@@ -71,7 +102,7 @@ class DatetimeProperty extends AbstractProperty
                 'Val must be a valid date'
             );
         }
-        $this->_val = $val;
+        $this->val = $val;
         return $this;
     }
 
@@ -88,7 +119,7 @@ class DatetimeProperty extends AbstractProperty
             $val = $this->val();
         }
         if ($val instanceof DateTimeInterface) {
-            return $this->_val->format('Y-m-d H:i:s');
+            return $this->val->format('Y-m-d H:i:s');
         } else {
             if ($this->allow_null()) {
                 return null;
@@ -106,7 +137,7 @@ class DatetimeProperty extends AbstractProperty
     public function set_min($min)
     {
         if ($min === null) {
-            $this->_min = null;
+            $this->min = null;
             return $this;
         }
         if (is_string($min)) {
@@ -123,7 +154,7 @@ class DatetimeProperty extends AbstractProperty
                 'Invalid min'
             );
         }
-        $this->_min = $min;
+        $this->min = $min;
         return $this;
     }
 
@@ -132,10 +163,10 @@ class DatetimeProperty extends AbstractProperty
     */
     public function min()
     {
-        if ($this->_min === null) {
-            $this->_min = self::DEFAULT_MIN;
+        if ($this->min === null) {
+            $this->min = self::DEFAULT_MIN;
         }
-        return $this->_min;
+        return $this->min;
     }
 
     /**
@@ -146,7 +177,7 @@ class DatetimeProperty extends AbstractProperty
     public function set_max($max)
     {
         if ($max === null) {
-            $this->_max = null;
+            $this->max = null;
             return $this;
         }
         if (is_string($max)) {
@@ -163,7 +194,7 @@ class DatetimeProperty extends AbstractProperty
                 'Invalid max'
             );
         }
-        $this->_max = $max;
+        $this->max = $max;
         return $this;
     }
 
@@ -172,10 +203,10 @@ class DatetimeProperty extends AbstractProperty
     */
     public function max()
     {
-        if ($this->_max === null) {
-            $this->_max = self::DEFAULT_MAX;
+        if ($this->max === null) {
+            $this->max = self::DEFAULT_MAX;
         }
-        return $this->_max;
+        return $this->max;
     }
 
     /**
@@ -188,7 +219,7 @@ class DatetimeProperty extends AbstractProperty
         if (!is_string($format)) {
             throw new InvalidArgumentException('Format must be a string');
         }
-        $this->_format = $format;
+        $this->format = $format;
         return $this;
     }
 
@@ -197,10 +228,10 @@ class DatetimeProperty extends AbstractProperty
     */
     public function format()
     {
-        if ($this->_format === null) {
-            $this->_format = self::DEFAULT_FORMAT;
+        if ($this->format === null) {
+            $this->format = self::DEFAULT_FORMAT;
         }
-        return $this->_format;
+        return $this->format;
     }
 
     /**
