@@ -32,23 +32,6 @@ class BooleanProperty extends AbstractProperty
     }
 
     /**
-    * @param array $data
-    * @return BooleanProperty Chainable
-    */
-    public function set_data(array $data)
-    {
-        parent::set_data($data);
-
-        if (isset($data['true_label']) && $data['true_label'] !== null) {
-            $this->set_true_label($data['true_label']);
-        }
-        if (isset($data['false_label']) && $data['false_label'] !== null) {
-            $this->set_false_label($data['false_label']);
-        }
-        return $this;
-    }
-
-    /**
     * @param mixed $label
     * @return BooleanProperty
     */

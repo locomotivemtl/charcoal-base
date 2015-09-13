@@ -19,13 +19,13 @@ class AudioProperty extends FileProperty
     * Minimum audio length, in seconds.
     * @var integer $_min_length
     */
-    private $_min_length = 0;
+    private $min_length = 0;
 
     /**
     * Maximum audio length, in seconds.
     * @var integer $_max_length
     */
-    private $_max_length = 0;
+    private $max_length = 0;
 
     /**
     * @return string
@@ -33,24 +33,6 @@ class AudioProperty extends FileProperty
     public function type()
     {
         return 'audio';
-    }
-
-    /**
-    * @param array $data
-    * @return AudioProperty Chainable
-    */
-    public function set_data(array $data)
-    {
-
-        parent::set_data($data);
-
-        if (isset($data['min_length']) && $data['min_length'] !== null) {
-            $this->set_min_length($data['min_length']);
-        }
-        if (isset($data['max_length']) && $data['max_length'] !== null) {
-            $this->set_max_length($data['max_length']);
-        }
-        return $this;
     }
 
     /**
@@ -63,7 +45,7 @@ class AudioProperty extends FileProperty
         if (!is_int($min_length)) {
             throw new InvalidArgumentException('Min length must be an integer (in seconds)');
         }
-        $this->_min_length = $min_length;
+        $this->min_length = $min_length;
         return $this;
     }
 
@@ -72,7 +54,7 @@ class AudioProperty extends FileProperty
     */
     public function min_length()
     {
-        return $this->_min_length;
+        return $this->min_length;
     }
 
     /**
@@ -85,7 +67,7 @@ class AudioProperty extends FileProperty
         if (!is_int($max_length)) {
             throw new InvalidArgumentException('Max length must be an integer (in seconds)');
         }
-        $this->_max_length = $max_length;
+        $this->max_length = $max_length;
         return $this;
     }
 
@@ -94,7 +76,7 @@ class AudioProperty extends FileProperty
     */
     public function max_length()
     {
-        return $this->_max_length;
+        return $this->max_length;
     }
 
     /**

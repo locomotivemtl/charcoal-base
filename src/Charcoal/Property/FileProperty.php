@@ -24,17 +24,17 @@ class FileProperty extends AbstractProperty
     * The upload path is a {{patern}}.
     * @var string $_upload_path
     */
-    private $_upload_path = 'uploads/';
+    private $upload_path = 'uploads/';
 
     /**
     * @var boolean $_overwrite
     */
-    private $_overwrite = false;
+    private $overwrite = false;
 
     /**
     * @var array $_accepted_mimetypes
     */
-    private $_accepted_mimetypes = [];
+    private $accepted_mimetypes = [];
 
     /**
     * Maximum allowed file size, in bytes.
@@ -42,21 +42,21 @@ class FileProperty extends AbstractProperty
     * Default to 128M
     * @var integer $_max_filesize
     */
-    private $_max_filesize = 134220000;
+    private $max_filesize = 134220000;
 
     /**
     * Current file mimetype
     *
     * @var string $_mimetype
     */
-    private $_mimetype;
+    private $mimetype;
 
     /**
     * Current file size, in bytes.
     *
     * @var integer $_filesize
     */
-    private $_filesize;
+    private $filesize;
 
     /**
     * @return string
@@ -64,29 +64,6 @@ class FileProperty extends AbstractProperty
     public function type()
     {
         return 'file';
-    }
-
-    /**
-    * @param array $data
-    * @return FileProperty Chainable
-    */
-    public function set_data(array $data)
-    {
-        parent::set_data($data);
-
-        if (isset($data['upload_path']) && $data['upload_path'] !== null) {
-            $this->set_upload_path($data['upload_path']);
-        }
-        if (isset($data['overwrite']) && $data['overwrite'] !== null) {
-            $this->set_overwrite($data['overwrite']);
-        }
-        if (isset($data['accepted_mimetypes']) && $data['accepted_mimetypes'] !== null) {
-            $this->set_accepted_mimetypes($data['accepted_mimetypes']);
-        }
-        if (isset($data['max_filesize']) && $data['max_filesize'] !== null) {
-            $this->set_max_filesize($data['max_filesize']);
-        }
-        return $this;
     }
 
     /**
@@ -99,7 +76,7 @@ class FileProperty extends AbstractProperty
         if (!is_string($upload_path)) {
             throw new InvalidArgumentException('Upload path must be a string');
         }
-        $this->_upload_path = $upload_path;
+        $this->upload_path = $upload_path;
         return $this;
     }
 
@@ -108,20 +85,16 @@ class FileProperty extends AbstractProperty
     */
     public function upload_path()
     {
-        return rtrim($this->_upload_path, '/').'/';
+        return rtrim($this->upload_path, '/').'/';
     }
 
     /**
     * @param boolean $overwrite
-    * @throws InvalidArgumentException
     * @return FileProperty Chainable
     */
     public function set_overwrite($overwrite)
     {
-        if (!is_bool($overwrite)) {
-            throw new InvalidArgumentException('Overwrite must be a boolean');
-        }
-        $this->_overwrite = $overwrite;
+        $this->overwrite = !!$overwrite;
         return $this;
     }
 
@@ -130,7 +103,7 @@ class FileProperty extends AbstractProperty
     */
     public function overwrite()
     {
-        return !!$this->_overwrite;
+        return !!$this->overwrite;
     }
 
     /**
@@ -143,7 +116,7 @@ class FileProperty extends AbstractProperty
         if (!is_array($mimetypes)) {
             throw new InvalidArgumentException('Accepted mimetypes must be an array');
         }
-        $this->_accepted_mimetypes = $mimetypes;
+        $this->accepted_mimetypes = $mimetypes;
         return $this;
     }
 
@@ -152,7 +125,7 @@ class FileProperty extends AbstractProperty
     */
     public function accepted_mimetypes()
     {
-        return $this->_accepted_mimetypes;
+        return $this->accepted_mimetypes;
     }
 
     /**
@@ -165,7 +138,7 @@ class FileProperty extends AbstractProperty
         if (!is_int($size)) {
             throw new InvalidArgumentException('Max filesize must be an integer, in bytes.');
         }
-        $this->_max_filesize = $size;
+        $this->max_filesize = $size;
         return $this;
     }
 
@@ -174,7 +147,7 @@ class FileProperty extends AbstractProperty
     */
     public function max_filesize()
     {
-        return $this->_max_filesize;
+        return $this->max_filesize;
     }
 
     /**
@@ -187,7 +160,7 @@ class FileProperty extends AbstractProperty
         if (!is_string($mimetype)) {
             throw new InvalidArgumentException('Mimetype must be a string');
         }
-        $this->_mimetype = $mimetype;
+        $this->mimetype = $mimetype;
         return $this;
     }
 
@@ -196,16 +169,16 @@ class FileProperty extends AbstractProperty
     */
     public function mimetype()
     {
-        if (!$this->_mimetype) {
+        if (!$this->mimetype) {
             // Get mimetype from file
             $val = $this->val();
             if (!$val) {
                 return '';
             }
             $info = new finfo(FILEINFO_MIME_TYPE);
-            $this->_mimetype = $info->file($val);
+            $this->mimetype = $info->file($val);
         }
-        return $this->_mimetype;
+        return $this->mimetype;
     }
 
     /**
@@ -218,7 +191,7 @@ class FileProperty extends AbstractProperty
         if (!is_int($size)) {
             throw new InvalidArgumentException('Filesize must be an integer, in bytes');
         }
-        $this->_filesize = $size;
+        $this->filesize = $size;
         return $this;
     }
 
@@ -227,15 +200,15 @@ class FileProperty extends AbstractProperty
     */
     public function filesize()
     {
-        if (!$this->_filesize) {
+        if (!$this->filesize) {
             $val = $this->val();
             if (!$val) {
                 return 0;
             }
             return 0;
-            //            $this->_filesize = filesize($val);
+            //            $this->filesize = filesize($val);
         }
-        return $this->_filesize;
+        return $this->filesize;
     }
 
     /**
@@ -258,8 +231,8 @@ class FileProperty extends AbstractProperty
             return true;
         }
 
-        if ($this->_mimetype) {
-            $mimetype = $this->_mimetype;
+        if ($this->mimetype) {
+            $mimetype = $this->mimetype;
         } else {
             $val = $this->val();
             if (!$val) {

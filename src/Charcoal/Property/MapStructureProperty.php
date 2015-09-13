@@ -25,19 +25,8 @@ class MapStructureProperty extends AbstractProperty
         return 'map-structure';
     }
 
+
     /**
-    * @param array $data
-    * @return AudioProperty Chainable
-    */
-    public function set_data(array $data)
-    {
-
-        parent::set_data($data);
-
-        return $this;
-    }
-
-        /**
     * @return string
     */
     public function sql_extra()

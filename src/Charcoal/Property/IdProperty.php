@@ -30,7 +30,7 @@ class IdProperty extends AbstractProperty
     *
     * @var string $_mode
     */
-    private $_mode;
+    private $mode;
 
     /**
     * @return string
@@ -41,14 +41,20 @@ class IdProperty extends AbstractProperty
     }
 
     /**
-    * @param array $data
+    * AbstractProperty > set_multiple()
+    *
+    * Ensure multiple is always false
+    *
+    * @param boolean $multiple
     * @return IdProperty Chainable
     */
-    public function set_data(array $data)
+    public function set_multiple($multiple)
     {
-        parent::set_data($data);
-        if (isset($data['mode']) && $data['mode'] !== null) {
-            $this->set_mode($data['mode']);
+        $multiple = !!$multiple;
+        if ($multiple === true) {
+            throw new InvalidArgumentException(
+                'Multiple can not be true for ID property.'
+            );
         }
         return $this;
     }
@@ -66,9 +72,11 @@ class IdProperty extends AbstractProperty
             self::MODE_UUID
         ];
         if (!in_array($mode, $available_modes)) {
-            throw new InvalidArgumentException('Mode is not a valid mode');
+            throw new InvalidArgumentException(
+                'Mode is not a valid mode'
+            );
         }
-        $this->_mode = $mode;
+        $this->mode = $mode;
         return $this;
     }
 
@@ -77,10 +85,10 @@ class IdProperty extends AbstractProperty
     */
     public function mode()
     {
-        if ($this->_mode === null) {
-            $this->_mode = self::DEFAULT_MODE;
+        if ($this->mode === null) {
+            $this->mode = self::DEFAULT_MODE;
         }
-        return $this->_mode;
+        return $this->mode;
     }
 
     /**
@@ -117,7 +125,7 @@ class IdProperty extends AbstractProperty
         } elseif ($mode == self::MODE_UNIQID) {
             return \uniqid();
         } elseif ($mode == self::MODE_UUID) {
-            return $this->_generate_uuid();
+            return $this->generate_uuid();
         }
     }
 

@@ -2,6 +2,9 @@
 
 namespace Charcoal\Property;
 
+// From `charcoal-image`
+use \Charcoal\Image\ImageFactory
+
 // Local namespace dependencies
 use \Charcoal\Property\AbstractProperty as AbstractProperty;
 
@@ -14,9 +17,9 @@ class ImageProperty extends FileProperty
 {
 
     /**
-    * @var arrat $_effects
+    * @var array $effects
     */
-    private $_effects = [];
+    private $effects = [];
 
     /**
     * @return string
@@ -27,18 +30,34 @@ class ImageProperty extends FileProperty
     }
 
     /**
-    * @param array $data
-    * @return AudioProperty Chainable
+    * @param array $effects
+    * @return ImageProperty Chainable
     */
-    public function set_data(array $data)
+    public function set_effects(array $effects)
     {
-
-        parent::set_data($data);
-
-        if (isset($data['effects']) && $data['effects'] !== null) {
-            $this->set_effects($data['effects']);
+        $this->effects = [];
+        foreach ($effects as $effect) {
+            $this->add_effect($effect);
         }
         return $this;
+    }
+
+    /**
+    * @param array $effect
+    * @return ImageProperty Chainable
+    */
+    public function add_effect($effect)
+    {
+        $this->effects[] = $effect;
+        return $this;
+    }
+
+    /**
+    * @return array
+    */
+    public function effects()
+    {
+        return $this->effects;
     }
 
     /**
@@ -84,5 +103,29 @@ class ImageProperty extends FileProperty
                 break;
         }
         return $ext;
+    }
+
+    /**
+    * Add effects to file upload
+    *
+    * @param array $file_data
+    * @throws InvalidArgumentException
+    * @return string
+    */
+    public function file_upload(array $file_data)
+    {
+        $target = parent::file_upload();
+
+        $effects = $this->effects();
+        if (!empty($effects)) {
+            // @todo Save original file here
+            $img = ImageFactory::instance()->create('imagemagick');
+            $img->open($target);
+            $img->set_effects($effects);
+            $img->proccess();
+            $img->save();
+        }
+
+        return $target;
     }
 }

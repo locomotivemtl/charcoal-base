@@ -36,6 +36,9 @@ class LangProperty extends AbstractProperty
     */
     public function sql_type()
     {
+        if ($this->multiple()) {
+            return 'TEXT';
+        }
         return 'CHAR(2)';
     }
 

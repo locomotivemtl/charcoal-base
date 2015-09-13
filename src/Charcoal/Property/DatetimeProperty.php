@@ -45,25 +45,6 @@ class DatetimeProperty extends AbstractProperty
     }
 
     /**
-    * @param array $data
-    * @return DateTimeProperty Chainable
-    */
-    public function set_data(array $data)
-    {
-        parent::set_data($data);
-        if (isset($data['min'])) {
-            $this->set_min($data['min']);
-        }
-        if (isset($data['max'])) {
-            $this->set_max($data['max']);
-        }
-        if (isset($data['format']) && $data['format'] !== null) {
-            $this->set_format($data['format']);
-        }
-        return $this;
-    }
-
-    /**
     * AbstractProperty > set_val(). Ensure `DateTime` object in val.
     *
     * @param string|DateTime $val

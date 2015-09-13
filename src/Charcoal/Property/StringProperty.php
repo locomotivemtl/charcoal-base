@@ -25,24 +25,24 @@ class StringProperty extends AbstractProperty
     /**
     * @var int $_min_length
     */
-    private $_min_length;
+    private $min_length;
     /**
     * @var int $_max_length
     */
-    private $_max_length;
+    private $max_length;
     /**
     * @var string $_regexp
     */
-    private $_regexp;
+    private $regexp;
     /**
     * @var boolean $_allow_empty
     */
-    private $_allow_empty;
+    private $allow_empty;
 
     /**
     * @var StringFormat
     */
-    private $_formatter;
+    private $formatter;
 
     /**
     * @return string
@@ -50,29 +50,6 @@ class StringProperty extends AbstractProperty
     public function type()
     {
         return 'string';
-    }
-
-    /**
-    * @param array $data
-    * @return StringProperty Chainable
-    */
-    public function set_data(array $data)
-    {
-        parent::set_data($data);
-
-        if (isset($data['max_length']) && $data['max_length'] !== null) {
-            $this->set_max_length($data['max_length']);
-        }
-        if (isset($data['min_length']) && $data['min_length'] !== null) {
-            $this->set_min_length($data['min_length']);
-        }
-        if (isset($data['regexp']) && $data['regexp'] !== null) {
-            $this->set_regexp($data['regexp']);
-        }
-        if (isset($data['allow_empty']) && $data['allow_empty'] !== null) {
-            $this->set_allow_empty($data['allow_empty']);
-        }
-        return $this;
     }
 
     /**
@@ -88,7 +65,7 @@ class StringProperty extends AbstractProperty
         if ($max_length < 0) {
             throw new InvalidArgumentException('Max length must be a positive integer (>=0)');
         }
-        $this->_max_length = $max_length;
+        $this->max_length = $max_length;
         return $this;
     }
 
@@ -97,10 +74,10 @@ class StringProperty extends AbstractProperty
     */
     public function max_length()
     {
-        if ($this->_max_length === null) {
-            $this->_max_length = $this->default_max_length();
+        if ($this->max_length === null) {
+            $this->max_length = $this->default_max_length();
         }
-        return $this->_max_length;
+        return $this->max_length;
     }
 
     /**
@@ -124,7 +101,7 @@ class StringProperty extends AbstractProperty
         if ($min_length < 0) {
             throw new InvalidArgumentException('Min length must be a positive integer (>=0)');
         }
-        $this->_min_length = $min_length;
+        $this->min_length = $min_length;
         return $this;
     }
 
@@ -133,10 +110,10 @@ class StringProperty extends AbstractProperty
     */
     public function min_length()
     {
-        if ($this->_min_length === null) {
-            $this->_min_length = self::DEFAULT_MIN_LENGTH;
+        if ($this->min_length === null) {
+            $this->min_length = self::DEFAULT_MIN_LENGTH;
         }
-        return $this->_min_length;
+        return $this->min_length;
     }
 
     /**
@@ -149,7 +126,7 @@ class StringProperty extends AbstractProperty
         if (!is_string($regexp)) {
             throw new InvalidArgumentException('Regular expression must be a string.');
         }
-        $this->_regexp = $regexp;
+        $this->regexp = $regexp;
         return $this;
     }
 
@@ -158,10 +135,10 @@ class StringProperty extends AbstractProperty
     */
     public function regexp()
     {
-        if ($this->_regexp === null) {
-            $this->_regexp = self::DEFAULT_REGEXP;
+        if ($this->regexp === null) {
+            $this->regexp = self::DEFAULT_REGEXP;
         }
-        return $this->_regexp;
+        return $this->regexp;
     }
 
     /**
@@ -174,7 +151,7 @@ class StringProperty extends AbstractProperty
         if (!is_bool($allow_empty)) {
             throw new InvalidArgumentException('Allow empty must be a boolean');
         }
-        $this->_allow_empty = $allow_empty;
+        $this->allow_empty = $allow_empty;
         return $this;
     }
 
@@ -183,10 +160,10 @@ class StringProperty extends AbstractProperty
     */
     public function allow_empty()
     {
-        if ($this->_allow_empty === null) {
-            $this->_allow_empty = self::DEFAULT_ALLOW_EMPTY;
+        if ($this->allow_empty === null) {
+            $this->allow_empty = self::DEFAULT_ALLOW_EMPTY;
         }
-        return $this->_allow_empty;
+        return $this->allow_empty;
     }
 
     /**
@@ -194,11 +171,11 @@ class StringProperty extends AbstractProperty
     */
     public function formatter()
     {
-        if ($this->_formatter === null) {
-            $this->_formatter = new StringFormat();
+        if ($this->formatter === null) {
+            $this->formatter = new StringFormat();
         }
-        $this->_formatter->set_string($this->val());
-        return $this->_formatter;
+        $this->formatter->set_string($this->val());
+        return $this->formatter;
     }
 
     /**
