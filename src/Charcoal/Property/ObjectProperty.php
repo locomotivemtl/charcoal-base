@@ -122,10 +122,24 @@ class ObjectProperty extends AbstractProperty
                 'label'=>'Label '.$c->name()->fr(),
                 'title'=>'Title '.$c->name()->fr(),
                 'subtext'=>'',
-                'icon'=>''
+                'icon'=>'',
+                'selected'=>$this->is_choice_selected($c->id())
             ];
 
             yield $choice;
+        }
+    }
+
+    /**
+    * @return boolean
+    */
+    public function is_choice_selected($c)
+    {
+        if($this->multiple()) {
+            return in_array($c, $this->val());
+        }
+        else {
+            return $c == $this->val();
         }
     }
 }
