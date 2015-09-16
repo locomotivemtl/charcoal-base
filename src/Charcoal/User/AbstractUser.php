@@ -158,7 +158,7 @@ abstract class AbstractUser extends Content implements
         } else {
             throw new InvalidArgumentException('Password must be a string');
         }
-        
+
         return $this;
     }
 
