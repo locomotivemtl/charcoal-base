@@ -47,7 +47,7 @@ class DatetimeProperty extends AbstractProperty
     /**
     * AbstractProperty > set_multiple()
     *
-    * Ensure multiple can not be true for Datetime property. 
+    * Ensure multiple can not be true for Datetime property.
     *
     * @param boolean $multiple
     * @return DatetimeProperty Chainable
@@ -248,7 +248,7 @@ class DatetimeProperty extends AbstractProperty
     * @todo   Adapt for l10n
     * @return string|null
     */
-    public function display_val()
+    public function display_val($val = null)
     {
         return ($this->val()) ? $this->val()->format($this->format()) : null;
     }

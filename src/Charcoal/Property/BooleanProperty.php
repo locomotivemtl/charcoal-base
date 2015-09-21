@@ -34,7 +34,7 @@ class BooleanProperty extends AbstractProperty
     /**
     * AbstractProperty > set_multiple()
     *
-    * Ensure multiple can not be true for Datetime property. 
+    * Ensure multiple can not be true for Datetime property.
     *
     * @param boolean $multiple
     * @return BooleanProperty Chainable

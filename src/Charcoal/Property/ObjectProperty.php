@@ -139,13 +139,12 @@ class ObjectProperty extends AbstractProperty
     public function is_choice_selected($c)
     {
         $val = $this->val();
-        if($val === null) {
+        if ($val === null) {
             return false;
         }
-        if($this->multiple()) {
+        if ($this->multiple()) {
             return in_array($c, $val);
-        }
-        else {
+        } else {
             return $c == $val;
         }
     }
