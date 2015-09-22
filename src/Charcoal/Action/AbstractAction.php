@@ -30,6 +30,11 @@ abstract class AbstractAction implements ActionInterface
     private $_success = false;
 
     /**
+    * @var string $_next_url;
+    */
+    private $_next_url;
+
+    /**
     * @param string $mode
     * @throws InvalidArgumentException if mode is not a string
     * @return ActionInterface Chainable
@@ -75,6 +80,30 @@ abstract class AbstractAction implements ActionInterface
     public function success()
     {
         return $this->_success;
+    }
+
+    /**
+    * @param string $url
+    * @throws InvalidArgumentException if success is not a boolean
+    * @return ActionInterface Chainable
+    */
+    public function set_next_url($url)
+    {
+        if (!is_string($url)) {
+            throw new InvalidArgumentException(
+                'URL needs to be a string'
+            );
+        }
+        $this->_next_url = $url;
+        return $this;
+    }
+
+    /**
+    * @return bool
+    */
+    public function next_url()
+    {
+        return $this->_next_url;
     }
 
     /**
