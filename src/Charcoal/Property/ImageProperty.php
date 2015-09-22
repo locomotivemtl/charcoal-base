@@ -3,7 +3,7 @@
 namespace Charcoal\Property;
 
 // From `charcoal-image`
-use \Charcoal\Image\ImageFactory
+use \Charcoal\Image\ImageFactory;
 
 // Local namespace dependencies
 use \Charcoal\Property\AbstractProperty as AbstractProperty;
@@ -81,7 +81,7 @@ class ImageProperty extends FileProperty
     public function generate_extension()
     {
         $mimetype = $this->mimetype();
-        
+
         $ext = '';
         switch ($mimetype) {
             case 'image/gif':
@@ -114,7 +114,7 @@ class ImageProperty extends FileProperty
     */
     public function file_upload(array $file_data)
     {
-        $target = parent::file_upload();
+        $target = parent::file_upload($file_data);
 
         $effects = $this->effects();
         if (!empty($effects)) {
