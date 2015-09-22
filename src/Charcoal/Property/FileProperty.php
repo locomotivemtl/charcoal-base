@@ -315,7 +315,8 @@ class FileProperty extends AbstractProperty
     public function save()
     {
         $i = $this->ident();
-        //var_dump($this->val());
+
+        //Charcoal::logger()->debug($this->val());
         if (isset($_FILES[$i])
             && (isset($_FILES[$i]['name']) && $_FILES[$i]['name'])
             && (isset($_FILES[$i]['tmp_name']) && $_FILES[$i]['tmp_name'])) {
@@ -355,6 +356,8 @@ class FileProperty extends AbstractProperty
         if ($ret === false) {
             return '';
         } else {
+            $base_path = rtrim(realpath(Charcoal::config()->ROOT), '/').'/';
+            $target = str_replace($base_path, '', $target);
             return $target;
         }
     }
@@ -379,11 +382,12 @@ class FileProperty extends AbstractProperty
             return '';
         }
 
-
         $ret = move_uploaded_file($file_data['tmp_name'], $target);
         if ($ret === false) {
             return '';
         } else {
+            $base_path = rtrim(realpath(Charcoal::config()->ROOT), '/').'/';
+            $target = str_replace($base_path, '', $target);
             return $target;
         }
     }
