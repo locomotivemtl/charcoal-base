@@ -57,9 +57,6 @@ class FilePropertyTest extends \PHPUnit_Framework_TestCase
         $ret = $obj->set_overwrite(true);
         $this->assertSame($ret, $obj);
         $this->assertTrue($obj->overwrite());
-
-        $this->setExpectedException('\InvalidArgumentException');
-        $obj->set_overwrite('foo');
     }
 
     public function testVaidationMethods()
@@ -105,12 +102,12 @@ class FilePropertyTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-    public function testGenerateFilenameWithoutIdentThrowsException()
-    {
-        $obj = new FileProperty();
-        $this->setExpectedException('\Exception');
-        $obj->generate_filename();
-    }
+    // public function testGenerateFilenameWithoutIdentThrowsException()
+    // {
+    //     $obj = new FileProperty();
+    //     $this->setExpectedException('\Exception');
+    //     $obj->generate_filename();
+    // }
 
     public function testGenerateFilename()
     {
