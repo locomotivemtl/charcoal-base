@@ -50,6 +50,7 @@ class DatetimeProperty extends AbstractProperty
     * Ensure multiple can not be true for Datetime property.
     *
     * @param boolean $multiple
+    * @throws InvalidArgumentException If the multiple argument is true (must be false)
     * @return DatetimeProperty Chainable
     */
     public function set_multiple($multiple)
@@ -250,7 +251,14 @@ class DatetimeProperty extends AbstractProperty
     */
     public function display_val($val = null)
     {
-        return ($this->val()) ? $this->val()->format($this->format()) : null;
+        if ($val !== null) {
+            $this->set_val($val);
+        }
+        
+        if ($this->val()) {
+            return $this->val()->format($this->format());
+        }
+        return '';
     }
 
     /**

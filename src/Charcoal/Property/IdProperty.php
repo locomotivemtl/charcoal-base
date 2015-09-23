@@ -46,6 +46,7 @@ class IdProperty extends AbstractProperty
     * Ensure multiple can not be true for ID property.
     *
     * @param boolean $multiple
+    * @throws InvalidArgumentException If the multiple argument is true (must be false)
     * @return IdProperty Chainable
     */
     public function set_multiple($multiple)
@@ -148,7 +149,7 @@ class IdProperty extends AbstractProperty
     *
     * @see http://tools.ietf.org/html/rfc4122#section-4.4
     */
-    private function _generate_uuid()
+    private function generate_uuid()
     {
         // Generate a uniq string identifer (valid v4 uuid)
         return sprintf(

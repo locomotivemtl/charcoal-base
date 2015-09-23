@@ -370,10 +370,16 @@ class FileProperty extends AbstractProperty
     public function file_upload(array $file_data)
     {
         if (!isset($file_data['name'])) {
-            throw new InvalidArgumentException('File data is invalid');
+            throw new InvalidArgumentException(
+                'File data is invalid'
+            );
         }
 
-        $target = $this->upload_target($file_data['name']);
+        if (!file_exists($file_data['tmp_name'])) {
+            throw new InvalidArgumentException(
+                'The uploaded file could not be read (does not exist)'
+            );
+        }
         
         $info = new finfo(FILEINFO_MIME_TYPE);
         $this->set_mimetype($info->file($file_data['tmp_name']));
@@ -381,6 +387,8 @@ class FileProperty extends AbstractProperty
         if (!$this->validate_accepted_mimetypes() || !$this->validate_max_filesize()) {
             return '';
         }
+
+        $target = $this->upload_target($file_data['name']);
 
         $ret = move_uploaded_file($file_data['tmp_name'], $target);
         if ($ret === false) {
