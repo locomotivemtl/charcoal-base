@@ -34,7 +34,7 @@ class DatetimeProperty extends AbstractProperty
     /**
     * @var string $_format
     */
-    private $format = 'Y-m-d H:i:s';
+    private $format = self::DEFAULT_FORMAT;
 
     /**
     * @return string
@@ -128,6 +128,26 @@ class DatetimeProperty extends AbstractProperty
                 throw new Exception('Invalid datetime value');
             }
         }
+    }
+
+    /**
+    * Format `DateTime` to string.
+    *
+    * > Warning: Passing a value as a parameter sets this value in the objects (calls set_val())
+    *
+    * @todo   Adapt for l10n
+    * @return string|null
+    */
+    public function display_val($val = null)
+    {
+        if ($val !== null) {
+            $this->set_val($val);
+        }
+        
+        if ($this->val()) {
+            return $this->val()->format($this->format());
+        }
+        return '';
     }
 
     /**
@@ -243,23 +263,7 @@ class DatetimeProperty extends AbstractProperty
         return $this->val();
     }
 
-    /**
-    * Format `DateTime` to string.
-    *
-    * @todo   Adapt for l10n
-    * @return string|null
-    */
-    public function display_val($val = null)
-    {
-        if ($val !== null) {
-            $this->set_val($val);
-        }
-        
-        if ($this->val()) {
-            return $this->val()->format($this->format());
-        }
-        return '';
-    }
+
 
     /**
     * @return array

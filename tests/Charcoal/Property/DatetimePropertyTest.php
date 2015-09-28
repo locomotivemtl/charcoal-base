@@ -103,12 +103,47 @@ class DatetimePropertyTest extends \PHPUnit_Framework_TestCase
         $obj->storage_val();
     }
 
+    public function testDisplayVal()
+    {
+        $obj = new DatetimeProperty();
+        $this->assertEquals('', $obj->display_val());
+
+        $obj->set_val('October 1st, 2015 15:00:00');
+        $this->assertEquals('2015-10-01 15:00:00', $obj->display_val());
+
+        $obj->set_format('Y/m/d');
+        $this->assertEquals('2015/09/01', $obj->display_val('September 1st, 2015'));
+    }
+
+    /**
+    * Assert that the `set_multiple()` method:
+    * - set the multiple to false, if false or falsish value
+    * - throws exception otherwise (truthish or invalid value)
+    * - is chainable
+    */
+    public function testSetMultiple()
+    {
+        $obj = new DatetimeProperty();
+        $ret = $obj->set_multiple(0);
+        $this->assertSame($ret, $obj);
+        $this->assertSame(false, $ret->multiple());
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $obj->set_multiple(1);
+    }
+
+    public function testMultiple()
+    {
+        $obj = new DatetimeProperty();
+        $this->assertSame(false, $obj->multiple());
+    }
 
     /**
     * Assert that the `min` method:
     * - is chainable
     * - sets the min value from a string or DateTime object
     * - throws exception when the argument is invalid
+    * -
     */
     public function testSetMin()
     {
@@ -127,6 +162,11 @@ class DatetimePropertyTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\InvalidArgumentException');
         $obj->set_min('foo');
+
+        // Ensure setting a null value works
+        $obj->set_min(null);
+        $this->assertEquals(null, $obj->min());
+
     }
 
     /**
@@ -145,6 +185,41 @@ class DatetimePropertyTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\InvalidArgumentException');
         $obj->set_max('foo');
+
+        // Ensure setting a null value works
+        $obj->set_max(null);
+        $this->assertEquals(null, $obj->max());
+    }
+
+    /**
+    * Assert that the `format()` method
+    * - is chainable
+    * and that the `set_format()`:
+    * - is chainable
+    * - sets the format
+    * - throws an exception if not a string or null
+    */
+    public function testSetFormat()
+    {
+        $obj = new DatetimeProperty();
+        $this->assertEquals('Y-m-d H:i:s', $obj->format());
+
+        $ret = $obj->set_format('Y/m/d');
+        $this->assertSame($ret, $obj);
+        $this->assertEquals('Y/m/d', $obj->format());
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $obj->set_format(null);
+    }
+
+    public function testSave()
+    {
+        $obj = new DatetimeProperty();
+        $this->assertEquals(null, $obj->save());
+
+        $obj->set_val('2015-01-01');
+        $this->assertEquals(new DateTime('2015-01-01'), $obj->save());
+
     }
 
     /**
@@ -198,6 +273,12 @@ class DatetimePropertyTest extends \PHPUnit_Framework_TestCase
         // Bigger
         $obj->set_val('2016-01-01');
         $this->assertNotTrue($obj->validate_max());
+    }
+
+    public function testSqlExtra()
+    {
+        $obj = new DatetimeProperty();
+        $this->assertSame('', $obj->sql_extra());
     }
 
     public function testSqlType()
