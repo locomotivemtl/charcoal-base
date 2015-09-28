@@ -2,6 +2,9 @@
 
 namespace Charcoal\Property;
 
+// Dependencies from `PHP`
+use \InvalidArgumentException;
+
 // Dependencies from `PHP` extensions
 use \PDO as PDO;
 
@@ -29,6 +32,22 @@ class BooleanProperty extends AbstractProperty
     public function type()
     {
         return 'boolean';
+    }
+
+    /**
+    * @return string
+    */
+    public function display_val($val = null)
+    {
+        if ($val === null) {
+            $val = $this->val();
+        }
+        
+        if ($val === true) {
+            return $this->true_label();
+        } else {
+            return $this->false_label();
+        }
     }
 
     /**
