@@ -451,8 +451,7 @@ abstract class AbstractUser extends Content implements
 
             $this->login();
             return true;
-        }
-        else {
+        } else {
             $this->login_failed($username);
             return false;
         }
