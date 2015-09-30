@@ -146,7 +146,7 @@ class BooleanPropertyTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($obj->save());
 
         $obj->set_val(false);
-        $this->assertNotTrue($obj->save()); 
+        $this->assertNotTrue($obj->save());
 
     }
 }

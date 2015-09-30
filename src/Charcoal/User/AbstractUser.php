@@ -29,64 +29,64 @@ abstract class AbstractUser extends Content implements
 
     /**
     * The username should be unique and mandatory.
-    * @var string $_username
+    * @var string $username
     */
-    protected $_username = '';
+    private $username = '';
 
     /**
     * The password is stored encrypted in the database.
-    * @var string $_password
+    * @var string $password
     */
-    protected $_password;
+    private $password;
 
     /**
-    * @var string $_email
+    * @var string $email
     */
-    protected $_email;
+    private $email;
 
     /**
-    * @var array $_groups
+    * @var array $groups
     */
-    protected $_groups;
+    private $groups;
 
     /**
-    * @var array $_permissions
+    * @var array $permissions
     */
-    protected $_permissions;
+    private $permissions;
 
     /**
-    * @var boolean $_active
+    * @var boolean $active
     */
-    protected $_active = true;
+    private $active = true;
 
     /**
     * The date of the latest (successful) login
-    * @var DateTime|null $_last_login_date
+    * @var DateTime|null $last_login_date
     */
-    protected $_last_login_date;
+    private $last_login_date;
 
     /**
-    * @var string $_last_login_ip
+    * @var string $last_login_ip
     */
-    protected $_last_login_ip;
+    private $last_login_ip;
 
     /**
     * The date of the latest password change
     * @var DateTime|null
     */
-    private $_last_password_date;
+    private $last_password_date;
 
     /**
-    * @var string $_last_password_ip
+    * @var string $last_password_ip
     */
-    private $_last_password_ip;
+    private $last_password_ip;
 
     /**
     * If the login token is set (not empty), then the user should be prompted to
     * reset his password after login / enter the token to continue
     * @var string $login_token
     */
-    private $_login_token = '';
+    private $login_token = '';
 
     /**
     * IndexableTrait > key()
@@ -110,7 +110,7 @@ abstract class AbstractUser extends Content implements
         if (!is_string($username)) {
             throw new InvalidArgumentException('Username must be a string');
         }
-        $this->_username = mb_strtolower($username);
+        $this->username = mb_strtolower($username);
         return $this;
     }
 
@@ -119,7 +119,7 @@ abstract class AbstractUser extends Content implements
     */
     public function username()
     {
-        return $this->_username;
+        return $this->username;
     }
 
     /**
@@ -132,7 +132,7 @@ abstract class AbstractUser extends Content implements
         if (!is_string($email)) {
             throw new InvalidArgumentException('Email must be a string');
         }
-        $this->_email = $email;
+        $this->email = $email;
         return $this;
     }
 
@@ -141,7 +141,7 @@ abstract class AbstractUser extends Content implements
     */
     public function email()
     {
-        return $this->_email;
+        return $this->email;
     }
 
     /**
@@ -152,9 +152,9 @@ abstract class AbstractUser extends Content implements
     public function set_password($password)
     {
         if ($password == null) {
-            $this->_password = $password;
+            $this->password = $password;
         } elseif (is_string($password)) {
-            $this->_password = $password;
+            $this->password = $password;
         } else {
             throw new InvalidArgumentException('Password must be a string');
         }
@@ -167,7 +167,7 @@ abstract class AbstractUser extends Content implements
     */
     public function password()
     {
-        return $this->_password;
+        return $this->password;
     }
 
     /**
@@ -180,7 +180,7 @@ abstract class AbstractUser extends Content implements
             //throw new InvalidArgumentException('Groups must be an array');
             return $this;
         }
-        $this->_groups = [];
+        $this->groups = [];
         foreach ($groups as $g) {
             $this->add_group($g);
         }
@@ -194,22 +194,25 @@ abstract class AbstractUser extends Content implements
     public function add_group($group)
     {
         if (is_array($group)) {
-            $g = new UserGroup();
+            $g = $this->create_group();
             $g->set_data($group);
             $group = $g;
         }
-        if (!($group instanceof UserInterface)) {
+        if (!($group instanceof UserGroupInterface)) {
             throw new InvalidArgumentException('Invalid user group.');
         }
-        $this->_groups[] = $group;
+        $this->groups[] = $group;
         return $this;
     }
+
+    abstract public function create_group();
+
     /**
     * @return array The UserGroup list attached to this user
     */
     public function groups()
     {
-        return $this->_groups;
+        return $this->groups;
     }
 
     /**
@@ -223,7 +226,7 @@ abstract class AbstractUser extends Content implements
             //throw new InvalidArgumentException('Permissions must be an array');
             return $this;
         }
-        $this->_permissions = [];
+        $this->permissions = [];
         foreach ($permissions as $p) {
             $this->add_permission($p);
         }
@@ -243,7 +246,7 @@ abstract class AbstractUser extends Content implements
         } elseif (!($permission instanceof UserPermissionInterface)) {
             throw new InvalidArgumentException('Invalid permissions');
         }
-        $this->_permissions[] = $permission;
+        $this->permissions[] = $permission;
         return $this;
     }
 
@@ -252,7 +255,7 @@ abstract class AbstractUser extends Content implements
     */
     public function permissions()
     {
-        return $this->_permissions;
+        return $this->permissions;
     }
 
     /**
@@ -262,7 +265,7 @@ abstract class AbstractUser extends Content implements
     */
     public function set_active($active)
     {
-        $this->_active = !!$active;
+        $this->active = !!$active;
         return $this;
     }
     /**
@@ -270,7 +273,7 @@ abstract class AbstractUser extends Content implements
     */
     public function active()
     {
-        return $this->_active;
+        return $this->active;
     }
 
     /**
@@ -292,7 +295,7 @@ abstract class AbstractUser extends Content implements
                 'Invalid "Last Login Date" value. Must be a date/time string or a DateTime object.'
             );
         }
-        $this->_last_login_date = $last_login_date;
+        $this->last_login_date = $last_login_date;
         return $this;
     }
 
@@ -301,7 +304,7 @@ abstract class AbstractUser extends Content implements
     */
     public function last_login_date()
     {
-        return $this->_last_login_date;
+        return $this->last_login_date;
     }
     /**
     * @param string|int $ip
@@ -316,7 +319,7 @@ abstract class AbstractUser extends Content implements
         if (!is_string($ip)) {
             throw new InvalidArgumentException('Invalid IP address');
         }
-        $this->_last_login_ip = $ip;
+        $this->last_login_ip = $ip;
         return $this;
     }
     /**
@@ -325,7 +328,7 @@ abstract class AbstractUser extends Content implements
     */
     public function last_login_ip()
     {
-        return $this->_last_login_ip;
+        return $this->last_login_ip;
     }
 
     /**
@@ -347,7 +350,7 @@ abstract class AbstractUser extends Content implements
                 'Invalid "Last Password Date" value. Must be a date/time string or a DateTime object.'
             );
         }
-        $this->_last_password_date = $last_password_date;
+        $this->last_password_date = $last_password_date;
         return $this;
     }
 
@@ -356,7 +359,7 @@ abstract class AbstractUser extends Content implements
     */
     public function last_password_date()
     {
-        return $this->_last_password_date;
+        return $this->last_password_date;
     }
 
     /**
@@ -372,7 +375,7 @@ abstract class AbstractUser extends Content implements
         if (!is_string($ip)) {
             throw new InvalidArgumentException('Invalid IP address');
         }
-        $this->_last_password_ip = $ip;
+        $this->last_password_ip = $ip;
         return $this;
     }
     /**
@@ -382,7 +385,7 @@ abstract class AbstractUser extends Content implements
     */
     public function last_password_ip()
     {
-        return $this->_last_password_ip;
+        return $this->last_password_ip;
     }
 
     /**
@@ -395,7 +398,7 @@ abstract class AbstractUser extends Content implements
         if (!is_string($token)) {
             throw new InvalidArgumentException('Token must be a string');
         }
-        $this->_login_token = $token;
+        $this->login_token = $token;
         return $this;
     }
 
@@ -404,7 +407,7 @@ abstract class AbstractUser extends Content implements
     */
     public function login_token()
     {
-        return $this->_login_token;
+        return $this->login_token;
     }
 
     /**
@@ -449,9 +452,10 @@ abstract class AbstractUser extends Content implements
             $this->login();
             return true;
         }
-
-        $this->login_failed($username);
-        return false;
+        else {
+            $this->login_failed($username);
+            return false;
+        }
     }
 
     /**
@@ -468,7 +472,7 @@ abstract class AbstractUser extends Content implements
         }
 
         $this->set_last_login_date('now');
-        $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+        $ip = isset($SERVER['REMOTE_ADDR']) ? $SERVER['REMOTE_ADDR'] : '';
         if ($ip) {
             $this->set_last_login_ip($ip);
         }
@@ -476,7 +480,7 @@ abstract class AbstractUser extends Content implements
 
         // Save to session
         //session_regenerate_id(true);
-        $_SESSION[static::session_key()] = $this;
+        $SESSION[static::session_key()] = $this;
 
         return true;
     }
@@ -525,7 +529,7 @@ abstract class AbstractUser extends Content implements
         $this->set_password($hash);
 
         $this->set_last_password_date('now');
-        $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+        $ip = isset($SERVER['REMOTE_ADDR']) ? $SERVER['REMOTE_ADDR'] : '';
         if ($ip) {
             $this->set_last_password_ip($ip);
         }
@@ -546,13 +550,13 @@ abstract class AbstractUser extends Content implements
     */
     public static function get_authenticated($reinit = true)
     {
-        if (!isset($_SESSION[static::session_key()])) {
+        if (!isset($SESSION[static::session_key()])) {
             return null;
         }
         $user_class = get_called_class();
-        $user = $_SESSION[static::session_key()];
+        $user = $SESSION[static::session_key()];
         if (!($user instanceof $user_class)) {
-            unset($_SESSION[static::session_key()]);
+            unset($SESSION[static::session_key()]);
             throw new Exception('Invalid user in session');
         }
 
@@ -563,7 +567,7 @@ abstract class AbstractUser extends Content implements
             $user = new $user_class;
             $user->load($user_id);
             // Save back to session
-            $_SESSION[static::session_key()] = $user;
+            $SESSION[static::session_key()] = $user;
         }
 
         // Inactive users can not authenticate
