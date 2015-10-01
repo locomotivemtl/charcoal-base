@@ -47,9 +47,19 @@ abstract class AbstractWidget implements
     */
     public function set_data(array $data)
     {
-        $this->set_viewable_data($data);
-        if (isset($data['active']) && $data['active'] !== null) {
-            $this->set_active($data['active']);
+        foreach ($data as $prop => $val) {
+            $func = [$this, 'set_'.$prop];
+
+            if ($val === null) {
+                continue;
+            }
+
+            if (is_callable($func)) {
+                call_user_func($func, $val);
+                unset($data[$prop]);
+            } else {
+                $this->{$prop} = $val;
+            }
         }
         return $this;
     }
