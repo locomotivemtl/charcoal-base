@@ -1,0 +1,61 @@
+<?php
+
+namespace Charcoal\Property;
+
+use \Charcoal\Property\StringProperty;
+
+class PhoneProperty extends StringProperty
+{
+    /**
+    * @return string
+    */
+    public function type()
+    {
+        return 'phone';
+    }
+
+    /**
+    * @return integer
+    */
+    public function default_max_length()
+    {
+        return 16;
+    }
+
+    /**
+    * Sanitize a phone value by removing all non-digit characters.
+    *
+    * @param mixed $val
+    * @return string
+    */
+    public function sanitize($val = null)
+    {
+        if ($val === null) {
+            $val = $this->val();
+        }
+        
+        return preg_replace('/[^0-9]/', '', $val);
+    }
+
+    /**
+    * @param string $val
+    * @return string
+    */
+    public function display_val($val = null)
+    {
+        if ($val === null) {
+            $val = $this->val();
+        }
+
+        $val = $this->sanitize($val);
+        
+        if (strlen($val) == 10) {
+            $area_code = substr($val, 0, 3);
+            $part1 = substr($val, 3, 3);
+            $part2 = substr($val, 6, 4);
+            return '('.$area_code.') '.$part1.'-'.$part2;
+        } else {
+            return $val;
+        }
+    }
+}

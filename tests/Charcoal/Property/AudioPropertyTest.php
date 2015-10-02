@@ -2,7 +2,7 @@
 
 namespace Charcoal\Tests\Property;
 
-use \Charcoal\Property\AudioProperty as AudioProperty;
+use \Charcoal\Property\AudioProperty;
 
 /**
 * ## TODOs

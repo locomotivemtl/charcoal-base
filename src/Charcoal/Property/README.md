@@ -14,6 +14,7 @@ Charcoal Properties
 - String
   - Html
   - Password
+  - Phone
   - Text
 
 ## Upcoming (planned) properties
