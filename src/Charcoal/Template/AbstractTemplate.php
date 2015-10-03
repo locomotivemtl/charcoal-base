@@ -26,18 +26,4 @@ abstract class AbstractTemplate implements
             $this->set_data($data);
         }
     }
-//    public function __invoke($re)
-
-    /**
-    * @param array $data Optional
-    * @return TemplateView
-    */
-    public function create_view(array $data = null)
-    {
-        $view = new TemplateView();
-        if (is_array($data)) {
-            $view->set_data($data);
-        }
-        return $view;
-    }
 }
