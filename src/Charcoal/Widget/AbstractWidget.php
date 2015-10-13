@@ -100,7 +100,7 @@ abstract class AbstractWidget implements
          ]);
          if ($data !== null) {
              $view->set_data($data);
-         }
+            }
             return $view;
     }
 }

@@ -26,4 +26,16 @@ abstract class AbstractTemplate implements
             $this->set_data($data);
         }
     }
+
+    public function create_view(array $data = null)
+    {
+         $view = new \Charcoal\View\GenericView([
+            //'logger'=>$this->logger()
+            'logger'=>null
+         ]);
+         if ($data !== null) {
+             $view->set_data($data);
+            }
+            return $view;
+    }
 }
