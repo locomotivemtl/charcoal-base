@@ -35,6 +35,29 @@ abstract class AbstractAction implements ActionInterface
     private $_next_url;
 
     /**
+    * @param array $data
+    * @return AbstractAction Chainable
+    */
+    public function set_data(array $data)
+    {
+        foreach ($data as $prop => $val) {
+            $func = [$this, 'set_'.$prop];
+
+            if ($val === null) {
+                continue;
+            }
+
+            if (is_callable($func)) {
+                call_user_func($func, $val);
+                unset($data[$prop]);
+            } else {
+                $this->{$prop} = $val;
+            }
+        }
+        return $this;
+    }
+
+    /**
     * @param string $mode
     * @throws InvalidArgumentException if mode is not a string
     * @return ActionInterface Chainable
