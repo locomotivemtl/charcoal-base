@@ -209,14 +209,29 @@ class StringProperty extends AbstractProperty
     public function validate_max_length()
     {
         $val = $this->val();
+        
+        if ($val === null) {
+            return true;
+        }
+
         $max_length = $this->max_length();
         if ($max_length == 0) {
             return true;
         }
-        
-        $valid = (mb_strlen($val) <= $max_length);
-        if (!$valid) {
-            $this->validator()->error('Max length error', 'max_length');
+
+        if (is_string($val)) {
+            $valid = (mb_strlen($val) <= $max_length);
+            if (!$valid) {
+                $this->validator()->error('Max length error', 'max_length');
+            }
+        } else {
+            foreach ($val as $v) {
+                $valid = (mb_strlen($v) <= $max_length);
+                if (!$valid) {
+                    $this->validator()->error('Max length error', 'max_length');
+                    return $valid;
+                }
+            }
         }
 
         return $valid;

@@ -7,6 +7,7 @@ use \Exception;
 use \InvalidArgumentException;
 
 // Module `charcoal-core` dependencies
+use \Charcoal\Charcoal;
 use \Charcoal\Property\AbstractProperty;
 use \Charcoal\Model\ModelFactory;
 use \Charcoal\Loader\CollectionLoader;
@@ -103,7 +104,9 @@ class ObjectProperty extends AbstractProperty
     */
     public function proto()
     {
-        return ModelFactory::instance()->get($this->obj_type());
+        return ModelFactory::instance()->get($this->obj_type(), [
+            'logger'=>Charcoal::logger()
+        ]);
     }
 
     /**
