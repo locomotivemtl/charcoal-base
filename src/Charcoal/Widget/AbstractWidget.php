@@ -92,12 +92,15 @@ abstract class AbstractWidget implements
     * @param array $data Optional
     * @return ViewInterface
     */
-    protected function create_view(array $data = null)
+    public function create_view(array $data = null)
     {
-        $view = new WidgetView();
-        if (is_array($data)) {
-            $view->set_data($data);
-        }
-        return $view;
+         $view = new \Charcoal\View\GenericView([
+            //'logger'=>$this->logger()
+            'logger'=>null
+         ]);
+         if ($data !== null) {
+             $view->set_data($data);
+         }
+            return $view;
     }
 }
