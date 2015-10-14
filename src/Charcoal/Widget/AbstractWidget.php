@@ -3,17 +3,20 @@
 namespace Charcoal\Widget;
 
 // Dependencies from `PHP`
-use \InvalidArgumentException as InvalidArgumentException;
+use \InvalidArgumentException;
+
+// PSR-3 logger
+use \Psr\Log\LoggerInterface;
+use \Psr\Log\LoggerAwareInterface;
 
 // Module `charcoal-core` dependencies
-use \Charcoal\Metadata\DescribableInterface as DescribableInterface;
-use \Charcoal\Metadata\DescribableTrait as DescribableTrait;
-use \Charcoal\View\ViewableInterface as ViewableInterface;
-use \Charcoal\View\ViewableTrait as ViewableTrait;
+use \Charcoal\Metadata\DescribableInterface;
+use \Charcoal\Metadata\DescribableTrait;
+use \Charcoal\View\ViewableInterface;
+use \Charcoal\View\ViewableTrait;
 
 // Local namespace dependencies
 use \Charcoal\Widget\WidgetInterface as WidgetInterface;
-use \Charcoal\Widget\WidgetView as Widgetiew;
 
 /**
 *
@@ -21,24 +24,61 @@ use \Charcoal\Widget\WidgetView as Widgetiew;
 abstract class AbstractWidget implements
     WidgetInterface,
     //DescribableInterface,
+    LoggerAwareInterface,
     ViewableInterface
 {
     //use DescribableTrait;
     use ViewableTrait;
 
     /**
-    * @var boolean $_active
+    * @var LoggerInterface $logger
     */
-    private $_active;
+    private $logger;
+
+    /**
+    * @var boolean $active
+    */
+    private $active;
 
     /**
     * @param array $data Optional
     */
     public function __construct(array $data = null)
     {
-        if (is_array($data)) {
-            $this->set_data($data);
+        if (isset($data['logger'])) {
+            $this->set_logger($data['logger']);
         }
+    }
+
+    /**
+    * > LoggerAwareInterface > setLogger()
+    *
+    * Fulfills the PSR-1 style LoggerAwareInterface
+    *
+    * @param LoggerInterface $logger
+    * @return AbstractEngine Chainable
+    */
+    public function setLogger(LoggerInterface $logger)
+    {
+        return $this->set_logger($logger);
+    }
+
+    /**
+    * @param LoggerInterface $logger
+    * @return AbstractEngine Chainable
+    */
+    public function set_logger(LoggerInterface $logger = null)
+    {
+        $this->logger = $logger;
+        return $this;
+    }
+
+    /**
+    * @erturn LoggerInterface
+    */
+    public function logger()
+    {
+        return $this->logger;
     }
 
     /**
@@ -72,9 +112,11 @@ abstract class AbstractWidget implements
     public function set_active($active)
     {
         if (!is_bool($active)) {
-            throw new InvalidArgumentException('Active must be a boolean');
+            throw new InvalidArgumentException(
+                'Active must be a boolean'
+            );
         }
-        $this->_active = $active;
+        $this->active = $active;
         return $this;
     }
 
@@ -83,7 +125,7 @@ abstract class AbstractWidget implements
     */
     public function active()
     {
-        return $this->_active;
+        return $this->active;
     }
 
     /**
@@ -94,13 +136,12 @@ abstract class AbstractWidget implements
     */
     public function create_view(array $data = null)
     {
-         $view = new \Charcoal\View\GenericView([
-            //'logger'=>$this->logger()
+        $view = new \Charcoal\View\GenericView([
             'logger'=>null
-         ]);
-         if ($data !== null) {
-             $view->set_data($data);
-            }
-            return $view;
+        ]);
+        if ($data !== null) {
+            $view->set_data($data);
+        }
+        return $view;
     }
 }

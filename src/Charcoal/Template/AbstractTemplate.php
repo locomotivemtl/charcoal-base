@@ -29,13 +29,12 @@ abstract class AbstractTemplate implements
 
     public function create_view(array $data = null)
     {
-         $view = new \Charcoal\View\GenericView([
-            //'logger'=>$this->logger()
+        $view = new \Charcoal\View\GenericView([
             'logger'=>null
-         ]);
-         if ($data !== null) {
-             $view->set_data($data);
-            }
-            return $view;
+        ]);
+        if ($data !== null) {
+            $view->set_data($data);
+        }
+        return $view;
     }
 }
