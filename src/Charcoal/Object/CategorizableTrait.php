@@ -13,16 +13,9 @@ trait CategorizableTrait
     protected $_category;
 
     /**
-    * @param array $data
-    * @return CategorizableTrait Chainable
+    * @return string
     */
-    public function set_categorizable_data(array $data)
-    {
-        if (isset($data['category']) && $data['category'] !== null) {
-            $this->set_category($data['category']);
-        }
-        return $this;
-    }
+    abstract public function category_type();
 
     /**
     * @param mixed $category
@@ -41,4 +34,9 @@ trait CategorizableTrait
     {
         return $this->_category;
     }
+
+    /**
+    * @return string
+    */
+    abstract public function category_type();
 }

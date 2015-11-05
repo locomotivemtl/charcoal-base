@@ -13,14 +13,6 @@ trait CategoryTrait
     private $category_items;
 
     /**
-    * @param array
-    */
-    public function set_category_data(array $data)
-    {
-        return $this;
-    }
-
-    /**
     * @return string
     */
     abstract public function item_type();
@@ -54,5 +46,8 @@ trait CategoryTrait
         return $this->category_items;
     }
 
+    /**
+    * @return Collection
+    */
     abstract public function load_items();
 }

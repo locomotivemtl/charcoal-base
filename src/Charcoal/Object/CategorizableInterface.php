@@ -8,6 +8,11 @@ namespace Charcoal\Object;
 interface CategorizableInterface
 {
     /**
+    * @return string
+    */
+    public function category_type();
+
+    /**
     * @param array $data
     * @return CategorizableInterface Chainable
     */

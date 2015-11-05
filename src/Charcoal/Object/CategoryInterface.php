@@ -5,12 +5,6 @@ namespace Charcoal\Object;
 interface CategoryInterface
 {
     /**
-    * @param array $data
-    * @return CategoryInterface Chainable
-    */
-    public function set_category_data(array $data);
-
-    /**
     * @return string
     */
     public function item_type();
