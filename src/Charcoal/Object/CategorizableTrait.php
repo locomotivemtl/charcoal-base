@@ -2,20 +2,45 @@
 
 namespace Charcoal\Object;
 
+use \InvalidArgumentException;
+
 /**
-*
+* Categorizable defines objects that can be in a `Category`.
 */
 trait CategorizableTrait
 {
     /**
-    * @var mixed $_category
+    * @var string $category_type
     */
-    protected $_category;
+    private $category_type;
 
+    /**
+    * @var mixed $category
+    */
+    private $category;
+
+    /**
+    * @param string $type
+    * @throws InvalidArgumentException
+    * @return CategorizableInterface Chainable
+    */
+    public function set_category_type($type)
+    {
+        if (!is_string($type)) {
+            throw new InvalidArgumentException(
+                'Category type must be a string.'
+            );
+        }
+        $this->category_type = $type;
+        return $this;
+    }
     /**
     * @return string
     */
-    abstract public function category_type();
+    public function category_type()
+    {
+        return $this->category_type;
+    }
 
     /**
     * @param mixed $category
@@ -23,7 +48,7 @@ trait CategorizableTrait
     */
     public function set_category($category)
     {
-        $this->_category = $category;
+        $this->category = $category;
         return $this;
     }
 
@@ -32,11 +57,6 @@ trait CategorizableTrait
     */
     public function category()
     {
-        return $this->_category;
+        return $this->category;
     }
-
-    /**
-    * @return string
-    */
-    abstract public function category_type();
 }

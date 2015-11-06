@@ -14,33 +14,18 @@ use \InvalidArgumentException as InvalidArgumentException;
 trait PublishableTrait
 {
     /**
-    * @var DateTime $_publish_date
+    * @var DateTime $publish_date
     */
-    protected $_publish_date;
+    private $publish_date;
     /**
-    * @var DateTime $_expiry_date
+    * @var DateTime $expiry_date
     */
-    protected $_expiry_date;
+    private $expiry_date;
 
     /**
-    * @var string $_publish_status
+    * @var string $publish_status
     */
-    protected $_publish_status;
-
-    /**
-    * @param array $data
-    * @return PublishableTrait Chainable
-    */
-    public function set_publishable_data(array $data)
-    {
-        if (isset($data['publish_date']) && $data['publish_date'] !== null) {
-            $this->set_publish_date($data['publish_date']);
-        }
-        if (isset($data['expiry_date']) && $data['expiry_date'] !== null) {
-            $this->set_expiry_date($data['expiry_date']);
-        }
-        return $this;
-    }
+    private $publish_status;
 
     /**
     * @param string|DateTime $publish_date
@@ -49,14 +34,16 @@ trait PublishableTrait
     public function set_publish_date($publish_date)
     {
         if ($publish_date === null) {
-            $this->_publish_date = null;
+            $this->publish_date = null;
             return $this;
         }
         if (is_string($publish_date)) {
             try {
                 $publish_date = new DateTime($publish_date);
             } catch (Exception $e) {
-                throw new InvalidArgumentException($e->getMessage());
+                throw new InvalidArgumentException(
+                    'Invalid publish date: '.$e->getMessage()
+                );
             }
         }
         if (!($publish_date instanceof DateTimeInterface)) {
@@ -64,7 +51,7 @@ trait PublishableTrait
                 'Invalid "Publish Date" value. Must be a date/time string or a DateTime object.'
             );
         }
-        $this->_publish_date = $publish_date;
+        $this->publish_date = $publish_date;
         return $this;
     }
 
@@ -73,7 +60,7 @@ trait PublishableTrait
     */
     public function publish_date()
     {
-        return $this->_publish_date;
+        return $this->publish_date;
     }
 
     /**
@@ -83,14 +70,16 @@ trait PublishableTrait
     public function set_expiry_date($expiry_date)
     {
         if ($expiry_date === null) {
-            $this->_expiry_date = null;
+            $this->expiry_date = null;
             return $this;
         }
         if (is_string($expiry_date)) {
             try {
                 $expiry_date = new DateTime($expiry_date);
             } catch (Exception $e) {
-                throw new InvalidArgumentException($e->getMessage());
+                throw new InvalidArgumentException(
+                    'Invalid expiry date: '.$e->getMessage()
+                );
             }
         }
         if (!($expiry_date instanceof DateTimeInterface)) {
@@ -98,7 +87,7 @@ trait PublishableTrait
                 'Invalid "Expiry Date" value. Must be a date/time string or a DateTime object.'
             );
         }
-        $this->_expiry_date = $expiry_date;
+        $this->expiry_date = $expiry_date;
         return $this;
     }
 
@@ -107,7 +96,7 @@ trait PublishableTrait
     */
     public function expiry_date()
     {
-        return $this->_expiry_date;
+        return $this->expiry_date;
     }
 
     /**
@@ -127,7 +116,7 @@ trait PublishableTrait
                 sprintf('Status "%s" is not a valid publish status.', $status)
             );
         }
-        $this->_publish_status = $status;
+        $this->publish_status = $status;
         return $this;
     }
 
@@ -148,7 +137,7 @@ trait PublishableTrait
     */
     public function publish_status()
     {
-        $status = $this->_publish_status;
+        $status = $this->publish_status;
         if (!$status || $status == 'published') {
             $status = $this->publish_date_status();
         }
@@ -163,7 +152,7 @@ trait PublishableTrait
     *
     * @return string
     */
-    protected function publish_date_status()
+    private function publish_date_status()
     {
         $now = new DateTime();
         $publish = $this->publish_date();

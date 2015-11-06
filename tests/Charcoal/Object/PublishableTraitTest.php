@@ -22,24 +22,6 @@ class PublishableTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that the `set_publishable_data` method:
-    * - is chainable
-    * - sets the publish_date and expiry_date
-    */
-    public function testSetPublishableData()
-    {
-        $obj = $this->obj;
-        $ret = $obj->set_publishable_data([
-            'publish_date'=>'yesterday',
-            'expiry_date'=>'tomorrow'
-        ]);
-        $this->assertSame($ret, $obj);
-
-        $this->assertEquals(new DateTime('yesterday'), $obj->publish_date());
-        $this->assertEquals(new DateTime('tomorrow'), $obj->expiry_date());
-    }
-
-     /**
     * Assert that the `set_publish_date` method:
     * - is chainable
     * - sets the publish_date value when a string is passed

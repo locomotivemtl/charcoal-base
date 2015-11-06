@@ -8,12 +8,6 @@ namespace Charcoal\Object;
 interface PublishableInterface
 {
     /**
-    * @param array $data
-    * @return PublishableTrait Chainable
-    */
-    public function set_publishable_data(array $data);
-
-    /**
     * @param string|DateTime $publish_date
     * @return PublishableTrait Chainable
     */

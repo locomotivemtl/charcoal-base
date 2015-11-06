@@ -5,24 +5,30 @@ namespace Charcoal\Object;
 interface CategoryInterface
 {
     /**
+    * @param string $type
+    * @return CategoryInterface Chainable
+    */
+    public function set_category_item_type($type);
+    
+    /**
     * @return string
     */
-    public function item_type();
+    public function category_item_type();
 
     /**
     * Get the number of items in this category.
     * @param array
     */
-    public function num_items();
+    public function num_category_items();
 
     /**
     * @return boolean
     */
-    public function has_items();
+    public function has_category_items();
 
     /**
     * @return array
     * @todo Return Collection?
     */
-    public function items();
+    public function category_items();
 }

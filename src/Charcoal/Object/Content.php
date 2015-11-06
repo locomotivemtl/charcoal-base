@@ -2,13 +2,18 @@
 
 namespace Charcoal\Object;
 
-use \DateTime as DateTime;
-use \InvalidArgumentException as InvalidArgumentException;
+use \DateTime;
+use \InvalidArgumentException;
 
-use \Charcoal\Object\AbstractObject as AbstractObject;
-use \Charcoal\Object\ContentInterface as ContentInterface;
+// From `charcoal-core`
+use \Charcoal\Model\AbstractModel;
 
-class Content extends AbstractObject implements ContentInterface
+use \Charcoal\Object\ContentInterface;
+
+/**
+*
+*/
+class Content extends AbstractModel implements ContentInterface
 {
     /**
     * Objects are active by default
