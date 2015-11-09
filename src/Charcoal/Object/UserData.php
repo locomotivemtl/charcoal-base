@@ -6,15 +6,23 @@ use \DateTime as DateTime;
 use \DateTimeInterface as DateTimeInterface;
 use \InvalidArgumentException as InvalidArgumentException;
 
-// Local namespace dependencies
+// From `charcoal-core`
 use \Charcoal\Model\AbstractModel;
+use \Charcoal\Core\IndexableInterface;
+use \Charcoal\Core\IndexableTrait;
+
+// Local namespace dependencies
 use \Charcoal\Object\UserDataInterface;
 
 /**
 *
 */
-class UserData extends AbstractModel implements UserDataInterface
+class UserData extends AbstractModel implements
+    UserDataInterface,
+    IndexableInterface
 {
+    use IndexableTrait;
+    
     /**
     * @var int $_ip
     */
