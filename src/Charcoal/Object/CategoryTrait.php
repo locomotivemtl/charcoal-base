@@ -39,7 +39,7 @@ trait CategoryTrait
     * @throws Exception If no item type was previously set.
     * @return string
     */
-    public function item_type()
+    public function category_item_type()
     {
         if ($this->category_item_type === null) {
             throw new Exception(
