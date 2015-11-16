@@ -7,15 +7,17 @@ use \InvalidArgumentException;
 
 // From `charcoal-core`
 use \Charcoal\Model\AbstractModel;
-use \Charcoal\Core\IndexableInterface as IndexableInterface;
-use \Charcoal\Core\IndexableTrait as IndexableTrait;
+use \Charcoal\Core\IndexableInterface;
+use \Charcoal\Core\IndexableTrait;
 
 use \Charcoal\Object\ContentInterface;
 
 /**
 *
 */
-class Content extends AbstractModel implements ContentInterface, IndexableInterface
+class Content extends AbstractModel implements 
+    ContentInterface, 
+    IndexableInterface
 {
     use IndexableTrait;
 
