@@ -13,30 +13,30 @@ trait HierarchicalTrait
     /**
     * The master, if any, in the hierarchy.
     *
-    * @var HierarchicalInterface $_master
+    * @var HierarchicalInterface $master
     */
-    protected $_master = null;
+    private $master = null;
 
     /**
     * In-memory copy of the object's hierarchy.
     *
-    * @var array $_hierarchy
+    * @var array $hierarchy
     */
-    protected $_hierarchy = null;
+    private $hierarchy = null;
 
     /**
     * In-memory copy of the object's children
     *
-    * @var array $_children
+    * @var array $children
     */
-    protected $_children;
+    private $children;
 
     /**
     * In-memory copy of the object's siblings
     *
-    * @var array $_siblings
+    * @var array $siblings
     */
-    protected $_siblings;
+    private $siblings;
 
     /**
     * @param array $data
@@ -57,7 +57,7 @@ trait HierarchicalTrait
     */
     public function set_master($master)
     {
-        $this->_master = $this->obj_from_ident($master);
+        $this->master = $this->obj_from_ident($master);
         return $this;
     }
 
@@ -67,7 +67,7 @@ trait HierarchicalTrait
     */
     public function master()
     {
-        return $this->_master;
+        return $this->master;
     }
 
     /**
@@ -135,8 +135,8 @@ trait HierarchicalTrait
     public function hierarchy()
     {
         // Get from memory, if it was already set.
-        /*if ($this->_hierarchy !== null) {
-            return $this->_hierarchy;
+        /*if ($this->hierarchy !== null) {
+            return $this->hierarchy;
         }*/
 
         $hierarchy = [];
@@ -146,8 +146,8 @@ trait HierarchicalTrait
             $master = $master->master();
         }
 
-        $this->_hierarchy = $hierarchy;
-        return $this->_hierarchy;
+        $this->hierarchy = $hierarchy;
+        return $this->hierarchy;
     }
 
     /**
@@ -220,7 +220,7 @@ trait HierarchicalTrait
     */
     public function set_children(array $children)
     {
-        $this->_children = [];
+        $this->children = [];
         foreach ($children as $c) {
             $this->add_child($c);
         }
@@ -234,7 +234,7 @@ trait HierarchicalTrait
     public function add_child($child)
     {
         $this->obj_from_ident($child);
-        $this->_children[] = $child;
+        $this->children[] = $child;
         return $this;
     }
 
@@ -245,18 +245,18 @@ trait HierarchicalTrait
     */
     public function children()
     {
-        if ($this->_children !== null) {
-            return $this->_children;
+        if ($this->children !== null) {
+            return $this->children;
         }
 
-        $this->_children = $this->load_children();
-        return $this->_children;
+        $this->children = $this->load_children();
+        return $this->children;
     }
 
     /**
     * @return array
     */
-    abstract protected function load_children();
+    abstract public function load_children();
 
     /**
     * @param mixed $master
@@ -308,8 +308,8 @@ trait HierarchicalTrait
     */
     public function siblings()
     {
-        if ($this->_siblings !== null) {
-            return $this->_siblings;
+        if ($this->siblings !== null) {
+            return $this->siblings;
         }
         $master = $this->master();
         if ($master === null) {
@@ -319,8 +319,8 @@ trait HierarchicalTrait
             // Todo: Remove "current" object from siblings
             $siblings = $master->children();
         }
-        $this->_siblings = $siblings;
-        return $this->_siblings;
+        $this->siblings = $siblings;
+        return $this->siblings;
     }
 
     /**
@@ -339,7 +339,7 @@ trait HierarchicalTrait
     * @throws InvalidArgumentException
     * @return HierarchicalInterface|null
     */
-    protected function obj_from_ident($ident)
+    private function obj_from_ident($ident)
     {
         if ($ident === null) {
             return null;
@@ -350,7 +350,9 @@ trait HierarchicalTrait
         }
 
         if (!is_scalar($ident)) {
-            throw new InvalidArgumentException('Can not load object');
+            throw new InvalidArgumentException(
+                sprintf('Can not load object (not a scalar or a "%s")', $class)
+            );
         }
         
         //$obj = ModelFactory::instance()->get($class);
