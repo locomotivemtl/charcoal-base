@@ -46,7 +46,7 @@ trait CategoryTrait
                 'Item type is unset. Set item type before calling getter.'
             );
         }
-        return $this->item_type;
+        return $this->category_item_type;
     }
 
     /**
