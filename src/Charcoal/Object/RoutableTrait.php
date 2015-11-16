@@ -2,28 +2,101 @@
 
 namespace Charcoal\Object;
 
+// Dependencies from `charcoal-view` module
+use \Charcoal\View\Viewable;
+
+use \Charcoal\Translation\TranslationString;
+
 /**
-*
+* Full implementation, as Trait, of the `RoutableInterface`.
 */
 trait RoutableTrait
 {
     /**
-    * @var string $url
+    * @var boolean routable
     */
-    private $url;
+    private $routable = true;
 
     /**
     * @var string
     */
-    private $url_pattern = '';
+    private $slug_pattern = '';
+
+    /**
+    * @var string $slug
+    */
+    private $slug;
+
+    /**
+    * @param boolean $data
+    * @return RoutableInterface Chainable
+    */
+    public function set_routable($routable)
+    {
+        $this->routable = !!$routable;
+        return $this;
+    }
+
+    /**
+    * @return boolean
+    */
+    public function routable()
+    {
+        return $this->routable;
+    }
 
     /**
     * @param mixed $url
     * @return RoutableInterface Chainable
     */
-    public function set_url($url)
+    public function set_slug_pattern($pattern)
     {
-        $this->url = $url;
+        $this->slug_pattern = new TranslationString($pattern);
+        return $this;
+    }
+
+    /**
+    * @return TranslationString
+    */
+    public function slug_pattern()
+    {
+        return $this->slug_pattern;
+    }
+
+    /**
+    * @param mixed $slug
+    * @return RoutableInterface Chainable
+    */
+    public function set_slug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+    * @return string
+    */
+    public function slug()
+    {
+        if ($this->slug === null) {
+            $this->slug = $this->generate_slug();
+        }
+        return $this->slug;
+    }
+
+    /**
+    * Generate a URL slug from the object's URL slug pattern.
+    */
+    public function generate_slug()
+    {
+        $pattern = $this->slug_pattern();
+        if($this instanceof Viewable) {
+            $slug = $this->render($pattern);
+        }
+        else {
+            $slug = $pattern;
+        }
+        return $slug;
     }
 
     /**
@@ -31,37 +104,7 @@ trait RoutableTrait
     */
     public function url()
     {
-        if ($this->url === null) {
-            $this->url = $this->generate_url();
-        }
-        return $this->url;
+        return $this->slug();
     }
 
-    /**
-    * Generate a URL from the object's URL pattern.
-    */
-    public function generate_url()
-    {
-        $pattern = $this->url_pattern();
-        // @todo
-        return $patern;
-    }
-
-    /**
-    * @param mixed $url
-    * @return RoutableInterface Chainable
-    */
-    public function set_url_pattern($url)
-    {
-        $this->url_pattern = $url;
-        return $this;
-    }
-
-    /**
-    * @return string
-    */
-    public function url_pattern()
-    {
-        return $this->url_pattern;
-    }
 }
