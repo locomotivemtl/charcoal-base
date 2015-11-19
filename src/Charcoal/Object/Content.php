@@ -15,8 +15,8 @@ use \Charcoal\Object\ContentInterface;
 /**
 *
 */
-class Content extends AbstractModel implements 
-    ContentInterface, 
+class Content extends AbstractModel implements
+    ContentInterface,
     IndexableInterface
 {
     use IndexableTrait;

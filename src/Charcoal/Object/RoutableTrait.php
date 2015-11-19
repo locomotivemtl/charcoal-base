@@ -90,10 +90,9 @@ trait RoutableTrait
     public function generate_slug()
     {
         $pattern = $this->slug_pattern();
-        if($this instanceof Viewable) {
+        if ($this instanceof Viewable) {
             $slug = $this->render($pattern);
-        }
-        else {
+        } else {
             $slug = $pattern;
         }
         return $slug;
@@ -106,5 +105,4 @@ trait RoutableTrait
     {
         return $this->slug();
     }
-
 }
