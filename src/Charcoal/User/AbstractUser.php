@@ -93,7 +93,7 @@ abstract class AbstractUser extends Content implements
     *
     * @return string
     */
-    public function key()
+    public static function key()
     {
         return 'username';
     }
@@ -471,7 +471,7 @@ abstract class AbstractUser extends Content implements
         }
 
         $this->set_last_login_date('now');
-        $ip = isset($SERVER['REMOTE_ADDR']) ? $SERVER['REMOTE_ADDR'] : '';
+        $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
         if ($ip) {
             $this->set_last_login_ip($ip);
         }
@@ -479,7 +479,7 @@ abstract class AbstractUser extends Content implements
 
         // Save to session
         //session_regenerate_id(true);
-        $SESSION[static::session_key()] = $this;
+        $_SESSION[static::session_key()] = $this;
 
         return true;
     }
@@ -509,6 +509,23 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
+     * Empties the session var associated to the session key
+     * @return boolean Logged out or not
+     */
+    public function logout()
+    {
+        // Irrelevant call...
+        if (!$this->id()) {
+            return false;
+        }
+
+        $_SESSION[static::session_key()] = null;
+        unset($_SESSION[static::session_key()];
+
+        return true;
+    }
+
+    /**
     * Reset the password.
     *
     * Encrypt the password and re-save the object in the database.
@@ -528,7 +545,7 @@ abstract class AbstractUser extends Content implements
         $this->set_password($hash);
 
         $this->set_last_password_date('now');
-        $ip = isset($SERVER['REMOTE_ADDR']) ? $SERVER['REMOTE_ADDR'] : '';
+        $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
         if ($ip) {
             $this->set_last_password_ip($ip);
         }
@@ -549,13 +566,13 @@ abstract class AbstractUser extends Content implements
     */
     public static function get_authenticated($reinit = true)
     {
-        if (!isset($SESSION[static::session_key()])) {
+        if (!isset($_SESSION[static::session_key()])) {
             return null;
         }
         $user_class = get_called_class();
-        $user = $SESSION[static::session_key()];
+        $user = $_SESSION[static::session_key()];
         if (!($user instanceof $user_class)) {
-            unset($SESSION[static::session_key()]);
+            unset($_SESSION[static::session_key()]);
             throw new Exception('Invalid user in session');
         }
 
@@ -566,7 +583,7 @@ abstract class AbstractUser extends Content implements
             $user = new $user_class;
             $user->load($user_id);
             // Save back to session
-            $SESSION[static::session_key()] = $user;
+            $_SESSION[static::session_key()] = $user;
         }
 
         // Inactive users can not authenticate
