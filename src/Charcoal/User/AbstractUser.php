@@ -93,7 +93,7 @@ abstract class AbstractUser extends Content implements
     *
     * @return string
     */
-    public static function key()
+    public function key()
     {
         return 'username';
     }
@@ -520,7 +520,7 @@ abstract class AbstractUser extends Content implements
         }
 
         $_SESSION[static::session_key()] = null;
-        unset($_SESSION[static::session_key()];
+        unset($_SESSION[static::session_key()]);
 
         return true;
     }
