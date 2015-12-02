@@ -104,7 +104,8 @@ class ObjectProperty extends AbstractProperty
     */
     public function proto()
     {
-        return ModelFactory::instance()->get($this->obj_type(), [
+        $factory = new ModelFactory();
+        return $factory->get($this->obj_type(), [
             'logger'=>Charcoal::logger()
         ]);
     }
