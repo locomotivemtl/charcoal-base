@@ -1,8 +1,19 @@
-.DS_Store
-node_modules
-npm-debug.log
-vendor
-phpdoc
+# Package Managers
+
 composer.phar
-composer.lock
-tests/tmp
+vendor/
+node_modules/
+bower_components/
+
+# Documentation
+
+phpdoc/
+
+# Logging
+
+*.log
+logs/
+
+# Caches
+
+tmp/

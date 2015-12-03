@@ -1,34 +1,34 @@
 {
-    "name": "locomotivemtl/charcoal-base",
-    "description": "Charcoal Base (Project Requirement)",
-    "keywords":["charcoal", "locomotive", "php", "framework", "cms"],
-    "support": {
-        "issues": "https://github.com/locomotivemtl/charcoal-base/issues",
-        "source": "https://github.com/locomotivemtl/charcoal-base"
-    },
-    "authors": [
-        {
-            "name": "Mathieu Ducharme",
-            "email": "mat@locomotive.ca"
-        }
-    ],
-    "require": {
-        "php": ">=5.5.0",
-        "ext-pdo":"*",
-        "ext-fileinfo": "*",
-        "locomotivemtl/charcoal-core":"@dev",
-        "locomotivemtl/charcoal-image":"@dev",
-        "league/climate": "~3.1",
-        "phpmailer/phpmailer": "~5.2"
-    },
-    "require-dev":{
-        "phpunit/phpunit": "~4.5.0",
-        "squizlabs/php_codesniffer": "2.*"
-    },
-    "autoload":{
-        "psr-4":{
-            "Charcoal\\": "src/Charcoal"
-        }
-    },
-    "minimum-stability":"dev"
+  "name": "locomotivemtl/charcoal-base",
+  "description": "Charcoal Base (Project Requirement)",
+  "keywords": [ "charcoal", "locomotive", "php", "framework", "cms" ],
+  "support": {
+    "issues": "https://github.com/locomotivemtl/charcoal-base/issues",
+    "source": "https://github.com/locomotivemtl/charcoal-base"
+  },
+  "authors": [
+    {
+      "name": "Mathieu Ducharme",
+      "email": "mat@locomotive.ca"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "ext-pdo": "*",
+    "ext-fileinfo": "*",
+    "locomotivemtl/charcoal-core": "@dev",
+    "locomotivemtl/charcoal-image": "@dev",
+    "league/climate": "~3.1",
+    "phpmailer/phpmailer": "~5.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.5.0",
+    "squizlabs/php_codesniffer": "2.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Charcoal\\": "src/Charcoal"
+    }
+  },
+  "minimum-stability": "dev"
 }
