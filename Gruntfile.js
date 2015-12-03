@@ -4,9 +4,9 @@
 */
 
 module.exports = function(grunt) {
-	"use strict";
+    "use strict";
 
-	function loadConfig(path) {
+    function loadConfig(path) {
         var glob = require('glob');
         var object = {};
         var key;
@@ -22,24 +22,24 @@ module.exports = function(grunt) {
     var config = {
         pkg: grunt.file.readJSON('package.json')
     }
+
     grunt.loadTasks('grunt_tasks');
     grunt.util._.extend(config, loadConfig('./grunt_tasks/'));
     grunt.initConfig(config);
-	
-	// Load tasks
-    require('load-grunt-tasks')(grunt);	
 
-	// Register Task(s)
-	grunt.registerTask('default', [
-		'jsonlint',
-		'phplint',
-		'phpunit',
-		//'phplint' // To slow for default
-	]);
-	grunt.registerTask('tests', [
-		'phpunit',
-		'phplint',
-		'phpcs'
-	]);
-	
+    // Load tasks
+    require('load-grunt-tasks')(grunt);
+
+    // Register Task(s)
+    grunt.registerTask('default', [
+        'jsonlint',
+        'phplint',
+        'phpunit',
+        //'phplint' // To slow for default
+    ]);
+    grunt.registerTask('tests', [
+        'phpunit',
+        'phplint',
+        'phpcs'
+    ]);
 };
