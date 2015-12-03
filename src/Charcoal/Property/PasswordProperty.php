@@ -25,7 +25,7 @@ class PasswordProperty extends StringProperty
         $pw_opts = ['cost'=>12];
         $password = $this->val();
         $val = password_hash($password, PASSWORD_DEFAULT, $pw_opts);
-        $this->set_val( $val );
+        $this->set_val($val);
 
         return $val;
     }
