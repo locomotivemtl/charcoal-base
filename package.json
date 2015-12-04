@@ -1,26 +1,6 @@
 {
-  "name": "charcoal-base",
-  "version": "0.0.1",
-  "description": "Charcoal Base (Project Requirement)",
-  "license": "LGPL-3.0",
-  "homepage": "http://charcoal.locomotive.ca",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/locomotivemtl/charcoal-base"
-  },
-  "bugs": {
-    "url": "https://github.com/locomotivemtl/charcoal-base/issues"
-  },
-  "author": {
-    "name": "Mathieu Ducharme",
-    "email": "mat@locomotive.ca"
-  },
-  "contributors": [
-    {
-      "name": "Locomotive",
-      "homepage": "http://locomotive.ca"
-    }
-  ],
+  "private": true,
+  "name": "@locomotivemtl/charcoal-base",
   "devDependencies": {
     "glob": "^6.0.1",
     "grunt": "^0.4.5",
