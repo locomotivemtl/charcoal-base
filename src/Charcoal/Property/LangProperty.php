@@ -4,6 +4,8 @@ namespace Charcoal\Property;
 
 use \PDO;
 
+// Intra-module (`charcoal-core`) dependencies
+use \Charcoal\Charcoal;
 use \Charcoal\Translation\TranslationConfig;
 
 /**
@@ -55,16 +57,17 @@ class LangProperty extends AbstractProperty
     */
     public function choices()
     {
-        $translation_config = new TranslationConfig();
-        $langs = $translation_config->available_langs();
+        $translator = TranslationConfig::instance();
+
         $choices = [];
-        foreach ($langs as $lang) {
+        foreach ($translator->languages() as $langcode => $langdata) {
             $choices[] = [
-                'label'     => $lang,
-                'selected'  => ($this->val() == $lang),
-                'value'     => $lang
+                'label'    => (string)$langdata,
+                'selected' => ($this->val() === $langcode),
+                'value'    => $langcode
             ];
         }
+
         return $choices;
     }
 
