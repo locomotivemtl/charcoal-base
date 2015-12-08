@@ -17,6 +17,7 @@ use \Charcoal\View\ViewableTrait as ViewableTrait;
 // From `charcoal-base`
 use \Charcoal\Email\EmailInterface as EmailInterface;
 use \Charcoal\Email\EmailConfig as EmailConfig;
+use \Charcoal\View\GenericView;
 
 /**
 * Default implementation, as abstract class, of the `EmailInterface`.
@@ -370,7 +371,7 @@ abstract class AbstractEmail implements
         $this->_subject = $subject;
         return $this;
     }
-    
+
     /**
     * @return string
     */
@@ -642,7 +643,7 @@ abstract class AbstractEmail implements
         if (!isset($email_array['name'])) {
             return $email;
         }
-        
+
         $name = str_replace('"', '', filter_var($email_array['name'], FILTER_SANITIZE_STRING));
         return '"'.$name.'" <'.$email.'>';
     }
@@ -670,7 +671,9 @@ abstract class AbstractEmail implements
     */
     public function create_view($data = null)
     {
-        $view = new EmailView();
+        $view = new GenericView([
+            'logger' => \Charcoal\Charcoal::logger()
+        ]);
         if ($data !== null) {
             $view->set_data($data);
         }
