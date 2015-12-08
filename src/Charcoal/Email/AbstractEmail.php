@@ -18,7 +18,7 @@ use \Charcoal\View\ViewableTrait as ViewableTrait;
 use \Charcoal\Email\EmailInterface as EmailInterface;
 use \Charcoal\Email\EmailConfig as EmailConfig;
 use \Charcoal\View\GenericView;
-
+use \Charcoal\App\Template\TemplateFactory;
 /**
 * Default implementation, as abstract class, of the `EmailInterface`.
 *
@@ -85,6 +85,16 @@ abstract class AbstractEmail implements
     */
     private $_track;
 
+    /**
+     * @var array $template_data
+     */
+    private $template_data = [];
+
+    public function __construct(array $data)
+    {
+        $this->app = $data['app'];
+        $this->logger = $data['logger'];
+    }
     /**
     * @param array $data
     * @return AbstractEmail Chainable
@@ -678,5 +688,49 @@ abstract class AbstractEmail implements
             $view->set_data($data);
         }
         return $view;
+    }
+
+    /**
+     * [set_template_data description]
+     * @param array $data [description]
+     */
+    public function set_template_data(array $data)
+    {
+        $this->template_data = $data;
+        return $this;
+    }
+
+    /**
+     * [template_data description]
+     * @return [type] [description]
+     */
+    public function template_data()
+    {
+        return $this->template_data;
+    }
+
+    /**
+     * [view_controller description]
+     * @return [type] [description]
+     */
+    public function view_controller()
+    {
+        $template_ident = $this->template_ident();
+        if (!$template_ident) {
+            return [];
+        } else {
+
+            $template_factory = new TemplateFactory();
+            $template = $template_factory->create($template_ident, [
+                'app'    => $this->app,
+                'logger' => $this->logger
+            ]);
+
+            $data = $this->template_data();
+            $template->set_data($data);
+
+            return $template;
+        }
+
     }
 }
