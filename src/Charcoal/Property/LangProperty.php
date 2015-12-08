@@ -60,11 +60,12 @@ class LangProperty extends AbstractProperty
         $translator = TranslationConfig::instance();
 
         $choices = [];
-        foreach ($translator->languages() as $langcode => $langdata) {
+        foreach ($translator->languages() as $lang_code) {
+            $language = $translator->language($lang_code);
             $choices[] = [
-                'label'    => (string)$langdata,
-                'selected' => ($this->val() === $langcode),
-                'value'    => $langcode
+                'label'    => (string)$language,
+                'selected' => ($this->val() === $lang_code),
+                'value'    => $lang_code
             ];
         }
 
