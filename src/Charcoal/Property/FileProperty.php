@@ -342,7 +342,7 @@ class FileProperty extends AbstractProperty
         if ($file_content === false) {
             throw new Exception('File content could not be decoded.');
         }
-        
+
         $info = new finfo(FILEINFO_MIME_TYPE);
         $this->set_mimetype($info->buffer($file_content));
         $this->set_filesize(strlen($file_content));
@@ -356,8 +356,11 @@ class FileProperty extends AbstractProperty
         if ($ret === false) {
             return '';
         } else {
-            $base_path = rtrim(realpath(Charcoal::config()->ROOT), '/').'/';
-            $target = str_replace($base_path, '', $target);
+            if (class_exists('\Charcoal\App\App')) {
+                $base_path = \Charcoal\App\App::instance()->config()->get('ROOT');
+                $target = str_replace($base_path, '', $target);
+            }
+
             return $target;
         }
     }
@@ -380,7 +383,7 @@ class FileProperty extends AbstractProperty
                 'The uploaded file could not be read (does not exist)'
             );
         }
-        
+
         $info = new finfo(FILEINFO_MIME_TYPE);
         $this->set_mimetype($info->file($file_data['tmp_name']));
         $this->set_filesize(filesize($file_data['tmp_name']));
@@ -394,8 +397,11 @@ class FileProperty extends AbstractProperty
         if ($ret === false) {
             return '';
         } else {
-            $base_path = rtrim(realpath(Charcoal::config()->ROOT), '/').'/';
-            $target = str_replace($base_path, '', $target);
+            if (class_exists('\Charcoal\App\App')) {
+                $base_path = \Charcoal\App\App::instance()->config()->get('ROOT');
+                $target = str_replace($base_path, '', $target);
+            }
+
             return $target;
         }
     }
@@ -407,14 +413,18 @@ class FileProperty extends AbstractProperty
     */
     public function upload_target($filename = null)
     {
+        if (class_exists('\Charcoal\App\App')) {
+            $base_path = \Charcoal\App\App::instance()->config()->get('ROOT');
+        } else {
+            $base_path = '';
+        }
 
-        $base_path = rtrim(Charcoal::config()->ROOT, '/').'/';
-        $upload_path = $this->upload_path();
-        $dir = $base_path.$upload_path;
-        $filename = ($filename) ? $this->sanitize_filename($filename) : $this->generate_filename();
+        $dir = $base_path.$this->upload_path();
+        $filename = ($filename ? $this->sanitize_filename($filename) : $this->generate_filename());
 
         if (!file_exists($dir)) {
             // @todo: Feedback
+            $this->logger()->debug('Path does not exist. Attempting to create path.', get_called_class().'::'.__FUNCTION__);
             mkdir($dir, 0777, true);
         }
         if (!is_writable($dir)) {
@@ -438,7 +448,7 @@ class FileProperty extends AbstractProperty
                 $target = $dir.$filename;
             }
         }
-        
+
         return $target;
     }
 
@@ -489,7 +499,7 @@ class FileProperty extends AbstractProperty
     {
         $filename = $this->label().' '.date('Y-m-d H-i-s');
         $extension = $this->generate_extension();
-        
+
         if ($extension) {
             return $filename.'.'.$extension;
         } else {
