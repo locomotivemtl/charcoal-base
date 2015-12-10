@@ -209,7 +209,7 @@ class StringProperty extends AbstractProperty
     public function validate_max_length()
     {
         $val = $this->val();
-        
+
         if ($val === null) {
             return true;
         }
@@ -225,6 +225,7 @@ class StringProperty extends AbstractProperty
                 $this->validator()->error('Max length error', 'max_length');
             }
         } else {
+            $valid = true;
             foreach ($val as $v) {
                 $valid = (mb_strlen($v) <= $max_length);
                 if (!$valid) {
@@ -254,7 +255,7 @@ class StringProperty extends AbstractProperty
             // Don't check empty string if they are allowed
             return true;
         }
-        
+
         $valid = (mb_strlen($val) >= $min_length);
         if (!$valid) {
             $this->validator()->error('Min length error', 'min_length');
