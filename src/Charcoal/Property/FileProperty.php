@@ -420,11 +420,14 @@ class FileProperty extends AbstractProperty
         }
 
         $dir = $base_path.$this->upload_path();
-        $filename = ($filename ? $this->sanitize_filename($filename) : $this->generate_filename());
+        $filename = ($filename) ? $this->sanitize_filename($filename) : $this->generate_filename();
 
         if (!file_exists($dir)) {
             // @todo: Feedback
-            $this->logger()->debug('Path does not exist. Attempting to create path.', get_called_class().'::'.__FUNCTION__);
+            $this->logger()->debug(
+                'Path does not exist. Attempting to create path.',
+                [get_called_class().'::'.__FUNCTION__]
+            );
             mkdir($dir, 0777, true);
         }
         if (!is_writable($dir)) {

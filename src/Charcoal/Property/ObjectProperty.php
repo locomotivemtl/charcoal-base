@@ -132,13 +132,12 @@ class ObjectProperty extends AbstractProperty
             if (!is_array($property_value)) {
                 $property_value = explode($this->multiple_separator(), $property_value);
             }
-        }
-        else {
+        } else {
             $property_value = [$property_value];
         }
 
         $names = [];
-        foreach($property_value as $p) {
+        foreach ($property_value as $p) {
             $proto = $this->proto();
             $proto->load($p);
             $names[] = (string)$proto->name();
