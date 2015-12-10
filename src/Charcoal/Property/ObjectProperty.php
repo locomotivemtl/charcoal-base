@@ -110,6 +110,42 @@ class ObjectProperty extends AbstractProperty
         ]);
     }
 
+    public function display_val($val = null)
+    {
+        if ($val === null) {
+            $val = $this->val();
+        }
+
+        if ($val === null) {
+            return '';
+        }
+
+        $property_value = $val;
+
+        if ($this->l10n() === true) {
+            $translator = TranslationConfig::instance();
+
+            $property_value = $property_value[$translator->current_language()];
+        }
+
+        if ($this->multiple() === true) {
+            if (!is_array($property_value)) {
+                $property_value = explode($this->multiple_separator(), $property_value);
+            }
+        }
+        else {
+            $property_value = [$property_value];
+        }
+
+        $names = [];
+        foreach($property_value as $p) {
+            $proto = $this->proto();
+            $proto->load($p);
+            $names[] = (string)$proto->name();
+        }
+        return implode(', ', $names);
+    }
+
     /**
     * Get the choices form Model Collection
     */
@@ -126,8 +162,8 @@ class ObjectProperty extends AbstractProperty
         foreach ($choices as $c) {
             $choice = [
                 'value'=>$c->id(),
-                'label'=>$c->name()->fr(),
-                'title'=>$c->name()->fr(),
+                'label'=>$c->name(),
+                'title'=>$c->name(),
                 'subtext'=>'',
                 'icon'=>'',
                 'selected'=>$this->is_choice_selected($c->id())
