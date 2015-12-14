@@ -119,7 +119,8 @@ class ImageProperty extends FileProperty
         $effects = $this->effects();
         if (!empty($effects)) {
             // @todo Save original file here
-            $img = ImageFactory::instance()->create('imagemagick');
+            $image_factory = new ImageFactory();
+            $img = $image_factory->create('imagemagick');
             $img->open($target);
             $img->set_effects($effects);
             $img->proccess();

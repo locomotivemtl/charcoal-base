@@ -6,7 +6,7 @@ namespace Charcoal\Property;
 use \Charcoal\Property\StringProperty;
 
 /**
-* Text Property.
+* Text Property. Longer strings.
 */
 class TextProperty extends StringProperty
 {

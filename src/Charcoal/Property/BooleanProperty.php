@@ -18,11 +18,11 @@ use \Charcoal\Translation\TranslationString;
 class BooleanProperty extends AbstractProperty
 {
     /**
-    * @var mixed $_true_label
+    * @var TranslationString $true_label
     */
     private $true_label;
     /**
-    * @var mixed $_false_label
+    * @var TranslationString $false_label
     */
     private $false_label;
 
@@ -42,7 +42,7 @@ class BooleanProperty extends AbstractProperty
         if ($val === null) {
             $val = $this->val();
         }
-        
+
         if ($val === true) {
             return $this->true_label();
         } else {
@@ -98,6 +98,7 @@ class BooleanProperty extends AbstractProperty
     public function true_label()
     {
         if ($this->true_label === null) {
+            // Default value
             $this->set_true_label('True');
         }
         return $this->true_label;
@@ -119,6 +120,7 @@ class BooleanProperty extends AbstractProperty
     public function false_label()
     {
         if ($this->false_label === null) {
+            // Default value
             $this->set_false_label('False');
         }
         return $this->false_label;

@@ -12,15 +12,33 @@ use \Charcoal\Property\AbstractProperty;
 use \Charcoal\Model\ModelFactory;
 use \Charcoal\Loader\CollectionLoader;
 
+// Local namespace dependencies
+use \Charcoal\Property\SelectablePropertyInterface;
+
 /**
-* Object Property
+* Object Property holds a reference to an external object.
+*
+* The object property implements the full `SelectablePropertyInterface` without using
+* its accompanying trait. (`set_choices`, `add_choice`, `choices`, `has_choice`, `choice`).
 */
-class ObjectProperty extends AbstractProperty
+class ObjectProperty extends AbstractProperty implements SelectablePropertyInterface
 {
     /**
     * @var string $_obj_type
     */
     private $obj_type;
+
+    /**
+    * @var ModelFactory $model_factory
+    */
+    private $model_factory;
+
+    /**
+    * The available selectable choices map.
+    *
+    * @var array The internal choices
+    */
+    protected $choices = [];
 
     /**
     * @return string
@@ -30,6 +48,13 @@ class ObjectProperty extends AbstractProperty
         return 'object';
     }
 
+    private function model_factory()
+    {
+        if ($this->model_factory === null) {
+            $this->model_factory = new ModelFactory();
+        }
+        return $this->model_factory;
+    }
 
     /**
     * @param string $obj_type
@@ -39,7 +64,9 @@ class ObjectProperty extends AbstractProperty
     public function set_obj_type($obj_type)
     {
         if (!is_string($obj_type)) {
-            throw new InvalidArgumentException('Obj type needs to be a string');
+            throw new InvalidArgumentException(
+                'Obj type needs to be a string'
+            );
         }
         $this->obj_type = $obj_type;
         return $this;
@@ -52,7 +79,9 @@ class ObjectProperty extends AbstractProperty
     public function obj_type()
     {
         if (!$this->obj_type === null) {
-            throw new Exception('No obj type defined. Invalid property.');
+            throw new Exception(
+                'No obj type defined. Invalid property.'
+            );
         }
         return $this->obj_type;
     }
@@ -104,12 +133,15 @@ class ObjectProperty extends AbstractProperty
     */
     public function proto()
     {
-        $factory = new ModelFactory();
-        return $factory->get($this->obj_type(), [
-            'logger'=>Charcoal::logger()
+        return $this->model_factory()->get($this->obj_type(), [
+            'logger' => $this->logger()
         ]);
     }
 
+    /**
+    * @param mixed $val
+    * @return string
+    */
     public function display_val($val = null)
     {
         if ($val === null) {
@@ -146,7 +178,35 @@ class ObjectProperty extends AbstractProperty
     }
 
     /**
-    * Get the choices form Model Collection
+    * Fulfills the SelectableProperty interface, but does nothing.
+    * @param array $choices The array of choice structures.
+    * @return SelectablePropertyInterface Chainable.
+    */
+    public function set_choices(array $choices)
+    {
+        unset($choices);
+        $this->logger()->debug('Choices can not be set for object properties. They are auto-generated from objects.');
+        return $this;
+    }
+
+    /**
+    * Add a choice to the available choices map.
+    *
+    * @param string The choice identifier (will be key / default ident).
+    * @param array A choice structure.
+    * @return SelectablePropertyInterface Chainable.
+    */
+    public function add_choice($choice_ident, array $choice)
+    {
+        unset($choice_ident, $choice);
+        $this->logger()->debug('Choices can not be added for object properties. They are auto-generated from objects.');
+        return $this;
+    }
+
+    /**
+    * Get the choices array map.
+    *
+    * @return array
     */
     public function choices()
     {
@@ -157,6 +217,7 @@ class ObjectProperty extends AbstractProperty
         if ($proto->has_property('active')) {
             $loader->add_filter('active', true);
         }
+        $ret = [];
         $choices = $loader->load();
         foreach ($choices as $c) {
             $choice = [
@@ -164,27 +225,51 @@ class ObjectProperty extends AbstractProperty
                 'label'=>$c->name(),
                 'title'=>$c->name(),
                 'subtext'=>'',
-                'icon'=>'',
-                'selected'=>$this->is_choice_selected($c->id())
+                'icon'=>$c->icon()
             ];
 
-            yield $choice;
+            $ret[$c->id()] = $choice;
         }
+
+        return $ret;
     }
 
     /**
-    * @return boolean
+    * Returns wether a given choice_ident exists or not.
+    *
+    * @param string $choice_ident
+    * @return boolean True / false wether the choice exists or not.
     */
-    public function is_choice_selected($c)
+    public function has_choice($choice_ident)
     {
-        $val = $this->val();
-        if ($val === null) {
-            return false;
-        }
-        if ($this->multiple()) {
-            return in_array($c, $val);
-        } else {
-            return $c == $val;
-        }
+        $c = $this->model_factory()->create($this->obj_type(), [
+            'logger'=>$this->logger()
+        ]);
+        $c->load($choice_ident);
+        return ($c->id() == $choice_ident);
+    }
+
+    /**
+    * Returns a choice structure for a given ident.
+    *
+    * @param string $choice_ident The choice ident to load.
+    * @return mixed The matching choice.
+    */
+    public function choice($choice_ident)
+    {
+        $c = $this->model_factory()->create($this->obj_type(), [
+            'logger'=>$this->logger()
+        ]);
+        $c->load($choice_ident);
+
+        $choice = [
+            'value'=>$c->id(),
+            'label'=>$c->name(),
+            'title'=>$c->name(),
+            'subtext'=>'',
+            'icon'=>$c->icon()
+        ];
+
+        return $choice;
     }
 }

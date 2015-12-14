@@ -12,11 +12,10 @@ use \PDO as PDO;
 use \Charcoal\Property\AbstractProperty as AbstractProperty;
 
 /**
-* String Property
+* Number Property
 */
 class NumberProperty extends AbstractProperty
 {
-    const DEFAULT_ALLOW_EMPTY = true;
 
     /**
     * @var boolean $_allow_empty
@@ -29,28 +28,6 @@ class NumberProperty extends AbstractProperty
     public function type()
     {
         return 'number';
-    }
-
-    /**
-    * @param bool $allow_empty
-    * @throws InvalidArgumentException If parameter is invalid
-    * @return StringProperty Chainable
-    */
-    public function set_allow_empty($allow_empty)
-    {
-        $this->allow_empty = !!$allow_empty;
-        return $this;
-    }
-
-    /**
-    * @return bool
-    */
-    public function allow_empty()
-    {
-        if ($this->allow_empty === null) {
-            $this->allow_empty = self::DEFAULT_ALLOW_EMPTY;
-        }
-        return $this->allow_empty;
     }
 
     /**

@@ -3,20 +3,28 @@
 namespace Charcoal\Property;
 
 // Dependencies from `PHP`
-use \InvalidArgumentException as InvalidArgumentException;
+use \Exception;
+use \InvalidArgumentException;
 
 // Dependencies from `PHP` extensions
-use \PDO as PDO;
+use \PDO;
 
 // Module `charcoal-core` dependencies
-use \Charcoal\Core\StringFormat as StringFormat;
-use \Charcoal\Property\AbstractProperty as AbstractProperty;
+use \Charcoal\Core\StringFormat;
+use \Charcoal\Property\AbstractProperty;
+use \Charcoal\Translation\TranslationConfig;
+
+// Local namespace dependencies
+use \Charcoal\Property\SelectablePropertyInterface;
+use \Charcoal\Property\SelectablePropertyTrait;
 
 /**
 * String Property
 */
-class StringProperty extends AbstractProperty
+class StringProperty extends AbstractProperty implements SelectablePropertyInterface
 {
+    use SelectablePropertyTrait;
+
     const DEFAULT_MIN_LENGTH = 0;
     const DEFAULT_MAX_LENGTH = 255;
     const DEFAULT_REGEXP = '';
@@ -31,16 +39,18 @@ class StringProperty extends AbstractProperty
     */
     private $max_length;
     /**
-    * @var string $_regexp
+    * Defines a validation regular expression for this string.
+    * @var string $regexp
     */
     private $regexp;
+
     /**
-    * @var boolean $_allow_empty
+    * @var boolean $allow_empty
     */
     private $allow_empty;
 
     /**
-    * @var StringFormat
+    * @var StringFormat $formatter
     */
     private $formatter;
 
@@ -53,6 +63,60 @@ class StringProperty extends AbstractProperty
     }
 
     /**
+    * @param mixed $val
+    * @see AbstractProperty::display_val()
+    */
+    public function display_val($val = null)
+    {
+        if ($val === null) {
+            $val = $this->val();
+        }
+
+        if ($val === null) {
+            return '';
+        }
+
+        $property_value = $val;
+
+        if ($this->l10n() === true) {
+            $translator = TranslationConfig::instance();
+
+            $property_value = $property_value[$translator->current_language()];
+        }
+
+        if ($this->multiple() === true) {
+            if (is_array($property_value)) {
+                $props = [];
+                foreach ($property_value as $pv) {
+                    ;
+                    $props[] = $this->val_label($pv);
+                }
+                $property_value = implode($this->multiple_separator(), $props);
+            }
+        } else {
+            $property_value = (string)$property_value;
+            $property_value = $this->val_label($property_value);
+        }
+        return $property_value;
+    }
+
+    /**
+    * Attempt to get the label from choices. Otherwise, return the raw value.
+    *
+    * @param string $val
+    * @return string
+    */
+    protected function val_label($val)
+    {
+        if ($this->has_choice($val)) {
+            $choice = $this->choice($val);
+            return $choice['label'];
+        } else {
+            return $val;
+        }
+    }
+
+    /**
     * @param integer $max_length
     * @throws InvalidArgumentException if the parameter is not an integer
     * @return StringProperty Chainable
@@ -60,10 +124,14 @@ class StringProperty extends AbstractProperty
     public function set_max_length($max_length)
     {
         if (!is_integer($max_length)) {
-            throw new InvalidArgumentException('Max length must be an integer.');
+            throw new InvalidArgumentException(
+                'Max length must be an integer.'
+            );
         }
         if ($max_length < 0) {
-            throw new InvalidArgumentException('Max length must be a positive integer (>=0)');
+            throw new InvalidArgumentException(
+                'Max length must be a positive integer (>=0).'
+            );
         }
         $this->max_length = $max_length;
         return $this;
@@ -96,10 +164,14 @@ class StringProperty extends AbstractProperty
     public function set_min_length($min_length)
     {
         if (!is_integer($min_length)) {
-            throw new InvalidArgumentException('Min length must be an integer.');
+            throw new InvalidArgumentException(
+                'Min length must be an integer.'
+            );
         }
         if ($min_length < 0) {
-            throw new InvalidArgumentException('Min length must be a positive integer (>=0)');
+            throw new InvalidArgumentException(
+                'Min length must be a positive integer (>=0).'
+            );
         }
         $this->min_length = $min_length;
         return $this;
@@ -124,7 +196,9 @@ class StringProperty extends AbstractProperty
     public function set_regexp($regexp)
     {
         if (!is_string($regexp)) {
-            throw new InvalidArgumentException('Regular expression must be a string.');
+            throw new InvalidArgumentException(
+                'Regular expression must be a string.'
+            );
         }
         $this->regexp = $regexp;
         return $this;
@@ -149,7 +223,9 @@ class StringProperty extends AbstractProperty
     public function set_allow_empty($allow_empty)
     {
         if (!is_bool($allow_empty)) {
-            throw new InvalidArgumentException('Allow empty must be a boolean');
+            throw new InvalidArgumentException(
+                'Allow empty must be a boolean'
+            );
         }
         $this->allow_empty = $allow_empty;
         return $this;
@@ -181,14 +257,16 @@ class StringProperty extends AbstractProperty
     /**
     * @todo Support l10n values
     * @todo Support multiple values
-    * @throws \Exception if val is not a string
+    * @throws Exception if val is not a string
     * @return integer
     */
     public function length()
     {
         $val = $this->val();
         if (!is_string($val)) {
-            throw new \Exception('Val is not a string');
+            throw new Exception(
+                'Can not get string length: val is not a string'
+            );
         }
         return mb_strlen($val);
     }
