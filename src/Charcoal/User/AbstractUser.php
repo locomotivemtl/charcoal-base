@@ -108,7 +108,9 @@ abstract class AbstractUser extends Content implements
     public function set_username($username)
     {
         if (!is_string($username)) {
-            throw new InvalidArgumentException('Username must be a string');
+            throw new InvalidArgumentException(
+                'Set user username: Username must be a string'
+            );
         }
         $this->username = mb_strtolower($username);
         return $this;
@@ -130,7 +132,9 @@ abstract class AbstractUser extends Content implements
     public function set_email($email)
     {
         if (!is_string($email)) {
-            throw new InvalidArgumentException('Email must be a string');
+            throw new InvalidArgumentException(
+                'Set user email: Email must be a string'
+            );
         }
         $this->email = $email;
         return $this;
@@ -156,7 +160,9 @@ abstract class AbstractUser extends Content implements
         } elseif (is_string($password)) {
             $this->password = $password;
         } else {
-            throw new InvalidArgumentException('Password must be a string');
+            throw new InvalidArgumentException(
+                'Set user password: Password must be a string'
+            );
         }
 
         return $this;
@@ -199,7 +205,9 @@ abstract class AbstractUser extends Content implements
             $group = $g;
         }
         if (!($group instanceof UserGroupInterface)) {
-            throw new InvalidArgumentException('Invalid user group.');
+            throw new InvalidArgumentException(
+                'Invalid user group.'
+            );
         }
         $this->groups[] = $group;
         return $this;
@@ -244,7 +252,9 @@ abstract class AbstractUser extends Content implements
             $p->set_data($permission);
             $permission = $p;
         } elseif (!($permission instanceof UserPermissionInterface)) {
-            throw new InvalidArgumentException('Invalid permissions');
+            throw new InvalidArgumentException(
+                'Invalid permissions'
+            );
         }
         $this->permissions[] = $permission;
         return $this;
@@ -580,7 +590,9 @@ abstract class AbstractUser extends Content implements
         if ($reinit) {
             $user_id = $user->id();
 
-            $user = new $user_class;
+            $user = new $user_class([
+                'logger'=>\Charcoal\Charcoal::logger()
+            ]);
             $user->load($user_id);
             // Save back to session
             $_SESSION[static::session_key()] = $user;
