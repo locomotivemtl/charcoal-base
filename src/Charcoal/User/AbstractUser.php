@@ -287,12 +287,16 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
-    * @param mixed $last_login_date
+    * @param string|DateTime|null $last_login_date
     * @throws InvalidArgumentException
     * @return AbstractUser Chainable
     */
     public function set_last_login_date($last_login_date)
     {
+        if ($last_login_date === null) {
+            $this->last_login_date = null;
+            return $this;
+        }
         if (is_string($last_login_date)) {
             try {
                 $last_login_date = new DateTime($last_login_date);
@@ -317,12 +321,16 @@ abstract class AbstractUser extends Content implements
         return $this->last_login_date;
     }
     /**
-    * @param string|int $ip
+    * @param string|int|null $ip
     * @throws InvalidArgumentException
     * @return UserInterface Chainable
     */
     public function set_last_login_ip($ip)
     {
+        if ($ip === null) {
+            $this->last_login_ip = null;
+            return $this;
+        }
         if (is_int($ip)) {
             $ip = long2ip($ip);
         }
@@ -342,12 +350,16 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
-    * @param string|DateTime $last_password_date
+    * @param string|DateTime|null $last_password_date
     * @throws InvalidArgumentException
     * @return UserInterface Chainable
     */
     public function set_last_password_date($last_password_date)
     {
+        if ($last_password_date === null) {
+            $this->last_password_date = null;
+            return $this;
+        }
         if (is_string($last_password_date)) {
             try {
                 $last_password_date = new DateTime($last_password_date);
@@ -373,12 +385,16 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
-    * @param string|int $ip
+    * @param string|int|null $ip
     * @throws InvalidArgumentException
     * @return UserInterface Chainable
     */
     public function set_last_password_ip($ip)
     {
+        if ($ip === null) {
+            $this->last_password_ip = null;
+            return $this;
+        }
         if (is_int($ip)) {
             $ip = long2ip($ip);
         }
