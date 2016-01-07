@@ -6,8 +6,8 @@ namespace Charcoal\User;
 use \Charcoal\User\UserPermissionInterface as UserPermissionInterface;
 
 /**
-*
-*/
+ *
+ */
 abstract class AbstractUserPermission implements UserPermissionInterface
 {
 

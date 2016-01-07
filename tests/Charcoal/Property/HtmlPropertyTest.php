@@ -5,8 +5,8 @@ namespace Charcoal\Tests\Property;
 use \Charcoal\Property\HtmlProperty as HtmlProperty;
 
 /**
-*
-*/
+ *
+ */
 class HtmlPropertyTest extends \PHPUnit_Framework_TestCase
 {
     public function testType()

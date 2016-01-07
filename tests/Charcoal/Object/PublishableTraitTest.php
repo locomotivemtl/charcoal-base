@@ -7,27 +7,27 @@ use \DateTime;
 use \Charcoal\Object\PublishableTrait as PublishableTrait;
 
 /**
-*
-*/
+ *
+ */
 class PublishableTraitTest extends \PHPUnit_Framework_TestCase
 {
     public $obj;
 
     /**
-    * Create mock object from trait.
-    */
+     * Create mock object from trait.
+     */
     public function setUp()
     {
         $this->obj = $this->getMockForTrait('\Charcoal\Object\PublishableTrait');
     }
 
     /**
-    * Assert that the `set_publish_date` method:
-    * - is chainable
-    * - sets the publish_date value when a string is passed
-    * - sets the publish_date value when a DateTime is passed
-    * - throws an InvalidArgumentException if other types of arguments are passed
-    */
+     * Assert that the `set_publish_date` method:
+     * - is chainable
+     * - sets the publish_date value when a string is passed
+     * - sets the publish_date value when a DateTime is passed
+     * - throws an InvalidArgumentException if other types of arguments are passed
+     */
     public function testSetPublishDate()
     {
         $obj = $this->obj;
@@ -45,9 +45,9 @@ class PublishableTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that the `set_expiry_date` method:
-    * - throws an InvalidArgumentException if a non-ts string value is passed
-    */
+     * Assert that the `set_expiry_date` method:
+     * - throws an InvalidArgumentException if a non-ts string value is passed
+     */
     public function testSetPublishDateBogusStringThrowsException()
     {
         $this->setExpectedException('\InvalidArgumentException');
@@ -56,12 +56,12 @@ class PublishableTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that the `set_expiry_date` method:
-    * - is chainable
-    * - sets the expiry_date value when a string is passed
-    * - sets the expiry_date value when a DateTime is passed
-    * - throws an InvalidArgumentException if other types of arguments are passed
-    */
+     * Assert that the `set_expiry_date` method:
+     * - is chainable
+     * - sets the expiry_date value when a string is passed
+     * - sets the expiry_date value when a DateTime is passed
+     * - throws an InvalidArgumentException if other types of arguments are passed
+     */
     public function testSetExpiryDate()
     {
         $obj = $this->obj;
@@ -79,9 +79,9 @@ class PublishableTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that the `set_expiry_date` method:
-    * - throws an InvalidArgumentException if a non-ts string value is passed
-    */
+     * Assert that the `set_expiry_date` method:
+     * - throws an InvalidArgumentException if a non-ts string value is passed
+     */
     public function testSetExpiryDateBogusStringThrowsException()
     {
         $this->setExpectedException('\InvalidArgumentException');
@@ -97,15 +97,16 @@ class PublishableTraitTest extends \PHPUnit_Framework_TestCase
         $obj->set_publish_status('pending');
         $this->assertEquals('pending', $obj->publish_status());
         $obj->set_publish_status('published');
-        $this->assertEquals('published', $obj->publish_status()); // No date set.
+        $this->assertEquals('published', $obj->publish_status());
+// No date set.
 
         $this->setExpectedException('\InvalidArgumentException');
         $obj->set_publish_status('foobar');
     }
 
     /**
-    * @dataProvider providerPublishStatus
-    */
+     * @dataProvider providerPublishStatus
+     */
     public function testPublishStatusFromDates($publish_date, $expiry_date, $expected_status)
     {
         $obj = $this->obj;

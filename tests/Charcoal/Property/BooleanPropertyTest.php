@@ -5,9 +5,9 @@ namespace Charcoal\Tests\Property;
 use \Charcoal\Property\BooleanProperty as BooleanProperty;
 
 /**
-* ## TODOs
-* - 2015-03-12:
-*/
+ * ## TODOs
+ * - 2015-03-12:
+ */
 class BooleanPropertyTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()
@@ -39,11 +39,11 @@ class BooleanPropertyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that the `set_multiple()` method:
-    * - set the multiple to false, if false or falsish value
-    * - throws exception otherwise (truthish or invalid value)
-    * - is chainable
-    */
+     * Assert that the `set_multiple()` method:
+     * - set the multiple to false, if false or falsish value
+     * - throws exception otherwise (truthish or invalid value)
+     * - is chainable
+     */
     public function testSetMultiple()
     {
         $obj = new BooleanProperty();

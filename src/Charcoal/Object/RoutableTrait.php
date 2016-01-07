@@ -13,24 +13,24 @@ use \Charcoal\Translation\TranslationString;
 trait RoutableTrait
 {
     /**
-    * @var boolean routable
-    */
+     * @var boolean routable
+     */
     private $routable = true;
 
     /**
-    * @var string
-    */
+     * @var string
+     */
     private $slug_pattern = '';
 
     /**
-    * @var string $slug
-    */
+     * @var string $slug
+     */
     private $slug;
 
     /**
-    * @param boolean $data
-    * @return RoutableInterface Chainable
-    */
+     * @param boolean $routable The routable flag.
+     * @return RoutableInterface Chainable
+     */
     public function set_routable($routable)
     {
         $this->routable = !!$routable;
@@ -38,17 +38,17 @@ trait RoutableTrait
     }
 
     /**
-    * @return boolean
-    */
+     * @return boolean
+     */
     public function routable()
     {
         return $this->routable;
     }
 
     /**
-    * @param mixed $url
-    * @return RoutableInterface Chainable
-    */
+     * @param mixed $pattern The slug pattern.
+     * @return RoutableInterface Chainable
+     */
     public function set_slug_pattern($pattern)
     {
         $this->slug_pattern = new TranslationString($pattern);
@@ -56,17 +56,17 @@ trait RoutableTrait
     }
 
     /**
-    * @return TranslationString
-    */
+     * @return TranslationString
+     */
     public function slug_pattern()
     {
         return $this->slug_pattern;
     }
 
     /**
-    * @param mixed $slug
-    * @return RoutableInterface Chainable
-    */
+     * @param mixed $slug The slug.
+     * @return RoutableInterface Chainable
+     */
     public function set_slug($slug)
     {
         $this->slug = $slug;
@@ -74,8 +74,8 @@ trait RoutableTrait
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function slug()
     {
         if ($this->slug === null) {
@@ -85,8 +85,10 @@ trait RoutableTrait
     }
 
     /**
-    * Generate a URL slug from the object's URL slug pattern.
-    */
+     * Generate a URL slug from the object's URL slug pattern.
+     *
+     * @return string
+     */
     public function generate_slug()
     {
         $pattern = $this->slug_pattern();
@@ -99,8 +101,8 @@ trait RoutableTrait
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function url()
     {
         return $this->slug();

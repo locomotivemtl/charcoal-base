@@ -11,55 +11,58 @@ use \Charcoal\Core\IndexableInterface;
 use \Charcoal\Core\IndexableTrait;
 
 use \Charcoal\Object\ContentInterface;
+use \Charcoal\Object\RevisionableInterface;
+use \Charcoal\Object\RevisionableTrait;
 
 /**
-*
-*/
+ *
+ */
 class Content extends AbstractModel implements
     ContentInterface,
-    IndexableInterface
+    IndexableInterface,
+    RevisionableInterface
 {
     use IndexableTrait;
+    use RevisionableTrait;
 
     /**
-    * Objects are active by default
-    * @var boolean $_active
-    */
+     * Objects are active by default
+     * @var boolean $_active
+     */
     private $active = true;
 
     /**
-    * The position is used for ordering lists
-    * @var integer $_position
-    */
+     * The position is used for ordering lists
+     * @var integer $_position
+     */
     private $position = 0;
 
     /**
-    * Object creation date (set automatically on save)
-    * @var DateTime $_created
-    */
+     * Object creation date (set automatically on save)
+     * @var DateTime $_created
+     */
     private $created;
-    
+
     /**
-    * @var mixed
-    */
+     * @var mixed
+     */
     private $created_by;
 
     /**
-    * Object last modified date (set automatically on save and update)
-    * @var DateTime $_last_modified
-    */
+     * Object last modified date (set automatically on save and update)
+     * @var DateTime $_last_modified
+     */
     private $last_modified;
 
     /**
-    * @var mixed
-    */
+     * @var mixed
+     */
     private $last_modified_by;
 
     /**
-    * @param boolean $active
-    * @throws InvalidArgumentException
-    * @return Content Chainable
-    */
+     * @param boolean $active The active flag.
+     * @return Content Chainable
+     */
     public function set_active($active)
     {
         $this->active = !!$active;
@@ -67,18 +70,18 @@ class Content extends AbstractModel implements
     }
 
     /**
-    * @return boolean
-    */
+     * @return boolean
+     */
     public function active()
     {
         return $this->active;
     }
 
     /**
-    * @param integer $position
-    * @throws InvalidArgumentException
-    * @return Content Chainable
-    */
+     * @param integer $position
+     * @throws InvalidArgumentException
+     * @return Content Chainable
+     */
     public function set_position($position)
     {
         if ($position === null) {
@@ -86,25 +89,27 @@ class Content extends AbstractModel implements
             return $this;
         }
         if (!is_numeric($position)) {
-            throw new InvalidArgumentException('Position must be an integer.');
+            throw new InvalidArgumentException(
+                'Position must be an integer.'
+            );
         }
         $this->position = (int)$position;
         return $this;
     }
 
     /**
-    * @return integer
-    */
+     * @return integer
+     */
     public function position()
     {
         return $this->position;
     }
 
     /**
-    * @param DateTime|string $created
-    * @throws InvalidArgumentException
-    * @return Content Chainable
-    */
+     * @param DateTime|string $created
+     * @throws InvalidArgumentException
+     * @return Content Chainable
+     */
     public function set_created($created)
     {
         if ($created === null) {
@@ -124,17 +129,17 @@ class Content extends AbstractModel implements
     }
 
     /**
-    * @return DateTime|null
-    */
+     * @return DateTime|null
+     */
     public function created()
     {
         return $this->created;
     }
 
     /**
-    * @param mixed $created_by
-    * @return Content Chainable
-    */
+     * @param mixed $created_by
+     * @return Content Chainable
+     */
     public function set_created_by($created_by)
     {
         $this->created_by = $created_by;
@@ -142,18 +147,18 @@ class Content extends AbstractModel implements
     }
 
     /**
-    * @return mixed
-    */
+     * @return mixed
+     */
     public function created_by()
     {
         return $this->created_by;
     }
 
     /**
-    * @param DateTime|string $last_modified
-    * @throws InvalidArgumentException
-    * @return Content Chainable
-    */
+     * @param DateTime|string $last_modified
+     * @throws InvalidArgumentException
+     * @return Content Chainable
+     */
     public function set_last_modified($last_modified)
     {
         if ($last_modified === null) {
@@ -173,17 +178,17 @@ class Content extends AbstractModel implements
     }
 
     /**
-    * @return DateTime
-    */
+     * @return DateTime
+     */
     public function last_modified()
     {
         return $this->last_modified;
     }
 
     /**
-    * @param mixed $last_modified_by
-    * @return Content Chainable
-    */
+     * @param mixed $last_modified_by
+     * @return Content Chainable
+     */
     public function set_last_modified_by($last_modified_by)
     {
         $this->last_modified_by = $last_modified_by;
@@ -191,35 +196,48 @@ class Content extends AbstractModel implements
     }
 
     /**
-    * @return mixed
-    */
+     * @return mixed
+     */
     public function last_modified_by()
     {
         return $this->last_modified_by;
     }
 
     /**
-    * StorableTrait > pre_save(): Called automatically before saving the object to source.
-    * For content object, set the `created` and `last_modified` properties automatically
-    * @return bool
-    */
+     * StorableTrait > pre_save(): Called automatically before saving the object to source.
+     * For content object, set the `created` and `last_modified` properties automatically
+     * @return boolean
+     */
     public function pre_save()
     {
         parent::pre_save();
+
         $this->set_created('now');
         $this->set_last_modified('now');
+
+        if ($this->revision_enabled()) {
+            $this->generate_revision();
+        }
+
         return true;
     }
 
     /**
-    * StorableTrait > pre_update(): Called automatically before updating the object to source.
-    * For content object, set the `last_modified` property automatically.
-    * @param array $properties
-    * @return void
-    */
+     * StorableTrait > pre_update(): Called automatically before updating the object to source.
+     * For content object, set the `last_modified` property automatically.
+     * @param array $properties
+     * @return boolean
+     */
     public function pre_update($properties = null)
     {
         parent::pre_update($properties);
+
         $this->set_last_modified('now');
+
+        if ($this->revision_enabled()) {
+            $this->generate_revision();
+        }
+
+        return true;
     }
 }

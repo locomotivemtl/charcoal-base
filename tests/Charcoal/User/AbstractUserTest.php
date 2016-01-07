@@ -25,10 +25,10 @@ class UserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that the `set_data` method:
-    * - is chainable
-    * - set the various properties
-    */
+     * Assert that the `set_data` method:
+     * - is chainable
+     * - set the various properties
+     */
     public function testSetData()
     {
         $obj = $this->obj;

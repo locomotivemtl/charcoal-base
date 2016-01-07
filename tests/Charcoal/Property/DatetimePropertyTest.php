@@ -7,15 +7,15 @@ use \DateTime;
 use \Charcoal\Property\DatetimeProperty;
 
 /**
-* ## TODOs
-* - 2015-03-12:
-*/
+ * ## TODOs
+ * - 2015-03-12:
+ */
 class DatetimePropertyTest extends \PHPUnit_Framework_TestCase
 {
     /**
-    * Assert that the `type` method:
-    * - returns "datetime"
-    */
+     * Assert that the `type` method:
+     * - returns "datetime"
+     */
     public function testType()
     {
         $obj = new DatetimeProperty();
@@ -23,10 +23,10 @@ class DatetimePropertyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that the `set_data` method:
-    * - is chainable
-    * - sets the data
-    */
+     * Assert that the `set_data` method:
+     * - is chainable
+     * - sets the data
+     */
     public function testSetData()
     {
         $obj = new DatetimeProperty();
@@ -45,11 +45,11 @@ class DatetimePropertyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that calling `set_val` with a null parameters:
-    * - Is chainable
-    * - Set the value to null if "allow_null" is true
-    * - Throw an exception if "allow_null" is false
-    */
+     * Assert that calling `set_val` with a null parameters:
+     * - Is chainable
+     * - Set the value to null if "allow_null" is true
+     * - Throw an exception if "allow_null" is false
+     */
     public function testSetValWithNullValue()
     {
         $obj = new DatetimeProperty();
@@ -65,11 +65,11 @@ class DatetimePropertyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that the `set_val` method:
-    * - Is chainable
-    * - Sets the value when the parameter is a string or a DateTime object
-    * - Throws an exception otherwise
-    */
+     * Assert that the `set_val` method:
+     * - Is chainable
+     * - Sets the value when the parameter is a string or a DateTime object
+     * - Throws an exception otherwise
+     */
     public function testSetVal()
     {
         $obj = new DatetimeProperty();
@@ -116,11 +116,11 @@ class DatetimePropertyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that the `set_multiple()` method:
-    * - set the multiple to false, if false or falsish value
-    * - throws exception otherwise (truthish or invalid value)
-    * - is chainable
-    */
+     * Assert that the `set_multiple()` method:
+     * - set the multiple to false, if false or falsish value
+     * - throws exception otherwise (truthish or invalid value)
+     * - is chainable
+     */
     public function testSetMultiple()
     {
         $obj = new DatetimeProperty();
@@ -139,12 +139,12 @@ class DatetimePropertyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that the `min` method:
-    * - is chainable
-    * - sets the min value from a string or DateTime object
-    * - throws exception when the argument is invalid
-    * -
-    */
+     * Assert that the `min` method:
+     * - is chainable
+     * - sets the min value from a string or DateTime object
+     * - throws exception when the argument is invalid
+     * -
+     */
     public function testSetMin()
     {
         $obj = new DatetimeProperty();
@@ -170,11 +170,11 @@ class DatetimePropertyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that the `max` method:
-    * - is chainable
-    * - sets the max value
-    * - throws exception when the argument is invalid
-    */
+     * Assert that the `max` method:
+     * - is chainable
+     * - sets the max value
+     * - throws exception when the argument is invalid
+     */
     public function testSetMax()
     {
         $obj = new DatetimeProperty();
@@ -192,13 +192,13 @@ class DatetimePropertyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that the `format()` method
-    * - is chainable
-    * and that the `set_format()`:
-    * - is chainable
-    * - sets the format
-    * - throws an exception if not a string or null
-    */
+     * Assert that the `format()` method
+     * - is chainable
+     * and that the `set_format()`:
+     * - is chainable
+     * - sets the format
+     * - throws an exception if not a string or null
+     */
     public function testSetFormat()
     {
         $obj = new DatetimeProperty();
@@ -223,11 +223,11 @@ class DatetimePropertyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that the `validate_min` method:
-    * - Returns true if no "min" is set
-    * - Returns true when the value is equal or bigger
-    * - Returns false when the value is smaller
-    */
+     * Assert that the `validate_min` method:
+     * - Returns true if no "min" is set
+     * - Returns true when the value is equal or bigger
+     * - Returns false when the value is smaller
+     */
     public function testValidateMin()
     {
         $obj = new DatetimeProperty();
@@ -250,11 +250,11 @@ class DatetimePropertyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Assert that the `validate_max` method:
-    * - Returns true if no "max" is set
-    * - Returns true when the value is equal or smaller
-    * - Returns false when the value is bigger
-    */
+     * Assert that the `validate_max` method:
+     * - Returns true if no "max" is set
+     * - Returns true when the value is equal or smaller
+     * - Returns false when the value is bigger
+     */
     public function testValidateMax()
     {
         $obj = new DatetimeProperty();

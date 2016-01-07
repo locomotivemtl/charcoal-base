@@ -10,20 +10,20 @@ use \InvalidArgumentException;
 trait CategorizableTrait
 {
     /**
-    * @var string $category_type
-    */
+     * @var string $category_type
+     */
     private $category_type;
 
     /**
-    * @var mixed $category
-    */
+     * @var mixed $category
+     */
     private $category;
 
     /**
-    * @param string $type
-    * @throws InvalidArgumentException
-    * @return CategorizableInterface Chainable
-    */
+     * @param string $type The category type.
+     * @throws InvalidArgumentException If the type argument is not a string.
+     * @return CategorizableInterface Chainable
+     */
     public function set_category_type($type)
     {
         if (!is_string($type)) {
@@ -35,17 +35,17 @@ trait CategorizableTrait
         return $this;
     }
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function category_type()
     {
         return $this->category_type;
     }
 
     /**
-    * @param mixed $category
-    * @return CategorizableTrait
-    */
+     * @param mixed $category The object's category.
+     * @return CategorizableInterface Chainable
+     */
     public function set_category($category)
     {
         $this->category = $category;
@@ -53,8 +53,8 @@ trait CategorizableTrait
     }
 
     /**
-    * @return CategoryInterface
-    */
+     * @return CategoryInterface
+     */
     public function category()
     {
         return $this->category;

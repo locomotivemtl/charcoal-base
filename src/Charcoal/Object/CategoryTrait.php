@@ -11,20 +11,20 @@ use InvalidArgumentException;
 trait CategoryTrait
 {
     /**
-    * @var string $item_type
-    */
+     * @var string $item_type
+     */
     private $category_item_type;
 
     /**
-    * @var Collection $category_items
-    */
+     * @var Collection $category_items
+     */
     private $category_items;
 
     /**
-    * @param string $type
-    * @throws InvalidArgumentException
-    * @return CategoryInterface Chainable
-    */
+     * @param string $type The category item type.
+     * @throws InvalidArgumentException If the type argument is not a string.
+     * @return CategoryInterface Chainable
+     */
     public function set_category_item_type($type)
     {
         if (!is_string($type)) {
@@ -36,9 +36,9 @@ trait CategoryTrait
     }
 
     /**
-    * @throws Exception If no item type was previously set.
-    * @return string
-    */
+     * @throws Exception If no item type was previously set.
+     * @return string
+     */
     public function category_item_type()
     {
         if ($this->category_item_type === null) {
@@ -50,8 +50,8 @@ trait CategoryTrait
     }
 
     /**
-    * @return integer
-    */
+     * @return integer
+     */
     public function num_category_items()
     {
         $items = $this->category_items();
@@ -59,8 +59,8 @@ trait CategoryTrait
     }
 
     /**
-    * @return boolean
-    */
+     * @return boolean
+     */
     public function has_category_items()
     {
         $num_items = $this->num_category_items();
@@ -68,8 +68,8 @@ trait CategoryTrait
     }
 
     /**
-    * @return Collection A list of `CategorizableInterface` objects
-    */
+     * @return Collection A list of `CategorizableInterface` objects
+     */
     public function category_items()
     {
         if ($this->category_items == null) {
@@ -79,7 +79,7 @@ trait CategoryTrait
     }
 
     /**
-    * @return Collection
-    */
+     * @return Collection
+     */
     abstract public function load_category_items();
 }

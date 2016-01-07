@@ -5,9 +5,9 @@ namespace Charcoal\Tests\Property;
 use \Charcoal\Property\FileProperty as FileProperty;
 
 /**
-* ## TODOs
-* - 2015-03-12:
-*/
+ * ## TODOs
+ * - 2015-03-12:
+ */
 class FilePropertyTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()
@@ -84,8 +84,8 @@ class FilePropertyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * @dataProvider filenameProvider
-    */
+     * @dataProvider filenameProvider
+     */
     public function testSanitizeFilename($filename, $sanitized)
     {
         $obj = new FileProperty();

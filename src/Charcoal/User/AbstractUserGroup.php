@@ -9,8 +9,8 @@ use \Charcoal\Object\Content as Content;
 use \Charcoal\User\UserGroupInterface as UserGroupInterface;
 
 /**
-*
-*/
+ *
+ */
 abstract class AbstractUserGroup extends Content implements UserGroupInterface
 {
 

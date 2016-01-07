@@ -5,13 +5,13 @@ namespace Charcoal\Tests\Property;
 use \Charcoal\Property\PhoneProperty;
 
 /**
-*
-*/
+ *
+ */
 class PhonePropertyTest extends \PHPUnit_Framework_TestCase
 {
     /**
-    * Hello world
-    */
+     * Hello world
+     */
     public function testDefaultValues()
     {
         $obj = new PhoneProperty();

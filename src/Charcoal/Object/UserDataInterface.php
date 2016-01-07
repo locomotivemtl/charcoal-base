@@ -3,41 +3,41 @@
 namespace Charcoal\Object;
 
 /**
-*
-*/
+ *
+ */
 interface UserDataInterface
 {
 
     /**
-    * @param string|int $ip
-    * @return UserDataInterface Chainable
-    */
+     * @param integer $ip The IP at object creation.
+     * @return UserDataInterface Chainable
+     */
     public function set_ip($ip);
 
     /**
-    * @return int
-    */
+     * @return integer
+     */
     public function ip();
 
     /**
-    * @param string|DateTime $ts
-    * @return UserDataInterface Chainable
-    */
+     * @param string|DateTime $ts The time of the object creation.
+     * @return UserDataInterface Chainable
+     */
     public function set_ts($ts);
 
     /**
-    * @return DateTime
-    */
+     * @return DateTime
+     */
     public function ts();
 
     /**
-    * @param string $lang
-    * @return UserDataInterface Chainable
-    */
+     * @param string $lang The language code upon creation.
+     * @return UserDataInterface Chainable
+     */
     public function set_lang($lang);
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function lang();
 }

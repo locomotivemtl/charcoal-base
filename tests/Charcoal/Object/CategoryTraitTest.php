@@ -3,15 +3,15 @@
 namespace Charcoal\Tests\Object;
 
 /**
-*
-*/
+ *
+ */
 class CategoryTraitTest extends \PHPUnit_Framework_TestCase
 {
     public $obj;
 
     /**
-    * Create mock object from trait.
-    */
+     * Create mock object from trait.
+     */
     public function setUp()
     {
         $this->obj = $this->getMockForTrait('\Charcoal\Object\CategoryTrait');

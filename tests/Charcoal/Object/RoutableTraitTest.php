@@ -9,27 +9,27 @@ use \Charcoal\Translation\TranslationString;
 ;
 
 /**
-*
-*/
+ *
+ */
 class RoutableTraitTest extends \PHPUnit_Framework_TestCase
 {
     public $obj;
 
     /**
-    * Create mock object from trait.
-    */
+     * Create mock object from trait.
+     */
     public function setUp()
     {
         $this->obj = $this->getMockForTrait('\Charcoal\Object\RoutableTrait');
     }
 
     /**
-    * Assert that the `set_routable` method:
-    * - is chainable
-    * - sets the routable value (and cast to bool)
-    * And that the `routable()` method:
-    * - defaults to true
-    */
+     * Assert that the `set_routable` method:
+     * - is chainable
+     * - sets the routable value (and cast to bool)
+     * And that the `routable()` method:
+     * - defaults to true
+     */
     public function testSetRoutable()
     {
         $obj = $this->obj;

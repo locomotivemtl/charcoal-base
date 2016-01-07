@@ -5,9 +5,9 @@ namespace Charcoal\Tests\Property;
 use \Charcoal\Property\StringProperty as StringProperty;
 
 /**
-* ## TODOs
-* - 2015-03-12:
-*/
+ * ## TODOs
+ * - 2015-03-12:
+ */
 class StringPropertyTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
@@ -16,8 +16,8 @@ class StringPropertyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * Hello world
-    */
+     * Hello world
+     */
     public function testConstructor()
     {
         $obj = new StringProperty();

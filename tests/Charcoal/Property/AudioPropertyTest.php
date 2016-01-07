@@ -5,14 +5,14 @@ namespace Charcoal\Tests\Property;
 use \Charcoal\Property\AudioProperty;
 
 /**
-* ## TODOs
-* - 2015-03-12:
-*/
+ * ## TODOs
+ * - 2015-03-12:
+ */
 class AudioPropertyTest extends \PHPUnit_Framework_TestCase
 {
     /**
-    * Hello world
-    */
+     * Hello world
+     */
     public function testConstructor()
     {
         $obj = new AudioProperty();
@@ -69,8 +69,8 @@ class AudioPropertyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * @dataProvider mimeExtensionProvider
-    */
+     * @dataProvider mimeExtensionProvider
+     */
     public function testGenerateExtension($mime, $ext)
     {
         $obj = new AudioProperty();

@@ -2,9 +2,9 @@
 
 namespace Charcoal\Object;
 
-use \DateTime as DateTime;
-use \DateTimeInterface as DateTimeInterface;
-use \InvalidArgumentException as InvalidArgumentException;
+use \DateTime;
+use \DateTimeInterface;
+use \InvalidArgumentException;
 
 // From `charcoal-core`
 use \Charcoal\Model\AbstractModel;
@@ -15,52 +15,33 @@ use \Charcoal\Core\IndexableTrait;
 use \Charcoal\Object\UserDataInterface;
 
 /**
-*
-*/
+ *
+ */
 class UserData extends AbstractModel implements
     UserDataInterface,
     IndexableInterface
 {
     use IndexableTrait;
-    
-    /**
-    * @var int $_ip
-    */
-    private $_ip;
-    /**
-    * @var string $_lang
-    */
-    private $_lang;
-    /**
-    * @var DateTime $_ts
-    */
-    private $_ts;
 
     /**
-    * @param array $data
-    * @return UserData Chainable
-    */
-    public function set_data(array $data)
-    {
-        //parent::set_data($data);
-        if (isset($data['ip']) && $data['ip'] !== null) {
-            $this->set_ip($data['ip']);
-        }
-        if (isset($data['lang']) && $data['lang'] !== null) {
-            $this->set_lang($data['lang']);
-        }
-        if (isset($data['ts']) && $data['ts'] !== null) {
-            $this->set_ts($data['ts']);
-        }
+     * @var int $ip
+     */
+    private $ip;
+    /**
+     * @var string $lang
+     */
+    private $lang;
+    /**
+     * @var DateTime $ts
+     */
+    private $ts;
 
-        return $this;
-    }
 
     /**
-    * @param string|int $ip
-    * @throws InvalidArgumentException
-    * @return UserDataInterface Chainable
-    */
+     * @param integer $ip The remote IP at object creation.
+     * @throws InvalidArgumentException If the IP argument is not a string or integer.
+     * @return UserDataInterface Chainable
+     */
     public function set_ip($ip)
     {
         if (is_string($ip)) {
@@ -68,78 +49,89 @@ class UserData extends AbstractModel implements
         } elseif (is_int($ip)) {
             $ip = $ip;
         } else {
-            throw new InvalidArgumentException('Ip must be a string or long integer');
+            throw new InvalidArgumentException(
+                'IP must be a string or long integer'
+            );
         }
-        $this->_ip = $ip;
+        $this->ip = $ip;
         return $this;
     }
 
     /**
-    * @return int
-    */
+     * @return integer
+     */
     public function ip()
     {
-        return $this->_ip;
+        return $this->ip;
     }
 
     /**
-    * @param string $lang
-    * @throws InvalidArgumentException
-    * @return UserDataInterface Chainable
-    */
+     * @param string $lang The language code (2-char).
+     * @throws InvalidArgumentException If the argument is not a string.
+     * @return UserDataInterface Chainable
+     */
     public function set_lang($lang)
     {
         if (!is_string($lang)) {
-            throw new InvalidArgumentException('Lang must be a string');
+            throw new InvalidArgumentException(
+                'Language must be a string'
+            );
         }
-        $this->_lang = $lang;
+        $this->lang = $lang;
         return $this;
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function lang()
     {
-        return $this->_lang;
+        return $this->lang;
     }
 
     /**
-    * @param string|DateTime $ts
-    * @throws InvalidArgumentException
-    * @return UserDataInterface Chainable
-    */
+     * @param string|DateTime|null $ts Timestamp.
+     * @throws InvalidArgumentException If the timestamp is not a valid datetime.
+     * @return UserDataInterface Chainable
+     */
     public function set_ts($ts)
     {
+        if ($ts === null) {
+            $this->ts = null;
+            return $this;
+        }
         if (is_string($ts)) {
-            $ts = new DateTime($ts);
+            try {
+                $ts = new DateTime($ts);
+            } catch (Exception $e) {
+                throw new InvalidArgumentException(
+                    sprintf('Invalid timestamp (%s)', $e->getMessage())
+                );
+            }
         }
         if (!($ts instanceof DateTimeInterface)) {
             throw new InvalidArgumentException(
                 'Invalid "Timestamp" value. Must be a date/time string or a DateTime object.'
             );
         }
-        $this->_ts = $ts;
+        $this->ts = $ts;
         return $this;
     }
 
     /**
-    * @return DateTime|null
-    */
+     * @return DateTime|null
+     */
     public function ts()
     {
-        return $this->_ts;
+        return $this->ts;
     }
 
     /**
-    * @return void
-    */
+     * @return void
+     */
     public function pre_save()
     {
-        //parent::pre_save();
-
-        $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
-        //$lang = Charcoal::lang();
+        $ip = isset($SERVER['REMOTE_ADDR']) ? $SERVER['REMOTE_ADDR'] : '';
         $lang = '';
         $ts = 'now';
 
