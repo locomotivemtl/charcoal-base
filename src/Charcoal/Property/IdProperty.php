@@ -3,17 +3,17 @@
 namespace Charcoal\Property;
 
 // Dependencies from `PHP`
-use \InvalidArgumentException as InvalidArgumentException;
+use \InvalidArgumentException;
 
 // Dependencies from `PHP` extensions
-use \PDO as PDO;
+use \PDO;
 
 // Module `charcoal-core` dependencies
-use \Charcoal\Property\AbstractProperty as AbstractProperty;
+use \Charcoal\Property\AbstractProperty;
 
 /**
-* ID Property
-*/
+ * ID Property
+ */
 class IdProperty extends AbstractProperty
 {
     const MODE_AUTO_INCREMENT = 'auto-increment';
@@ -23,32 +23,32 @@ class IdProperty extends AbstractProperty
     const DEFAULT_MODE = 'auto-increment';
 
     /**
-    * ID mode. Can be:
-    * - `auto-increment` (default)
-    * - `uniq`
-    * - `uuid`
-    *
-    * @var string $_mode
-    */
+     * ID mode. Can be:
+     * - `auto-increment` (default)
+     * - `uniq`
+     * - `uuid`
+     *
+     * @var string $_mode
+     */
     private $mode;
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function type()
     {
         return 'id';
     }
 
     /**
-    * AbstractProperty > set_multiple()
-    *
-    * Ensure multiple can not be true for ID property.
-    *
-    * @param boolean $multiple
-    * @throws InvalidArgumentException If the multiple argument is true (must be false)
-    * @return IdProperty Chainable
-    */
+     * AbstractProperty > set_multiple()
+     *
+     * Ensure multiple can not be true for ID property.
+     *
+     * @param boolean $multiple The multiple flag.
+     * @throws InvalidArgumentException If the multiple argument is true (must be false).
+     * @return IdProperty Chainable
+     */
     public function set_multiple($multiple)
     {
         $multiple = !!$multiple;
@@ -61,22 +61,22 @@ class IdProperty extends AbstractProperty
     }
 
     /**
-    * AbstractProperty > multiple()
-    *
-    * Multiple is always false for ID property.
-    *
-    * @return boolean
-    */
+     * AbstractProperty > multiple()
+     *
+     * Multiple is always false for ID property.
+     *
+     * @return boolean
+     */
     public function multiple()
     {
         return false;
     }
 
     /**
-    * @param string $mode
-    * @throws InvalidArgumentException
-    * @return IdProperty Chainable
-    */
+     * @param string $mode The ID mode (auto-increment, uniqid or uuid).
+     * @throws InvalidArgumentException If the mode is not one of the 3 valid modes.
+     * @return IdProperty Chainable
+     */
     public function set_mode($mode)
     {
         $available_modes = [
@@ -86,7 +86,7 @@ class IdProperty extends AbstractProperty
         ];
         if (!in_array($mode, $available_modes)) {
             throw new InvalidArgumentException(
-                'Mode is not a valid mode'
+                'Mode is not a valid mode.'
             );
         }
         $this->mode = $mode;
@@ -94,8 +94,8 @@ class IdProperty extends AbstractProperty
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function mode()
     {
         if ($this->mode === null) {
@@ -105,13 +105,13 @@ class IdProperty extends AbstractProperty
     }
 
     /**
-    * Prepare the value for save
-    *
-    * If no ID is set upon first save, then auto-generate it if necessary
-    *
-    * @see Charcoal_Object::save()
-    * @return mixed
-    */
+     * Prepare the value for save
+     *
+     * If no ID is set upon first save, then auto-generate it if necessary
+     *
+     * @see Charcoal_Object::save()
+     * @return mixed
+     */
     public function save()
     {
         $val = $this->val();
@@ -119,15 +119,15 @@ class IdProperty extends AbstractProperty
             $val = $this->auto_generate();
             $this->set_val($val);
         }
-        
+
         return $val;
     }
 
     /**
-    * Auto-generate a value upon first save
-    *
-    * @return string
-    */
+     * Auto-generate a value upon first save
+     *
+     * @return string
+     */
     public function auto_generate()
     {
         $mode = $this->mode();
@@ -143,30 +143,28 @@ class IdProperty extends AbstractProperty
     }
 
     /**
-    * Generate a RFC-4122 v4 Universally-Unique Identifier
-    *
-    * @return string
-    *
-    * @see http://tools.ietf.org/html/rfc4122#section-4.4
-    */
+     * Generate a RFC-4122 v4 Universally-Unique Identifier
+     *
+     * @return string
+     *
+     * @see http://tools.ietf.org/html/rfc4122#section-4.4
+     */
     private function generate_uuid()
     {
         // Generate a uniq string identifer (valid v4 uuid)
         return sprintf(
             '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-            // 32 bits for "time_low"
+            // 32 bits for "time_low" flag
             mt_rand(0, 0xffff),
             mt_rand(0, 0xffff),
-            // 16 bits for "time_mid"
+            // 16 bits for "time_mid" flag
             mt_rand(0, 0xffff),
-            // 16 bits for "time_hi_and_version",
-            // four most significant bits holds version number 4
+            // 16 bits for "time_hi_and_version" flat (4 most significant bits holds version number)
             (mt_rand(0, 0x0fff) | 0x4000),
-            // 16 bits, 8 bits for "clk_seq_hi_res",
-            // 8 bits for "clk_seq_low",
+            // 16 bits, 8 bits for "clk_seq_hi_res" flag and 8 bits for "clk_seq_low" flag
             // two most significant bits holds zero and one for variant DCE1.1
             (mt_rand(0, 0x3fff) | 0x8000),
-            // 48 bits for "node"
+            // 48 bits for "node" flag
             mt_rand(0, 0xffff),
             mt_rand(0, 0xffff),
             mt_rand(0, 0xffff)
@@ -174,9 +172,9 @@ class IdProperty extends AbstractProperty
     }
 
     /**
-    * @return string
-    * @see AbstractProperty::fields()
-    */
+     * @return string
+     * @see AbstractProperty::fields()
+     */
     public function sql_extra()
     {
         $mode = $this->mode();
@@ -188,11 +186,11 @@ class IdProperty extends AbstractProperty
     }
 
     /**
-    * Get the SQL type (Storage format)
-    *
-    * @return string The SQL type
-    * @see AbstractProperty::fields()
-    */
+     * Get the SQL type (Storage format)
+     *
+     * @return string The SQL type
+     * @see AbstractProperty::fields()
+     */
     public function sql_type()
     {
         $mode = $this->mode();
@@ -206,9 +204,9 @@ class IdProperty extends AbstractProperty
     }
 
     /**
-    * @return integer
-    * @see AbstractProperty::fields()
-    */
+     * @return integer
+     * @see AbstractProperty::fields()
+     */
     public function sql_pdo_type()
     {
         $mode = $this->mode();

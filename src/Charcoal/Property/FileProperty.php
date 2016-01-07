@@ -15,83 +15,86 @@ use \Charcoal\Charcoal;
 use \Charcoal\Property\AbstractProperty;
 
 /**
-* File Property
-*/
+ * File Property
+ */
 class FileProperty extends AbstractProperty
 {
 
     /**
-    * The upload path is a {{patern}}.
-    * @var string $_upload_path
-    */
+     * The upload path is a {{patern}}.
+     * @var string $_upload_path
+     */
     private $upload_path = 'uploads/';
 
     /**
-    * @var boolean $_overwrite
-    */
+     * @var boolean $_overwrite
+     */
     private $overwrite = false;
 
     /**
-    * @var array $_accepted_mimetypes
-    */
+     * @var string[] $_accepted_mimetypes
+     */
     private $accepted_mimetypes = [];
 
     /**
-    * Maximum allowed file size, in bytes.
-    * If null or 0, then no limit.
-    * Default to 128M
-    * @var integer $_max_filesize
-    */
+     * Maximum allowed file size, in bytes.
+     * If null or 0, then no limit.
+     * Default to 128M
+     * @var integer $_max_filesize
+     */
     private $max_filesize = 134220000;
 
     /**
-    * Current file mimetype
-    *
-    * @var string $_mimetype
-    */
+     * Current file mimetype
+     *
+     * @var string $_mimetype
+     */
     private $mimetype;
 
     /**
-    * Current file size, in bytes.
-    *
-    * @var integer $_filesize
-    */
+     * Current file size, in bytes.
+     *
+     * @var integer $_filesize
+     */
     private $filesize;
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function type()
     {
         return 'file';
     }
 
     /**
-    * @param string $upload_path
-    * @throws InvalidArgumentException
-    * @return FileProperty Chainable
-    */
+     * @param string $upload_path The upload path, relative to project's root.
+     * @throws InvalidArgumentException If the upload path is not a string.
+     * @return FileProperty Chainable
+     */
     public function set_upload_path($upload_path)
     {
         if (!is_string($upload_path)) {
-            throw new InvalidArgumentException('Upload path must be a string');
+            throw new InvalidArgumentException(
+                'Upload path must be a string'
+            );
         }
-        $this->upload_path = $upload_path;
+        // Sanitize upload path (force trailing slash)
+        $this->upload_path = rtrim($upload_path, '/').'/';
         return $this;
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function upload_path()
     {
-        return rtrim($this->upload_path, '/').'/';
+        return $this->upload_path;
     }
 
     /**
-    * @param boolean $overwrite
-    * @return FileProperty Chainable
-    */
+     * @param boolean $overwrite The overwrite flag.
+     * @return FileProperty Chainable
+     */
     public function set_overwrite($overwrite)
     {
         $this->overwrite = !!$overwrite;
@@ -99,74 +102,74 @@ class FileProperty extends AbstractProperty
     }
 
     /**
-    * @return boolean
-    */
+     * @return boolean
+     */
     public function overwrite()
     {
         return !!$this->overwrite;
     }
 
     /**
-    * @param array $mimetypes
-    * @throws InvalidArgumentException
-    * @return FileProperty Chainable
-    */
-    public function set_accepted_mimetypes($mimetypes)
+     * @param string[] $mimetypes The accepted mimetypes.
+     * @return FileProperty Chainable
+     */
+    public function set_accepted_mimetypes(array $mimetypes)
     {
-        if (!is_array($mimetypes)) {
-            throw new InvalidArgumentException('Accepted mimetypes must be an array');
-        }
         $this->accepted_mimetypes = $mimetypes;
         return $this;
     }
 
     /**
-    * @return array
-    */
+     * @return array
+     */
     public function accepted_mimetypes()
     {
         return $this->accepted_mimetypes;
     }
 
     /**
-    * @param integer $size
-    * @throws InvalidArgumentException
-    * @return FileProperty Chainable
-    */
+     * @param integer $size The maximum file size allowed, in bytes.
+     * @throws InvalidArgumentException If the size argument is not an integer.
+     * @return FileProperty Chainable
+     */
     public function set_max_filesize($size)
     {
         if (!is_int($size)) {
-            throw new InvalidArgumentException('Max filesize must be an integer, in bytes.');
+            throw new InvalidArgumentException(
+                'Max filesize must be an integer, in bytes.'
+            );
         }
         $this->max_filesize = $size;
         return $this;
     }
 
     /**
-    * @return integer
-    */
+     * @return integer
+     */
     public function max_filesize()
     {
         return $this->max_filesize;
     }
 
     /**
-    * @param string $mimetype
-    * @throws InvalidArgumentException
-    * @return FileProperty Chainable
-    */
+     * @param string $mimetype The file mimetype.
+     * @throws InvalidArgumentException If the mimetype argument is not a string.
+     * @return FileProperty Chainable
+     */
     public function set_mimetype($mimetype)
     {
         if (!is_string($mimetype)) {
-            throw new InvalidArgumentException('Mimetype must be a string');
+            throw new InvalidArgumentException(
+                'Mimetype must be a string'
+            );
         }
         $this->mimetype = $mimetype;
         return $this;
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function mimetype()
     {
         if (!$this->mimetype) {
@@ -182,38 +185,40 @@ class FileProperty extends AbstractProperty
     }
 
     /**
-    * @param integer $size
-    * @throws InvalidArgumentException
-    * @return FileProperty Chainable
-    */
+     * @param integer $size The file size, in bytes.
+     * @throws InvalidArgumentException If the size argument is not an integer.
+     * @return FileProperty Chainable
+     */
     public function set_filesize($size)
     {
         if (!is_int($size)) {
-            throw new InvalidArgumentException('Filesize must be an integer, in bytes');
+            throw new InvalidArgumentException(
+                'Filesize must be an integer, in bytes.'
+            );
         }
         $this->filesize = $size;
         return $this;
     }
 
     /**
-    * @return integer
-    */
+     * @return integer
+     */
     public function filesize()
     {
         if (!$this->filesize) {
             $val = $this->val();
-            if (!$val) {
+            if (!$val || !file_exists($val) || !is_readable($val)) {
                 return 0;
+            } else {
+                $this->filesize = filesize($val);
             }
-            return 0;
-            //            $this->filesize = filesize($val);
         }
         return $this->filesize;
     }
 
     /**
-    * @return array
-    */
+     * @return array
+     */
     public function validation_methods()
     {
         $parent_methods = parent::validation_methods();
@@ -221,8 +226,8 @@ class FileProperty extends AbstractProperty
     }
 
     /**
-    * @return boolean
-    */
+     * @return boolean
+     */
     public function validate_accepted_mimetypes()
     {
         $accepted_mimetypes = $this->accepted_mimetypes();
@@ -241,7 +246,6 @@ class FileProperty extends AbstractProperty
             $info = new finfo(FILEINFO_MIME_TYPE);
             $mimetype = $info->file($val);
         }
-        //var_dump($mimetype);
         $valid = false;
         foreach ($accepted_mimetypes as $m) {
             if ($m == $mimetype) {
@@ -257,8 +261,8 @@ class FileProperty extends AbstractProperty
     }
 
     /**
-    * @return boolean
-    */
+     * @return boolean
+     */
     public function validate_max_filesize()
     {
         $max_filesize = $this->max_filesize();
@@ -277,20 +281,20 @@ class FileProperty extends AbstractProperty
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function sql_extra()
     {
         return '';
     }
 
     /**
-    * Get the SQL type (Storage format)
-    *
-    * Stored as `VARCHAR` for max_length under 255 and `TEXT` for other, longer strings
-    *
-    * @return string The SQL type
-    */
+     * Get the SQL type (Storage format)
+     *
+     * Stored as `VARCHAR` for max_length under 255 and `TEXT` for other, longer strings
+     *
+     * @return string The SQL type
+     */
     public function sql_type()
     {
         // Multiple strings are always stored as TEXT because they can hold multiple values
@@ -302,21 +306,20 @@ class FileProperty extends AbstractProperty
     }
 
     /**
-    * @return integer
-    */
+     * @return integer
+     */
     public function sql_pdo_type()
     {
         return PDO::PARAM_STR;
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function save()
     {
         $i = $this->ident();
 
-        //Charcoal::logger()->debug($this->val());
         if (isset($_FILES[$i])
             && (isset($_FILES[$i]['name']) && $_FILES[$i]['name'])
             && (isset($_FILES[$i]['tmp_name']) && $_FILES[$i]['tmp_name'])) {
@@ -332,15 +335,19 @@ class FileProperty extends AbstractProperty
     }
 
     /**
-    * @param string $file_data
-    * @throws Exception
-    * @return string
-    */
+     * Upload to filesystem, from data: content.
+     *
+     * @param string $file_data The file data, raw.
+     * @throws Exception If data content decoding fails.
+     * @return string
+     */
     public function data_upload($file_data)
     {
         $file_content = file_get_contents($file_data);
         if ($file_content === false) {
-            throw new Exception('File content could not be decoded.');
+            throw new Exception(
+                'File content could not be decoded.'
+            );
         }
 
         $info = new finfo(FILEINFO_MIME_TYPE);
@@ -366,10 +373,10 @@ class FileProperty extends AbstractProperty
     }
 
     /**
-    * @param array $file_data
-    * @throws InvalidArgumentException
-    * @return string
-    */
+     * @param array $file_data The file data (from $_FILES, typically).
+     * @throws InvalidArgumentException If the FILES data argument is missing `name` or `tmp_name`.
+     * @return string
+     */
     public function file_upload(array $file_data)
     {
         if (!isset($file_data['name'])) {
@@ -407,10 +414,10 @@ class FileProperty extends AbstractProperty
     }
 
     /**
-    * @param string $filename
-    * @throws Exception
-    * @return string
-    */
+     * @param string $filename Optional. The filename to save. If unset, a default filename will be generated.
+     * @throws Exception If the target path is not writeable.
+     * @return string
+     */
     public function upload_target($filename = null)
     {
         if (class_exists('\Charcoal\App\App')) {
@@ -431,7 +438,9 @@ class FileProperty extends AbstractProperty
             mkdir($dir, 0777, true);
         }
         if (!is_writable($dir)) {
-            throw new Exception('Error: upload directory is not writeable');
+            throw new Exception(
+                'Error: upload directory is not writeable'
+            );
         }
 
         $target = $dir.$filename;
@@ -442,7 +451,6 @@ class FileProperty extends AbstractProperty
             } else {
                 // Can not overwrite. Must rename file. (@todo)
                 $info = pathinfo($filename);
-                //var_dump($info);
 
                 $filename = $info['filename'].'-'.uniqid();
                 if (isset($info['extension']) && $info['extension']) {
@@ -456,15 +464,15 @@ class FileProperty extends AbstractProperty
     }
 
     /**
-    * This function checks if a file exist, by default in a case-insensitive manner.
-    *
-    * PHP builtin's `file_exists` is only case-insensitive on case-insensitive filesystem (such as windows)
-    * This method allows to have the same validation across different platforms / filesystem.
-    *
-    * @param string  $file
-    * @param boolean $case_insensitive
-    * @return boolean
-    */
+     * This function checks if a file exist, by default in a case-insensitive manner.
+     *
+     * PHP builtin's `file_exists` is only case-insensitive on case-insensitive filesystem (such as windows)
+     * This method allows to have the same validation across different platforms / filesystem.
+     *
+     * @param string  $file             The full file to check.
+     * @param boolean $case_insensitive Optional. Case insensitive flag.
+     * @return boolean
+     */
     public function file_exists($file, $case_insensitive = true)
     {
         if (file_exists($file)) {
@@ -485,19 +493,26 @@ class FileProperty extends AbstractProperty
     }
 
     /**
-    * @param string $filename
-    * @return string
-    */
+     * Sanitize a filename by removing characters from a blacklist and escaping dot.
+     *
+     * @param string $filename The filename to sanitize.
+     * @return string The sanitized filename.
+     */
     public function sanitize_filename($filename)
     {
-        $filename = str_replace(['/', '\\', '\0', '*', ':', '?', '"', '<', '>', '|'], '_', $filename);
+        // Remove blacklisted caharacters
+        $blacklist = ['/', '\\', '\0', '*', ':', '?', '"', '<', '>', '|', '#', '&', '!', '`'];
+        $filename = str_replace($blacklist, '_', $filename);
+
+        // Avoid hidden file
         $filename = ltrim($filename, '.');
+
         return $filename;
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function generate_filename()
     {
         $filename = $this->label().' '.date('Y-m-d H-i-s');
@@ -511,8 +526,8 @@ class FileProperty extends AbstractProperty
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function generate_extension()
     {
         $mimetype = $this->mimetype();

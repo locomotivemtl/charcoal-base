@@ -9,30 +9,32 @@ use \Charcoal\Image\ImageFactory;
 use \Charcoal\Property\AbstractProperty as AbstractProperty;
 
 /**
-* Image Property.
-*
-* The image property is a specialized file property that stores image file.
-*/
+ * Image Property.
+ *
+ * The image property is a specialized file property that stores image file.
+ */
 class ImageProperty extends FileProperty
 {
 
     /**
-    * @var array $effects
-    */
+     * @var array $effects
+     */
     private $effects = [];
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function type()
     {
         return 'image';
     }
 
     /**
-    * @param array $effects
-    * @return ImageProperty Chainable
-    */
+     * Set (reset, in fact) the image effects.
+     *
+     * @param array $effects The effects to set to the image.
+     * @return ImageProperty Chainable
+     */
     public function set_effects(array $effects)
     {
         $this->effects = [];
@@ -43,9 +45,9 @@ class ImageProperty extends FileProperty
     }
 
     /**
-    * @param array $effect
-    * @return ImageProperty Chainable
-    */
+     * @param mixed $effect An image effect.
+     * @return ImageProperty Chainable
+     */
     public function add_effect($effect)
     {
         $this->effects[] = $effect;
@@ -53,16 +55,16 @@ class ImageProperty extends FileProperty
     }
 
     /**
-    * @return array
-    */
+     * @return array
+     */
     public function effects()
     {
         return $this->effects;
     }
 
     /**
-    * @return array
-    */
+     * @return array
+     */
     public function accepted_mimetypes()
     {
         return [
@@ -76,8 +78,8 @@ class ImageProperty extends FileProperty
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function generate_extension()
     {
         $mimetype = $this->mimetype();
@@ -106,12 +108,12 @@ class ImageProperty extends FileProperty
     }
 
     /**
-    * Add effects to file upload
-    *
-    * @param array $file_data
-    * @throws InvalidArgumentException
-    * @return string
-    */
+     * Add effects to file upload
+     *
+     * @param array $file_data The file data to upload.
+     * @return string
+     * @see FileProperty::file_upload()
+     */
     public function file_upload(array $file_data)
     {
         $target = parent::file_upload($file_data);

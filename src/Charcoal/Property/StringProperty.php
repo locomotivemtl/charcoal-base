@@ -19,8 +19,8 @@ use \Charcoal\Property\SelectablePropertyInterface;
 use \Charcoal\Property\SelectablePropertyTrait;
 
 /**
-* String Property
-*/
+ * String Property
+ */
 class StringProperty extends AbstractProperty implements SelectablePropertyInterface
 {
     use SelectablePropertyTrait;
@@ -31,41 +31,42 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     const DEFAULT_ALLOW_EMPTY = true;
 
     /**
-    * @var int $_min_length
-    */
+     * @var int $_min_length
+     */
     private $min_length;
     /**
-    * @var int $_max_length
-    */
+     * @var int $_max_length
+     */
     private $max_length;
     /**
-    * Defines a validation regular expression for this string.
-    * @var string $regexp
-    */
+     * Defines a validation regular expression for this string.
+     * @var string $regexp
+     */
     private $regexp;
 
     /**
-    * @var boolean $allow_empty
-    */
+     * @var boolean $allow_empty
+     */
     private $allow_empty;
 
     /**
-    * @var StringFormat $formatter
-    */
+     * @var StringFormat $formatter
+     */
     private $formatter;
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function type()
     {
         return 'string';
     }
 
     /**
-    * @param mixed $val
-    * @see AbstractProperty::display_val()
-    */
+     * @param mixed $val Optional. The value to display. If null/unset, use `val()`.
+     * @return string
+     * @see AbstractProperty::display_val()
+     */
     public function display_val($val = null)
     {
         if ($val === null) {
@@ -101,11 +102,11 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * Attempt to get the label from choices. Otherwise, return the raw value.
-    *
-    * @param string $val
-    * @return string
-    */
+     * Attempt to get the label from choices. Otherwise, return the raw value.
+     *
+     * @param string $val The value to retrieve the label of.
+     * @return string
+     */
     protected function val_label($val)
     {
         if ($this->has_choice($val)) {
@@ -117,10 +118,10 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @param integer $max_length
-    * @throws InvalidArgumentException if the parameter is not an integer
-    * @return StringProperty Chainable
-    */
+     * @param integer $max_length The max length allowed.
+     * @throws InvalidArgumentException If the parameter is not an integer or < 0.
+     * @return StringProperty Chainable
+     */
     public function set_max_length($max_length)
     {
         if (!is_integer($max_length)) {
@@ -138,8 +139,8 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @return integer
-    */
+     * @return integer
+     */
     public function max_length()
     {
         if ($this->max_length === null) {
@@ -149,18 +150,18 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @return integer
-    */
+     * @return integer
+     */
     public function default_max_length()
     {
         return 255;
     }
 
     /**
-    * @param integer $min_length
-    * @throws InvalidArgumentException if the parameter is not an integer
-    * @return StringProperty Chainable
-    */
+     * @param integer $min_length The minimum length allowed.
+     * @throws InvalidArgumentException If the parameter is not an integer or < 0.
+     * @return StringProperty Chainable
+     */
     public function set_min_length($min_length)
     {
         if (!is_integer($min_length)) {
@@ -178,8 +179,8 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @return integer
-    */
+     * @return integer
+     */
     public function min_length()
     {
         if ($this->min_length === null) {
@@ -189,10 +190,10 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @param string $regexp
-    * @throws InvalidArgumentException if the parameter is not a string
-    * @return StringProperty Chainable
-    */
+     * @param string $regexp The allowed regular expression.
+     * @throws InvalidArgumentException If the parameter is not a string.
+     * @return StringProperty Chainable
+     */
     public function set_regexp($regexp)
     {
         if (!is_string($regexp)) {
@@ -205,8 +206,8 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function regexp()
     {
         if ($this->regexp === null) {
@@ -216,24 +217,18 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @param bool $allow_empty
-    * @throws InvalidArgumentException If parameter is invalid
-    * @return StringProperty Chainable
-    */
+     * @param boolean $allow_empty The allow empty flag.
+     * @return StringProperty Chainable
+     */
     public function set_allow_empty($allow_empty)
     {
-        if (!is_bool($allow_empty)) {
-            throw new InvalidArgumentException(
-                'Allow empty must be a boolean'
-            );
-        }
-        $this->allow_empty = $allow_empty;
+        $this->allow_empty = !!$allow_empty;
         return $this;
     }
 
     /**
-    * @return bool
-    */
+     * @return boolean
+     */
     public function allow_empty()
     {
         if ($this->allow_empty === null) {
@@ -243,8 +238,8 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @return StringFormat
-    */
+     * @return StringFormat
+     */
     public function formatter()
     {
         if ($this->formatter === null) {
@@ -255,11 +250,11 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @todo Support l10n values
-    * @todo Support multiple values
-    * @throws Exception if val is not a string
-    * @return integer
-    */
+     * @todo Support l10n values
+     * @todo Support multiple values
+     * @throws Exception If val is not a string.
+     * @return integer
+     */
     public function length()
     {
         $val = $this->val();
@@ -272,8 +267,8 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @return array
-    */
+     * @return array
+     */
     public function validation_methods()
     {
         $parent_methods = parent::validation_methods();
@@ -281,9 +276,9 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @return boolean
-    * @todo Support `multiple` / `l10n`
-    */
+     * @return boolean
+     * @todo Support `multiple` / `l10n`
+     */
     public function validate_max_length()
     {
         $val = $this->val();
@@ -318,9 +313,9 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @return boolean
-    * @todo Support `multiple` / `l10n`
-    */
+     * @return boolean
+     * @todo Support `multiple` / `l10n`
+     */
     public function validate_min_length()
     {
         $val = $this->val();
@@ -343,8 +338,8 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @return boolean
-    */
+     * @return boolean
+     */
     public function validate_regexp()
     {
         $val = $this->val();
@@ -362,8 +357,8 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @return boolean
-    */
+     * @return boolean
+     */
     public function validate_allow_empty()
     {
         if (($this->val() === '') && ($this->allow_empty() === false)) {
@@ -374,20 +369,20 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function sql_extra()
     {
         return '';
     }
 
     /**
-    * Get the SQL type (Storage format)
-    *
-    * Stored as `VARCHAR` for max_length under 255 and `TEXT` for other, longer strings
-    *
-    * @return string The SQL type
-    */
+     * Get the SQL type (Storage format)
+     *
+     * Stored as `VARCHAR` for max_length under 255 and `TEXT` for other, longer strings
+     *
+     * @return string The SQL type
+     */
     public function sql_type()
     {
         // Multiple strings are always stored as TEXT because they can hold multiple values
@@ -405,16 +400,16 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     }
 
     /**
-    * @return integer
-    */
+     * @return integer
+     */
     public function sql_pdo_type()
     {
         return PDO::PARAM_STR;
     }
 
     /**
-    * @return mixed
-    */
+     * @return mixed
+     */
     public function save()
     {
         return $this->val();

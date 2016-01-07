@@ -4,43 +4,46 @@ namespace Charcoal\Property;
 
 use \Charcoal\Property\StringProperty;
 
+/**
+ *
+ */
 class PhoneProperty extends StringProperty
 {
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function type()
     {
         return 'phone';
     }
 
     /**
-    * @return integer
-    */
+     * @return integer
+     */
     public function default_max_length()
     {
         return 16;
     }
 
     /**
-    * Sanitize a phone value by removing all non-digit characters.
-    *
-    * @param mixed $val
-    * @return string
-    */
+     * Sanitize a phone value by removing all non-digit characters.
+     *
+     * @param mixed $val Optional. The value to sanitize. If none provided, use `val()`.
+     * @return string
+     */
     public function sanitize($val = null)
     {
         if ($val === null) {
             $val = $this->val();
         }
-        
+
         return preg_replace('/[^0-9]/', '', $val);
     }
 
     /**
-    * @param string $val
-    * @return string
-    */
+     * @param string $val Optional. The value to display. If none is provided, use `val()`.
+     * @return string
+     */
     public function display_val($val = null)
     {
         if ($val === null) {
@@ -48,7 +51,7 @@ class PhoneProperty extends StringProperty
         }
 
         $val = $this->sanitize($val);
-        
+
         if (strlen($val) == 10) {
             $area_code = substr($val, 0, 3);
             $part1 = substr($val, 3, 3);

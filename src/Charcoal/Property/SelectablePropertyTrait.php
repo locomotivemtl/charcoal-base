@@ -2,21 +2,24 @@
 
 namespace Charcoal\Property;
 
+/**
+*
+*/
 trait SelectablePropertyTrait
 {
     /**
-    * The available selectable choices map.
-    *
-    * @var array The internal choices
-    */
+     * The available selectable choices map.
+     *
+     * @var array The internal choices
+     */
     protected $choices = [];
 
     /**
-    * Explicitely set the selectable choices (to the array map).
-    *
-    * @param array $choices The array of choice structures.
-    * @return SelectablePropertyInterface Chainable.
-    */
+     * Explicitely set the selectable choices (to the array map).
+     *
+     * @param array $choices The array of choice structures.
+     * @return SelectablePropertyInterface Chainable.
+     */
     public function set_choices(array $choices)
     {
         $this->choices = [];
@@ -28,13 +31,13 @@ trait SelectablePropertyTrait
     }
 
     /**
-    * Add a choice to the available choices map.
-    *
-    * @param string The choice identifier (will be key / default ident).
-    * @param array A choice structure.
-    * @throws InvalidArgumentException If the choice ident is not a string.
-    * @return SelectablePropertyInterface Chainable.
-    */
+     * Add a choice to the available choices map.
+     *
+     * @param string $choice_ident The choice identifier (will be key / default ident).
+     * @param array  $choice       A choice structure.
+     * @throws InvalidArgumentException If the choice ident is not a string.
+     * @return SelectablePropertyInterface Chainable.
+     */
     public function add_choice($choice_ident, array $choice)
     {
         if (!is_string($choice_ident)) {
@@ -47,32 +50,32 @@ trait SelectablePropertyTrait
     }
 
     /**
-    * Get the choices array map.
-    *
-    * @return array
-    */
+     * Get the choices array map.
+     *
+     * @return array
+     */
     public function choices()
     {
         return $this->choices;
     }
 
     /**
-    * Returns wether a given choice_ident exists or not.
-    *
-    * @param string $choice_ident
-    * @return boolean True / false wether the choice exists or not.
-    */
+     * Returns wether a given choice_ident exists or not.
+     *
+     * @param string $choice_ident The choice ident.
+     * @return boolean True / false wether the choice exists or not.
+     */
     public function has_choice($choice_ident)
     {
         return isset($this->choices[$choice_ident]);
     }
 
     /**
-    * Returns a choice structure for a given ident.
-    *
-    * @param string $choice_ident The choice ident to load.
-    * @return mixed The matching choice.
-    */
+     * Returns a choice structure for a given ident.
+     *
+     * @param string $choice_ident The choice ident to load.
+     * @return mixed The matching choice.
+     */
     public function choice($choice_ident)
     {
         return $this->choices[$choice_ident];

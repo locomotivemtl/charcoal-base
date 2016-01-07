@@ -12,14 +12,14 @@ use \PDO;
 use \Charcoal\Property\AbstractProperty;
 
 /**
-* Audio Property.
-*/
+ * Audio Property.
+ */
 class MapStructureProperty extends AbstractProperty
 {
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function type()
     {
         return 'map-structure';
@@ -27,32 +27,32 @@ class MapStructureProperty extends AbstractProperty
 
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function sql_extra()
     {
         return '';
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function sql_type()
     {
         return 'TEXT';
     }
 
     /**
-    * @return integer
-    */
+     * @return integer
+     */
     public function sql_pdo_type()
     {
         return PDO::PARAM_STR;
     }
 
     /**
-    * @return mixed
-    */
+     * @return mixed
+     */
     public function save()
     {
         return $this->val();

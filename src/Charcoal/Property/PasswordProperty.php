@@ -6,29 +6,31 @@ namespace Charcoal\Property;
 use \Charcoal\Property\StringProperty as StringProperty;
 
 /**
-* Password Property
-*
-* The password property is a specialized string property meant to store encrypted passwords.
-*/
+ * Password Property
+ *
+ * The password property is a specialized string property meant to store encrypted passwords.
+ */
 class PasswordProperty extends StringProperty
 {
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function type()
     {
         return 'password';
     }
 
+    /**
+     * @return string
+     */
     public function save()
     {
-        $pw_opts = ['cost'=>12];
         $password = $this->val();
         $val = $this->val();
 
         // Assuming the password_needs_rehash is set to true is the hash given isn't a hash
-        if (password_needs_rehash($password, PASSWORD_DEFAULT, $pw_opts)) {
-            $val = password_hash($password, PASSWORD_DEFAULT, $pw_opts);
+        if (password_needs_rehash($password, PASSWORD_DEFAULT)) {
+            $val = password_hash($password, PASSWORD_DEFAULT);
             $this->set_val($val);
         }
 

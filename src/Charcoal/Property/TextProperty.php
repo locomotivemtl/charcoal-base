@@ -6,32 +6,32 @@ namespace Charcoal\Property;
 use \Charcoal\Property\StringProperty;
 
 /**
-* Text Property. Longer strings.
-*/
+ * Text Property. Longer strings.
+ */
 class TextProperty extends StringProperty
 {
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function type()
     {
         return 'text';
     }
 
     /**
-    * @return integer
-    */
+     * @return integer
+     */
     public function default_max_length()
     {
         return 0;
     }
 
     /**
-    * Get the SQL type (Storage format)
-    *
-    * @return string The SQL type
-    */
+     * Get the SQL type (Storage format)
+     *
+     * @return string The SQL type
+     */
     public function sql_type()
     {
         return 'TEXT';

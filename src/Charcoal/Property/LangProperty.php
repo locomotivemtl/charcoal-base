@@ -9,33 +9,33 @@ use \Charcoal\Charcoal;
 use \Charcoal\Translation\TranslationConfig;
 
 /**
-* Language property
-*/
+ * Language property
+ */
 class LangProperty extends AbstractProperty
 {
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function type()
     {
         return 'lang';
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function sql_extra()
     {
         return '';
     }
 
     /**
-    * Get the SQL type (Storage format)
-    *
-    * Only the 2-character language code (ISO 639-1)
-    *
-    * @return string The SQL type
-    */
+     * Get the SQL type (Storage format)
+     *
+     * Only the 2-character language code (ISO 639-1)
+     *
+     * @return string The SQL type
+     */
     public function sql_type()
     {
         if ($this->multiple()) {
@@ -45,16 +45,16 @@ class LangProperty extends AbstractProperty
     }
 
     /**
-    * @return integer
-    */
+     * @return integer
+     */
     public function sql_pdo_type()
     {
         return PDO::PARAM_BOOL;
     }
 
     /**
-    * @return array
-    */
+     * @return array
+     */
     public function choices()
     {
         $translator = TranslationConfig::instance();
@@ -73,8 +73,8 @@ class LangProperty extends AbstractProperty
     }
 
     /**
-    * @return mixed
-    */
+     * @return mixed
+     */
     public function save()
     {
         return $this->val();
