@@ -1,0 +1,16 @@
+{
+    "properties":{
+        "min":{
+            "type":"datetime",
+            "allow_null":true
+        },
+        "max":{
+            "type":"datetime",
+            "allow_null":true
+        },
+        "format":{
+            "type":"string",
+            "allow_empty":true
+        }
+    }
+}

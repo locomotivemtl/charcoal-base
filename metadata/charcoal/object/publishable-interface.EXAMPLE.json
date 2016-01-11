@@ -1,0 +1,16 @@
+{
+	"_EXAMPLE_":"This file is an example and not actually included anywhere. Copy & paste implementing publishable",
+	"properties":{
+		"publish_date":{
+			"type":"datetime",
+			"label":"Publish Date"
+		},
+		"expiry_date":{
+			"type":"datetime",
+			"label":"Expiry Date"
+		},
+		"publish_status":{
+
+		}
+	}
+}

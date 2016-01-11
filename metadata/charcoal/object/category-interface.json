@@ -1,0 +1,22 @@
+{
+    "_EXAMPLE_":"This file is an example and not actually included anywhere. Copy & paste implementing category",
+    "properties":{
+        "category_item_type":{
+            "type":"string",
+            "storable":"false"
+        },
+        "category_items":{
+            "type":"object",
+            "obj_type":"{{category_item_type}}",
+            "label":{
+              "en":"Sub-Items",
+              "fr":"Sous-items"
+            },
+            "storable":false,
+            "read_only":true
+        },
+    },
+    "data":{
+      "category_item_type":"charcoal/foo/bar"
+    }
+}

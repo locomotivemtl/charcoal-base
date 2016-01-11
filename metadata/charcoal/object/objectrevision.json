@@ -1,0 +1,41 @@
+{
+    "properties":{
+      "id":{
+        "type":"id"
+      },
+      "obj_type":{
+        "type":"string"
+      },
+      "obj_id":{
+        "type":"string"
+      },
+      "rev_num":{
+        "type":"number"
+      },
+      "rev_ts":{
+        "type":"datetime"
+      },
+      "rev_user":{
+        "type":"string"
+      },
+      "data_prev":{
+        "type":"structure"
+      },
+      "data_obj":{
+        "type":"structure"
+      },
+      "data_diff":{
+        "type":"structure"
+      }
+    },
+
+    "data":{},
+
+    "sources": {
+      "default": {
+        "type": "database",
+        "table": "object_revisions"
+      }
+    },
+    "default_source": "default"
+}

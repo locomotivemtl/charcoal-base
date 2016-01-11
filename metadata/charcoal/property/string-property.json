@@ -1,0 +1,16 @@
+{
+    "properties":{
+      "min_length":{
+        "type":"number"
+      },
+      "max_length":{
+        "type":"number"
+      },
+      "regexp":{
+        "type":"string"
+      },
+      "allow_empty":{
+        "type":"boolean"
+      }
+    }
+}

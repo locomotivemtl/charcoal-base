@@ -1,0 +1,21 @@
+{
+	"_EXAMPLE_":"This file is an example and not actually included anywhere. Copy & paste implementing categorizable",
+	"properties":{
+    "category_type":{
+      "type":"string",
+      "label":{
+        "en":"Category type",
+        "fr":"Type de catégorie"
+      }
+    },
+		"category":{
+			"type":"object",
+      "obj_type":"{{category_type}}",
+      "label":{
+        "en":"Category",
+        "fr":"Catégorie"
+      }
+		},
+
+	}
+}
