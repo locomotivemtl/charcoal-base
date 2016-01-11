@@ -39,7 +39,7 @@ trait HierarchicalTrait
     private $siblings;
 
     /**
-     * @param mixed $master
+     * @param mixed $master The object's parent (or master).
      * @return HierarchicalInterface Chainable
      */
     public function set_master($master)
@@ -311,7 +311,7 @@ trait HierarchicalTrait
     }
 
     /**
-     * @param mixed $sibling
+     * @param mixed $sibling The sibling to check.
      * @return boolean
      */
     public function is_sibling_of($sibling)
@@ -343,7 +343,9 @@ trait HierarchicalTrait
         }
 
         //$obj = ModelFactory::instance()->get($class);
-        $obj = new $class;
+        $obj = new $class([
+            'logger'=>$this->logger
+        ]);
         if (!is_callable([$obj, 'load'])) {
             throw new Exception('Can not load object. No loadable interface defined.');
         }

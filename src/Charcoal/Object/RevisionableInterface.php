@@ -21,17 +21,17 @@ interface RevisionableInterface
     /**
      * This method can be overloaded in concrete implementation to provide a different ObjectRevision class.
      *
-     * @return ObjectRevisionInterface
+     * @return \Charcoal\Object\ObjectRevisionInterface
      */
     public function revision_object();
 
     /**
-     * @return \Charcoal\Object\ObjectRevision
+     * @return \Charcoal\Object\ObjectRevisionInterface
      */
     public function generate_revision();
 
     /**
-     * @return \Charcoal\Object\ObjectRevision
+     * @return \Charcoal\Object\ObjectRevisionInterface
      */
     public function latest_revision();
 }

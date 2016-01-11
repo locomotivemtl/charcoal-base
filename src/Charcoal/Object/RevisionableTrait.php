@@ -33,7 +33,7 @@ trait RevisionableTrait
     }
 
     /**
-     * This method can be overloaded in concrete implementation to provide a different ObjectRevision class.
+     * This method can be overloaded in concrete implementation to provide a different (custom) ObjectRevision class.
      *
      * @return ObjectRevisionInterface
      */
@@ -54,9 +54,10 @@ trait RevisionableTrait
     {
         $rev = $this->revision_object();
 
-        $obj_type = $this->obj_type();
-        $rev->create_from_object($obj_type, $this->id());
-        $rev->save();
+        $rev->create_from_object($this);
+        if(!empty($rev->data_diff())) {
+            $rev->save();
+        }
 
         return $rev;
     }
@@ -68,9 +69,7 @@ trait RevisionableTrait
     public function latest_revision()
     {
         $rev = $this->revision_object();
-
-        $obj_type = $this->obj_type();
-        $rev->last_object_revision($obj_type, $this->id());
+        $rev = $rev->last_object_revision($this);
 
         return $rev;
     }

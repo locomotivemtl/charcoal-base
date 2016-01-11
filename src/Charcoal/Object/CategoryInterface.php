@@ -17,7 +17,7 @@ interface CategoryInterface
 
     /**
      * Get the number of items in this category.
-     * @param array
+     * @return array
      */
     public function num_category_items();
 

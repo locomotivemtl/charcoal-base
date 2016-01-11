@@ -10,7 +10,6 @@ use \DateTimeInterface;
 
 // From `charcoal-core`
 use \Charcoal\Model\AbstractModel;
-use \Charcoal\Model\ModelFactory;
 use \Charcoal\Core\IndexableInterface;
 use \Charcoal\Core\IndexableTrait;
 
@@ -176,7 +175,7 @@ class ObjectRevision extends AbstractModel implements
      */
     public function set_rev_user($rev_user)
     {
-        if($rev_user === null) {
+        if ($rev_user === null) {
             $this->rev_user = null;
             return $this;
         }
@@ -251,7 +250,7 @@ class ObjectRevision extends AbstractModel implements
       */
     public function set_data_diff($data)
     {
-        if(!is_array($data)) {
+        if (!is_array($data)) {
             $data = json_decode($data, true);
         }
         if ($data === null) {
@@ -280,22 +279,18 @@ class ObjectRevision extends AbstractModel implements
      * @param mixed  $obj_id   The object ID to create the revision from.
      * @return ObjectRevision Chainable
      */
-    public function create_from_object($obj_type, $obj_id)
+    public function create_from_object($obj)
     {
-        $prev_rev = $this->last_object_revision($obj_type, $obj_id);
+        $prev_rev = $this->last_object_revision($obj);
 
-        $model_factory = new ModelFactory();
-        $obj = $model_factory->create($obj_type, [
-            'logger' => $this->logger
-        ]);
-        $obj->load($obj_id);
-
-        $this->set_obj_type($obj_type);
-        $this->set_obj_id($obj_id);
+        $this->set_obj_type($obj->obj_type());
+        $this->set_obj_id($obj->id());
         $this->set_rev_num($prev_rev->rev_num() + 1);
         $this->set_rev_ts('now');
 
-        $this->set_data_obj($obj->data());
+        $this->set_data_obj($obj->data([
+            'sortable'=>false
+        ]));
         $this->set_data_prev($prev_rev->data_obj());
 
         $diff = $this->create_diff();
@@ -306,10 +301,10 @@ class ObjectRevision extends AbstractModel implements
 
     /**
      * @param array $data_prev Optional. Previous revision data.
-     * @param array $data_obj Optional. Current revision (object) data.
+     * @param array $data_obj  Optional. Current revision (object) data.
      * @return array The diff data
      */
-    public function create_diff(array $data_prev=null, array $data_obj=null)
+    public function create_diff(array $data_prev = null, array $data_obj = null)
     {
         if ($data_prev === null) {
             $data_prev = $this->data_prev();
@@ -372,13 +367,14 @@ class ObjectRevision extends AbstractModel implements
      * @param mixed  $obj_id   The object ID to load the last revision of.
      * @return ObjectRevision The last revision for the give object.
      */
-    public function last_object_revision($obj_type, $obj_id)
+    public function last_object_revision($obj)
     {
         $classname = get_class($this);
         $rev = new $classname([
             'logger' => $this->logger
         ]);
-        $rev->load_from_query('
+        $rev->load_from_query(
+            '
             select
                 *
             from
@@ -391,8 +387,8 @@ class ObjectRevision extends AbstractModel implements
                 `rev_ts` desc
             limit 1',
             [
-                'obj_type' => $obj_type,
-                'obj_id' => $obj_id
+                'obj_type' => $obj->obj_type(),
+                'obj_id' => $obj->id()
             ]
         );
 

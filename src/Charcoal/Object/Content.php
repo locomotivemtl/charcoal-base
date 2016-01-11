@@ -78,8 +78,8 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @param integer $position
-     * @throws InvalidArgumentException
+     * @param integer $position The position (for ordering purpose).
+     * @throws InvalidArgumentException If the position is not an integer (or numeric integer string).
      * @return Content Chainable
      */
     public function set_position($position)
@@ -106,8 +106,8 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @param DateTime|string $created
-     * @throws InvalidArgumentException
+     * @param DateTime|string|null $created The datetime at object's creation.
+     * @throws InvalidArgumentException If the datetime is invalid.
      * @return Content Chainable
      */
     public function set_created($created)
@@ -137,7 +137,7 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @param mixed $created_by
+     * @param mixed $created_by The creator of the content object.
      * @return Content Chainable
      */
     public function set_created_by($created_by)
@@ -155,8 +155,8 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @param DateTime|string $last_modified
-     * @throws InvalidArgumentException
+     * @param DateTime|string|null $last_modified The last modified datetime.
+     * @throws InvalidArgumentException If the datetime is invalid.
      * @return Content Chainable
      */
     public function set_last_modified($last_modified)
@@ -186,7 +186,7 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @param mixed $last_modified_by
+     * @param mixed $last_modified_by The last modification's username.
      * @return Content Chainable
      */
     public function set_last_modified_by($last_modified_by)
@@ -215,29 +215,27 @@ class Content extends AbstractModel implements
         $this->set_created('now');
         $this->set_last_modified('now');
 
-        if ($this->revision_enabled()) {
-            $this->generate_revision();
-        }
-
         return true;
     }
 
     /**
      * StorableTrait > pre_update(): Called automatically before updating the object to source.
      * For content object, set the `last_modified` property automatically.
-     * @param array $properties
+     * @param array $properties The properties (ident) set for update.
      * @return boolean
      */
     public function pre_update($properties = null)
     {
         parent::pre_update($properties);
 
-        $this->set_last_modified('now');
-
+        // Content is revisionable
         if ($this->revision_enabled()) {
             $this->generate_revision();
         }
 
+        $this->set_last_modified('now');
+
         return true;
     }
+
 }
