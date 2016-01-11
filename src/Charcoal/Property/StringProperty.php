@@ -31,11 +31,11 @@ class StringProperty extends AbstractProperty implements SelectablePropertyInter
     const DEFAULT_ALLOW_EMPTY = true;
 
     /**
-     * @var int $_min_length
+     * @var int $min_length
      */
     private $min_length;
     /**
-     * @var int $_max_length
+     * @var int $max_length
      */
     private $max_length;
     /**

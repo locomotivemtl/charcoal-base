@@ -12,10 +12,10 @@ use \PDO as PDO;
 use \Charcoal\Property\AbstractProperty;
 
 /**
-* Structure Property.
-*
-* Complex, structured data as array (stored as json).
-*/
+ * Structure Property.
+ *
+ * Complex, structured data as array (stored as json).
+ */
 class StructureProperty extends AbstractProperty
 {
     /**

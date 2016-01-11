@@ -330,4 +330,19 @@ class DatetimeProperty extends AbstractProperty
     {
         return PDO::PARAM_STR;
     }
+
+    public function JsonSerialize()
+    {
+        $val = $this->val();
+        if($val === null) {
+            return null;
+        }
+
+        if($val instanceof DateTimeInterface) {
+            return $val->format(DateTime::ATOM);
+        }
+        else {
+            return $val;
+        }
+    }
 }
