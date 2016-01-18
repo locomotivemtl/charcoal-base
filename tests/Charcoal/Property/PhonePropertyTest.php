@@ -17,8 +17,8 @@ class PhonePropertyTest extends \PHPUnit_Framework_TestCase
         $obj = new PhoneProperty();
         $this->assertInstanceOf('\Charcoal\Property\PhoneProperty', $obj);
 
-        $this->assertEquals(0, $obj->min_length());
-        $this->assertEquals(16, $obj->max_length());
+        $this->assertEquals(0, $obj->minLength());
+        $this->assertEquals(16, $obj->maxLength());
     }
 
     public function testType()
@@ -31,7 +31,7 @@ class PhonePropertyTest extends \PHPUnit_Framework_TestCase
     {
         $obj = new PhoneProperty();
 
-        $obj->set_val('514.555.9999');
+        $obj->setVal('514.555.9999');
         $this->assertEquals('5145559999', $obj->sanitize());
 
         $this->assertEquals('5145551234', $obj->sanitize('(514) 555-1234'));
@@ -42,11 +42,11 @@ class PhonePropertyTest extends \PHPUnit_Framework_TestCase
     {
         $obj = new PhoneProperty();
 
-        $obj->set_val('5145559999');
-        $this->assertEquals('(514) 555-9999', $obj->display_val());
+        $obj->setVal('5145559999');
+        $this->assertEquals('(514) 555-9999', $obj->displayVal());
 
-        $this->assertEquals('(514) 555-1234', $obj->display_val('5145551234'));
+        $this->assertEquals('(514) 555-1234', $obj->displayVal('5145551234'));
 
-        $this->assertEquals('(514) 555-1234', $obj->display_val('514-555-1234'));
+        $this->assertEquals('(514) 555-1234', $obj->displayVal('514-555-1234'));
     }
 }

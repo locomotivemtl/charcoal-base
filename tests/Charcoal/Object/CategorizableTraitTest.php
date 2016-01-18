@@ -20,14 +20,14 @@ class CategorizableTraitTest extends \PHPUnit_Framework_TestCase
     public function testSetCategoryType()
     {
         $obj = $this->obj;
-        $this->assertNull($obj->category_type());
+        $this->assertNull($obj->categoryType());
 
-        $ret = $obj->set_category_type('foobar');
+        $ret = $obj->setCategoryType('foobar');
         $this->assertSame($ret, $obj);
-        $this->assertEquals('foobar', $obj->category_type());
+        $this->assertEquals('foobar', $obj->categoryType());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $obj->set_category_type(false);
+        $obj->setCategoryType(false);
 
     }
 }

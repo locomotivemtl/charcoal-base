@@ -18,13 +18,13 @@ use \Charcoal\Translation\TranslationString;
 class BooleanProperty extends AbstractProperty
 {
     /**
-     * @var TranslationString $true_label
+     * @var TranslationString $trueLabel
      */
-    private $true_label;
+    private $trueLabel;
     /**
-     * @var TranslationString $false_label
+     * @var TranslationString $falseLabel
      */
-    private $false_label;
+    private $falseLabel;
 
     /**
      * @return string
@@ -38,16 +38,16 @@ class BooleanProperty extends AbstractProperty
      * @param mixed $val Optional. The value to display. If non provided, use `val()`.
      * @return string
      */
-    public function display_val($val = null)
+    public function displayVal($val = null)
     {
         if ($val === null) {
             $val = $this->val();
         }
 
         if ($val === true) {
-            return $this->true_label();
+            return $this->trueLabel();
         } else {
-            return $this->false_label();
+            return $this->falseLabel();
         }
     }
 
@@ -60,7 +60,7 @@ class BooleanProperty extends AbstractProperty
      * @throws InvalidArgumentException If multiple is true. (must be false for boolean properties).
      * @return BooleanProperty Chainable
      */
-    public function set_multiple($multiple)
+    public function setMultiple($multiple)
     {
         $multiple = !!$multiple;
         if ($multiple === true) {
@@ -87,50 +87,50 @@ class BooleanProperty extends AbstractProperty
      * @param mixed $label The true label.
      * @return BooleanProperty Chainable
      */
-    public function set_true_label($label)
+    public function setTrueLabel($label)
     {
-        $this->true_label = new TranslationString($label);
+        $this->trueLabel = new TranslationString($label);
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function true_label()
+    public function trueLabel()
     {
-        if ($this->true_label === null) {
+        if ($this->trueLabel === null) {
             // Default value
-            $this->set_true_label('True');
+            $this->setTrueLabel('True');
         }
-        return $this->true_label;
+        return $this->trueLabel;
     }
 
     /**
      * @param mixed $label The false label.
      * @return BooleanProperty Chainable
      */
-    public function set_false_label($label)
+    public function setFalseLabel($label)
     {
-        $this->false_label = $label;
+        $this->falseLabel = $label;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function false_label()
+    public function falseLabel()
     {
-        if ($this->false_label === null) {
+        if ($this->falseLabel === null) {
             // Default value
-            $this->set_false_label('False');
+            $this->setFalseLabel('False');
         }
-        return $this->false_label;
+        return $this->falseLabel;
     }
 
     /**
      * @return string
      */
-    public function sql_extra()
+    public function sqlExtra()
     {
         return '';
     }
@@ -142,7 +142,7 @@ class BooleanProperty extends AbstractProperty
      *
      * @return string The SQL type
      */
-    public function sql_type()
+    public function sqlType()
     {
         return 'TINYINT(1) UNSIGNED';
     }
@@ -150,7 +150,7 @@ class BooleanProperty extends AbstractProperty
     /**
      * @return integer
      */
-    public function sql_pdo_type()
+    public function sqlPdoType()
     {
         return PDO::PARAM_BOOL;
     }

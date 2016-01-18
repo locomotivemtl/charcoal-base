@@ -10,26 +10,26 @@ use \Charcoal\Object\ObjectRevision;
 trait RevisionableTrait
 {
     /**
-     * @var bool $revision_enabled
+     * @var bool $revisionEnabled
      */
-    private $revision_enabled = true;
+    private $revisionEnabled = true;
 
     /**
      * @param boolean $enabled The (revision) enabled flag.
      * @return RevisionableInterface Chainable
      */
-    public function set_revision_enabled($enabled)
+    public function setRevisionEnabled($enabled)
     {
-        $this->revision_enabled = !!$enabled;
+        $this->revisionEnabled = !!$enabled;
         return $this;
     }
 
     /**
      * @return boolean
      */
-    public function revision_enabled()
+    public function revisionEnabled()
     {
-        return $this->revision_enabled;
+        return $this->revisionEnabled;
     }
 
     /**
@@ -37,7 +37,7 @@ trait RevisionableTrait
      *
      * @return ObjectRevisionInterface
      */
-    public function revision_object()
+    public function revisionObject()
     {
         $rev = new ObjectRevision([
             'logger' => $this->logger
@@ -48,14 +48,14 @@ trait RevisionableTrait
 
     /**
      * @return ObjectRevision
-     * @see ObjectRevision::create_from_object()
+     * @see ObjectRevision::create_fromObject()
      */
-    public function generate_revision()
+    public function generateRevision()
     {
-        $rev = $this->revision_object();
+        $rev = $this->revisionObject();
 
-        $rev->create_from_object($this);
-        if(!empty($rev->data_diff())) {
+        $rev->create_fromObject($this);
+        if (!empty($rev->dataDiff())) {
             $rev->save();
         }
 
@@ -64,12 +64,12 @@ trait RevisionableTrait
 
     /**
      * @return ObjectRevision
-     * @see ObejctRevision::last_object_revision
+     * @see ObejctRevision::lastObjectRevision
      */
-    public function latest_revision()
+    public function latestRevision()
     {
-        $rev = $this->revision_object();
-        $rev = $rev->last_object_revision($this);
+        $rev = $this->revisionObject();
+        $rev = $rev->lastObjectRevision($this);
 
         return $rev;
     }

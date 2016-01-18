@@ -4,27 +4,37 @@ namespace Charcoal\Tests\Object;
 
 use \DateTime as DateTime;
 
+use \Psr\Log\NullLogger;
+
 use \Charcoal\Object\Content as Content;
 
 class ContentTest extends \PHPUnit_Framework_TestCase
 {
+    public function setUp()
+    {
+        $logger = new NullLogger();
+        $this->obj = new Content([
+            'logger'=>$logger
+        ]);
+    }
+
     public function testConstructor()
     {
-        $obj = new Content();
+        $obj = $this->obj;
         $this->assertInstanceOf('\Charcoal\Object\Content', $obj);
     }
 
     public function testSetData()
     {
-        $obj = new Content();
-        $ret = $obj->set_data(
+        $obj = $this->obj;
+        $ret = $obj->setData(
             [
             'active'=>false,
             'position'=>42,
             'created'=>'2015-01-01 13:05:45',
-            'created_by'=>'Me',
+            'created_y'=>'Me',
             'last_modified'=>'2015-04-01 22:10:30',
-            'last_modified_by'=>'You'
+            'lastModified_by'=>'You'
             ]
         );
         $this->assertSame($ret, $obj);
@@ -32,98 +42,98 @@ class ContentTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(42, $obj->position());
         $expected = new DateTime('2015-01-01 13:05:45');
         $this->assertEquals($expected, $obj->created());
-        $this->assertEquals('Me', $obj->created_by());
+        $this->assertEquals('Me', $obj->createdBy());
         $expected = new DateTime('2015-04-01 22:10:30');
-        $this->assertEquals($expected, $obj->last_modified());
-        $this->assertEquals('You', $obj->last_modified_by());
+        $this->assertEquals($expected, $obj->lastModified());
+        $this->assertEquals('You', $obj->lastModifiedBy());
     }
 
     public function testSetActive()
     {
-        $obj = new Content();
+        $obj = $this->obj;
         $this->assertTrue($obj->active());
-        $ret = $obj->set_active(false);
+        $ret = $obj->setActive(false);
         $this->assertSame($ret, $obj);
         $this->assertNotTrue($obj->active());
     }
 
     public function testSetPosition()
     {
-        $obj = new Content();
+        $obj = $this->obj;
         $this->assertEquals(0, $obj->position());
-        $ret = $obj->set_position(42);
+        $ret = $obj->setPosition(42);
         $this->assertSame($ret, $obj);
         $this->assertEquals(42, $obj->position());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $obj->set_position('foo');
+        $obj->setPosition('foo');
     }
 
     public function testSetCreated()
     {
-        $obj = new Content();
-        $ret = $obj->set_created('2015-01-01 13:05:45');
+        $obj = $this->obj;
+        $ret = $obj->setCreated('2015-01-01 13:05:45');
         $this->assertSame($ret, $obj);
         $expected = new DateTime('2015-01-01 13:05:45');
         $this->assertEquals($expected, $obj->created());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $obj->set_created(false);
+        $obj->setCreated(false);
     }
 
     public function testSetCreatedBy()
     {
-        $obj = new Content();
-        $ret = $obj->set_created_by('Me');
+        $obj = $this->obj;
+        $ret = $obj->setCreatedBy('Me');
         $this->assertSame($ret, $obj);
-        $this->assertEquals('Me', $obj->created_by());
+        $this->assertEquals('Me', $obj->createdBy());
 
         //$this->setExpectedException('\InvalidArgumentException');
-        //$obj->set_created_by(false);
+        //$obj->setCreatedBy(false);
     }
 
     public function testSetLastModified()
     {
-        $obj = new Content();
-        $ret = $obj->set_last_modified('2015-01-01 13:05:45');
+        $obj = $this->obj;
+        $ret = $obj->setLastModified('2015-01-01 13:05:45');
         $this->assertSame($ret, $obj);
         $expected = new DateTime('2015-01-01 13:05:45');
-        $this->assertEquals($expected, $obj->last_modified());
+        $this->assertEquals($expected, $obj->lastModified());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $obj->set_last_modified(false);
+        $obj->setLastModified(false);
     }
 
     public function testSetLastModifiedBy()
     {
-        $obj = new Content();
-        $ret = $obj->set_last_modified_by('Me');
+        $obj = $this->obj;
+        $ret = $obj->setLastModifiedBy('Me');
         $this->assertSame($ret, $obj);
-        $this->assertEquals('Me', $obj->last_modified_by());
+        $this->assertEquals('Me', $obj->lastModifiedBy());
 
         //$this->setExpectedException('\InvalidArgumentException');
-        //$obj->set_last_modified_by(false);
+        //$obj->setLastModifiedBy(false);
     }
 
     public function testSetPreSave()
     {
-        $obj = new Content();
+        $obj = $this->obj;
         $this->assertSame(null, $obj->created());
-        $this->assertSame(null, $obj->last_modified());
+        $this->assertSame(null, $obj->lastModified());
 
-        $obj->pre_save();
+        $obj->preSave();
         $this->assertNotSame(null, $obj->created());
-        $this->assertNotSame(null, $obj->last_modified());
+        $this->assertNotSame(null, $obj->lastModified());
 
     }
 
     public function testSetPreUpdate()
     {
-        $obj = new Content();
-        $this->assertSame(null, $obj->last_modified());
+        $obj = $this->obj;
+        $this->assertSame(null, $obj->lastModified());
 
-        $obj->pre_update();
-        $this->assertNotSame(null, $obj->last_modified());
+        $obj->preUpdate();
+        $this->assertNotSame(null, $obj->lastModified());
 
     }
 }

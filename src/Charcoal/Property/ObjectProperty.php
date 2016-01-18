@@ -24,14 +24,14 @@ use \Charcoal\Property\SelectablePropertyInterface;
 class ObjectProperty extends AbstractProperty implements SelectablePropertyInterface
 {
     /**
-     * @var string $_obj_type
+     * @var string $ObjType
      */
-    private $obj_type;
+    private $objType;
 
     /**
-     * @var ModelFactory $model_factory
+     * @var ModelFactory $modelFactory
      */
-    private $model_factory;
+    private $modelFactory;
 
     /**
      * The available selectable choices map.
@@ -51,27 +51,27 @@ class ObjectProperty extends AbstractProperty implements SelectablePropertyInter
     /**
      * @return ModelFactory
      */
-    private function model_factory()
+    private function modelFactory()
     {
-        if ($this->model_factory === null) {
-            $this->model_factory = new ModelFactory();
+        if ($this->modelFactory === null) {
+            $this->modelFactory = new ModelFactory();
         }
-        return $this->model_factory;
+        return $this->modelFactory;
     }
 
     /**
-     * @param string $obj_type The object type.
+     * @param string $objType The object type.
      * @throws InvalidArgumentException If the object type is not a string.
      * @return ObjectPropertyChainable
      */
-    public function set_obj_type($obj_type)
+    public function setObjType($objType)
     {
-        if (!is_string($obj_type)) {
+        if (!is_string($objType)) {
             throw new InvalidArgumentException(
                 'Obj type needs to be a string'
             );
         }
-        $this->obj_type = $obj_type;
+        $this->objType = $objType;
         return $this;
     }
 
@@ -79,20 +79,20 @@ class ObjectProperty extends AbstractProperty implements SelectablePropertyInter
      * @throws Exception If the object type was not previously set.
      * @return string
      */
-    public function obj_type()
+    public function objType()
     {
-        if (!$this->obj_type === null) {
+        if (!$this->objType === null) {
             throw new Exception(
                 'No obj type defined. Invalid property.'
             );
         }
-        return $this->obj_type;
+        return $this->objType;
     }
 
     /**
      * @return string
      */
-    public function sql_extra()
+    public function sqlExtra()
     {
         return '';
     }
@@ -100,7 +100,7 @@ class ObjectProperty extends AbstractProperty implements SelectablePropertyInter
     /**
      * @return string
      */
-    public function sql_type()
+    public function sqlType()
     {
         if ($this->multiple() === true) {
             return 'TEXT';
@@ -108,19 +108,19 @@ class ObjectProperty extends AbstractProperty implements SelectablePropertyInter
             // Read from proto's key
             $proto = $this->proto();
             $key = $proto->p($proto->key());
-            return $key->sql_type();
+            return $key->sqlType();
         }
     }
 
     /**
      * @return integer
      */
-    public function sql_pdo_type()
+    public function sqlPdoType()
     {
         // Read from proto's key
         $proto = $this->proto();
         $key = $proto->p($proto->key());
-        return $key->sql_pdo_type();
+        return $key->sqlPdoType();
     }
 
     /**
@@ -136,7 +136,7 @@ class ObjectProperty extends AbstractProperty implements SelectablePropertyInter
      */
     public function proto()
     {
-        return $this->model_factory()->get($this->obj_type(), [
+        return $this->modelFactory()->get($this->objType(), [
             'logger' => $this->logger
         ]);
     }
@@ -145,7 +145,7 @@ class ObjectProperty extends AbstractProperty implements SelectablePropertyInter
      * @param mixed $val Optional. The value to display.
      * @return string
      */
-    public function display_val($val = null)
+    public function displayVal($val = null)
     {
         if ($val === null) {
             $val = $this->val();
@@ -155,24 +155,24 @@ class ObjectProperty extends AbstractProperty implements SelectablePropertyInter
             return '';
         }
 
-        $property_value = $val;
+        $propertyValue = $val;
 
         if ($this->l10n() === true) {
             $translator = TranslationConfig::instance();
 
-            $property_value = $property_value[$translator->current_language()];
+            $propertyValue = $propertyValue[$translator->current_language()];
         }
 
         if ($this->multiple() === true) {
-            if (!is_array($property_value)) {
-                $property_value = explode($this->multiple_separator(), $property_value);
+            if (!is_array($propertyValue)) {
+                $propertyValue = explode($this->multipleSeparator(), $propertyValue);
             }
         } else {
-            $property_value = [$property_value];
+            $propertyValue = [$propertyValue];
         }
 
         $names = [];
-        foreach ($property_value as $p) {
+        foreach ($propertyValue as $p) {
             $proto = $this->proto();
             $proto->load($p);
             $names[] = (string)$proto->name();
@@ -186,7 +186,7 @@ class ObjectProperty extends AbstractProperty implements SelectablePropertyInter
      * @param array $choices The array of choice structures.
      * @return SelectablePropertyInterface Chainable.
      */
-    public function set_choices(array $choices)
+    public function setChoices(array $choices)
     {
         unset($choices);
         $this->logger->debug('Choices can not be set for object properties. They are auto-generated from objects.');
@@ -200,7 +200,7 @@ class ObjectProperty extends AbstractProperty implements SelectablePropertyInter
      * @param array  $choice       A choice structure.
      * @return SelectablePropertyInterface Chainable.
      */
-    public function add_choice($choice_ident, array $choice)
+    public function addChoice($choice_ident, array $choice)
     {
         unset($choice_ident, $choice);
         $this->logger->debug('Choices can not be added for object properties. They are auto-generated from objects.');
@@ -244,9 +244,9 @@ class ObjectProperty extends AbstractProperty implements SelectablePropertyInter
      * @param string $choice_ident The choice identifier.
      * @return boolean True / false wether the choice exists or not.
      */
-    public function has_choice($choice_ident)
+    public function hasChoice($choice_ident)
     {
-        $c = $this->model_factory()->create($this->obj_type(), [
+        $c = $this->modelFactory()->create($this->objType(), [
             'logger'=>$this->logger
         ]);
         $c->load($choice_ident);
@@ -261,7 +261,7 @@ class ObjectProperty extends AbstractProperty implements SelectablePropertyInter
      */
     public function choice($choice_ident)
     {
-        $c = $this->model_factory()->create($this->obj_type(), [
+        $c = $this->modelFactory()->create($this->objType(), [
             'logger'=>$this->logger
         ]);
         $c->load($choice_ident);

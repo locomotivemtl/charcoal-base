@@ -11,18 +11,18 @@ interface CategorizableInterface
      * @param string $type The category type.
      * @return CategorizableInterface Chainable
      */
-    public function set_category_type($type);
+    public function setCategoryType($type);
 
     /**
      * @return string
      */
-    public function category_type();
+    public function categoryType();
 
     /**
      * @param mixed $category The object's category.
      * @return CategorizableInterface Chainable
      */
-    public function set_category($category);
+    public function setCategory($category);
 
     /**
      * Get the category object

@@ -33,7 +33,7 @@ class NumberProperty extends AbstractProperty
     /**
      * @return string
      */
-    public function sql_extra()
+    public function sqlExtra()
     {
         return '';
     }
@@ -45,7 +45,7 @@ class NumberProperty extends AbstractProperty
      *
      * @return string The SQL type
      */
-    public function sql_type()
+    public function sqlType()
     {
         // Multiple number are stocked as TEXT because we do not know the maximum length
         if ($this->multiple()) {
@@ -58,7 +58,7 @@ class NumberProperty extends AbstractProperty
     /**
      * @return integer
      */
-    public function sql_pdo_type()
+    public function sqlPdoType()
     {
         return PDO::PARAM_STR;
     }

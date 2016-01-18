@@ -21,12 +21,12 @@ class CategoryTraitTest extends \PHPUnit_Framework_TestCase
     {
         $obj = $this->obj;
 
-        $ret = $obj->set_category_item_type('foobar');
+        $ret = $obj->setCategoryItemType('foobar');
         $this->assertSame($ret, $obj);
-        $this->assertEquals('foobar', $obj->category_item_type());
+        $this->assertEquals('foobar', $obj->categoryItemType());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $obj->set_category_item_type(false);
+        $obj->setCategoryItemType(false);
 
     }
 }

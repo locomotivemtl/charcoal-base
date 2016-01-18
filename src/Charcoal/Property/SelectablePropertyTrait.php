@@ -20,12 +20,12 @@ trait SelectablePropertyTrait
      * @param array $choices The array of choice structures.
      * @return SelectablePropertyInterface Chainable.
      */
-    public function set_choices(array $choices)
+    public function setChoices(array $choices)
     {
         $this->choices = [];
-        foreach ($choices as $choice_ident => $choice) {
-            $c = (string)$choice_ident;
-            $this->add_choice($c, $choice);
+        foreach ($choices as $choiceIdent => $choice) {
+            $c = (string)$choiceIdent;
+            $this->addChoice($c, $choice);
         }
         return $this;
     }
@@ -33,19 +33,19 @@ trait SelectablePropertyTrait
     /**
      * Add a choice to the available choices map.
      *
-     * @param string $choice_ident The choice identifier (will be key / default ident).
-     * @param array  $choice       A choice structure.
+     * @param string $choiceIdent The choice identifier (will be key / default ident).
+     * @param array  $choice      A choice structure.
      * @throws InvalidArgumentException If the choice ident is not a string.
      * @return SelectablePropertyInterface Chainable.
      */
-    public function add_choice($choice_ident, array $choice)
+    public function addChoice($choiceIdent, array $choice)
     {
-        if (!is_string($choice_ident)) {
+        if (!is_string($choiceIdent)) {
             throw new InvalidArgumentException(
                 'Choice identifier must be a string.'
             );
         }
-        $this->choices[$choice_ident] = $choice;
+        $this->choices[$choiceIdent] = $choice;
         return $this;
     }
 
@@ -60,24 +60,24 @@ trait SelectablePropertyTrait
     }
 
     /**
-     * Returns wether a given choice_ident exists or not.
+     * Returns wether a given choiceIdent exists or not.
      *
-     * @param string $choice_ident The choice ident.
+     * @param string $choiceIdent The choice ident.
      * @return boolean True / false wether the choice exists or not.
      */
-    public function has_choice($choice_ident)
+    public function hasChoice($choiceIdent)
     {
-        return isset($this->choices[$choice_ident]);
+        return isset($this->choices[$choiceIdent]);
     }
 
     /**
      * Returns a choice structure for a given ident.
      *
-     * @param string $choice_ident The choice ident to load.
+     * @param string $choiceIdent The choice ident to load.
      * @return mixed The matching choice.
      */
-    public function choice($choice_ident)
+    public function choice($choiceIdent)
     {
-        return $this->choices[$choice_ident];
+        return $this->choices[$choiceIdent];
     }
 }

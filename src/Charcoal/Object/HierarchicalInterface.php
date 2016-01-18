@@ -11,28 +11,28 @@ interface HierarchicalInterface
      * Get wether this object has a parent (master) or not.
      * @return boolean
      */
-    public function has_master();
+    public function hasMaster();
 
     /**
      * Get wether this object is toplevel or not.
      * Top-level objects do not have a parent (master)
      * @return boolean
      */
-    public function is_top_level();
+    public function isTopLevel();
 
     /**
      * Get wether this object is on the last-level or not.
      * Last level objects do not have childen
      * @return boolean
      */
-    public function is_last_level();
+    public function isLastLevel();
 
     /**
      * Get the object's level in hierarchy.
      * Starts at "1" (top-level)
      * @return integer
      */
-    public function hierarchy_level();
+    public function hierarchyLevel();
 
     /**
      * Get the immediate parent (master) of this object.
@@ -44,7 +44,7 @@ interface HierarchicalInterface
      * Get the top-level parent (master) of this object
      * @return HierarchicalInterface
      */
-    public function toplevel_master();
+    public function toplevelMaster();
 
     /**
      * Get all of this object's parents, from immediate to top-level.
@@ -56,40 +56,40 @@ interface HierarchicalInterface
      * Get all of this object's parents, inverted from top-level to immediate.
      * @return array
      */
-    public function inverted_hierarchy();
+    public function invertedHierarchy();
 
     /**
      * Get wether the object has a certain child directly underneath.
      * @param mixed $child The child object (or ident) to check against.
      * @return boolean
      */
-    public function is_master_of($child);
+    public function isMasterOf($child);
 
     /**
      * Get wether the object has a certain child, in its entire hierarchy
      * @param mixed $child The child object (or ident) to check against.
      * @return boolean
      */
-    public function recursive_is_master_of($child);
+    public function recursiveIsMasterOf($child);
 
     /**
      * Get wether the object has any children at all
      * @return boolean
      */
-    public function has_children();
+    public function hasChildren();
 
     /**
      * Get the number of chidlren directly under this object.
      * @return integer
      */
-    public function num_children();
+    public function numChildren();
 
     /**
      * Get the total number of children in the entire hierarchy.
-     * This method counts all children and sub-children, unlike `num_children()` which only count 1 level.
+     * This method counts all children and sub-children, unlike `numChildren()` which only count 1 level.
      * @return integer
      */
-    public function recursive_num_children();
+    public function recursiveNumChildren();
 
 
     /**
@@ -102,23 +102,23 @@ interface HierarchicalInterface
      * @param mixed $master The master object (or ident) to check against.
      * @return boolean The master object (or ident) to check against.
      */
-    public function is_child_of($master);
+    public function isChildOf($master);
 
     /**
      * @param mixed $master The master object (or ident) to check against.
      * @return boolean
      */
-    public function recursive_is_child_of($master);
+    public function recursiveIsChildOf($master);
 
     /**
      * @return boolean
      */
-    public function has_siblings();
+    public function hasSiblings();
 
     /**
      * @return integer
      */
-    public function num_siblings();
+    public function numSiblings();
 
     /**
      * Get all the objects on the same level as this one.
@@ -130,5 +130,5 @@ interface HierarchicalInterface
      * @param mixed $sibling The sibling object (or ident) to check against.
      * @return boolean
      */
-    public function is_sibling_of($sibling);
+    public function isSiblingOf($sibling);
 }

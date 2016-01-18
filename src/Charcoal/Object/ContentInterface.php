@@ -8,7 +8,8 @@ interface ContentInterface
      * @param boolean $active The active flag.
      * @return Content Chainable
      */
-    public function set_active($active);
+    public function setActive($active);
+
     /**
      * @return boolean
      */
@@ -18,7 +19,8 @@ interface ContentInterface
      * @param integer $position The position index.
      * @return Content Chainable
      */
-    public function set_position($position);
+    public function setPosition($position);
+
     /**
      * @return integer
      */
@@ -28,7 +30,7 @@ interface ContentInterface
      * @param DateTime|string $created The created date.
      * @return Content Chainable
      */
-    public function set_created($created);
+    public function setCreated($created);
 
     /**
      * @return DateTime|null
@@ -36,36 +38,35 @@ interface ContentInterface
     public function created();
 
     /**
-     * @param mixed $created_by The author, at object creation.
+     * @param mixed $createdBy The author, at object creation.
      * @return Content Chainable
      */
-    public function set_created_by($created_by);
+    public function setCreatedBy($createdBy);
 
     /**
      * @return mixed
      */
-    public function created_by();
+    public function createdBy();
 
     /**
-     * @param DateTime|string $last_modified The last modified date.
+     * @param DateTime|string $lastModified The last modified date.
      * @return Content Chainable
      */
-    public function set_last_modified($last_modified);
+    public function setLastModified($lastModified);
+
     /**
      * @return DateTime
      */
-    public function last_modified();
+    public function lastModified();
 
     /**
-     * @param mixed $last_modified_by The author, at object modificaition (update).
+     * @param mixed $lastModifiedBy The author, at object modificaition (update).
      * @return Content Chainable
      */
-    public function set_last_modified_by($last_modified_by);
+    public function setLastModifiedBy($lastModifiedBy);
+
     /**
      * @return mixed
      */
-    public function last_modified_by();
-
-    //public function last_revision();
-    //public function revision($revision_num);
+    public function lastModifiedBy();
 }

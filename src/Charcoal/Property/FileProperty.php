@@ -22,39 +22,39 @@ class FileProperty extends AbstractProperty
 
     /**
      * The upload path is a {{patern}}.
-     * @var string $_upload_path
+     * @var string $UploadPath
      */
-    private $upload_path = 'uploads/';
+    private $uploadPath = 'uploads/';
 
     /**
-     * @var boolean $_overwrite
+     * @var boolean $overwrite
      */
     private $overwrite = false;
 
     /**
-     * @var string[] $_accepted_mimetypes
+     * @var string[] $acceptedMimetypes
      */
-    private $accepted_mimetypes = [];
+    private $acceptedMimetypes = [];
 
     /**
      * Maximum allowed file size, in bytes.
      * If null or 0, then no limit.
      * Default to 128M
-     * @var integer $_max_filesize
+     * @var integer $maxFilesize
      */
-    private $max_filesize = 134220000;
+    private $maxFilesize = 134220000;
 
     /**
      * Current file mimetype
      *
-     * @var string $_mimetype
+     * @var string $mimetype
      */
     private $mimetype;
 
     /**
      * Current file size, in bytes.
      *
-     * @var integer $_filesize
+     * @var integer $Filesize
      */
     private $filesize;
 
@@ -67,35 +67,35 @@ class FileProperty extends AbstractProperty
     }
 
     /**
-     * @param string $upload_path The upload path, relative to project's root.
+     * @param string $uploadPath The upload path, relative to project's root.
      * @throws InvalidArgumentException If the upload path is not a string.
      * @return FileProperty Chainable
      */
-    public function set_upload_path($upload_path)
+    public function setUploadPath($uploadPath)
     {
-        if (!is_string($upload_path)) {
+        if (!is_string($uploadPath)) {
             throw new InvalidArgumentException(
                 'Upload path must be a string'
             );
         }
         // Sanitize upload path (force trailing slash)
-        $this->upload_path = rtrim($upload_path, '/').'/';
+        $this->uploadPath = rtrim($uploadPath, '/').'/';
         return $this;
     }
 
     /**
      * @return string
      */
-    public function upload_path()
+    public function uploadPath()
     {
-        return $this->upload_path;
+        return $this->uploadPath;
     }
 
     /**
      * @param boolean $overwrite The overwrite flag.
      * @return FileProperty Chainable
      */
-    public function set_overwrite($overwrite)
+    public function setOverwrite($overwrite)
     {
         $this->overwrite = !!$overwrite;
         return $this;
@@ -113,18 +113,18 @@ class FileProperty extends AbstractProperty
      * @param string[] $mimetypes The accepted mimetypes.
      * @return FileProperty Chainable
      */
-    public function set_accepted_mimetypes(array $mimetypes)
+    public function setAcceptedMimetypes(array $mimetypes)
     {
-        $this->accepted_mimetypes = $mimetypes;
+        $this->acceptedMimetypes = $mimetypes;
         return $this;
     }
 
     /**
      * @return array
      */
-    public function accepted_mimetypes()
+    public function acceptedMimetypes()
     {
-        return $this->accepted_mimetypes;
+        return $this->acceptedMimetypes;
     }
 
     /**
@@ -132,23 +132,23 @@ class FileProperty extends AbstractProperty
      * @throws InvalidArgumentException If the size argument is not an integer.
      * @return FileProperty Chainable
      */
-    public function set_max_filesize($size)
+    public function setMaxFilesize($size)
     {
         if (!is_int($size)) {
             throw new InvalidArgumentException(
                 'Max filesize must be an integer, in bytes.'
             );
         }
-        $this->max_filesize = $size;
+        $this->maxFilesize = $size;
         return $this;
     }
 
     /**
      * @return integer
      */
-    public function max_filesize()
+    public function maxFilesize()
     {
-        return $this->max_filesize;
+        return $this->maxFilesize;
     }
 
     /**
@@ -156,7 +156,7 @@ class FileProperty extends AbstractProperty
      * @throws InvalidArgumentException If the mimetype argument is not a string.
      * @return FileProperty Chainable
      */
-    public function set_mimetype($mimetype)
+    public function setMimetype($mimetype)
     {
         if (!is_string($mimetype)) {
             throw new InvalidArgumentException(
@@ -189,7 +189,7 @@ class FileProperty extends AbstractProperty
      * @throws InvalidArgumentException If the size argument is not an integer.
      * @return FileProperty Chainable
      */
-    public function set_filesize($size)
+    public function setFilesize($size)
     {
         if (!is_int($size)) {
             throw new InvalidArgumentException(
@@ -219,19 +219,19 @@ class FileProperty extends AbstractProperty
     /**
      * @return array
      */
-    public function validation_methods()
+    public function validationMethods()
     {
-        $parent_methods = parent::validation_methods();
-        return array_merge($parent_methods, ['accepted_mimetypes', 'max_filesize']);
+        $parentMethods = parent::validationMethods();
+        return array_merge($parentMethods, ['accepted_mimetypes', 'max_filesize']);
     }
 
     /**
      * @return boolean
      */
-    public function validate_accepted_mimetypes()
+    public function validateAcceptedMimetypes()
     {
-        $accepted_mimetypes = $this->accepted_mimetypes();
-        if (empty($accepted_mimetypes)) {
+        $acceptedMimetypes = $this->acceptedMimetypes();
+        if (empty($acceptedMimetypes)) {
             // No validation rules = always true
             return true;
         }
@@ -247,14 +247,14 @@ class FileProperty extends AbstractProperty
             $mimetype = $info->file($val);
         }
         $valid = false;
-        foreach ($accepted_mimetypes as $m) {
+        foreach ($acceptedMimetypes as $m) {
             if ($m == $mimetype) {
                 $valid = true;
                 break;
             }
         }
         if (!$valid) {
-            $this->validator()->error('Accepted mimetypes error', 'accepted_mimetypes');
+            $this->validator()->error('Accepted mimetypes error', 'acceptedMimetypes');
         }
 
         return $valid;
@@ -263,18 +263,18 @@ class FileProperty extends AbstractProperty
     /**
      * @return boolean
      */
-    public function validate_max_filesize()
+    public function validateMaxFilesize()
     {
-        $max_filesize = $this->max_filesize();
-        if ($max_filesize == 0) {
+        $maxFilesize = $this->maxFilesize();
+        if ($maxFilesize == 0) {
             // No max size rule = always true
             return true;
         }
 
         $filesize = $this->filesize();
-        $valid = ($filesize <= $max_filesize);
+        $valid = ($filesize <= $maxFilesize);
         if (!$valid) {
-            $this->validator()->error('Max filesize error', 'max_filesize');
+            $this->validator()->error('Max filesize error', 'maxFilesize');
         }
 
         return $valid;
@@ -283,7 +283,7 @@ class FileProperty extends AbstractProperty
     /**
      * @return string
      */
-    public function sql_extra()
+    public function sqlExtra()
     {
         return '';
     }
@@ -295,7 +295,7 @@ class FileProperty extends AbstractProperty
      *
      * @return string The SQL type
      */
-    public function sql_type()
+    public function sqlType()
     {
         // Multiple strings are always stored as TEXT because they can hold multiple values
         if ($this->multiple()) {
@@ -308,7 +308,7 @@ class FileProperty extends AbstractProperty
     /**
      * @return integer
      */
-    public function sql_pdo_type()
+    public function sqlPdoType()
     {
         return PDO::PARAM_STR;
     }
@@ -323,11 +323,11 @@ class FileProperty extends AbstractProperty
         if (isset($_FILES[$i])
             && (isset($_FILES[$i]['name']) && $_FILES[$i]['name'])
             && (isset($_FILES[$i]['tmp_name']) && $_FILES[$i]['tmp_name'])) {
-            $f = $this->file_upload($_FILES[$i]);
+            $f = $this->fileUpload($_FILES[$i]);
             $this->set_val($f);
             return $f;
         } elseif (preg_match('/^data:/', $this->val())) {
-            $f = $this->data_upload($this->val());
+            $f = $this->dataUpload($this->val());
             $this->set_val($f);
             return $f;
         }
@@ -337,13 +337,13 @@ class FileProperty extends AbstractProperty
     /**
      * Upload to filesystem, from data: content.
      *
-     * @param string $file_data The file data, raw.
+     * @param string $fileData The file data, raw.
      * @throws Exception If data content decoding fails.
      * @return string
      */
-    public function data_upload($file_data)
+    public function dataUpload($fileData)
     {
-        $file_content = file_get_contents($file_data);
+        $file_content = file_get_contents($fileData);
         if ($file_content === false) {
             throw new Exception(
                 'File content could not be decoded.'
@@ -351,21 +351,21 @@ class FileProperty extends AbstractProperty
         }
 
         $info = new finfo(FILEINFO_MIME_TYPE);
-        $this->set_mimetype($info->buffer($file_content));
-        $this->set_filesize(strlen($file_content));
-        if (!$this->validate_accepted_mimetypes() || !$this->validate_max_filesize()) {
+        $this->setMimetype($info->buffer($file_content));
+        $this->setFilesize(strlen($file_content));
+        if (!$this->validateAcceptedMimetypes() || !$this->validateMaxFilesize()) {
             return '';
         }
 
-        $target = $this->upload_target();
+        $target = $this->uploadTarget();
 
         $ret = file_put_contents($target, $file_content);
         if ($ret === false) {
             return '';
         } else {
             if (class_exists('\Charcoal\App\App')) {
-                $base_path = \Charcoal\App\App::instance()->config()->get('ROOT');
-                $target = str_replace($base_path, '', $target);
+                $basePath = \Charcoal\App\App::instance()->config()->get('ROOT');
+                $target = str_replace($basePath, '', $target);
             }
 
             return $target;
@@ -373,40 +373,40 @@ class FileProperty extends AbstractProperty
     }
 
     /**
-     * @param array $file_data The file data (from $_FILES, typically).
+     * @param array $fileData The file data (from $_FILES, typically).
      * @throws InvalidArgumentException If the FILES data argument is missing `name` or `tmp_name`.
      * @return string
      */
-    public function file_upload(array $file_data)
+    public function fileUpload(array $fileData)
     {
-        if (!isset($file_data['name'])) {
+        if (!isset($fileData['name'])) {
             throw new InvalidArgumentException(
                 'File data is invalid'
             );
         }
 
-        if (!file_exists($file_data['tmp_name'])) {
+        if (!file_exists($fileData['tmp_name'])) {
             throw new InvalidArgumentException(
                 'The uploaded file could not be read (does not exist)'
             );
         }
 
         $info = new finfo(FILEINFO_MIME_TYPE);
-        $this->set_mimetype($info->file($file_data['tmp_name']));
-        $this->set_filesize(filesize($file_data['tmp_name']));
-        if (!$this->validate_accepted_mimetypes() || !$this->validate_max_filesize()) {
+        $this->setMimetype($info->file($fileData['tmp_name']));
+        $this->setFilesize(filesize($fileData['tmp_name']));
+        if (!$this->validateAcceptedMimetypes() || !$this->validateMaxFilesize()) {
             return '';
         }
 
-        $target = $this->upload_target($file_data['name']);
+        $target = $this->uploadTarget($fileData['name']);
 
-        $ret = move_uploaded_file($file_data['tmp_name'], $target);
+        $ret = moveUploadedFile($fileData['tmp_name'], $target);
         if ($ret === false) {
             return '';
         } else {
             if (class_exists('\Charcoal\App\App')) {
-                $base_path = \Charcoal\App\App::instance()->config()->get('ROOT');
-                $target = str_replace($base_path, '', $target);
+                $basePath = \Charcoal\App\App::instance()->config()->get('ROOT');
+                $target = str_replace($basePath, '', $target);
             }
 
             return $target;
@@ -418,16 +418,16 @@ class FileProperty extends AbstractProperty
      * @throws Exception If the target path is not writeable.
      * @return string
      */
-    public function upload_target($filename = null)
+    public function uploadTarget($filename = null)
     {
         if (class_exists('\Charcoal\App\App')) {
-            $base_path = \Charcoal\App\App::instance()->config()->get('ROOT');
+            $basePath = \Charcoal\App\App::instance()->config()->get('ROOT');
         } else {
-            $base_path = '';
+            $basePath = '';
         }
 
-        $dir = $base_path.$this->upload_path();
-        $filename = ($filename) ? $this->sanitize_filename($filename) : $this->generate_filename();
+        $dir = $basePath.$this->uploadPath();
+        $filename = ($filename) ? $this->sanitizeFilename($filename) : $this->generateFilename();
 
         if (!file_exists($dir)) {
             // @todo: Feedback
@@ -445,7 +445,7 @@ class FileProperty extends AbstractProperty
 
         $target = $dir.$filename;
 
-        if ($this->file_exists($target)) {
+        if ($this->fileExists($target)) {
             if ($this->overwrite() === true) {
                 return $target;
             } else {
@@ -473,7 +473,7 @@ class FileProperty extends AbstractProperty
      * @param boolean $case_insensitive Optional. Case insensitive flag.
      * @return boolean
      */
-    public function file_exists($file, $case_insensitive = true)
+    public function fileExists($file, $case_insensitive = true)
     {
         if (file_exists($file)) {
             return true;
@@ -498,7 +498,7 @@ class FileProperty extends AbstractProperty
      * @param string $filename The filename to sanitize.
      * @return string The sanitized filename.
      */
-    public function sanitize_filename($filename)
+    public function sanitizeFilename($filename)
     {
         // Remove blacklisted caharacters
         $blacklist = ['/', '\\', '\0', '*', ':', '?', '"', '<', '>', '|', '#', '&', '!', '`'];
@@ -513,10 +513,10 @@ class FileProperty extends AbstractProperty
     /**
      * @return string
      */
-    public function generate_filename()
+    public function generateFilename()
     {
         $filename = $this->label().' '.date('Y-m-d H-i-s');
-        $extension = $this->generate_extension();
+        $extension = $this->generateExtension();
 
         if ($extension) {
             return $filename.'.'.$extension;
@@ -528,7 +528,7 @@ class FileProperty extends AbstractProperty
     /**
      * @return string
      */
-    public function generate_extension()
+    public function generateExtension()
     {
         $mimetype = $this->mimetype();
         return '';

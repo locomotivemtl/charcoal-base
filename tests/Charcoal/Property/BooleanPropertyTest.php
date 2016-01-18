@@ -25,21 +25,21 @@ class BooleanPropertyTest extends \PHPUnit_Framework_TestCase
     public function testDisplayVal()
     {
         $obj = new BooleanProperty();
-        $this->assertEquals('False', $obj->display_val());
-        $obj->set_val(true);
-        $this->assertEquals('True', $obj->display_val());
+        $this->assertEquals('False', $obj->displayVal());
+        $obj->setVal(true);
+        $this->assertEquals('True', $obj->displayVal());
 
-        $obj->set_true_label('Oui');
-        $obj->set_false_label('Non');
+        $obj->setTrueLabel('Oui');
+        $obj->setFalseLabel('Non');
 
-        $this->assertEquals('Oui', $obj->display_val(true));
-        $this->assertEquals('Non', $obj->display_val(false));
+        $this->assertEquals('Oui', $obj->displayVal(true));
+        $this->assertEquals('Non', $obj->displayVal(false));
 
 
     }
 
     /**
-     * Assert that the `set_multiple()` method:
+     * Assert that the `setMultiple()` method:
      * - set the multiple to false, if false or falsish value
      * - throws exception otherwise (truthish or invalid value)
      * - is chainable
@@ -47,12 +47,12 @@ class BooleanPropertyTest extends \PHPUnit_Framework_TestCase
     public function testSetMultiple()
     {
         $obj = new BooleanProperty();
-        $ret = $obj->set_multiple(0);
+        $ret = $obj->setMultiple(0);
         $this->assertSame($ret, $obj);
         $this->assertSame(false, $ret->multiple());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $obj->set_multiple(1);
+        $obj->setMultiple(1);
     }
 
     public function testMultiple()
@@ -68,60 +68,60 @@ class BooleanPropertyTest extends \PHPUnit_Framework_TestCase
             'true_label'=>'foo',
             'false_label'=>'bar'
         ];
-        $ret = $obj->set_data($data);
+        $ret = $obj->setData($data);
 
         $this->assertSame($ret, $obj);
 
-        $this->assertEquals('foo', $obj->true_label());
-        $this->assertEquals('bar', $obj->false_label());
+        $this->assertEquals('foo', $obj->trueLabel());
+        $this->assertEquals('bar', $obj->falseLabel());
     }
 
     public function testSetTrueLabel()
     {
         $obj = new BooleanProperty();
-        $ret = $obj->set_true_label('foo');
+        $ret = $obj->setTrueLabel('foo');
         $this->assertSame($ret, $obj);
 
-        $this->assertEquals('foo', $obj->true_label());
+        $this->assertEquals('foo', $obj->trueLabel());
 
         //$this->setExpectedException('\InvalidArgumentException');
-        //$obj->set_true_label(false);
+        //$obj->setTrueLabel(false);
     }
 
     public function testSetFalseLabel()
     {
         $obj = new BooleanProperty();
-        $ret = $obj->set_false_label('foo');
+        $ret = $obj->setFalseLabel('foo');
         $this->assertSame($ret, $obj);
 
-        $this->assertEquals('foo', $obj->false_label());
+        $this->assertEquals('foo', $obj->falseLabel());
 
         //$this->setExpectedException('\InvalidArgumentException');
-        //$obj->set_false_label(false);
+        //$obj->setFalseLabel(false);
     }
 
     public function testSqlExtra()
     {
         $obj = new BooleanProperty();
-        $this->assertSame('', $obj->sql_extra());
+        $this->assertSame('', $obj->sqlExtra());
     }
 
     public function testSqlType()
     {
         $obj = new BooleanProperty();
-        $this->assertEquals('TINYINT(1) UNSIGNED', $obj->sql_type());
+        $this->assertEquals('TINYINT(1) UNSIGNED', $obj->sqlType());
     }
 
     public function testSqlPdoType()
     {
         $obj = new BooleanProperty();
-        $this->assertEquals(\PDO::PARAM_BOOL, $obj->sql_pdo_type());
+        $this->assertEquals(\PDO::PARAM_BOOL, $obj->sqlPdoType());
     }
 
     public function testChoices()
     {
         $obj = new BooleanProperty();
-        $obj->set_val(false);
+        $obj->setVal(false);
         $choices = [
             [
                 'label'=>'True',
@@ -135,17 +135,17 @@ class BooleanPropertyTest extends \PHPUnit_Framework_TestCase
             ]
         ];
         $this->assertEquals($choices, $obj->choices());
-        
+
     }
 
     public function testSave()
     {
         $obj = new BooleanProperty();
-        
-        $obj->set_val(true);
+
+        $obj->setVal(true);
         $this->assertTrue($obj->save());
 
-        $obj->set_val(false);
+        $obj->setVal(false);
         $this->assertNotTrue($obj->save());
 
     }

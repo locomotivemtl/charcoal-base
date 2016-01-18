@@ -8,40 +8,40 @@ namespace Charcoal\Object;
 interface PublishableInterface
 {
     /**
-     * @param string|DateTime $publish_date The publish date.
+     * @param string|DateTime $publishDate The publish date.
      * @return PublishableTrait Chainable
      */
-    public function set_publish_date($publish_date);
+    public function setPublishDate($publishDate);
 
     /**
      * @return DateTime|null
      */
-    public function publish_date();
+    public function publishDate();
 
     /**
-     * @param string|DateTime $expiry_date The expiry date.
+     * @param string|DateTime $expiryDate The expiry date.
      * @return PublishableTrait Chainable
      */
-    public function set_expiry_date($expiry_date);
+    public function setExpiryDate($expiryDate);
 
     /**
      * @return DateTime|null
      */
-    public function expiry_date();
+    public function expiryDate();
 
     /**
      * @param string $status The publish status (can be draft, pending or published).
      * @return PublishableTrait Chainable
      */
-    public function set_publish_status($status);
+    public function setPublishStatus($status);
 
     /**
      * @return string
      */
-    public function publish_status();
+    public function publishStatus();
 
     /**
      * @return boolean
      */
-    public function is_published();
+    public function isPublished();
 }

@@ -8,27 +8,27 @@ interface CategoryInterface
      * @param string $type The category item type.
      * @return CategoryInterface Chainable
      */
-    public function set_category_item_type($type);
+    public function setCategoryItemType($type);
 
     /**
      * @return string
      */
-    public function category_item_type();
+    public function categoryItemType();
 
     /**
      * Get the number of items in this category.
      * @return array
      */
-    public function num_category_items();
+    public function numCategoryItems();
 
     /**
      * @return boolean
      */
-    public function has_category_items();
+    public function hasCategoryItems();
 
     /**
      * @return array
      * @todo Return Collection?
      */
-    public function category_items();
+    public function categoryItems();
 }

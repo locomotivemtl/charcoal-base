@@ -12,91 +12,91 @@ interface ObjectRevisionInterface
      * @throws InvalidArgumentException If the obj type parameter is not a string.
      * @return \Charcoal\Object\ObjectRevisionInterface Chainable
      */
-    public function set_obj_type($obj_type);
+    public function setObjType($obj_type);
 
     /**
      * @return string
      */
-    public function obj_type();
+    public function objType();
 
     /**
-     * @param mixed $obj_id The object ID.
+     * @param mixed $objId The object ID.
      * @return \Charcoal\Object\ObjectRevisionInterface Chainable
      */
-    public function set_obj_id($obj_id);
+    public function setObjId($objId);
 
     /**
      * @return mixed
      */
-    public function obj_id();
+    public function objId();
 
     /**
-     * @param integer $rev_num The revision number.
+     * @param integer $revNum The revision number.
      * @return \Charcoal\Object\ObjectRevisionInterface Chainable
      */
-    public function set_rev_num($rev_num);
+    public function setRevNum($revNum);
 
     /**
      * @return integer
      */
-    public function rev_num();
+    public function revNum();
 
     /**
-     * @param mixed $rev_ts The revision's timestamp.
+     * @param mixed $revTs The revision's timestamp.
      * @throws InvalidArgumentException If the timestamp is invalid.
      * @return \Charcoal\Object\ObjectRevisionInterface Chainable
      */
-    public function set_rev_ts($rev_ts);
+    public function setRevTs($revTs);
 
     /**
      * @return DateTime|null
      */
-    public function rev_ts();
+    public function revTs();
 
     /**
-     * @param string $rev_user The revision user ident.
+     * @param string $revUser The revision user ident.
      * @throws InvalidArgumentException If the revision user parameter is not a string.
      * @return \Charcoal\Object\ObjectRevisionInterface Chainable
      */
-    public function set_rev_user($rev_user);
+    public function setRevUser($revUser);
 
     /**
      * @return string
      */
-    public function rev_user();
+    public function revUser();
 
     /**
      * @param array $data The previous revision data.
      * @return ObjectRevision
      */
-    public function set_data_prev(array $data);
+    public function setDataPrev(array $data);
 
     /**
      * @return array
      */
-    public function data_prev();
+    public function dataPrev();
 
     /**
      * @param array $data The current revision (object) data.
      * @return ObjectRevision
      */
-    public function set_data_obj(array $data);
+    public function setDataObj(array $data);
 
     /**
      * @return array
      */
-    public function data_obj();
+    public function dataObj();
 
      /**
       * @param array $data The data diff.
       * @return ObjectRevision
       */
-    public function set_data_diff(array $data);
+    public function setDataDiff(array $data);
 
     /**
      * @return array
      */
-    public function data_diff();
+    public function dataDiff();
 
     /**
      * Create a new revision from an object
@@ -106,31 +106,31 @@ interface ObjectRevisionInterface
      * 3. Create diff from (1) and (2).
      *
      * @param string $obj_type The object type to create the revision from.
-     * @param mixed  $obj_id   The object ID to create the revision from.
+     * @param mixed  $objId    The object ID to create the revision from.
      * @return ObjectRevisionInterface Chainable
      */
-    public function create_from_object($obj_type, $obj_id);
+    public function createFromObject($obj_type, $objId);
 
     /**
-     * @param array $data_prev Optional. The previous revision data.
-     * @param array $data_obj  Optional. The current revision (object) data.
+     * @param array $dataPrev Optional. The previous revision data.
+     * @param array $dataObj  Optional. The current revision (object) data.
      * @return array The diff data
      */
-    public function create_diff(array $data_prev, array $data_obj);
+    public function createDiff(array $dataPrev, array $dataObj);
 
     /**
-     * Recursive array_diff.
+     * Recursive arrayDiff.
      *
      * @param array $array1 First array.
      * @param array $array2 Second array.
      * @return array The array diff.
      */
-    public function recursive_diff(array $array1, array $array2);
+    public function recursiveDiff(array $array1, array $array2);
 
     /**
      * @param string $obj_type The object type to load the last revision of.
-     * @param mixed  $obj_id   The object ID to load the last revision of.
+     * @param mixed  $objId    The object ID to load the last revision of.
      * @return ObjectRevision The last revision for the give object.
      */
-    public function last_object_revision($obj_type, $obj_id);
+    public function lastObjectRevision($obj_type, $objId);
 }

@@ -22,7 +22,7 @@ class TextProperty extends StringProperty
     /**
      * @return integer
      */
-    public function default_max_length()
+    public function defaultMaxLength()
     {
         return 0;
     }
@@ -32,7 +32,7 @@ class TextProperty extends StringProperty
      *
      * @return string The SQL type
      */
-    public function sql_type()
+    public function sqlType()
     {
         return 'TEXT';
     }

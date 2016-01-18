@@ -26,7 +26,7 @@ class HtmlProperty extends StringProperty
      *
      * @return integer
      */
-    public function default_max_length()
+    public function defaultMaxLength()
     {
         return 0;
     }
@@ -36,7 +36,7 @@ class HtmlProperty extends StringProperty
      *
      * @return string The SQL type
      */
-    public function sql_type()
+    public function sqlType()
     {
         return 'TEXT';
     }

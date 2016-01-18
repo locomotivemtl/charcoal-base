@@ -20,7 +20,7 @@ class PhoneProperty extends StringProperty
     /**
      * @return integer
      */
-    public function default_max_length()
+    public function defaultMaxLength()
     {
         return 16;
     }
@@ -44,7 +44,7 @@ class PhoneProperty extends StringProperty
      * @param string $val Optional. The value to display. If none is provided, use `val()`.
      * @return string
      */
-    public function display_val($val = null)
+    public function displayVal($val = null)
     {
         if ($val === null) {
             $val = $this->val();

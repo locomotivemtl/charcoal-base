@@ -49,7 +49,7 @@ class IdProperty extends AbstractProperty
      * @throws InvalidArgumentException If the multiple argument is true (must be false).
      * @return IdProperty Chainable
      */
-    public function set_multiple($multiple)
+    public function setMultiple($multiple)
     {
         $multiple = !!$multiple;
         if ($multiple === true) {
@@ -77,7 +77,7 @@ class IdProperty extends AbstractProperty
      * @throws InvalidArgumentException If the mode is not one of the 3 valid modes.
      * @return IdProperty Chainable
      */
-    public function set_mode($mode)
+    public function setMode($mode)
     {
         $available_modes = [
             self::MODE_AUTO_INCREMENT,
@@ -116,8 +116,8 @@ class IdProperty extends AbstractProperty
     {
         $val = $this->val();
         if (!$val) {
-            $val = $this->auto_generate();
-            $this->set_val($val);
+            $val = $this->autoGenerate();
+            $this->setVal($val);
         }
 
         return $val;
@@ -128,7 +128,7 @@ class IdProperty extends AbstractProperty
      *
      * @return string
      */
-    public function auto_generate()
+    public function autoGenerate()
     {
         $mode = $this->mode();
 
@@ -138,7 +138,7 @@ class IdProperty extends AbstractProperty
         } elseif ($mode == self::MODE_UNIQID) {
             return \uniqid();
         } elseif ($mode == self::MODE_UUID) {
-            return $this->generate_uuid();
+            return $this->generateUuid();
         }
     }
 
@@ -149,7 +149,7 @@ class IdProperty extends AbstractProperty
      *
      * @see http://tools.ietf.org/html/rfc4122#section-4.4
      */
-    private function generate_uuid()
+    private function generateUuid()
     {
         // Generate a uniq string identifer (valid v4 uuid)
         return sprintf(
@@ -159,7 +159,7 @@ class IdProperty extends AbstractProperty
             mt_rand(0, 0xffff),
             // 16 bits for "time_mid" flag
             mt_rand(0, 0xffff),
-            // 16 bits for "time_hi_and_version" flat (4 most significant bits holds version number)
+            // 16 bits for "time_hi_andVersion" flat (4 most significant bits holds version number)
             (mt_rand(0, 0x0fff) | 0x4000),
             // 16 bits, 8 bits for "clk_seq_hi_res" flag and 8 bits for "clk_seq_low" flag
             // two most significant bits holds zero and one for variant DCE1.1
@@ -175,7 +175,7 @@ class IdProperty extends AbstractProperty
      * @return string
      * @see AbstractProperty::fields()
      */
-    public function sql_extra()
+    public function sqlExtra()
     {
         $mode = $this->mode();
         if ($mode == self::MODE_AUTO_INCREMENT) {
@@ -191,7 +191,7 @@ class IdProperty extends AbstractProperty
      * @return string The SQL type
      * @see AbstractProperty::fields()
      */
-    public function sql_type()
+    public function sqlType()
     {
         $mode = $this->mode();
         if ($mode == self::MODE_AUTO_INCREMENT) {
@@ -207,7 +207,7 @@ class IdProperty extends AbstractProperty
      * @return integer
      * @see AbstractProperty::fields()
      */
-    public function sql_pdo_type()
+    public function sqlPdoType()
     {
         $mode = $this->mode();
         if ($mode == 'auto-increment') {

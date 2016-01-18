@@ -17,15 +17,15 @@ class AudioProperty extends FileProperty
 {
     /**
      * Minimum audio length, in seconds.
-     * @var integer $_min_length
+     * @var integer $_minLength
      */
-    private $min_length = 0;
+    private $minLength = 0;
 
     /**
      * Maximum audio length, in seconds.
-     * @var integer $_max_length
+     * @var integer $_maxLength
      */
-    private $max_length = 0;
+    private $maxLength = 0;
 
     /**
      * @return string
@@ -36,57 +36,57 @@ class AudioProperty extends FileProperty
     }
 
     /**
-     * @param integer $min_length The minimum length allowed, in seconds.
+     * @param integer $minLength The minimum length allowed, in seconds.
      * @throws InvalidArgumentException If the length is not an integer.
      * @return AudioProperty Chainable
      */
-    public function set_min_length($min_length)
+    public function setMinLength($minLength)
     {
-        if (!is_int($min_length)) {
+        if (!is_int($minLength)) {
             throw new InvalidArgumentException(
                 'Min length must be an integer (in seconds)'
             );
         }
-        $this->min_length = $min_length;
+        $this->minLength = $minLength;
         return $this;
     }
 
     /**
      * @return integer
      */
-    public function min_length()
+    public function minLength()
     {
-        return $this->min_length;
+        return $this->minLength;
     }
 
     /**
-     * @param integer $max_length The maximum length allowed, in seconds.
+     * @param integer $maxLength The maximum length allowed, in seconds.
      * @throws InvalidArgumentException If the length is not an integer.
      * @return AudioProperty Chainable
      */
-    public function set_max_length($max_length)
+    public function setMaxLength($maxLength)
     {
-        if (!is_int($max_length)) {
+        if (!is_int($maxLength)) {
             throw new InvalidArgumentException(
                 'Max length must be an integer (in seconds)'
             );
         }
-        $this->max_length = $max_length;
+        $this->maxLength = $maxLength;
         return $this;
     }
 
     /**
      * @return integer
      */
-    public function max_length()
+    public function maxLength()
     {
-        return $this->max_length;
+        return $this->maxLength;
     }
 
     /**
      * @return array
      */
-    public function accepted_mimetypes()
+    public function acceptedMimetypes()
     {
         return [
             'audio/mp3',
@@ -99,7 +99,7 @@ class AudioProperty extends FileProperty
     /**
      * @return string
      */
-    public function generate_extension()
+    public function generateExtension()
     {
         $mimetype = $this->mimetype();
 

@@ -27,43 +27,43 @@ class Content extends AbstractModel implements
 
     /**
      * Objects are active by default
-     * @var boolean $_active
+     * @var boolean $Active
      */
     private $active = true;
 
     /**
      * The position is used for ordering lists
-     * @var integer $_position
+     * @var integer $Position
      */
     private $position = 0;
 
     /**
      * Object creation date (set automatically on save)
-     * @var DateTime $_created
+     * @var DateTime $Created
      */
     private $created;
 
     /**
      * @var mixed
      */
-    private $created_by;
+    private $createdBy;
 
     /**
      * Object last modified date (set automatically on save and update)
-     * @var DateTime $_last_modified
+     * @var DateTime $LastModified
      */
-    private $last_modified;
+    private $lastModified;
 
     /**
      * @var mixed
      */
-    private $last_modified_by;
+    private $lastModifiedBy;
 
     /**
      * @param boolean $active The active flag.
      * @return Content Chainable
      */
-    public function set_active($active)
+    public function setActive($active)
     {
         $this->active = !!$active;
         return $this;
@@ -82,7 +82,7 @@ class Content extends AbstractModel implements
      * @throws InvalidArgumentException If the position is not an integer (or numeric integer string).
      * @return Content Chainable
      */
-    public function set_position($position)
+    public function setPosition($position)
     {
         if ($position === null) {
             $this->position = null;
@@ -110,7 +110,7 @@ class Content extends AbstractModel implements
      * @throws InvalidArgumentException If the datetime is invalid.
      * @return Content Chainable
      */
-    public function set_created($created)
+    public function setCreated($created)
     {
         if ($created === null) {
             $this->created = null;
@@ -137,105 +137,104 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @param mixed $created_by The creator of the content object.
+     * @param mixed $createdBy The creator of the content object.
      * @return Content Chainable
      */
-    public function set_created_by($created_by)
+    public function setCreatedBy($createdBy)
     {
-        $this->created_by = $created_by;
+        $this->createdBy = $createdBy;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function created_by()
+    public function createdBy()
     {
-        return $this->created_by;
+        return $this->createdBy;
     }
 
     /**
-     * @param DateTime|string|null $last_modified The last modified datetime.
+     * @param DateTime|string|null $lastModified The last modified datetime.
      * @throws InvalidArgumentException If the datetime is invalid.
      * @return Content Chainable
      */
-    public function set_last_modified($last_modified)
+    public function setLastModified($lastModified)
     {
-        if ($last_modified === null) {
-            $this->last_modified = null;
+        if ($lastModified === null) {
+            $this->lastModified = null;
             return $this;
         }
-        if (is_string($last_modified)) {
-            $last_modified = new DateTime($last_modified);
+        if (is_string($lastModified)) {
+            $lastModified = new DateTime($lastModified);
         }
-        if (!($last_modified instanceof DateTime)) {
+        if (!($lastModified instanceof DateTime)) {
             throw new InvalidArgumentException(
                 'Invalid "Last Modified" value. Must be a date/time string or a DateTime object.'
             );
         }
-        $this->last_modified = $last_modified;
+        $this->lastModified = $lastModified;
         return $this;
     }
 
     /**
      * @return DateTime
      */
-    public function last_modified()
+    public function lastModified()
     {
-        return $this->last_modified;
+        return $this->lastModified;
     }
 
     /**
-     * @param mixed $last_modified_by The last modification's username.
+     * @param mixed $lastModifiedBy The last modification's username.
      * @return Content Chainable
      */
-    public function set_last_modified_by($last_modified_by)
+    public function setLastModifiedBy($lastModifiedBy)
     {
-        $this->last_modified_by = $last_modified_by;
+        $this->lastModifiedBy = $lastModifiedBy;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function last_modified_by()
+    public function lastModifiedBy()
     {
-        return $this->last_modified_by;
+        return $this->lastModifiedBy;
     }
 
     /**
-     * StorableTrait > pre_save(): Called automatically before saving the object to source.
-     * For content object, set the `created` and `last_modified` properties automatically
+     * StorableTrait > preSavƒe(): Called automatically before saving the object to source.
+     * For content object, set the `created` and `lastModified` properties automatically
      * @return boolean
      */
-    public function pre_save()
+    public function preSave()
     {
-        parent::pre_save();
+        parent::preSave();
 
-        $this->set_created('now');
-        $this->set_last_modified('now');
+        $this->setCreated('now');
+        $this->setLastModified('now');
 
         return true;
     }
 
     /**
-     * StorableTrait > pre_update(): Called automatically before updating the object to source.
-     * For content object, set the `last_modified` property automatically.
+     * StorableTrait > preUpdate(): Called automatically before updating the object to source.
+     * For content object, set the `lastModified` property automatically.
      * @param array $properties The properties (ident) set for update.
      * @return boolean
      */
-    public function pre_update($properties = null)
+    public function preUpdate(array $properties = null)
     {
-        parent::pre_update($properties);
+        parent::preUpdate($properties);
 
         // Content is revisionable
-        if ($this->revision_enabled()) {
-            $this->generate_revision();
+        if ($this->revisionEnabled()) {
+            $this->generateRevision();
         }
 
-        $this->set_last_modified('now');
+        $this->setLastModified('now');
 
         return true;
     }
-
 }

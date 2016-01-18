@@ -9,5 +9,10 @@ module.exports = {
 		src:[
 			'config/**/*.json'
 		]
-	}
+	},
+    metadata:{
+        src:[
+            'metadata/**/*.json'
+        ]
+    }
 };

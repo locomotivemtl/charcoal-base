@@ -53,7 +53,7 @@ class DatetimeProperty extends AbstractProperty
      * @throws InvalidArgumentException If the multiple argument is true (must be false).
      * @return DatetimeProperty Chainable
      */
-    public function set_multiple($multiple)
+    public function setMultiple($multiple)
     {
         $multiple = !!$multiple;
         if ($multiple === true) {
@@ -77,16 +77,16 @@ class DatetimeProperty extends AbstractProperty
     }
 
     /**
-     * AbstractProperty > set_val(). Ensure `DateTime` object in val.
+     * AbstractProperty > setVal(). Ensure `DateTime` object in val.
      *
      * @param string|DateTime $val The value to set.
      * @throws InvalidArgumentException If the value is invalid.
      * @return DateTimeProperty Chainable
      */
-    public function set_val($val)
+    public function setVal($val)
     {
         if ($val === null) {
-            if ($this->allow_null()) {
+            if ($this->allowNull()) {
                 $this->val = null;
                 return $this;
             } else {
@@ -108,13 +108,13 @@ class DatetimeProperty extends AbstractProperty
     }
 
     /**
-     * AbstractProperty > storage_val(). Convert `DateTime` to SQL-friendly string.
+     * AbstractProperty > storageVal(). Convert `DateTime` to SQL-friendly string.
      *
      * @param string|DateTime $val Optional. Value to convert to storage format.
      * @throws Exception If the datetime is invalid.
      * @return string|null
      */
-    public function storage_val($val = null)
+    public function storageVal($val = null)
     {
         if ($val === null) {
             $val = $this->val();
@@ -122,7 +122,7 @@ class DatetimeProperty extends AbstractProperty
         if ($val instanceof DateTimeInterface) {
             return $this->val->format('Y-m-d H:i:s');
         } else {
-            if ($this->allow_null()) {
+            if ($this->allowNull()) {
                 return null;
             } else {
                 throw new Exception('Invalid datetime value');
@@ -133,16 +133,16 @@ class DatetimeProperty extends AbstractProperty
     /**
      * Format `DateTime` to string.
      *
-     * > Warning: Passing a value as a parameter sets this value in the objects (calls set_val())
+     * > Warning: Passing a value as a parameter sets this value in the objects (calls setVal())
      *
      * @param mixed $val Optional.
      * @todo   Adapt for l10n
      * @return string|null
      */
-    public function display_val($val = null)
+    public function displayVal($val = null)
     {
         if ($val !== null) {
-            $this->set_val($val);
+            $this->setVal($val);
         }
 
         if ($this->val()) {
@@ -156,7 +156,7 @@ class DatetimeProperty extends AbstractProperty
      * @throws InvalidArgumentException If the datetime is invalid.
      * @return DatetimeProperty Chainable
      */
-    public function set_min($min)
+    public function setMin($min)
     {
         if ($min === null) {
             $this->min = null;
@@ -196,7 +196,7 @@ class DatetimeProperty extends AbstractProperty
      * @throws InvalidArgumentException If the datetime is invalid.
      * @return DatetimeProperty Chainable
      */
-    public function set_max($max)
+    public function setMax($max)
     {
         if ($max === null) {
             $this->max = null;
@@ -236,7 +236,7 @@ class DatetimeProperty extends AbstractProperty
      * @throws InvalidArgumentException If the format is not a string.
      * @return DatetimeProperty Chainable
      */
-    public function set_format($format)
+    public function setFormat($format)
     {
         if (!is_string($format)) {
             throw new InvalidArgumentException(
@@ -269,16 +269,16 @@ class DatetimeProperty extends AbstractProperty
     /**
      * @return array
      */
-    public function validation_methods()
+    public function validationMethods()
     {
-        $parent_methods = parent::validation_methods();
+        $parent_methods = parent::validationMethods();
         return array_merge($parent_methods, ['min', 'max']);
     }
 
     /**
      * @return boolean
      */
-    public function validate_min()
+    public function validateMin()
     {
         $min = $this->min();
         if (!$min) {
@@ -294,7 +294,7 @@ class DatetimeProperty extends AbstractProperty
     /**
      * @return boolean
      */
-    public function validate_max()
+    public function validateMax()
     {
         $max = $this->max();
         if (!$max) {
@@ -310,7 +310,7 @@ class DatetimeProperty extends AbstractProperty
     /**
      * @return string
      */
-    public function sql_extra()
+    public function sqlExtra()
     {
         return '';
     }
@@ -318,7 +318,7 @@ class DatetimeProperty extends AbstractProperty
     /**
      * @return string
      */
-    public function sql_type()
+    public function sqlType()
     {
         return 'DATETIME';
     }
@@ -326,22 +326,26 @@ class DatetimeProperty extends AbstractProperty
     /**
      * @return integer
      */
-    public function sql_pdo_type()
+    public function sqlPdoType()
     {
         return PDO::PARAM_STR;
     }
 
-    public function JsonSerialize()
+    /**
+     * Json Serialize
+     *
+     * @return mixed
+     */
+    public function jsonSerialize()
     {
         $val = $this->val();
-        if($val === null) {
+        if ($val === null) {
             return null;
         }
 
-        if($val instanceof DateTimeInterface) {
+        if ($val instanceof DateTimeInterface) {
             return $val->format(DateTime::ATOM);
-        }
-        else {
+        } else {
             return $val;
         }
     }

@@ -24,7 +24,7 @@ class LangProperty extends AbstractProperty
     /**
      * @return string
      */
-    public function sql_extra()
+    public function sqlExtra()
     {
         return '';
     }
@@ -36,7 +36,7 @@ class LangProperty extends AbstractProperty
      *
      * @return string The SQL type
      */
-    public function sql_type()
+    public function sqlType()
     {
         if ($this->multiple()) {
             return 'TEXT';
@@ -47,7 +47,7 @@ class LangProperty extends AbstractProperty
     /**
      * @return integer
      */
-    public function sql_pdo_type()
+    public function sqlPdoType()
     {
         return PDO::PARAM_BOOL;
     }
@@ -60,12 +60,12 @@ class LangProperty extends AbstractProperty
         $translator = TranslationConfig::instance();
 
         $choices = [];
-        foreach ($translator->languages() as $lang_code) {
-            $language = $translator->language($lang_code);
+        foreach ($translator->languages() as $langCode) {
+            $language = $translator->language($langCode);
             $choices[] = [
                 'label'    => (string)$language,
-                'selected' => ($this->val() === $lang_code),
-                'value'    => $lang_code
+                'selected' => ($this->val() === $langCode),
+                'value'    => $langCode
             ];
         }
 

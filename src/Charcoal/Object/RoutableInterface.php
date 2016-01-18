@@ -11,7 +11,7 @@ interface RoutableInterface
      * @param boolean $routable The routable flag.
      * @return RoutableInterface Chainable
      */
-    public function set_routable($routable);
+    public function setRoutable($routable);
 
     /**
      * @return boolean
@@ -22,18 +22,18 @@ interface RoutableInterface
      * @param mixed $pattern The slug pattern.
      * @return RoutableInterface Chainable
      */
-    public function set_slug_pattern($pattern);
+    public function setSlugPattern($pattern);
 
     /**
      * @return string
      */
-    public function slug_pattern();
+    public function slugPattern();
 
     /**
      * @param mixed $slug The slug.
      * @return RoutableInterface Chainable
      */
-    public function set_slug($slug);
+    public function setSlug($slug);
 
     /**
      * @return string
@@ -45,7 +45,7 @@ interface RoutableInterface
      *
      * @return string
      */
-    public function generate_slug();
+    public function generateSlug();
 
     /**
      * @return string

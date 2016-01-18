@@ -14,91 +14,80 @@ class HierarchicalTraitTest extends \PHPUnit_Framework_TestCase
         $this->obj = new Hierarchy();
     }
 
-    public function testSetHierarchicalData()
-    {
-        $obj = $this->obj;
-        $ret = $obj->set_hierarchical_data(
-            [
-
-            ]
-        );
-        $this->assertSame($ret, $obj);
-    }
-
     public function testSetMaster()
     {
         $obj = $this->obj;
         $master = $this->getMock(get_class($obj));
-        $ret = $obj->set_master($master);
+        $ret = $obj->setMaster($master);
         $this->assertSame($ret, $obj);
         $this->assertSame($master, $obj->master());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $obj->set_master(['foobar']);
+        $obj->setMaster(['foobar']);
     }
 
     public function testHasMaster()
     {
         $obj = $this->obj;
-        $this->assertFalse($obj->has_master());
+        $this->assertFalse($obj->hasMaster());
 
         $master = $this->getMock(get_class($obj));
-        $obj->set_master($master);
-        $this->assertTrue($obj->has_master());
+        $obj->setMaster($master);
+        $this->assertTrue($obj->hasMaster());
 
-        //$this->assertFalse($master->has_master());
+        //$this->assertFalse($master->hasMaster());
     }
 
     public function testIsTopLevel()
     {
         $obj = $this->obj;
-        $this->assertTrue($obj->is_top_level());
+        $this->assertTrue($obj->isTopLevel());
 
         $master = $this->getMock(get_class($obj));
-        $obj->set_master($master);
-        $this->assertFalse($obj->is_top_level());
+        $obj->setMaster($master);
+        $this->assertFalse($obj->isTopLevel());
     }
 
     public function testIsLastLevel()
     {
         $obj = $this->obj;
-        $this->assertTrue($obj->is_last_level());
+        $this->assertTrue($obj->isLastLevel());
 
         $children = array_fill(0, 4, $this->getMock(get_class($obj)));
-        $obj->set_children($children);
-        $this->assertFalse($obj->is_last_level());
+        $obj->setChildren($children);
+        $this->assertFalse($obj->isLastLevel());
     }
 
     public function testHierarchyLevel()
     {
         $obj = $this->obj;
-        $this->assertEquals(1, $obj->hierarchy_level());
+        $this->assertEquals(1, $obj->hierarchyLevel());
 
         $master = $this->getMock(get_class($obj));
         $children = array_fill(0, 4, $this->getMock(get_class($obj)));
-        $obj->set_master($master);
-        $obj->set_children($children);
-        $this->assertEquals(2, $obj->hierarchy_level());
+        $obj->setMaster($master);
+        $obj->setChildren($children);
+        $this->assertEquals(2, $obj->hierarchyLevel());
 
         $master2 = $this->getMock(get_class($obj));
-        $obj->master()->set_master($master2);
+        $obj->master()->setMaster($master2);
 
-        //$this->assertEquals(3, $obj->hierarchy_level());
+        //$this->assertEquals(3, $obj->hierarchyLevel());
     }
 
     public function testToplevelMaster()
     {
         $obj = $this->obj;
-        $this->assertSame(null, $obj->toplevel_master());
+        $this->assertSame(null, $obj->toplevelMaster());
 
         $master1 = $this->getMock(get_class($obj));
         $master2 = $this->getMock(get_class($obj));
 
-        $obj->set_master($master1);
-        $this->assertSame($master1, $obj->toplevel_master());
+        $obj->setMaster($master1);
+        $this->assertSame($master1, $obj->toplevelMaster());
 
-        $master1->set_master($master2);
-        //$this->assertSame($master2, $obj->toplevel_master());
+        $master1->setMaster($master2);
+        //$this->assertSame($master2, $obj->toplevelMaster());
     }
 
     public function testHierarchy()
@@ -109,26 +98,26 @@ class HierarchicalTraitTest extends \PHPUnit_Framework_TestCase
         $master1 = $this->getMock(get_class($obj));
         $master2 = $this->getMock(get_class($obj));
 
-        $obj->set_master($master1);
+        $obj->setMaster($master1);
         $this->assertSame([$master1], $obj->hierarchy());
 
-        $master1->set_master($master2);
+        $master1->setMaster($master2);
         //$this->assertSame([$master1, $master2], $obj->hierarchy());
     }
 
     public function testInvertedHierarchy()
     {
         $obj = $this->obj;
-        $this->assertEquals([], $obj->inverted_hierarchy());
+        $this->assertEquals([], $obj->invertedHierarchy());
 
         $master1 = $this->getMock(get_class($obj));
         $master2 = $this->getMock(get_class($obj));
 
-        $obj->set_master($master1);
-        $this->assertSame([$master1], $obj->inverted_hierarchy());
+        $obj->setMaster($master1);
+        $this->assertSame([$master1], $obj->invertedHierarchy());
 
-        $master1->set_master($master2);
-        //$this->assertSame([$master2, $master1], $obj->inverted_hierarchy());
+        $master1->setMaster($master2);
+        //$this->assertSame([$master2, $master1], $obj->invertedHierarchy());
     }
 
     public function testIsMasterOf()
@@ -136,35 +125,35 @@ class HierarchicalTraitTest extends \PHPUnit_Framework_TestCase
         $obj = $this->obj;
         $master = $this->getMock(get_class($obj));
 
-        //$this->assertFalse($master->is_master_of($obj));
-        $obj->set_master($master);
-        //$this->assertTrue($master->is_master_of($obj));
-        //$this->assertFalse($obj->is_master_of($master));
+        //$this->assertFalse($master->isMasterOf($obj));
+        $obj->setMaster($master);
+        //$this->assertTrue($master->isMasterOf($obj));
+        //$this->assertFalse($obj->isMasterOf($master));
     }
 
     public function testHasChildren()
     {
         $obj = $this->obj;
-        $this->assertFalse($obj->has_children());
+        $this->assertFalse($obj->hasChildren());
 
         $children = array_fill(0, 4, $this->getMock(get_class($obj)));
-        $obj->set_children($children);
-        $this->assertTrue($obj->has_children());
+        $obj->setChildren($children);
+        $this->assertTrue($obj->hasChildren());
     }
 
     public function testNumChildren()
     {
         $obj = $this->obj;
-        $this->assertEquals(0, $obj->num_children());
+        $this->assertEquals(0, $obj->numChildren());
 
 
         $children = array_fill(0, 4, $this->getMock(get_class($obj)));
-        $obj->set_children($children);
-        $this->assertEquals(4, $obj->num_children());
+        $obj->setChildren($children);
+        $this->assertEquals(4, $obj->numChildren());
 
         $child5 = $this->getMock(get_class($obj));
-        $obj->add_child($child5);
-        $this->assertEquals(5, $obj->num_children());
+        $obj->addChild($child5);
+        $this->assertEquals(5, $obj->numChildren());
     }
 
     public function testIsChildOf()
@@ -172,8 +161,8 @@ class HierarchicalTraitTest extends \PHPUnit_Framework_TestCase
         $obj = $this->obj;
         $master = $this->getMock(get_class($obj));
 
-        $this->assertFalse($obj->is_child_of($master));
-        $obj->set_master($master);
-        $this->assertTrue($obj->is_child_of($master));
+        $this->assertFalse($obj->isChildOf($master));
+        $obj->setMaster($master);
+        $this->assertTrue($obj->isChildOf($master));
     }
 }

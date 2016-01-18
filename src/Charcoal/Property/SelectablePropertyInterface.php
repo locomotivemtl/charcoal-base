@@ -21,7 +21,7 @@ interface SelectablePropertyInterface
      * @param array $choices The array of choice structures.
      * @return SelectablePropertyInterface Chainable.
      */
-    public function set_choices(array $choices);
+    public function setChoices(array $choices);
 
     /**
      * Add a choice to the available choices map.
@@ -30,7 +30,7 @@ interface SelectablePropertyInterface
      * @param array  $choice       A choice structure.
      * @return SelectablePropertyInterface Chainable.
      */
-    public function add_choice($choice_ident, array $choice);
+    public function addChoice($choice_ident, array $choice);
 
     /**
      * Get the choices array map.
@@ -45,7 +45,7 @@ interface SelectablePropertyInterface
      * @param string $choice_ident The choice ident.
      * @return boolean True / false wether the choice exists or not.
      */
-    public function has_choice($choice_ident);
+    public function hasChoice($choice_ident);
 
     /**
      * Returns a choice structure for a given ident.

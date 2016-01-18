@@ -11,27 +11,27 @@ interface RevisionableInterface
      * @param boolean $enabled The (revision) enabled flag.
      * @return RevisionableInterface Chainable
      */
-    public function set_revision_enabled($enabled);
+    public function setRevisionEnabled($enabled);
 
     /**
      * @return boolean
      */
-    public function revision_enabled();
+    public function revisionEnabled();
 
     /**
      * This method can be overloaded in concrete implementation to provide a different ObjectRevision class.
      *
      * @return \Charcoal\Object\ObjectRevisionInterface
      */
-    public function revision_object();
+    public function revisionObject();
 
     /**
      * @return \Charcoal\Object\ObjectRevisionInterface
      */
-    public function generate_revision();
+    public function generateRevision();
 
     /**
      * @return \Charcoal\Object\ObjectRevisionInterface
      */
-    public function latest_revision();
+    public function latestRevision();
 }

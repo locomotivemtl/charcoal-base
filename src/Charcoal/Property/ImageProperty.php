@@ -35,11 +35,11 @@ class ImageProperty extends FileProperty
      * @param array $effects The effects to set to the image.
      * @return ImageProperty Chainable
      */
-    public function set_effects(array $effects)
+    public function setEffects(array $effects)
     {
         $this->effects = [];
         foreach ($effects as $effect) {
-            $this->add_effect($effect);
+            $this->addEffect($effect);
         }
         return $this;
     }
@@ -48,7 +48,7 @@ class ImageProperty extends FileProperty
      * @param mixed $effect An image effect.
      * @return ImageProperty Chainable
      */
-    public function add_effect($effect)
+    public function addEffect($effect)
     {
         $this->effects[] = $effect;
         return $this;
@@ -65,7 +65,7 @@ class ImageProperty extends FileProperty
     /**
      * @return array
      */
-    public function accepted_mimetypes()
+    public function acceptedMimetypes()
     {
         return [
             'image/gif',
@@ -80,7 +80,7 @@ class ImageProperty extends FileProperty
     /**
      * @return string
      */
-    public function generate_extension()
+    public function generateExtension()
     {
         $mimetype = $this->mimetype();
 
@@ -110,21 +110,21 @@ class ImageProperty extends FileProperty
     /**
      * Add effects to file upload
      *
-     * @param array $file_data The file data to upload.
+     * @param array $fileData The file data to upload.
      * @return string
      * @see FileProperty::file_upload()
      */
-    public function file_upload(array $file_data)
+    public function fileUpload(array $fileData)
     {
-        $target = parent::file_upload($file_data);
+        $target = parent::fileUpload($fileData);
 
         $effects = $this->effects();
         if (!empty($effects)) {
             // @todo Save original file here
-            $image_factory = new ImageFactory();
-            $img = $image_factory->create('imagemagick');
+            $imageFactory = new ImageFactory();
+            $img = $imageFactory->create('imagemagick');
             $img->open($target);
-            $img->set_effects($effects);
+            $img->setEffects($effects);
             $img->proccess();
             $img->save();
         }

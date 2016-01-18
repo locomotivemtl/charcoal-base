@@ -42,9 +42,9 @@ trait HierarchicalTrait
      * @param mixed $master The object's parent (or master).
      * @return HierarchicalInterface Chainable
      */
-    public function set_master($master)
+    public function setMaster($master)
     {
-        $this->master = $this->obj_from_ident($master);
+        $this->master = $this->objFromIdent($master);
         return $this;
     }
 
@@ -61,7 +61,7 @@ trait HierarchicalTrait
      * Get wether this object has a parent (master) or not.
      * @return boolean
      */
-    public function has_master()
+    public function hasMaster()
     {
         $master = $this->master();
         return ($master !== null);
@@ -72,7 +72,7 @@ trait HierarchicalTrait
      * Top-level objects do not have a parent (master)
      * @return boolean
      */
-    public function is_top_level()
+    public function isTopLevel()
     {
         $master = $this->master();
         return ($master === null);
@@ -83,9 +83,9 @@ trait HierarchicalTrait
      * Last level objects do not have childen
      * @return boolean
      */
-    public function is_last_level()
+    public function isLastLevel()
     {
-        return !$this->has_children();
+        return !$this->hasChildren();
     }
 
     /**
@@ -93,7 +93,7 @@ trait HierarchicalTrait
      * Starts at "1" (top-level)
      * @return integer
      */
-    public function hierarchy_level()
+    public function hierarchyLevel()
     {
         $hierarchy = $this->hierarchy();
         $level = (count($hierarchy) + 1);
@@ -105,9 +105,9 @@ trait HierarchicalTrait
      * Get the top-level parent (master) of this object
      * @return HierarchicalInterface|null
      */
-    public function toplevel_master()
+    public function toplevelMaster()
     {
-        $hierarchy = $this->inverted_hierarchy();
+        $hierarchy = $this->invertedHierarchy();
         if (isset($hierarchy[0])) {
             return $hierarchy[0];
         } else {
@@ -141,7 +141,7 @@ trait HierarchicalTrait
      * Get all of this object's parents, inverted from top-level to immediate.
      * @return array
      */
-    public function inverted_hierarchy()
+    public function invertedHierarchy()
     {
         $hierarchy = $this->hierarchy();
         return array_reverse($hierarchy);
@@ -152,9 +152,9 @@ trait HierarchicalTrait
      * @param mixed $child The child object (or ident) to check against.
      * @return boolean
      */
-    public function is_master_of($child)
+    public function isMasterOf($child)
     {
-        $child = $this->obj_from_ident($child);
+        $child = $this->objFromIdent($child);
         return ($child->master() == $this);
     }
 
@@ -163,9 +163,9 @@ trait HierarchicalTrait
      * @param mixed $child The child object (or ident) to check against.
      * @return boolean
      */
-    public function recursive_is_master_of($child)
+    public function recursiveIsMasterOf($child)
     {
-        $child = $this->obj_from_ident($child);
+        $child = $this->objFromIdent($child);
         // TODO
         return false;
     }
@@ -174,17 +174,17 @@ trait HierarchicalTrait
      * Get wether the object has any children at all
      * @return boolean
      */
-    public function has_children()
+    public function hasChildren()
     {
-        $num_children = $this->num_children();
-        return ($num_children > 0);
+        $numChildren = $this->numChildren();
+        return ($numChildren > 0);
     }
 
     /**
      * Get the number of children directly under this object.
      * @return integer
      */
-    public function num_children()
+    public function numChildren()
     {
         $children = $this->children();
         return count($children);
@@ -192,10 +192,10 @@ trait HierarchicalTrait
 
     /**
      * Get the total number of children in the entire hierarchy.
-     * This method counts all children and sub-children, unlike `num_children()` which only count 1 level.
+     * This method counts all children and sub-children, unlike `numChildren()` which only count 1 level.
      * @return integer
      */
-    public function recursive_num_children()
+    public function recursiveNumChildren()
     {
         // TODO
         return 0;
@@ -205,11 +205,11 @@ trait HierarchicalTrait
      * @param array $children The children to set.
      * @return HierarchicalInterface Chainable
      */
-    public function set_children(array $children)
+    public function setChildren(array $children)
     {
         $this->children = [];
         foreach ($children as $c) {
-            $this->add_child($c);
+            $this->addChild($c);
         }
         return $this;
     }
@@ -218,9 +218,9 @@ trait HierarchicalTrait
      * @param mixed $child The child object (or ident) to add.
      * @return HierarchicalInterface Chainable
      */
-    public function add_child($child)
+    public function addChild($child)
     {
-        $this->obj_from_ident($child);
+        $this->objFromIdent($child);
         $this->children[] = $child;
         return $this;
     }
@@ -236,22 +236,22 @@ trait HierarchicalTrait
             return $this->children;
         }
 
-        $this->children = $this->load_children();
+        $this->children = $this->loadChildren();
         return $this->children;
     }
 
     /**
      * @return array
      */
-    abstract public function load_children();
+    abstract public function loadChildren();
 
     /**
      * @param mixed $master The master object (or ident) to check against.
      * @return boolean
      */
-    public function is_child_of($master)
+    public function isChildOf($master)
     {
-        $master = $this->obj_from_ident($master);
+        $master = $this->objFromIdent($master);
         if ($master === null) {
             return false;
         }
@@ -262,9 +262,9 @@ trait HierarchicalTrait
      * @param mixed $master The master object (or ident) to check against.
      * @return boolean
      */
-    public function recursive_is_child_of($master)
+    public function recursiveIsChildOf($master)
     {
-        $master = $this->obj_from_ident($master);
+        $master = $this->objFromIdent($master);
         if ($master === null) {
             return false;
         }
@@ -274,16 +274,16 @@ trait HierarchicalTrait
     /**
      * @return boolean
      */
-    public function has_siblings()
+    public function hasSiblings()
     {
-        $num_siblings = $this->num_siblings();
-        return ($num_siblings > 1);
+        $numSiblings = $this->numSiblings();
+        return ($numSiblings > 1);
     }
 
     /**
      * @return integer
      */
-    public function num_siblings()
+    public function numSiblings()
     {
         $siblings = $this->siblings();
         return count($siblings);
@@ -314,9 +314,9 @@ trait HierarchicalTrait
      * @param mixed $sibling The sibling to check.
      * @return boolean
      */
-    public function is_sibling_of($sibling)
+    public function isSiblingOf($sibling)
     {
-        $sibling = $this->obj_from_ident($sibling);
+        $sibling = $this->objFromIdent($sibling);
         return ($sibling->master() == $this->master());
     }
 
@@ -326,7 +326,7 @@ trait HierarchicalTrait
      * @throws InvalidArgumentException If the ident is not a scalar value.
      * @return HierarchicalInterface|null
      */
-    private function obj_from_ident($ident)
+    private function objFromIdent($ident)
     {
         if ($ident === null) {
             return null;

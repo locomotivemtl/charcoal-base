@@ -42,7 +42,7 @@ class UserData extends AbstractModel implements
      * @throws InvalidArgumentException If the IP argument is not a string or integer.
      * @return UserDataInterface Chainable
      */
-    public function set_ip($ip)
+    public function setIp($ip)
     {
         if (is_string($ip)) {
             $ip = ip2long($ip);
@@ -70,7 +70,7 @@ class UserData extends AbstractModel implements
      * @throws InvalidArgumentException If the argument is not a string.
      * @return UserDataInterface Chainable
      */
-    public function set_lang($lang)
+    public function setLang($lang)
     {
         if (!is_string($lang)) {
             throw new InvalidArgumentException(
@@ -94,7 +94,7 @@ class UserData extends AbstractModel implements
      * @throws InvalidArgumentException If the timestamp is not a valid datetime.
      * @return UserDataInterface Chainable
      */
-    public function set_ts($ts)
+    public function setTs($ts)
     {
         if ($ts === null) {
             $this->ts = null;
@@ -129,14 +129,14 @@ class UserData extends AbstractModel implements
     /**
      * @return void
      */
-    public function pre_save()
+    public function preSave()
     {
         $ip = isset($SERVER['REMOTE_ADDR']) ? $SERVER['REMOTE_ADDR'] : '';
         $lang = '';
         $ts = 'now';
 
-        $this->set_ip($ip);
-        $this->set_lang($lang);
-        $this->set_ts($ts);
+        $this->setIp($ip);
+        $this->setLang($lang);
+        $this->setTs($ts);
     }
 }

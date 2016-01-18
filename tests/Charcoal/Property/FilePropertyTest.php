@@ -14,10 +14,10 @@ class FilePropertyTest extends \PHPUnit_Framework_TestCase
     {
         $obj = new FileProperty();
         $this->assertInstanceOf('\Charcoal\Property\FileProperty', $obj);
-        $this->assertEquals('uploads/', $obj->upload_path());
+        $this->assertEquals('uploads/', $obj->uploadPath());
         $this->assertFalse($obj->overwrite());
-        $this->assertEquals([], $obj->accepted_mimetypes());
-        $this->assertEquals(134220000, $obj->max_filesize());
+        $this->assertEquals([], $obj->acceptedMimetypes());
+        $this->assertEquals(134220000, $obj->maxFilesize());
     }
 
     public function testType()
@@ -29,12 +29,12 @@ class FilePropertyTest extends \PHPUnit_Framework_TestCase
     public function testSetData()
     {
         $obj = new FileProperty();
-        $ret = $obj->set_data(
+        $ret = $obj->setData(
             [
-            'upload_path'=>'uploads/foobar/',
+            'uploadPath'=>'uploads/foobar/',
             'overwrite'=>true,
-            'accepted_mimetypes'=>['image/x-foobar'],
-            'max_filesize'=>(32*1024*1024)
+            'acceptedMimetypes'=>['image/x-foobar'],
+            'maxFilesize'=>(32*1024*1024)
             ]
         );
         $this->assertSame($ret, $obj);
@@ -43,18 +43,18 @@ class FilePropertyTest extends \PHPUnit_Framework_TestCase
     public function testSetUploadPath()
     {
         $obj = new FileProperty();
-        $ret = $obj->set_upload_path('foobar');
+        $ret = $obj->setUploadPath('foobar');
         $this->assertSame($ret, $obj);
-        $this->assertEquals('foobar/', $obj->upload_path());
+        $this->assertEquals('foobar/', $obj->uploadPath());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $obj->set_upload_path(42);
+        $obj->setUploadPath(42);
     }
 
     public function testSetOverwrite()
     {
         $obj = new FileProperty();
-        $ret = $obj->set_overwrite(true);
+        $ret = $obj->setOverwrite(true);
         $this->assertSame($ret, $obj);
         $this->assertTrue($obj->overwrite());
     }
@@ -62,7 +62,7 @@ class FilePropertyTest extends \PHPUnit_Framework_TestCase
     public function testVaidationMethods()
     {
         $obj = new FileProperty();
-        $ret = $obj->validation_methods();
+        $ret = $obj->validationMethods();
         $this->assertContains('accepted_mimetypes', $ret);
         $this->assertContains('max_filesize', $ret);
     }
@@ -70,17 +70,17 @@ class FilePropertyTest extends \PHPUnit_Framework_TestCase
     public function testValidateAcceptedMimetypes()
     {
         $obj = new FileProperty();
-        $obj->set_mimetype('image/x-foobar');
-        $this->assertTrue($obj->validate_accepted_mimetypes());
+        $obj->setMimetype('image/x-foobar');
+        $this->assertTrue($obj->validateAcceptedMimetypes());
 
-        $this->assertEmpty($obj->accepted_mimetypes());
-        $this->assertTrue($obj->validate_accepted_mimetypes());
+        $this->assertEmpty($obj->acceptedMimetypes());
+        $this->assertTrue($obj->validateAcceptedMimetypes());
 
-        $obj->set_accepted_mimetypes(['image/x-barbaz']);
-        $this->assertFalse($obj->validate_accepted_mimetypes());
+        $obj->setAcceptedMimetypes(['image/x-barbaz']);
+        $this->assertFalse($obj->validateAcceptedMimetypes());
 
-        $obj->set_accepted_mimetypes(['image/x-foobar']);
-        $this->assertTrue($obj->validate_accepted_mimetypes());
+        $obj->setAcceptedMimetypes(['image/x-foobar']);
+        $this->assertTrue($obj->validateAcceptedMimetypes());
     }
 
     /**
@@ -89,7 +89,7 @@ class FilePropertyTest extends \PHPUnit_Framework_TestCase
     public function testSanitizeFilename($filename, $sanitized)
     {
         $obj = new FileProperty();
-        $this->assertEquals($sanitized, $obj->sanitize_filename($filename));
+        $this->assertEquals($sanitized, $obj->sanitizeFilename($filename));
     }
 
     public function filenameProvider()
@@ -106,19 +106,19 @@ class FilePropertyTest extends \PHPUnit_Framework_TestCase
     // {
     //     $obj = new FileProperty();
     //     $this->setExpectedException('\Exception');
-    //     $obj->generate_filename();
+    //     $obj->generateFilename();
     // }
 
     public function testGenerateFilename()
     {
         $obj = new FileProperty();
-        $obj->set_ident('foo');
-        $ret = $obj->generate_filename();
+        $obj->setIdent('foo');
+        $ret = $obj->generateFilename();
         //$this->assertContains('Foo', $ret);
         //$this->assertContains(date('Y-m-d H:i:s'), $ret);
 
-        $obj->set_label('foobar');
-        $ret = $obj->generate_filename();
+        $obj->setLabel('foobar');
+        $ret = $obj->generateFilename();
         //$this->assertContains('foobar', $ret);
     }
 }

@@ -29,7 +29,7 @@ class MapStructureProperty extends AbstractProperty
     /**
      * @return string
      */
-    public function sql_extra()
+    public function sqlExtra()
     {
         return '';
     }
@@ -37,7 +37,7 @@ class MapStructureProperty extends AbstractProperty
     /**
      * @return string
      */
-    public function sql_type()
+    public function sqlType()
     {
         return 'TEXT';
     }
@@ -45,7 +45,7 @@ class MapStructureProperty extends AbstractProperty
     /**
      * @return integer
      */
-    public function sql_pdo_type()
+    public function sqlPdoType()
     {
         return PDO::PARAM_STR;
     }

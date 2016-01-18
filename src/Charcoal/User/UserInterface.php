@@ -10,13 +10,13 @@ interface UserInterface
     /**
      * @return string
      */
-    public static function session_key();
+    public static function sessionKey();
 
     /**
      * @param array $data The data map to set.
      * @return UserInterface Chainable
      */
-    public function set_data(array $data);
+    public function setData(array $data);
 
     /**
      * Force a lowercase username
@@ -24,7 +24,7 @@ interface UserInterface
      * @param string $username The username (also the login name).
      * @return UserInterface Chainable
      */
-    public function set_username($username);
+    public function setUsername($username);
 
     /**
      * @return string
@@ -35,7 +35,7 @@ interface UserInterface
      * @param string $email The user email.
      * @return UserInterface Chainable
      */
-    public function set_email($email);
+    public function setEmail($email);
 
     /**
      * @return string
@@ -46,7 +46,7 @@ interface UserInterface
      * @param string|null $password The user password. Encrypted in storage.
      * @return UserInterface Chainable
      */
-    public function set_password($password);
+    public function setPassword($password);
 
     /**
      * @return string
@@ -57,13 +57,13 @@ interface UserInterface
      * @param array $groups The UserGroups this user belongs to.
      * @return UserInterface Chainable
      */
-    public function set_groups(array $groups);
+    public function setGroups(array $groups);
 
     /**
      * @param array|UserGroupInterface $group The group to add.
      * @return UserInterface Chainable
      */
-    public function add_group($group);
+    public function addGroup($group);
 
     /**
      * @return array The UserGroup list attached to this user
@@ -74,14 +74,14 @@ interface UserInterface
      * @param array $permissions The user permissions to set. Either as array or UserPermission objects.
      * @return UserInterface Chainable
      */
-    public function set_permissions(array $permissions);
+    public function setPermissions(array $permissions);
 
     /**
-     * @param string                        $permission_ident The permission identifier.
-     * @param array|UserPermissionInterface $permission       The user permission object/array to add.
+     * @param string                        $permissionIdent The permission identifier.
+     * @param array|UserPermissionInterface $permission      The user permission object/array to add.
      * @return UserInterface Chainable
      */
-    public function add_permission($permission_ident, $permission);
+    public function addPermission($permissionIdent, $permission);
 
     /**
      * @return UserPermissionInterface[] The UserPermission list (array) attached to this user.
@@ -92,7 +92,7 @@ interface UserInterface
      * @param boolean $active The active flag.
      * @return UserInterface Chainable
      */
-    public function set_active($active);
+    public function setActive($active);
 
     /**
      * @return boolean
@@ -103,59 +103,59 @@ interface UserInterface
      * @param string|DateTime $ts The last login date.
      * @return UserInterface Chainable
      */
-    public function set_last_login_date($ts);
+    public function setLastLoginDate($ts);
 
     /**
      * @return DateTime
      */
-    public function last_login_date();
+    public function lastLoginDate();
 
     /**
      * @param string|integer|null $ip The last login IP address.
      * @return UserInterface Chainable
      */
-    public function set_last_login_ip($ip);
+    public function setLastLoginIp($ip);
 
     /**
      * Get the last login IP in x.x.x.x format
      * @return string
      */
-    public function last_login_ip();
+    public function lastLoginIp();
 
     /**
      * @param string|DateTime $ts The last password date.
      * @return UserInterface Chainable
      */
-    public function set_last_password_date($ts);
+    public function setLastPasswordDate($ts);
 
     /**
      * @return DateTime
      */
-    public function last_password_date();
+    public function lastPasswordDate();
 
     /**
      * @param integer|string|null $ip The last password IP.
      * @return UserInterface Chainable
      */
-    public function set_last_password_ip($ip);
+    public function setLastPasswordIp($ip);
 
     /**
      * Get the last password change IP in x.x.x.x format.
      *
      * @return string
      */
-    public function last_password_ip();
+    public function lastPasswordIp();
 
     /**
      * @param string $token The login token.
      * @return UserInterface Chainable
      */
-    public function set_login_token($token);
+    public function setLoginToken($token);
 
     /**
      * @return string
      */
-    public function login_token();
+    public function loginToken();
 
     /**
      * @param string $username Username.
@@ -170,10 +170,10 @@ interface UserInterface
      * Encrypt the password and re-save the object in the database.
      * Also updates the last password date & ip.
      *
-     * @param string $plain_password The plain (non-encrypted) password to reset to.
+     * @param string $plainPassword The plain (non-encrypted) password to reset to.
      * @return UserInterface Chainable
      */
-    public function reset_password($plain_password);
+    public function resetPassword($plainPassword);
 
     /**
      * Get the currently authenticated user.
@@ -181,5 +181,5 @@ interface UserInterface
      * @param boolean $reinit Whether to reload user data from source.
      * @return UserInterface|null
      */
-    public static function get_authenticated($reinit = true);
+    public static function getAuthenticated($reinit = true);
 }

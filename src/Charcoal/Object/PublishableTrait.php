@@ -14,91 +14,91 @@ use \InvalidArgumentException as InvalidArgumentException;
 trait PublishableTrait
 {
     /**
-     * @var DateTime $publish_date
+     * @var DateTime $publishDate
      */
-    private $publish_date;
+    private $publishDate;
     /**
-     * @var DateTime $expiry_date
+     * @var DateTime $expiryDate
      */
-    private $expiry_date;
+    private $expiryDate;
 
     /**
-     * @var string $publish_status
+     * @var string $publishStatus
      */
-    private $publish_status;
+    private $publishStatus;
 
     /**
-     * @param string|DateTime|null $publish_date The publishing date.
+     * @param string|DateTime|null $publishDate The publishing date.
      * @throws InvalidArgumentException If the datetime is invalid.
      * @return PublishableInterface Chainable
      */
-    public function set_publish_date($publish_date)
+    public function setPublishDate($publishDate)
     {
-        if ($publish_date === null) {
-            $this->publish_date = null;
+        if ($publishDate === null) {
+            $this->publishDate = null;
             return $this;
         }
-        if (is_string($publish_date)) {
+        if (is_string($publishDate)) {
             try {
-                $publish_date = new DateTime($publish_date);
+                $publishDate = new DateTime($publishDate);
             } catch (Exception $e) {
                 throw new InvalidArgumentException(
                     'Invalid publish date: '.$e->getMessage()
                 );
             }
         }
-        if (!($publish_date instanceof DateTimeInterface)) {
+        if (!($publishDate instanceof DateTimeInterface)) {
             throw new InvalidArgumentException(
                 'Invalid "Publish Date" value. Must be a date/time string or a DateTime object.'
             );
         }
-        $this->publish_date = $publish_date;
+        $this->publishDate = $publishDate;
         return $this;
     }
 
     /**
      * @return DateTime|null
      */
-    public function publish_date()
+    public function publishDate()
     {
-        return $this->publish_date;
+        return $this->publishDate;
     }
 
     /**
-     * @param string|DateTime|null $expiry_date The expiry date.
+     * @param string|DateTime|null $expiryDate The expiry date.
      * @throws InvalidArgumentException If the datetime is invalid.
      * @return PublishableInterface Chainable
      */
-    public function set_expiry_date($expiry_date)
+    public function setExpiryDate($expiryDate)
     {
-        if ($expiry_date === null) {
-            $this->expiry_date = null;
+        if ($expiryDate === null) {
+            $this->expiryDate = null;
             return $this;
         }
-        if (is_string($expiry_date)) {
+        if (is_string($expiryDate)) {
             try {
-                $expiry_date = new DateTime($expiry_date);
+                $expiryDate = new DateTime($expiryDate);
             } catch (Exception $e) {
                 throw new InvalidArgumentException(
                     'Invalid expiry date: '.$e->getMessage()
                 );
             }
         }
-        if (!($expiry_date instanceof DateTimeInterface)) {
+        if (!($expiryDate instanceof DateTimeInterface)) {
             throw new InvalidArgumentException(
                 'Invalid "Expiry Date" value. Must be a date/time string or a DateTime object.'
             );
         }
-        $this->expiry_date = $expiry_date;
+        $this->expiryDate = $expiryDate;
         return $this;
     }
 
     /**
      * @return DateTime|null
      */
-    public function expiry_date()
+    public function expiryDate()
     {
-        return $this->expiry_date;
+        return $this->expiryDate;
     }
 
     /**
@@ -106,19 +106,19 @@ trait PublishableTrait
      * @throws InvalidArgumentException If the status is not one of the 3 valid status.
      * @return PublishableTrait Chainable
      */
-    public function set_publish_status($status)
+    public function setPublishStatus($status)
     {
-        $valid_status = [
+        $validStatus = [
             'draft',
             'pending',
             'published'
         ];
-        if (!in_array($status, $valid_status)) {
+        if (!in_array($status, $validStatus)) {
             throw new InvalidArgumentException(
                 sprintf('Status "%s" is not a valid publish status.', $status)
             );
         }
-        $this->publish_status = $status;
+        $this->publishStatus = $status;
         return $this;
     }
 
@@ -133,15 +133,15 @@ trait PublishableTrait
      * - `expired`
      *
      * Note that the `upcoming` and `expired` status are specialized status when
-     * the object is set to `published` but the `publish_date` or `expiry_date` do not match.
+     * the object is set to `published` but the `publishDate` or `expiryDate` do not match.
      *
      * @return string
      */
-    public function publish_status()
+    public function publishStatus()
     {
-        $status = $this->publish_status;
+        $status = $this->publishStatus;
         if (!$status || $status == 'published') {
-            $status = $this->publish_date_status();
+            $status = $this->publishDateStatus();
         }
         return $status;
     }
@@ -154,11 +154,11 @@ trait PublishableTrait
      *
      * @return string
      */
-    private function publish_date_status()
+    private function publishDateStatus()
     {
         $now = new DateTime();
-        $publish = $this->publish_date();
-        $expiry = $this->expiry_date();
+        $publish = $this->publishDate();
+        $expiry = $this->expiryDate();
 
         if (!$publish) {
             if (!$expiry || $now < $expiry) {
@@ -182,8 +182,8 @@ trait PublishableTrait
     /**
      * @return boolean
      */
-    public function is_published()
+    public function isPublished()
     {
-        return ($this->publish_status() == 'published');
+        return ($this->publishStatus() == 'published');
     }
 }

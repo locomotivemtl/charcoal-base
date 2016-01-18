@@ -20,7 +20,7 @@ trait RoutableTrait
     /**
      * @var string
      */
-    private $slug_pattern = '';
+    private $slugPattern = '';
 
     /**
      * @var string $slug
@@ -31,7 +31,7 @@ trait RoutableTrait
      * @param boolean $routable The routable flag.
      * @return RoutableInterface Chainable
      */
-    public function set_routable($routable)
+    public function setRoutable($routable)
     {
         $this->routable = !!$routable;
         return $this;
@@ -49,25 +49,25 @@ trait RoutableTrait
      * @param mixed $pattern The slug pattern.
      * @return RoutableInterface Chainable
      */
-    public function set_slug_pattern($pattern)
+    public function setSlugPattern($pattern)
     {
-        $this->slug_pattern = new TranslationString($pattern);
+        $this->slugPattern = new TranslationString($pattern);
         return $this;
     }
 
     /**
      * @return TranslationString
      */
-    public function slug_pattern()
+    public function slugPattern()
     {
-        return $this->slug_pattern;
+        return $this->slugPattern;
     }
 
     /**
      * @param mixed $slug The slug.
      * @return RoutableInterface Chainable
      */
-    public function set_slug($slug)
+    public function setSlug($slug)
     {
         $this->slug = $slug;
         return $this;
@@ -79,7 +79,7 @@ trait RoutableTrait
     public function slug()
     {
         if ($this->slug === null) {
-            $this->slug = $this->generate_slug();
+            $this->slug = $this->generateSlug();
         }
         return $this->slug;
     }
@@ -89,9 +89,9 @@ trait RoutableTrait
      *
      * @return string
      */
-    public function generate_slug()
+    public function generateSlug()
     {
-        $pattern = $this->slug_pattern();
+        $pattern = $this->slugPattern();
         if ($this instanceof Viewable) {
             $slug = $this->render($pattern);
         } else {

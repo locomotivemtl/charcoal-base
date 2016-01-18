@@ -2,13 +2,18 @@
 
 namespace Charcoal\User\Tests;
 
+use \Psr\Log\NullLogger;
+
 class UserTest extends \PHPUnit_Framework_TestCase
 {
     public $obj;
 
     public function setUp()
     {
-        $this->obj = $this->getMockForAbstractClass('\Charcoal\User\AbstractUser');
+        $logger = new NullLogger();
+        $this->obj = $this->getMockForAbstractClass('\Charcoal\User\AbstractUser', [
+            'logger'=>$logger
+        ]);
     }
 
     public function testKey()
@@ -21,27 +26,27 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         $obj = $this->obj;
         $this->assertTrue($obj->active());
-        $this->assertEquals('', $obj->login_token());
+        $this->assertEquals('', $obj->loginToken());
     }
 
     /**
-     * Assert that the `set_data` method:
+     * Assert that the `setData` method:
      * - is chainable
      * - set the various properties
      */
     public function testSetData()
     {
         $obj = $this->obj;
-        $ret = $obj->set_data([
+        $ret = $obj->setData([
             'username'=>'Foo',
             'email'=>'test@example.com',
-            'login_token'=>'token',
+            'loginToken'=>'token',
             'active'=>false
         ]);
         $this->assertSame($ret, $obj);
         $this->assertEquals('foo', $obj->username());
         $this->assertEquals('test@example.com', $obj->email());
-        $this->assertEquals('token', $obj->login_token());
+        $this->assertEquals('token', $obj->loginToken());
         $this->assertFalse($obj->active());
     }
 
@@ -49,29 +54,29 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         $obj = $this->obj;
         $this->assertNull($obj->password());
-        $obj->set_data(['password'=>'password123']);
+        $obj->setData(['password'=>'password123']);
         $this->assertNull($obj->password())
     }*/
 
     public function testSetUsername()
     {
         $obj = $this->obj;
-        $ret = $obj->set_username('Foobar');
+        $ret = $obj->setUsername('Foobar');
         $this->assertSame($ret, $obj);
         $this->assertEquals('foobar', $obj->username());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $obj->set_username(false);
+        $obj->setUsername(false);
     }
 
     public function testSetEmail()
     {
         $obj = $this->obj;
-        $ret = $obj->set_email('test@example.com');
+        $ret = $obj->setEmail('test@example.com');
         $this->assertSame($ret, $obj);
         $this->assertEquals('test@example.com', $obj->email());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $obj->set_email(false);
+        $obj->setEmail(false);
     }
 }

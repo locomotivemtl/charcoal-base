@@ -12,7 +12,7 @@ interface UserDataInterface
      * @param integer $ip The IP at object creation.
      * @return UserDataInterface Chainable
      */
-    public function set_ip($ip);
+    public function setIp($ip);
 
     /**
      * @return integer
@@ -23,7 +23,7 @@ interface UserDataInterface
      * @param string|DateTime $ts The time of the object creation.
      * @return UserDataInterface Chainable
      */
-    public function set_ts($ts);
+    public function setTs($ts);
 
     /**
      * @return DateTime
@@ -34,7 +34,7 @@ interface UserDataInterface
      * @param string $lang The language code upon creation.
      * @return UserDataInterface Chainable
      */
-    public function set_lang($lang);
+    public function setLang($lang);
 
     /**
      * @return string

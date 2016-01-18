@@ -11,27 +11,28 @@ use InvalidArgumentException;
 trait CategoryTrait
 {
     /**
-     * @var string $item_type
+     * @var string $itemType
      */
-    private $category_item_type;
+    private $categoryItemType;
 
     /**
-     * @var Collection $category_items
+     * @var Collection $categoryItems
      */
-    private $category_items;
+    private $categoryItems;
 
     /**
      * @param string $type The category item type.
      * @throws InvalidArgumentException If the type argument is not a string.
      * @return CategoryInterface Chainable
      */
-    public function set_category_item_type($type)
+    public function setCategoryItemType($type)
     {
         if (!is_string($type)) {
             throw new InvalidArgumentException(
+                'Item type must be a string.'
             );
         }
-        $this->category_item_type = $type;
+        $this->categoryItemType = $type;
         return $this;
     }
 
@@ -39,47 +40,47 @@ trait CategoryTrait
      * @throws Exception If no item type was previously set.
      * @return string
      */
-    public function category_item_type()
+    public function categoryItemType()
     {
-        if ($this->category_item_type === null) {
+        if ($this->categoryItemType === null) {
             throw new Exception(
                 'Item type is unset. Set item type before calling getter.'
             );
         }
-        return $this->category_item_type;
+        return $this->categoryItemType;
     }
 
     /**
      * @return integer
      */
-    public function num_category_items()
+    public function numCategoryItems()
     {
-        $items = $this->category_items();
+        $items = $this->categoryItems();
         return count($items);
     }
 
     /**
      * @return boolean
      */
-    public function has_category_items()
+    public function hasCategoryItems()
     {
-        $num_items = $this->num_category_items();
-        return ($num_items > 0);
+        $numItems = $this->numCategoryItems();
+        return ($numItems > 0);
     }
 
     /**
      * @return Collection A list of `CategorizableInterface` objects
      */
-    public function category_items()
+    public function categoryItems()
     {
-        if ($this->category_items == null) {
-            $this->category_items = $this->load_category_items();
+        if ($this->categoryItems == null) {
+            $this->categoryItems = $this->loadCategoryItems();
         }
-        return $this->category_items;
+        return $this->categoryItems;
     }
 
     /**
      * @return Collection
      */
-    abstract public function load_category_items();
+    abstract public function loadCategoryItems();
 }

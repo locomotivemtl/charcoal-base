@@ -24,7 +24,7 @@ class RoutableTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert that the `set_routable` method:
+     * Assert that the `setRoutable` method:
      * - is chainable
      * - sets the routable value (and cast to bool)
      * And that the `routable()` method:
@@ -35,7 +35,7 @@ class RoutableTraitTest extends \PHPUnit_Framework_TestCase
         $obj = $this->obj;
         $this->assertTrue($obj->routable());
 
-        $ret = $obj->set_routable(false);
+        $ret = $obj->setRoutable(false);
         $this->assertSame($ret, $obj);
         $this->assertFalse($obj->routable());
     }
@@ -43,14 +43,14 @@ class RoutableTraitTest extends \PHPUnit_Framework_TestCase
     public function testSetSlugPattern()
     {
         $obj = $this->obj;
-        $this->assertEquals('', $obj->slug_pattern());
+        $this->assertEquals('', $obj->slugPattern());
 
-        $ret = $obj->set_slug_pattern('hello');
+        $ret = $obj->setSlugPattern('hello');
         $this->assertSame($ret, $obj);
-        $this->assertEquals(new TranslationString('hello'), $obj->slug_pattern());
+        $this->assertEquals(new TranslationString('hello'), $obj->slugPattern());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $obj->set_slug_pattern(false);
+        $obj->setSlugPattern(false);
     }
 
     public function testSetSlug()
@@ -58,7 +58,7 @@ class RoutableTraitTest extends \PHPUnit_Framework_TestCase
         $obj = $this->obj;
         $this->assertEquals('', $obj->slug());
 
-        $ret = $obj->set_slug('foobar');
+        $ret = $obj->setSlug('foobar');
         $this->assertSame($ret, $obj);
         $this->assertEquals('foobar', $obj->slug());
     }
@@ -66,8 +66,8 @@ class RoutableTraitTest extends \PHPUnit_Framework_TestCase
     public function testSlugPatternGeneratesSlug()
     {
         $obj = $this->obj;
-        $obj->set_slug_pattern('foobar');
+        $obj->setSlugPattern('foobar');
 
-        $this->assertEquals('foobar', $obj->generate_slug());
+        $this->assertEquals('foobar', $obj->generateSlug());
     }
 }

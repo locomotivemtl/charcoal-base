@@ -9,7 +9,7 @@ class HierarchicalClass implements HierarchicalInterface
 {
     use HierarchicalTrait;
 
-    public function load_children()
+    public function loadChildren()
     {
         return [];
     }

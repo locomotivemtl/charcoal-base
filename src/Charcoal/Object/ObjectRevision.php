@@ -13,6 +13,7 @@ use \Charcoal\Model\AbstractModel;
 use \Charcoal\Core\IndexableInterface;
 use \Charcoal\Core\IndexableTrait;
 
+// Local namespace dependencies
 use \Charcoal\Object\RevisionableInterface;
 
 /**
@@ -25,182 +26,182 @@ class ObjectRevision extends AbstractModel implements
 
     /**
      * Object type of this revision (required)
-     * @var string $obj_type
+     * @var string $objType
      */
-    private $obj_type;
+    private $objType;
 
     /**
      * Object ID of this revision (required)
-     * @var mixed $object_id
+     * @var mixed $objectId
      */
-    private $obj_id;
+    private $objId;
 
     /**
      * Revision number. Sequential integer for each object's ID. (required)
-     * @var integer $rev_num
+     * @var integer $revNum
      */
-    private $rev_num;
+    private $revNum;
 
     /**
      * Timestamp; when this revision was created
-     * @var string $rev_ts (Datetime)
+     * @var string $revTs (Datetime)
      */
-    private $rev_ts;
+    private $revTs;
 
     /**
      * The (admin) user that was
-     * @var string $rev_user
+     * @var string $revUser
      */
-    private $rev_user;
+    private $revUser;
 
     /**
-     * @var array $data_prev
+     * @var array $dataPrev
      */
-    private $data_prev;
+    private $dataPrev;
 
     /**
-     * @var array $data_obj
+     * @var array $dataObj
      */
-    private $data_obj;
+    private $dataObj;
 
     /**
-     * @var array $data_diff
+     * @var array $dataDiff
      */
-    private $data_diff;
+    private $dataDiff;
 
     /**
-     * @param string $obj_type The object type (type-ident).
+     * @param string $objType The object type (type-ident).
      * @throws InvalidArgumentException If the obj type parameter is not a string.
      * @return ObjectRevision Chainable
      */
-    public function set_obj_type($obj_type)
+    public function setObjType($objType)
     {
-        if (!is_string($obj_type)) {
+        if (!is_string($objType)) {
             throw new InvalidArgumentException(
                 'Revisions obj type must be a string.'
             );
         }
-        $this->obj_type = $obj_type;
+        $this->objType = $objType;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function obj_type()
+    public function objType()
     {
-        return $this->obj_type;
+        return $this->objType;
     }
 
     /**
-     * @param mixed $obj_id The object ID.
+     * @param mixed $objId The object ID.
      * @return ObjectRevision Chainable
      */
-    public function set_obj_id($obj_id)
+    public function setObjId($objId)
     {
-        $this->obj_id = $obj_id;
+        $this->objId = $objId;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function obj_id()
+    public function objId()
     {
-        return $this->obj_id;
+        return $this->objId;
     }
 
     /**
-     * @param integer $rev_num The revision number.
+     * @param integer $revNum The revision number.
      * @throws InvalidArgumentException If the revision number argument is not numerical.
      * @return ObjectRevision Chainable
      */
-    public function set_rev_num($rev_num)
+    public function setRevNum($revNum)
     {
-        if (!is_numeric($rev_num)) {
+        if (!is_numeric($revNum)) {
             throw new InvalidArgumentException(
                 'Revision number must be an integer (numeric).'
             );
         }
-        $this->rev_num = (int)$rev_num;
+        $this->revNum = (int)$revNum;
         return $this;
     }
 
     /**
      * @return integer
      */
-    public function rev_num()
+    public function revNum()
     {
-        return $this->rev_num;
+        return $this->revNum;
     }
 
     /**
-     * @param mixed $rev_ts The revision's timestamp.
+     * @param mixed $revTs The revision's timestamp.
      * @throws InvalidArgumentException If the timestamp is invalid.
      * @return ObjectRevision Chainable
      */
-    public function set_rev_ts($rev_ts)
+    public function setRevTs($revTs)
     {
-        if ($rev_ts === null) {
+        if ($revTs === null) {
             return $this;
         }
-        if (is_string($rev_ts)) {
+        if (is_string($revTs)) {
             try {
-                $rev_ts = new DateTime($rev_ts);
+                $revTs = new DateTime($revTs);
             } catch (Exception $e) {
                 throw new InvalidArgumentException($e->getMessage());
             }
         }
-        if (!($rev_ts instanceof DateTimeInterface)) {
+        if (!($revTs instanceof DateTimeInterface)) {
             throw new InvalidArgumentException(
                 'Invalid "Revision Date" value. Must be a date/time string or a DateTimeInterface object.'
             );
         }
-        $this->rev_ts = $rev_ts;
+        $this->revTs = $revTs;
         return $this;
     }
 
     /**
      * @return DateTime|null
      */
-    public function rev_ts()
+    public function revTs()
     {
-        return $this->rev_ts;
+        return $this->revTs;
     }
 
     /**
-     * @param string $rev_user The revision user ident.
+     * @param string $revUser The revision user ident.
      * @throws InvalidArgumentException If the revision user parameter is not a string.
      * @return ObjectRevision Chainable
      */
-    public function set_rev_user($rev_user)
+    public function setRevUser($revUser)
     {
-        if ($rev_user === null) {
-            $this->rev_user = null;
+        if ($revUser === null) {
+            $this->revUser = null;
             return $this;
         }
-        if (!is_string($rev_user)) {
+        if (!is_string($revUser)) {
             throw new InvalidArgumentException(
                 'Revision user must be a string.'
             );
         }
-        $this->rev_user = $rev_user;
+        $this->revUser = $revUser;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function rev_user()
+    public function revUser()
     {
-        return $this->rev_user;
+        return $this->revUser;
     }
 
     /**
      * @param string|array $data The previous revision data.
      * @return ObjectRevision
      */
-    public function set_data_prev($data)
+    public function setDataPrev($data)
     {
         if (!is_array($data)) {
             $data = json_decode($data, true);
@@ -208,23 +209,23 @@ class ObjectRevision extends AbstractModel implements
         if ($data === null) {
             $data = [];
         }
-        $this->data_prev = $data;
+        $this->dataPrev = $data;
         return $this;
     }
 
     /**
      * @return array
      */
-    public function data_prev()
+    public function dataPrev()
     {
-        return $this->data_prev;
+        return $this->dataPrev;
     }
 
     /**
      * @param array|string $data The current revision (object) data.
      * @return ObjectRevision
      */
-    public function set_data_obj($data)
+    public function setDataObj($data)
     {
         if (!is_array($data)) {
             $data = json_decode($data, true);
@@ -232,23 +233,23 @@ class ObjectRevision extends AbstractModel implements
         if ($data === null) {
             $data = [];
         }
-        $this->data_obj = $data;
+        $this->dataObj = $data;
         return $this;
     }
 
     /**
      * @return array
      */
-    public function data_obj()
+    public function dataObj()
     {
-        return $this->data_obj;
+        return $this->dataObj;
     }
 
      /**
       * @param array|string $data The data diff.
       * @return ObjectRevision
       */
-    public function set_data_diff($data)
+    public function setDataDiff($data)
     {
         if (!is_array($data)) {
             $data = json_decode($data, true);
@@ -256,16 +257,16 @@ class ObjectRevision extends AbstractModel implements
         if ($data === null) {
             $data = [];
         }
-        $this->data_diff = $data;
+        $this->dataDiff = $data;
         return $this;
     }
 
     /**
      * @return array
      */
-    public function data_diff()
+    public function dataDiff()
     {
-        return $this->data_diff;
+        return $this->dataDiff;
     }
 
     /**
@@ -275,55 +276,54 @@ class ObjectRevision extends AbstractModel implements
      * 2. Load the current item from DB
      * 3. Create diff from (1) and (2).
      *
-     * @param string $obj_type The object type to create the revision from.
-     * @param mixed  $obj_id   The object ID to create the revision from.
+     * @param RevisionableInterface $obj The object to create the revision from.
      * @return ObjectRevision Chainable
      */
-    public function create_from_object($obj)
+    public function createFromObject(RevisionableInterface $obj)
     {
-        $prev_rev = $this->last_object_revision($obj);
+        $prevRev = $this->lastObjectRevision($obj);
 
-        $this->set_obj_type($obj->obj_type());
-        $this->set_obj_id($obj->id());
-        $this->set_rev_num($prev_rev->rev_num() + 1);
-        $this->set_rev_ts('now');
+        $this->setObjType($obj->objType());
+        $this->setObjId($obj->id());
+        $this->setRevNum($prevRev->revNum() + 1);
+        $this->setRevTs('now');
 
-        $this->set_data_obj($obj->data([
+        $this->setDataObj($obj->data([
             'sortable'=>false
         ]));
-        $this->set_data_prev($prev_rev->data_obj());
+        $this->setDataPrev($prevRev->dataObj());
 
-        $diff = $this->create_diff();
-        $this->set_data_diff($diff);
+        $diff = $this->createDiff();
+        $this->setDataDiff($diff);
 
         return $this;
     }
 
     /**
-     * @param array $data_prev Optional. Previous revision data.
-     * @param array $data_obj  Optional. Current revision (object) data.
+     * @param array $dataPrev Optional. Previous revision data.
+     * @param array $dataObj  Optional. Current revision (object) data.
      * @return array The diff data
      */
-    public function create_diff(array $data_prev = null, array $data_obj = null)
+    public function createDiff(array $dataPrev = null, array $dataObj = null)
     {
-        if ($data_prev === null) {
-            $data_prev = $this->data_prev();
+        if ($dataPrev === null) {
+            $dataPrev = $this->dataPrev();
         }
-        if ($data_obj === null) {
-            $data_obj = $this->data_obj();
+        if ($dataObj === null) {
+            $dataObj = $this->dataObj();
         }
-        $data_diff = $this->recursive_diff($data_prev, $data_obj);
-        return $data_diff;
+        $dataDiff = $this->recursiveDiff($dataPrev, $dataObj);
+        return $dataDiff;
     }
 
     /**
-     * Recursive array_diff.
+     * Recursive arrayDiff.
      *
      * @param array $array1 First array.
      * @param array $array2 Second Array.
      * @return array The array diff.
      */
-    public function recursive_diff(array $array1, array $array2)
+    public function recursiveDiff(array $array1, array $array2)
     {
         $diff = [];
 
@@ -336,7 +336,7 @@ class ObjectRevision extends AbstractModel implements
                     $diff[0][$key] = $value;
                     $diff[1][$key] = $array2[$key];
                 } else {
-                    $new = $this->recursive_diff($value, $array2[$key]);
+                    $new = $this->recursiveDiff($value, $array2[$key]);
                     if ($new !== false) {
                         if (isset($new[0])) {
                             $diff[0][$key] = $new[0];
@@ -363,32 +363,31 @@ class ObjectRevision extends AbstractModel implements
     }
 
     /**
-     * @param string $obj_type The object type to load the last revision of.
-     * @param mixed  $obj_id   The object ID to load the last revision of.
+     * @param RevisionableInterface $obj The object  to load the last revision of.
      * @return ObjectRevision The last revision for the give object.
      */
-    public function last_object_revision($obj)
+    public function lastObjectRevision(RevisionableInterface $obj)
     {
         $classname = get_class($this);
         $rev = new $classname([
             'logger' => $this->logger
         ]);
-        $rev->load_from_query(
+        $rev->loadFromQuery(
             '
             select
                 *
             from
                 `'.$this->source()->table().'`
             where
-                `obj_type` = :obj_type
+                `objType` = :objType
             and
-                `obj_id` = :obj_id
+                `objId` = :objId
             order by
-                `rev_ts` desc
+                `revTs` desc
             limit 1',
             [
-                'obj_type' => $obj->obj_type(),
-                'obj_id' => $obj->id()
+                'objType' => $obj->objType(),
+                'objId' => $obj->id()
             ]
         );
 

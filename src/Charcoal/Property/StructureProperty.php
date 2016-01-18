@@ -33,10 +33,10 @@ class StructureProperty extends AbstractProperty
      * @throws InvalidArgumentException If the value is invalid.
      * @return DateTimeProperty Chainable
      */
-    public function set_val($val)
+    public function setVal($val)
     {
         if ($val === null) {
-            if ($this->allow_null()) {
+            if ($this->allowNull()) {
                 $this->val = null;
                 return $this;
             } else {
@@ -55,7 +55,7 @@ class StructureProperty extends AbstractProperty
     /**
      * @return string
      */
-    public function sql_extra()
+    public function sqlExtra()
     {
         return '';
     }
@@ -64,7 +64,7 @@ class StructureProperty extends AbstractProperty
      * For a lack of better array support in mysql, data is stored as encoded JSON in a LONGTEXT.
      * @return string
      */
-    public function sql_type()
+    public function sqlType()
     {
         return 'LONGTEXT';
     }
@@ -72,7 +72,7 @@ class StructureProperty extends AbstractProperty
     /**
      * @return integer
      */
-    public function sql_pdo_type()
+    public function sqlPdoType()
     {
         return PDO::PARAM_STR;
     }
