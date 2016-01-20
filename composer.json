@@ -24,7 +24,8 @@
     "ext-pdo": "*",
     "ext-fileinfo": "*",
     "locomotivemtl/charcoal-core": "@dev",
-    "locomotivemtl/charcoal-image": "@dev"
+    "locomotivemtl/charcoal-image": "@dev",
+    "locomotivemtl/charcoal-property": "dev-master"
   },
   "require-dev": {
     "phpunit/phpunit": "^4.8",
