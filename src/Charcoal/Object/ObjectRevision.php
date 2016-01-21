@@ -5,7 +5,7 @@ namespace Charcoal\Object;
 // Dependencies from `PHP`
 use \Exception;
 use \InvalidArgumentException;
-use \Datetime;
+use \DateTime;
 use \DateTimeInterface;
 
 // From `charcoal-core`
@@ -44,7 +44,7 @@ class ObjectRevision extends AbstractModel implements
 
     /**
      * Timestamp; when this revision was created
-     * @var string $revTs (Datetime)
+     * @var string $revTs (DateTime)
      */
     private $revTs;
 

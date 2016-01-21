@@ -106,8 +106,8 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @param DateTime|string|null $created The datetime at object's creation.
-     * @throws InvalidArgumentException If the datetime is invalid.
+     * @param DateTime|string|null $created The date/time at object's creation.
+     * @throws InvalidArgumentException If the date/time is invalid.
      * @return Content Chainable
      */
     public function setCreated($created)
@@ -155,8 +155,8 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @param DateTime|string|null $lastModified The last modified datetime.
-     * @throws InvalidArgumentException If the datetime is invalid.
+     * @param DateTime|string|null $lastModified The last modified date/time.
+     * @throws InvalidArgumentException If the date/time is invalid.
      * @return Content Chainable
      */
     public function setLastModified($lastModified)

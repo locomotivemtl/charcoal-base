@@ -29,7 +29,7 @@ trait PublishableTrait
 
     /**
      * @param string|DateTime|null $publishDate The publishing date.
-     * @throws InvalidArgumentException If the datetime is invalid.
+     * @throws InvalidArgumentException If the date/time is invalid.
      * @return PublishableInterface Chainable
      */
     public function setPublishDate($publishDate)
@@ -66,7 +66,7 @@ trait PublishableTrait
 
     /**
      * @param string|DateTime|null $expiryDate The expiry date.
-     * @throws InvalidArgumentException If the datetime is invalid.
+     * @throws InvalidArgumentException If the date/time is invalid.
      * @return PublishableInterface Chainable
      */
     public function setExpiryDate($expiryDate)

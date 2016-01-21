@@ -13,7 +13,7 @@
         "type":"number"
       },
       "rev_ts":{
-        "type":"datetime"
+        "type": "date-time"
       },
       "rev_user":{
         "type":"string"

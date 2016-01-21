@@ -295,7 +295,7 @@ abstract class AbstractUser extends Content implements
 
     /**
      * @param string|DateTime|null $lastLoginDate The last login date.
-     * @throws InvalidArgumentException If the ts is not a valid datetime.
+     * @throws InvalidArgumentException If the ts is not a valid date/time.
      * @return AbstractUser Chainable
      */
     public function setLastLoginDate($lastLoginDate)

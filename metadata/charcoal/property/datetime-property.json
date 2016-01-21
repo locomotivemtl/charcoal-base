@@ -1,11 +1,11 @@
 {
     "properties":{
         "min":{
-            "type":"datetime",
+            "type": "date-time",
             "allow_null":true
         },
         "max":{
-            "type":"datetime",
+            "type": "date-time",
             "allow_null":true
         },
         "format":{

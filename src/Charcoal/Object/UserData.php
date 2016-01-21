@@ -91,7 +91,7 @@ class UserData extends AbstractModel implements
 
     /**
      * @param string|DateTime|null $ts Timestamp.
-     * @throws InvalidArgumentException If the timestamp is not a valid datetime.
+     * @throws InvalidArgumentException If the timestamp is not a valid date/time.
      * @return UserDataInterface Chainable
      */
     public function setTs($ts)

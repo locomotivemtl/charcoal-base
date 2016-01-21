@@ -40,7 +40,7 @@ The core Property classes and interfaces are found in `charcoal-core`, however, 
 - Color
 - Date
   - Date
-  - Datetime
+  - DateTime
   - Day
   - Month
   - Time
@@ -60,7 +60,7 @@ The core Property classes and interfaces are found in `charcoal-core`, however, 
 - Structure
 
 ## Template
-Templates are renderable top-level models, through _charcoal-core_'s `ViewableInterface`. They are typicaly consisted of a Template class and an actual template file (mustache or php). 
+Templates are renderable top-level models, through _charcoal-core_'s `ViewableInterface`. They are typicaly consisted of a Template class and an actual template file (mustache or php).
 
 > Although it is perfectly fine to use `Charcoal\Template` directly, most projects will use the specialized `Charcoal\Cms\Template` from the _charcoal-cms` module.
 
