@@ -54,7 +54,7 @@ trait RevisionableTrait
     {
         $rev = $this->revisionObject();
 
-        $rev->create_fromObject($this);
+        $rev->createFromObject($this);
         if (!empty($rev->dataDiff())) {
             $rev->save();
         }
