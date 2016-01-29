@@ -379,15 +379,15 @@ class ObjectRevision extends AbstractModel implements
             from
                 `'.$this->source()->table().'`
             where
-                `objType` = :objType
+                `obj_type` = :obj_type
             and
-                `objId` = :objId
+                `obj_id` = :obj_id
             order by
-                `revTs` desc
+                `rev_ts` desc
             limit 1',
             [
-                'objType' => $obj->objType(),
-                'objId' => $obj->id()
+                'obj_type' => $obj->objType(),
+                'obj_id' => $obj->id()
             ]
         );
 
