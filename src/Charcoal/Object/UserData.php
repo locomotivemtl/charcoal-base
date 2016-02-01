@@ -44,14 +44,17 @@ class UserData extends AbstractModel implements
      */
     public function setIp($ip)
     {
+        if ($ip === null) {
+            $this->ip = null;
+            return $this;
+        }
+
         if (is_string($ip)) {
             $ip = ip2long($ip);
-        } elseif (is_int($ip)) {
-            $ip = $ip;
+        } elseif (is_numeric($ip)) {
+            $ip = (int)$ip;
         } else {
-            throw new InvalidArgumentException(
-                'IP must be a string or long integer'
-            );
+            $ip = 0;
         }
         $this->ip = $ip;
         return $this;
