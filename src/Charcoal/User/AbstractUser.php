@@ -520,7 +520,7 @@ abstract class AbstractUser extends Content implements
         if ($ip) {
             $this->setLastLoginIp($ip);
         }
-        $this->update(['lastLoginIp', 'lastLoginDate']);
+        $this->update(['last_login_ip', 'last_login_date']);
 
         // Save to session
         $_SESSION[static::sessionKey()] = $this;
@@ -608,7 +608,7 @@ abstract class AbstractUser extends Content implements
         }
 
         if ($this->id()) {
-            $this->update(['password', 'lastPasswordDate', 'lastPasswordIp']);
+            $this->update(['password', 'last_password_date', 'last_password_ip']);
         }
 
         return $this;
@@ -640,7 +640,7 @@ abstract class AbstractUser extends Content implements
             $userId = $user->id();
 
             $user = new $user_class([
-                'logger'=>\Charcoal\Charcoal::logger()
+                'logger'=> new \Psr\Log\NullLogger()
             ]);
             $user->load($userId);
             // Save back to session
