@@ -2,9 +2,7 @@
 
 namespace Charcoal\Object;
 
-// Dependencies from `charcoal-view` module
 use \Charcoal\View\Viewable;
-
 use \Charcoal\Translation\TranslationString;
 
 /**

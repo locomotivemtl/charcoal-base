@@ -6,8 +6,6 @@ use \DateTime;
 
 use \Charcoal\Translation\TranslationString;
 
-;
-
 /**
  *
  */
