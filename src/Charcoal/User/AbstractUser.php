@@ -546,8 +546,8 @@ abstract class AbstractUser extends Content implements
     public function loginFailed($username)
     {
         $this->setUsername('');
-        $this->setPermissions([]);
-        $this->setGroups([]);
+        //$this->setPermissions([]);
+        //$this->setGroups([]);
 
         $this->logLoginFailed($username);
     }
