@@ -176,104 +176,104 @@ abstract class AbstractUser extends Content implements
         return $this->password;
     }
 
-    /**
-     * @param array $groups The UserGroups this user belongs to.
-     * @return UserInterface Chainable
-     */
-    public function setGroups(array $groups)
-    {
-        $this->groups = [];
-        foreach ($groups as $g) {
-            $this->addGroup($g);
-        }
-        return $this;
-    }
-    /**
-     * @param array|UserGroup $group The group to ad.
-     * @throws InvalidArgumentException If the group is not an object or array.
-     * @return UserInterface Chainable
-     */
-    public function addGroup($group)
-    {
-        if (is_array($group)) {
-            $g = $this->createGroup();
-            $g->setData($group);
-            $group = $g;
-        }
-        if (!($group instanceof UserGroupInterface)) {
-            throw new InvalidArgumentException(
-                'Invalid user group.'
-            );
-        }
-        $this->groups[] = $group;
-        return $this;
-    }
+    // /**
+    //  * @param array $groups The UserGroups this user belongs to.
+    //  * @return UserInterface Chainable
+    //  */
+    // public function setGroups(array $groups)
+    // {
+    //     $this->groups = [];
+    //     foreach ($groups as $g) {
+    //         $this->addGroup($g);
+    //     }
+    //     return $this;
+    // }
+    // /**
+    //  * @param array|UserGroup $group The group to ad.
+    //  * @throws InvalidArgumentException If the group is not an object or array.
+    //  * @return UserInterface Chainable
+    //  */
+    // public function addGroup($group)
+    // {
+    //     if (is_array($group)) {
+    //         $g = $this->createGroup();
+    //         $g->setData($group);
+    //         $group = $g;
+    //     }
+    //     if (!($group instanceof UserGroupInterface)) {
+    //         throw new InvalidArgumentException(
+    //             'Invalid user group.'
+    //         );
+    //     }
+    //     $this->groups[] = $group;
+    //     return $this;
+    // }
 
-    /**
-     * @return UserGroupInterface
-     */
-    abstract public function createGroup();
+    // /**
+    //  * @return UserGroupInterface
+    //  */
+    // abstract public function createGroup();
 
-    /**
-     * @return array The UserGroup list attached to this user
-     */
-    public function groups()
-    {
-        return $this->groups;
-    }
+    // /**
+    //  * @return array The UserGroup list attached to this user
+    //  */
+    // public function groups()
+    // {
+    //     return $this->groups;
+    // }
 
-    /**
-     * @param array $permissions The user permissions (map) to set.
-     * @return UserInterface Chainable
-     */
-    public function setPermissions(array $permissions)
-    {
-        $this->permissions = [];
-        foreach ($permissions as $permissionIdent => $permission) {
-            $this->addPermission($permissionIdent, $permission);
-        }
-        return $this;
-    }
+    // /**
+    //  * @param array $permissions The user permissions (map) to set.
+    //  * @return UserInterface Chainable
+    //  */
+    // public function setPermissions(array $permissions)
+    // {
+    //     $this->permissions = [];
+    //     foreach ($permissions as $permissionIdent => $permission) {
+    //         $this->addPermission($permissionIdent, $permission);
+    //     }
+    //     return $this;
+    // }
 
-    /**
-     * @param string                        $permissionIdent The permission identifier.
-     * @param array|UserPermissionInterface $permission      The user permission object or array.
-     * @throws InvalidArgumentException If the ident is not a string or if the permission is not an object or an array.
-     * @return UserInterface Chainable
-     */
-    public function addPermission($permissionIdent, $permission)
-    {
-        if (!is_string($permissionIdent)) {
-            throw new InvalidArgumentException(
-                'Permission identifier must be a string.'
-            );
-        }
-        if (is_array($permission)) {
-            $p = $this->createPermission();
-            $p->setData($permission);
-            $permission = $p;
-        } elseif (!($permission instanceof UserPermissionInterface)) {
-            throw new InvalidArgumentException(
-                'Invalid permissions'
-            );
-        }
-        $this->permissions[$permissionIdent] = $permission;
-        return $this;
-    }
+    // /**
+    //  * @param string                        $permissionIdent The permission identifier.
+    //  * @param array|UserPermissionInterface $permission      The user permission object or array.
+    //  * @throws InvalidArgumentException If the ident is not a string or if the permission is not an object or an array.
+    //  * @return UserInterface Chainable
+    //  */
+    // public function addPermission($permissionIdent, $permission)
+    // {
+    //     if (!is_string($permissionIdent)) {
+    //         throw new InvalidArgumentException(
+    //             'Permission identifier must be a string.'
+    //         );
+    //     }
+    //     if (is_array($permission)) {
+    //         $p = $this->createPermission();
+    //         $p->setData($permission);
+    //         $permission = $p;
+    //     } elseif (!($permission instanceof UserPermissionInterface)) {
+    //         throw new InvalidArgumentException(
+    //             'Invalid permissions'
+    //         );
+    //     }
+    //     $this->permissions[$permissionIdent] = $permission;
+    //     return $this;
+    // }
 
-    /**
-     * @return UserPermissionInterface[] The UserPersmission list attached to this user
-     */
-    public function permissions()
-    {
-        return $this->permissions;
-    }
+    // /**
+    //  * @return UserPermissionInterface[] The UserPersmission list attached to this user
+    //  */
+    // public function permissions()
+    // {
+    //     return $this->permissions;
+    // }
 
-    /**
-     * @param array|null $data Optional. The permission data.
-     * @return UserPermissionInterface
-     */
-    abstract public function createPermission($data = null);
+    // /**
+    //  * @param array|null $data Optional. The permission data.
+    //  * @return UserPermissionInterface
+    //  */
+    // abstract public function createPermission($data = null);
 
 
     /**
