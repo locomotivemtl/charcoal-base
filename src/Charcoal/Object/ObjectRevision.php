@@ -368,26 +368,30 @@ class ObjectRevision extends AbstractModel implements
      */
     public function lastObjectRevision(RevisionableInterface $obj)
     {
+        if ($this->source()->tableExists() === false) {
+            /** @todo Optionnally turn off for some models */
+            $this->source()->createTable();
+        }
+
         $classname = get_class($this);
         $rev = new $classname([
             'logger' => $this->logger
         ]);
-        $rev->loadFromQuery(
-            '
-            select
+        $rev->loadFromQuery('
+            SELECT
                 *
-            from
+            FROM
                 `'.$this->source()->table().'`
-            where
+            WHERE
                 `obj_type` = :obj_type
-            and
+            AND
                 `obj_id` = :obj_id
-            order by
+            ORDER BY
                 `rev_ts` desc
-            limit 1',
+            LIMIT 1',
             [
                 'obj_type' => $obj->objType(),
-                'obj_id' => $obj->id()
+                'obj_id'   => $obj->id()
             ]
         );
 
