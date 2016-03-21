@@ -503,6 +503,21 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
+     * @throws Exception If trying to save a user to session without a ID.
+     * @return UserInterface Chainable
+     */
+    public function saveToSession()
+    {
+        if (!$this->id()) {
+            throw new Exception(
+                'Can not set auth user; no user ID'
+            );
+        }
+        $_SESSION[static::sessionKey()] = $this;
+        return $this;
+    }
+
+    /**
      * Log in the user (in session)
      *
      * Called when the authentication is successful.
@@ -522,8 +537,7 @@ abstract class AbstractUser extends Content implements
         }
         $this->update(['last_login_ip', 'last_login_date']);
 
-        // Save to session
-        $_SESSION[static::sessionKey()] = $this;
+        $this->saveToSession();
 
         return true;
     }

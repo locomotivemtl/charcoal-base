@@ -13,12 +13,6 @@ interface UserInterface
     public static function sessionKey();
 
     /**
-     * @param array|\ArrayAccess $data The data map to set.
-     * @return UserInterface Chainable
-     */
-    public function setData($data);
-
-    /**
      * Force a lowercase username
      *
      * @param string $username The username (also the login name).
