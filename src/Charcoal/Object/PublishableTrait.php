@@ -109,6 +109,7 @@ trait PublishableTrait
     public function setPublishStatus($status)
     {
         $validStatus = [
+            '',
             'draft',
             'pending',
             'published'
