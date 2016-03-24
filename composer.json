@@ -23,7 +23,7 @@
     "php": ">=5.5.0",
     "ext-pdo": "*",
     "ext-fileinfo": "*",
-    "locomotivemtl/charcoal-core": "@dev",
+    "locomotivemtl/charcoal-core": "dev-master",
     "locomotivemtl/charcoal-property": "dev-master"
   },
   "require-dev": {
@@ -34,5 +34,16 @@
     "psr-4": {
       "Charcoal\\": "src/Charcoal"
     }
+  },
+  "scripts": {
+    "test": [
+      "@phplint",
+      "@phpcs",
+      "@phpunit"
+    ],
+    "phplint": "find {src,tests} -name '*.php' -print0 | xargs -0 -n1 -P8 php -l | grep -v '^No syntax errors detected'; test $? -eq 1",
+    "phpunit": "php vendor/bin/phpunit --configuration tests/phpunit.xml --coverage-text",
+    "phpcs": "php vendor/bin/phpcs -ps --colors --standard=phpcs.xml src/",
+    "phpcbf": "php vendor/bin/phpcbf -ps --colors --standard=phpcs.xml src/ tests/"
   }
 }
