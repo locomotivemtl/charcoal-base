@@ -1,20 +1,26 @@
 Charcoal Base
 =============
 
+Additional objects and methods for Charcoal projects.
+
+# How to install
+
+The preferred (and only supported) way of installing _charcoal-app_ is with **composer**:
+
+```shell
+★ composer require locomotivemtl/charcoal-app
+```
+
+# Dependencies
+
+
 # Available classes and interfaces
 
 This package extends the _charcoal-core_ framework with more utilities:
-- Action
-- Email
-- Image
-- Module
-- Object
-  - Content
-  - UserData
-- Property
-- Template
-- Widget
 
+- Object
+- User
+-
 Typically, Charcoal projects or modules do not use much of _charcoal-core_ base class, but rather are a collection of `Object` (class and json metadata), either as `UserData` or `Content` and are displayed through a `Template` and its children `Widget` (class and template files). External resources (scripts, styles, images, etc.) are typically included in  project. User input, and some scripts, are provided through `Action`. All those classes are extended from the base classes in this package, _charcoal-base_.
 
 ## Action

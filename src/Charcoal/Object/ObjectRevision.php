@@ -377,7 +377,8 @@ class ObjectRevision extends AbstractModel implements
         $rev = new $classname([
             'logger' => $this->logger
         ]);
-        $rev->loadFromQuery('
+        $rev->loadFromQuery(
+            '
             SELECT
                 *
             FROM

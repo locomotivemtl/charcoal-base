@@ -15,7 +15,7 @@ class UserDataTest extends \PHPUnit_Framework_TestCase
          $logger = new NullLogger();
          $this->obj = new UserData([
             'logger'=>$logger
-        ]);
+         ]);
     }
 
     public function testConstructor()
