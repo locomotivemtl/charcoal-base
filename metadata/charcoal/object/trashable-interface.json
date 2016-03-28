@@ -1,0 +1,23 @@
+{
+  "config_type": "object",
+  "module": "charcoal",
+
+  "properties": {
+    "deleted_on": {
+      "type": "date-time",
+      "input_type": "charcoal/admin/property/input/readonly",
+      "label": {
+        "en": "Trashed At",
+        "fr": "Mise en corbeille le"
+      }
+    },
+    "deleted_by": {
+      "type": "string",
+      "input_type": "charcoal/admin/property/input/readonly",
+      "label": {
+        "en": "Trashed By",
+        "fr": "Mise à la corbeille par"
+      }
+    }
+  }
+}
