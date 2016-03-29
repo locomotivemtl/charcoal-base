@@ -1,0 +1,38 @@
+{
+    "properties":{
+      "id":{
+        "type": "id"
+      },
+      "obj_type":{
+        "type": "string"
+      },
+      "obj_id":{
+        "type": "string"
+      },
+      "property_ident":{
+        "type": "string"
+      },
+      "new_value":{
+        "type": "text"
+      },
+      "processed":{
+        "type": "boolean"
+      },
+      "processing_date":{
+        "type": "date-time"
+      },
+      "processed_date":{
+        "type": "date-time"
+      }
+    },
+
+    "data":{},
+
+    "sources": {
+      "default": {
+        "type": "database",
+        "table": "object_schedules"
+      }
+    },
+    "default_source": "default"
+}
