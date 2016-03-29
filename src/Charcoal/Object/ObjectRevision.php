@@ -143,6 +143,7 @@ class ObjectRevision extends AbstractModel implements
     public function setRevTs($revTs)
     {
         if ($revTs === null) {
+            $this->revTs = null;
             return $this;
         }
         if (is_string($revTs)) {

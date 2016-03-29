@@ -28,6 +28,5 @@ class CategorizableTraitTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\InvalidArgumentException');
         $obj->setCategoryType(false);
-
     }
 }
