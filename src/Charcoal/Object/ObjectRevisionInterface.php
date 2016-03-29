@@ -8,11 +8,10 @@ namespace Charcoal\Object;
 interface ObjectRevisionInterface
 {
     /**
-     * @param string $obj_type The object type (type-ident).
-     * @throws InvalidArgumentException If the obj type parameter is not a string.
+     * @param string $objType The object type (type-ident).
      * @return \Charcoal\Object\ObjectRevisionInterface Chainable
      */
-    public function setObjType($obj_type);
+    public function setObjType($objType);
 
     /**
      * @return string
@@ -43,7 +42,6 @@ interface ObjectRevisionInterface
 
     /**
      * @param mixed $revTs The revision's timestamp.
-     * @throws InvalidArgumentException If the timestamp is invalid.
      * @return \Charcoal\Object\ObjectRevisionInterface Chainable
      */
     public function setRevTs($revTs);
@@ -55,7 +53,6 @@ interface ObjectRevisionInterface
 
     /**
      * @param string $revUser The revision user ident.
-     * @throws InvalidArgumentException If the revision user parameter is not a string.
      * @return \Charcoal\Object\ObjectRevisionInterface Chainable
      */
     public function setRevUser($revUser);
