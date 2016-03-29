@@ -54,9 +54,6 @@ class UserDataTest extends \PHPUnit_Framework_TestCase
 
         $obj->setIp(2349255);
         $this->assertEquals(2349255, $obj->ip());
-
-        $this->setExpectedException('\InvalidArgumentException');
-        $obj->setIp(false);
     }
 
     public function testSetLang()
@@ -89,7 +86,7 @@ class UserDataTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(null, $obj->lang());
         $this->assertSame(null, $obj->ts());
 
-        $obj->pre_save();
+        $obj->preSave();
 
         $this->assertNotSame(null, $obj->ip());
         $this->assertNotSame(null, $obj->lang());

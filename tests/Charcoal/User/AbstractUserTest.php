@@ -10,10 +10,11 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $container = $GLOBALS['container'];
         $logger = new NullLogger();
-        $this->obj = $this->getMockForAbstractClass('\Charcoal\User\AbstractUser', [
-            'logger'=>$logger
-        ]);
+        $this->obj = $this->getMockForAbstractClass('\Charcoal\User\AbstractUser', [[
+            'logger'=>$container['logger']
+        ]]);
     }
 
     public function testKey()
