@@ -102,11 +102,11 @@ interface ObjectRevisionInterface
      * 2. Load the current item from DB
      * 3. Create diff from (1) and (2).
      *
-     * @param string $obj_type The object type to create the revision from.
-     * @param mixed  $objId    The object ID to create the revision from.
+     * @param string $objType The object type to create the revision from.
+     * @param mixed  $objId   The object ID to create the revision from.
      * @return ObjectRevisionInterface Chainable
      */
-    public function createFromObject($obj_type, $objId);
+    public function createFromObject($objType, $objId);
 
     /**
      * @param array $dataPrev Optional. The previous revision data.
@@ -125,9 +125,9 @@ interface ObjectRevisionInterface
     public function recursiveDiff(array $array1, array $array2);
 
     /**
-     * @param string $obj_type The object type to load the last revision of.
-     * @param mixed  $objId    The object ID to load the last revision of.
+     * @param string $objType The object type to load the last revision of.
+     * @param mixed  $objId   The object ID to load the last revision of.
      * @return ObjectRevision The last revision for the give object.
      */
-    public function lastObjectRevision($obj_type, $objId);
+    public function lastObjectRevision($objType, $objId);
 }

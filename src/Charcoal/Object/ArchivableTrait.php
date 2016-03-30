@@ -3,9 +3,8 @@
 namespace Charcoal\Object;
 
 /**
-*
-*/
+ *
+ */
 trait ArchivableTrait
 {
-
 }

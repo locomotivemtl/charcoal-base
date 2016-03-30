@@ -9,8 +9,8 @@ use \Exception as Exception;
 use \InvalidArgumentException as InvalidArgumentException;
 
 /**
-* A full implementation, as trait, of the `PublishableInterface`.
-*/
+ * A full implementation, as trait, of the `PublishableInterface`.
+ */
 trait PublishableTrait
 {
     /**

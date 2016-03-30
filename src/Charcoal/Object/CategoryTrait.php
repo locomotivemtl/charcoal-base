@@ -6,8 +6,8 @@ use Exception;
 use InvalidArgumentException;
 
 /**
-*
-*/
+ *
+ */
 trait CategoryTrait
 {
     /**

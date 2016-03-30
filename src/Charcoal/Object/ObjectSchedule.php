@@ -322,7 +322,9 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface, I
             return false;
         }
         if ($this->objId() === null) {
-            $this->logger->error(sprintf('Can not process object schedule: no object "%s" ID defined.', $this->objType()));
+            $this->logger->error(
+                sprintf('Can not process object schedule: no object "%s" ID defined.', $this->objType())
+            );
             return false;
         }
         if ($this->propertyIdent() === null) {

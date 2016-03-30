@@ -5,8 +5,8 @@ namespace Charcoal\Object;
 use \Charcoal\Object\ObjectRevision;
 
 /**
-*
-*/
+ *
+ */
 trait RevisionableTrait
 {
     /**

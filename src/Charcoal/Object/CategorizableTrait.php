@@ -5,8 +5,8 @@ namespace Charcoal\Object;
 use \InvalidArgumentException;
 
 /**
-* Categorizable defines objects that can be in a `Category`.
-*/
+ * Categorizable defines objects that can be in a `Category`.
+ */
 trait CategorizableTrait
 {
     /**

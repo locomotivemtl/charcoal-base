@@ -6,8 +6,8 @@ use \Charcoal\View\Viewable;
 use \Charcoal\Translation\TranslationString;
 
 /**
-* Full implementation, as Trait, of the `RoutableInterface`.
-*/
+ * Full implementation, as Trait, of the `RoutableInterface`.
+ */
 trait RoutableTrait
 {
     /**
