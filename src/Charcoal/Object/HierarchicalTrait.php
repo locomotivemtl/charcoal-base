@@ -2,12 +2,15 @@
 
 namespace Charcoal\Object;
 
-use \Exception as Exception;
-use \InvalidArgumentException as InvalidArgumentException;
+use \Exception;
+use \InvalidArgumentException;
+
+// Dependency from 'charcoal-core'
+use \Charcoal\Model\ModelFactory;
 
 /**
-* Full implementation, as a trait, of the `HierarchicalInterface`
-*/
+ * Full implementation, as a trait, of the `HierarchicalInterface`
+ */
 trait HierarchicalTrait
 {
     /**
@@ -45,6 +48,8 @@ trait HierarchicalTrait
     public function setMaster($master)
     {
         $this->master = $this->objFromIdent($master);
+        // Rebuild hierarchy
+        $this->hierarchy = null;
         return $this;
     }
 
@@ -121,19 +126,17 @@ trait HierarchicalTrait
      */
     public function hierarchy()
     {
-        // Get from memory, if it was already set.
-        /*if ($this->hierarchy !== null) {
-            return $this->hierarchy;
-        }*/
+        if (!isset($this->hierarchy)) {
+            $hierarchy = [];
+            $master = $this->master();
+            while ($master) {
+                $hierarchy[] = $master;
+                $master = $master->master();
+            }
 
-        $hierarchy = [];
-        $master = $this->master();
-        while ($master) {
-            $hierarchy[] = $master;
-            $master = $master->master();
+            $this->hierarchy = $hierarchy;
         }
 
-        $this->hierarchy = $hierarchy;
         return $this->hierarchy;
     }
 
@@ -331,7 +334,9 @@ trait HierarchicalTrait
         if ($ident === null) {
             return null;
         }
+
         $class = get_called_class();
+
         if (is_object($ident) && ($ident instanceof $class)) {
             return $ident;
         }
@@ -342,18 +347,26 @@ trait HierarchicalTrait
             );
         }
 
-        //$obj = ModelFactory::instance()->get($class);
-        $obj = new $class([
-            'logger'=>$this->logger
-        ]);
-        if (!is_callable([$obj, 'load'])) {
-            throw new Exception('Can not load object. No loadable interface defined.');
-        }
-        $obj->load($ident);
+        try {
+            $modelFactory = new ModelFactory();
+            $modelFactory->setArguments([
+                'logger' => $this->logger
+            ]);
 
-        if ($obj->id()) {
-            return $obj;
-        } else {
+            $modelFactory->create($class);
+
+            if (!is_callable([$obj, 'load'])) {
+                throw new Exception('Can not load object. No loadable interface defined.');
+            }
+
+            $obj->load($ident);
+
+            if ($obj->id()) {
+                return $obj;
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
             return null;
         }
     }
