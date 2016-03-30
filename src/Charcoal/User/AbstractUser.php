@@ -17,14 +17,24 @@ use \Charcoal\Object\Content;
 // Local namespace (charcoal-base) dependencies
 use \Charcoal\User\UserConfig;
 use \Charcoal\User\UserInterface;
+use \Charcoal\User\AuthenticatableInterface;
+use \Charcoal\User\AuthorizableInterface;
+use \Charcoal\User\AuthorizableTrait;
+use \Charcoal\User\GroupableInterface;
+use \Charcoal\User\GroupableTrait;
 
 /**
  * Full implementation, as abstract class, of the `UserInterface`.
  */
 abstract class AbstractUser extends Content implements
     UserInterface,
+    AuthenticatableInterface,
+    AuthorizableInterface,
+    GroupableInterface,
     ConfigurableInterface
 {
+    use AuthorizableTrait;
+    use GroupableTrait;
     use ConfigurableTrait;
 
     /**
@@ -43,16 +53,6 @@ abstract class AbstractUser extends Content implements
      * @var string $email
      */
     private $email;
-
-    /**
-     * @var array $groups
-     */
-    private $groups;
-
-    /**
-     * @var array $permissions
-     */
-    private $permissions;
 
     /**
      * @var boolean $active
@@ -364,7 +364,6 @@ abstract class AbstractUser extends Content implements
      */
     public function authenticate($username, $password)
     {
-
         if (!is_string($username) || !is_string($password)) {
             throw new InvalidArgumentException(
                 'Username and password must be strings'
@@ -460,8 +459,8 @@ abstract class AbstractUser extends Content implements
     public function loginFailed($username)
     {
         $this->setUsername('');
-        //$this->setPermissions([]);
-        //$this->setGroups([]);
+        $this->setPermissions([]);
+        $this->setGroups([]);
 
         $this->logLoginFailed($username);
     }

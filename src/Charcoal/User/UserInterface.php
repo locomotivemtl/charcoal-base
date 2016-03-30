@@ -47,41 +47,6 @@ interface UserInterface
      */
     public function password();
 
-    // /**
-    //  * @param array $groups The UserGroups this user belongs to.
-    //  * @return UserInterface Chainable
-    //  */
-    // public function setGroups(array $groups);
-
-    // /**
-    //  * @param array|UserGroupInterface $group The group to add.
-    //  * @return UserInterface Chainable
-    //  */
-    // public function addGroup($group);
-
-    // /**
-    //  * @return array The UserGroup list attached to this user
-    //  */
-    // public function groups();
-
-    // /**
-    //  * @param array $permissions The user permissions to set. Either as array or UserPermission objects.
-    //  * @return UserInterface Chainable
-    //  */
-    // public function setPermissions(array $permissions);
-
-    // /**
-    //  * @param string                        $permissionIdent The permission identifier.
-    //  * @param array|UserPermissionInterface $permission      The user permission object/array to add.
-    //  * @return UserInterface Chainable
-    //  */
-    // public function addPermission($permissionIdent, $permission);
-
-    // /**
-    //  * @return UserPermissionInterface[] The UserPermission list (array) attached to this user.
-    //  */
-    // public function permissions();
-
     /**
      * @param boolean $active The active flag.
      * @return UserInterface Chainable
@@ -150,13 +115,6 @@ interface UserInterface
      * @return string
      */
     public function loginToken();
-
-    /**
-     * @param string $username Username.
-     * @param string $password Password.
-     * @return boolean Login success / failure.
-     */
-    public function authenticate($username, $password);
 
     /**
      * Reset the password.
