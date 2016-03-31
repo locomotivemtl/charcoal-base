@@ -1,0 +1,25 @@
+{
+	"config_type": "object",
+	"module": "charcoal",
+
+	"properties": {
+		"expired_on": {
+			"type": "date-time",
+			"label": {
+				"en": "Expires On",
+				"fr": "Expire le"
+			},
+			"description": {
+				"en": "Allows you to schedule the entry to be expired. Selecting a date / time will influence the publication status when the timestamp is met.",
+				"fr": "Vous permet de planifier l'expiration de l'entrée. Définir une date influencera le statut de publication quand l'horodatage est passé."
+			}
+		},
+		"expired_by": {
+			"type": "string",
+			"label": {
+				"en": "Expired By",
+				"fr": "Expiré par"
+			}
+		}
+	}
+}

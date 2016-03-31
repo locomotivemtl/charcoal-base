@@ -2,176 +2,221 @@
 
 namespace Charcoal\Object;
 
-// Dependencies from `PHP`
-use \DateTime as DateTime;
-use \DateTimeInterface as DateTimeInterface;
-use \Exception as Exception;
-use \InvalidArgumentException as InvalidArgumentException;
+use \DateTime;
+use \DateTimeInterface;
+use \Exception;
+use \InvalidArgumentException;
 
 /**
- * A full implementation, as trait, of the `PublishableInterface`.
+ * The `Publishable` mixin defines publication properties for a model.
+ *
+ * Recommended methods to implement if `Publishable` and `Expirable` are used:
+ *
+ * - `hasPublicationEnded()`
+ * - `hasPublicationStarted()`
+ *
+ * @see PublishableInterface A full implementation of mixin.
+ * @see ExpirableTrait Pairs well with the `Expirable` mixin.
  */
 trait PublishableTrait
 {
     /**
-     * @var DateTime $publishDate
+     * The publication timestamp.
+     *
+     * @var DateTime
      */
-    private $publishDate;
-    /**
-     * @var DateTime $expiryDate
-     */
-    private $expiryDate;
+    private $publishedOn;
 
     /**
-     * @var string $publishStatus
+     * The user who published the object.
+     *
+     * @var mixed
      */
-    private $publishStatus;
+    private $publishedBy;
 
     /**
-     * @param string|DateTime|null $publishDate The publishing date.
-     * @throws InvalidArgumentException If the date/time is invalid.
-     * @return PublishableInterface Chainable
+     * The publication staus of the object.
+     *
+     * @var string
      */
-    public function setPublishDate($publishDate)
+    private $publicationStatus;
+
+    /**
+     * Retrieve the `Publishable` mixin's properties.
+     *
+     * @return array
+     */
+    public function publishableProperties()
     {
-        if ($publishDate === null) {
-            $this->publishDate = null;
-            return $this;
+        return [
+            'published_on',
+            'published_by',
+            'publication_status'
+        ];
+    }
+
+    /**
+     * Define whether the object is published or scheduled to be published
+     * (with a timestamp) or not (FALSE).
+     *
+     * @param  DateTime|string|boolean|null $marker A timestamp for publication or FALSE to remain unpublished.
+     * @throws InvalidArgumentException If the publishing marker is invalid.
+     * @return TrashableInterface Chainable
+     */
+    public function setPublishedOn($marker)
+    {
+        if ($marker === false) {
+            $marker = null;
         }
-        if (is_string($publishDate)) {
-            try {
-                $publishDate = new DateTime($publishDate);
-            } catch (Exception $e) {
+
+        if ($marker !== null) {
+            if (is_string($marker)) {
+                try {
+                    $marker = new DateTime($marker);
+                } catch (Exception $e) {
+                    throw new InvalidArgumentException(
+                        sprintf('Invalid publishing marker: %s', $e->getMessage())
+                    );
+                }
+            }
+
+            if (!($marker instanceof DateTimeInterface)) {
                 throw new InvalidArgumentException(
-                    'Invalid publish date: '.$e->getMessage()
+                    'Invalid publishing marker. Must be a date/time string or a DateTime object.'
                 );
             }
         }
-        if (!($publishDate instanceof DateTimeInterface)) {
-            throw new InvalidArgumentException(
-                'Invalid "Publish Date" value. Must be a date/time string or a DateTime object.'
-            );
-        }
-        $this->publishDate = $publishDate;
+
+        $this->publishedOn = $marker;
+
         return $this;
     }
 
     /**
+     * Retrieve the publication timestamp, if the object is published.
+     *
      * @return DateTime|null
      */
-    public function publishDate()
+    public function publishedOn()
     {
-        return $this->publishDate;
+        return $this->publishedOn;
     }
 
     /**
-     * @param string|DateTime|null $expiryDate The expiry date.
-     * @throws InvalidArgumentException If the date/time is invalid.
+     * Set the author of the publication.
+     *
+     * @param  mixed $author The author of the publishable object.
      * @return PublishableInterface Chainable
      */
-    public function setExpiryDate($expiryDate)
+    public function setPublishedBy($author)
     {
-        if ($expiryDate === null) {
-            $this->expiryDate = null;
-            return $this;
-        }
-        if (is_string($expiryDate)) {
-            try {
-                $expiryDate = new DateTime($expiryDate);
-            } catch (Exception $e) {
-                throw new InvalidArgumentException(
-                    'Invalid expiry date: '.$e->getMessage()
-                );
-            }
-        }
-        if (!($expiryDate instanceof DateTimeInterface)) {
-            throw new InvalidArgumentException(
-                'Invalid "Expiry Date" value. Must be a date/time string or a DateTime object.'
-            );
-        }
-        $this->expiryDate = $expiryDate;
+        $this->publishedBy = $author;
+
         return $this;
     }
 
     /**
-     * @return DateTime|null
+     * Retrieve the author of the publication.
+     *
+     * @return mixed
      */
-    public function expiryDate()
+    public function publishedBy()
     {
-        return $this->expiryDate;
+        return $this->publishedBy;
     }
 
     /**
-     * @param string $status The publish status (draft, pending or published).
-     * @throws InvalidArgumentException If the status is not one of the 3 valid status.
-     * @return PublishableTrait Chainable
+     * Retrieve the available publication statuses.
+     *
+     * @see    PublishableInterface For descriptions of statuses.
+     * @todo   Should we retrieve available statuses from property metadata?
+     * @return array
      */
-    public function setPublishStatus($status)
+    public function availableStatuses()
     {
-        $validStatus = [
-            '',
+        return [
             'draft',
             'pending',
             'published'
         ];
-        if (!in_array($status, $validStatus)) {
-            throw new InvalidArgumentException(
-                sprintf('Status "%s" is not a valid publish status.', $status)
-            );
+    }
+
+    /**
+     * Set the publication status of the object.
+     *
+     * @param  string $status The publication status.
+     * @throws InvalidArgumentException If the status is invalid.
+     * @return PublishableInterface Chainable
+     */
+    public function setPublicationStatus($status)
+    {
+        $statuses = $this->availableStatuses();
+
+        if ($status === false) {
+            $status = null;
         }
-        $this->publishStatus = $status;
+
+        if ($status !== null) {
+            if (!in_array($status, $statuses)) {
+                throw new InvalidArgumentException(
+                    sprintf(
+                        'Invalid publication status: "%s". Must be one of: %s',
+                        $status,
+                        implode(', ', $statuses)
+                    )
+                );
+            }
+        }
+
+        $this->publicationStatus = $status;
+
         return $this;
     }
 
     /**
-     * Get the object's publish status.
+     * Retrieve the publication status of the object.
      *
-     * Status can be:
-     * - `draft`
-     * - `pending`
-     * - `published`
-     * - `upcoming`
-     * - `expired`
-     *
-     * Note that the `upcoming` and `expired` status are specialized status when
-     * the object is set to `published` but the `publishDate` or `expiryDate` do not match.
-     *
-     * @return string
+     * @see    PublishableInterface For descriptions of statuses.
+     * @return string|null
      */
-    public function publishStatus()
+    public function publicationStatus()
     {
-        $status = $this->publishStatus;
-        if (!$status || $status == 'published') {
-            $status = $this->publishDateStatus();
+        $status = $this->publicationStatus;
+
+        if (!$status || $status === 'published') {
+            $status = $this->publicationStatusFromDate();
         }
+
         return $status;
     }
 
     /**
-     * Get the "publish status" from the publish date / expiry date.
+     * Retrieve the publication status resolved by the timeframe.
      *
-     * - If no publish date is set, then it is assumed to be "always published." (or expired)
-     * - If no expiry date is set, then it is assumed to never expire.
+     * - If no "published_on" date/time is set, the publication has not started (draft or expired).
+     * - If no "expired_on" date/time is set, the publication has not ended (expired, published, or scheduled).
      *
      * @return string
      */
-    private function publishDateStatus()
+    private function publicationStatusFromDate()
     {
-        $now = new DateTime();
-        $publish = $this->publishDate();
-        $expiry = $this->expiryDate();
+        $now   = new DateTime();
+        $start = $this->publishedOn();
+        $until = ($this instanceof ExpirableInterface)
+               ? $this->expiredOn()
+               : null;
 
-        if (!$publish) {
-            if (!$expiry || $now < $expiry) {
-                return 'published';
+        if (!$start) {
+            if (!$until || $now < $until) {
+                return 'draft';
             } else {
                 return 'expired';
             }
         } else {
-            if ($now < $publish) {
-                return 'upcoming';
+            if ($now < $start) {
+                return 'scheduled';
             } else {
-                if (!$expiry || $now < $expiry) {
+                if (!$until || $now < $until) {
                     return 'published';
                 } else {
                     return 'expired';
@@ -181,10 +226,86 @@ trait PublishableTrait
     }
 
     /**
+     * Determine if the object has been published.
+     *
+     * The timeframe is taken into account.
+     *
      * @return boolean
      */
     public function isPublished()
     {
-        return ($this->publishStatus() == 'published');
+        return ($this->publicationStatus() === 'published');
+    }
+
+    /**
+     * Publish the object.
+     *
+     * This method will change the `publication_status` property to "published"
+     * and set the date/time to _now_ for the "published_on" property.
+     *
+     * @todo   Implement `prePublish()` and `postPublish()` events.
+     * @return boolean
+     */
+    public function publish()
+    {
+        if (!$this->isPublished()) {
+            $this->setPublishedOn('now');
+            $this->setPublicationStatus('published');
+
+            $properties = $this->publishableProperties();
+            $this->saveProperties($properties);
+            $result = $this->source()->updateItem($this, $properties);
+
+            return $result;
+        }
+
+        return true;
+    }
+
+    /**
+     * Unpublish the object.
+     *
+     * This method will change the `publication_status` property to "draft"
+     * and unset the "published_on" property.
+     *
+     * @todo   Implement `preUnpublish()` and `postUnpublish()` events.
+     * @return boolean
+     */
+    public function unpublish()
+    {
+        if ($this->isPublished()) {
+            $this->setPublishedOn(null);
+            $this->setPublicationStatus('draft');
+
+            $properties = $this->publishableProperties();
+            $this->saveProperties($properties);
+            $result = $this->source()->updateItem($this, $properties);
+
+            return $result;
+        }
+
+        return true;
+    }
+
+    /**
+     * Save hook called before creating and updating the object.
+     *
+     * @todo   Add {@see self::setPublishedBy()} value.
+     * @todo   There should be 3 events: create, update, save (called on either "create" or "update").
+     * @see    StorableTrait::preSave()
+     * @see    StorableTrait::preUpdate()
+     * @return boolean
+     */
+    public function savePublishableTrait()
+    {
+        if (!$this->publicationStatus) {
+            $this->setPublicationStatus((self::PUBLISHED_BY_DEFAULT) ? 'published' : 'draft');
+        }
+
+        if (!$this->publishedOn && $this->publicationStatus === 'published') {
+            $this->setPublishedOn('now');
+        }
+
+        return true;
     }
 }

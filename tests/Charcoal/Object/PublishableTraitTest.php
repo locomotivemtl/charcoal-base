@@ -4,7 +4,21 @@ namespace Charcoal\Tests\Object;
 
 use \DateTime;
 
-use \Charcoal\Object\PublishableTrait as PublishableTrait;
+use \Charcoal\Object\PublishableInterface;
+use \Charcoal\Object\PublishableTrait;
+use \Charcoal\Object\ExpirableInterface;
+use \Charcoal\Object\ExpirableTrait;
+
+/**
+ *
+ */
+abstract class PublicationClass implements
+    ExpirableInterface,
+    PublishableInterface
+{
+    use ExpirableTrait;
+    use PublishableTrait;
+}
 
 /**
  *
@@ -18,139 +32,99 @@ class PublishableTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->obj = $this->getMockForTrait('\Charcoal\Object\PublishableTrait');
+        $this->obj = $this->getMockForAbstractClass('\Charcoal\Tests\Object\PublicationClass');
     }
 
     /**
-     * Assert that the `setPublishDate` method:
+     * Assert that the `setPublishedOn` method:
      * - is chainable
-     * - sets the publishDate value when a string is passed
-     * - sets the publishDate value when a DateTime is passed
+     * - sets the publishedOn value when a string is passed
+     * - sets the publishedOn value when a DateTime is passed
      * - throws an InvalidArgumentException if other types of arguments are passed
      */
-    public function testSetPublishDate()
+    public function testSetPublishedOn()
     {
         $obj = $this->obj;
         $dt = new DateTime('2015-01-01 00:00:00');
 
-        $ret = $obj->setPublishDate('2015-01-01 00:00:00');
+        $ret = $obj->setPublishedOn('2015-01-01 00:00:00');
         $this->assertSame($ret, $obj);
-        $this->assertEquals($dt, $obj->publishDate());
+        $this->assertEquals($dt, $obj->publishedOn());
 
-        $obj->setPublishDate($dt);
-        $this->assertEquals($dt, $obj->publishDate());
+        $obj->setPublishedOn($dt);
+        $this->assertEquals($dt, $obj->publishedOn());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $obj->setPublishDate(false);
+        $obj->setPublishedOn('foobar');
+    }
+
+    public function testSetPublicationStatus()
+    {
+        $obj = $this->obj;
+
+        $obj->setPublicationStatus('draft');
+        $this->assertEquals('draft', $obj->publicationStatus());
+
+        $obj->setPublicationStatus('pending');
+        $this->assertEquals('pending', $obj->publicationStatus());
+
+        $obj->setPublishedOn('yesterday');
+        $obj->setPublicationStatus('published');
+        $this->assertEquals('published', $obj->publicationStatus());
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $obj->setPublicationStatus('foobar');
     }
 
     /**
-     * Assert that the `setExpiryDate` method:
-     * - throws an InvalidArgumentException if a non-ts string value is passed
+     * @dataProvider providerPublicationStatus
      */
-    public function testSetPublishDateBogusStringThrowsException()
-    {
-        $this->setExpectedException('\InvalidArgumentException');
-        $obj = $this->obj;
-        $obj->setPublishDate('foobar');
-    }
-
-    /**
-     * Assert that the `setExpiryDate` method:
-     * - is chainable
-     * - sets the expiryDate value when a string is passed
-     * - sets the expiryDate value when a DateTime is passed
-     * - throws an InvalidArgumentException if other types of arguments are passed
-     */
-    public function testSetExpiryDate()
+    public function testPublicationStatusFromDates($publishedOn, $expiredOn, $expectedStatus)
     {
         $obj = $this->obj;
-        $dt = new DateTime('2015-01-01 00:00:00');
 
-        $ret = $obj->setExpiryDate('2015-01-01 00:00:00');
-        $this->assertSame($ret, $obj);
-        $this->assertEquals($dt, $obj->expiryDate());
-
-        $obj->setExpiryDate($dt);
-        $this->assertEquals($dt, $obj->expiryDate());
-
-        $this->setExpectedException('\InvalidArgumentException');
-        $obj->setExpiryDate(false);
-    }
-
-    /**
-     * Assert that the `setExpiryDate` method:
-     * - throws an InvalidArgumentException if a non-ts string value is passed
-     */
-    public function testSetExpiryDateBogusStringThrowsException()
-    {
-        $this->setExpectedException('\InvalidArgumentException');
-        $obj = $this->obj;
-        $obj->setExpiryDate('foobar');
-    }
-
-    public function testSetPublishStatus()
-    {
-        $obj = $this->obj;
-        $obj->setPublishStatus('draft');
-        $this->assertEquals('draft', $obj->publishStatus());
-        $obj->setPublishStatus('pending');
-        $this->assertEquals('pending', $obj->publishStatus());
-        $obj->setPublishStatus('published');
-        $this->assertEquals('published', $obj->publishStatus());
-// No date set.
-
-        $this->setExpectedException('\InvalidArgumentException');
-        $obj->setPublishStatus('foobar');
-    }
-
-    /**
-     * @dataProvider providerPublishStatus
-     */
-    public function testPublishStatusFromDates($publishDate, $expiryDate, $expectedStatus)
-    {
-        $obj = $this->obj;
-        if ($publishDate !== null) {
-            $obj->setPublishDate($publishDate);
-        }
-        if ($expiryDate !== null) {
-            $obj->setExpiryDate($expiryDate);
+        if ($publishedOn !== null) {
+            $obj->setPublishedOn($publishedOn);
         }
 
-        $obj->setPublishStatus('draft');
-        $this->assertEquals('draft', $obj->publishStatus());
-        $obj->setPublishStatus('pending');
-        $this->assertEquals('pending', $obj->publishStatus());
+        if ($expiredOn !== null) {
+            $obj->setExpiredOn($expiredOn);
+        }
 
-        $obj->setPublishStatus('published');
-        $this->assertEquals($expectedStatus, $obj->publishStatus());
+        $obj->setPublicationStatus('draft');
+        $this->assertEquals('draft', $obj->publicationStatus());
+
+        $obj->setPublicationStatus('pending');
+        $this->assertEquals('pending', $obj->publicationStatus());
+
+        $obj->setPublicationStatus('published');
+        $this->assertEquals($expectedStatus, $obj->publicationStatus());
     }
 
-    public function providerPublishStatus()
+    public function providerPublicationStatus()
     {
         return [
-            [null, null, 'published'],
-            ['yesterday', 'tomorrow', 'published'],
-            ['2 days ago', 'yesterday', 'expired'],
-            ['tomorrow', '+1 week', 'upcoming'],
-            ['tomorrow', null, 'upcoming'],
-            [null, 'tomorrow', 'published'],
-            [null, 'yesterday', 'expired']
+            [ null, null, 'draft' ],
+            [ 'yesterday', 'tomorrow', 'published' ],
+            [ '2 days ago', 'yesterday', 'expired' ],
+            [ 'tomorrow', '+1 week', 'scheduled' ],
+            [ 'tomorrow', null, 'scheduled' ],
+            [ null, 'tomorrow', 'draft' ],
+            [ null, 'yesterday', 'expired' ]
         ];
     }
 
     public function testIsPublished()
     {
         $obj = $this->obj;
-        $this->assertTrue($obj->isPublished());
-
-        $obj->setPublishStatus('draft');
         $this->assertFalse($obj->isPublished());
 
-        $obj->setPublishStatus('published');
-        $this->assertTrue($obj->isPublished());
+        $obj->setPublishedOn('yesterday');
 
-        $obj->setExpiryDate('yesterday');
+        $obj->setPublicationStatus('draft');
         $this->assertFalse($obj->isPublished());
+
+        $obj->setPublicationStatus('published');
+        $this->assertTrue($obj->isPublished());
     }
 }

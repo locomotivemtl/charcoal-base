@@ -1,0 +1,56 @@
+{
+	"config_type": "object",
+	"module": "charcoal",
+
+	"properties": {
+		"published_on": {
+			"type": "date-time",
+			"label": {
+				"en": "Published On",
+				"fr": "Publié le"
+			},
+			"description": {
+				"en": "Allows you to schedule the entry to be published in the future or backdate it. Selecting a date / time will influence the publication status. Leaving the date and status fields blank will publish the entry immediately upon creation.",
+				"fr": "Vous permet de planifier la publication de l'entrée dans le futur ou de l'antidater. Définir une date influencera le statut de publication. Laisser la date et de l'état des champs vides publiera l'entrée immédiatement après la création."
+			}
+		},
+		"published_by": {
+			"type": "string",
+			"label": {
+				"en": "Published By",
+				"fr": "Publié par"
+			}
+		},
+		"publication_status": {
+			"type": "string",
+			"label": {
+				"en": "Publication Status",
+				"fr": "État de la publication"
+			},
+			"description": {
+				"en": "Selecting a publication date / time will influence the publication status.",
+				"fr": "Définir une date de publication influencera le statut de publication."
+			},
+			"choices": {
+				"draft": {
+					"label": {
+						"en": "Draft",
+						"fr": "Brouillon"
+					}
+				},
+				"pending": {
+					"label": {
+						"en": "Pending",
+						"fr": "En attente"
+					}
+				},
+				"published": {
+					"label": {
+						"en": "Published",
+						"fr": "Publié"
+					}
+				}
+			}
+		}
+	}
+}
