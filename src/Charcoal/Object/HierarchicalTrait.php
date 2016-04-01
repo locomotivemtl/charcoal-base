@@ -353,7 +353,7 @@ trait HierarchicalTrait
                 'logger' => $this->logger
             ]);
 
-            $modelFactory->create($class);
+            $obj = $modelFactory->create($class);
 
             if (!is_callable([$obj, 'load'])) {
                 throw new Exception('Can not load object. No loadable interface defined.');
