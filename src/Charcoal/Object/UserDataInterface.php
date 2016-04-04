@@ -3,7 +3,12 @@
 namespace Charcoal\Object;
 
 /**
+ * The `UserData` Object
  *
+ * _UserData_ objects are models typically submitted by the end-user of the application.
+ *
+ * Examples of `UserData` objects: _Inquiry_, _Newsletter Subscription_, _Blog Comment_,
+ * _Answer to a Survey_, _Product Rating or Review_, etc.
  */
 interface UserDataInterface
 {

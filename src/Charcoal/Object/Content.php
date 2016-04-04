@@ -2,74 +2,70 @@
 
 namespace Charcoal\Object;
 
-use \DateTime;
 use \InvalidArgumentException;
 
-// From `charcoal-core`
+// Dependencies from 'charcoal-core'
 use \Charcoal\Model\AbstractModel;
 use \Charcoal\Core\IndexableInterface;
 use \Charcoal\Core\IndexableTrait;
 
+// Local dependencies
 use \Charcoal\Object\ContentInterface;
 use \Charcoal\Object\RevisionableInterface;
 use \Charcoal\Object\RevisionableTrait;
+use \Charcoal\Object\TimestampableInterface;
+use \Charcoal\Object\TimestampableTrait;
 
 /**
+ * The `Content` Object
  *
+ * _Content_ objects are models with identity and typically created
+ * by the application's manager.
  */
 class Content extends AbstractModel implements
     ContentInterface,
     IndexableInterface,
-    RevisionableInterface
+    RevisionableInterface,
+    TimestampableInterface
 {
     use IndexableTrait;
     use RevisionableTrait;
+    use TimestampableTrait;
 
     /**
-     * Objects are active by default
-     * @var boolean $Active
+     * Whether the object is enabled or disabled.
+     *
+     * An active object is considered publicly queryable.
+     *
+     * @var boolean
      */
-    private $active = true;
+    private $active = self::ACTIVE_BY_DEFAULT;
 
     /**
-     * The position is used for ordering lists
-     * @var integer $Position
+     * The object's position.
+     *
+     * Used for ordering the object in lists.
+     *
+     * @var integer
      */
     private $position = 0;
 
     /**
-     * Object creation date (set automatically on save)
-     * @var DateTime $Created
-     */
-    private $created;
-
-    /**
-     * @var mixed
-     */
-    private $createdBy;
-
-    /**
-     * Object last modified date (set automatically on save and update)
-     * @var DateTime $LastModified
-     */
-    private $lastModified;
-
-    /**
-     * @var mixed
-     */
-    private $lastModifiedBy;
-
-    /**
-     * @param boolean $active The active flag.
+     * Set whether the object is enabled or disabled.
+     *
+     * @param  boolean $active The active flag.
      * @return Content Chainable
      */
     public function setActive($active)
     {
         $this->active = !!$active;
+
         return $this;
     }
 
     /**
+     * Determine if the object is enabled or disabled.
+     *
      * @return boolean
      */
     public function active()
@@ -78,26 +74,36 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @param integer $position The position (for ordering purpose).
+     * Set the object's position.
+     *
+     * @param  integer $position The position (for ordering purpose).
      * @throws InvalidArgumentException If the position is not an integer (or numeric integer string).
      * @return Content Chainable
      */
     public function setPosition($position)
     {
-        if ($position === null) {
-            $this->position = null;
-            return $this;
+        if ($position === false) {
+            $position = null;
         }
-        if (!is_numeric($position)) {
-            throw new InvalidArgumentException(
-                'Position must be an integer.'
-            );
+
+        if ($position !== null) {
+            if (!is_numeric($position)) {
+                throw new InvalidArgumentException(
+                    'Position must be an integer.'
+                );
+            }
+
+            $position = (int)$position;
         }
-        $this->position = (int)$position;
+
+        $this->position = $position;
+
         return $this;
     }
 
     /**
+     * Retrieve the object's position.
+     *
      * @return integer
      */
     public function position()
@@ -106,135 +112,36 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @param DateTime|string|null $created The date/time at object's creation.
-     * @throws InvalidArgumentException If the date/time is invalid.
-     * @return Content Chainable
-     */
-    public function setCreated($created)
-    {
-        if ($created === null) {
-            $this->created = null;
-            return $this;
-        }
-        if (is_string($created)) {
-            $created = new DateTime($created);
-        }
-        if (!($created instanceof DateTime)) {
-            throw new InvalidArgumentException(
-                'Invalid "Created" value. Must be a date/time string or a DateTime object.'
-            );
-        }
-        $this->created = $created;
-        return $this;
-    }
-
-    /**
-     * @return DateTime|null
-     */
-    public function created()
-    {
-        return $this->created;
-    }
-
-    /**
-     * @param mixed $createdBy The creator of the content object.
-     * @return Content Chainable
-     */
-    public function setCreatedBy($createdBy)
-    {
-        $this->createdBy = $createdBy;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function createdBy()
-    {
-        return $this->createdBy;
-    }
-
-    /**
-     * @param DateTime|string|null $lastModified The last modified date/time.
-     * @throws InvalidArgumentException If the date/time is invalid.
-     * @return Content Chainable
-     */
-    public function setLastModified($lastModified)
-    {
-        if ($lastModified === null) {
-            $this->lastModified = null;
-            return $this;
-        }
-        if (is_string($lastModified)) {
-            $lastModified = new DateTime($lastModified);
-        }
-        if (!($lastModified instanceof DateTime)) {
-            throw new InvalidArgumentException(
-                'Invalid "Last Modified" value. Must be a date/time string or a DateTime object.'
-            );
-        }
-        $this->lastModified = $lastModified;
-        return $this;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function lastModified()
-    {
-        return $this->lastModified;
-    }
-
-    /**
-     * @param mixed $lastModifiedBy The last modification's username.
-     * @return Content Chainable
-     */
-    public function setLastModifiedBy($lastModifiedBy)
-    {
-        $this->lastModifiedBy = $lastModifiedBy;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function lastModifiedBy()
-    {
-        return $this->lastModifiedBy;
-    }
-
-    /**
-     * StorableTrait > preSavƒe(): Called automatically before saving the object to source.
-     * For content object, set the `created` and `lastModified` properties automatically
+     * Event called before _creating_ the object.
+     *
+     * @see    StorableTrait::preSave() For the "create" Event.
      * @return boolean
      */
     public function preSave()
     {
-        parent::preSave();
+        $result = parent::preSave();
 
-        $this->setCreated('now');
-        $this->setLastModified('now');
+        $this->createTimestampable();
 
-        return true;
+        return $result;
     }
 
     /**
-     * StorableTrait > preUpdate(): Called automatically before updating the object to source.
-     * For content object, set the `lastModified` property automatically.
-     * @param array $properties The properties (ident) set for update.
+     * Event called before _updating_ the object.
+     *
+     * @see    StorableTrait::preUpdate() For the "update" Event.
      * @return boolean
      */
     public function preUpdate(array $properties = null)
     {
-        parent::preUpdate($properties);
+        $result = parent::preUpdate($properties);
 
-        // Content is revisionable
         if ($this->revisionEnabled()) {
             $this->generateRevision();
         }
 
-        $this->setLastModified('now');
+        $this->updateTimestampable();
 
-        return true;
+        return $result;
     }
 }

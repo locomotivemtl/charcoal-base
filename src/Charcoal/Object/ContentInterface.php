@@ -2,71 +2,49 @@
 
 namespace Charcoal\Object;
 
+/**
+ * The `Content` Object
+ *
+ * _Content_ objects are models with identity and typically created
+ * by the application's manager.
+ *
+ * Examples of _Content_ objects: _Section_ or _Page_, _News Article_,
+ * _Blog Entry_, _Media Gallery_, _Survey_, _Product_, _FAQ_, etc.
+ */
 interface ContentInterface
 {
     /**
-     * @param boolean $active The active flag.
+     * Whether a new object should be enabled or disabled.
+     */
+    const ACTIVE_BY_DEFAULT = true;
+
+    /**
+     * Set whether the object is enabled or disabled.
+     *
+     * @param  boolean $active The active flag.
      * @return Content Chainable
      */
     public function setActive($active);
 
     /**
+     * Determine if the object is enabled or disabled.
+     *
      * @return boolean
      */
     public function active();
 
     /**
-     * @param integer $position The position index.
+     * Set the object's position.
+     *
+     * @param  integer $position The position (for ordering purpose).
      * @return Content Chainable
      */
     public function setPosition($position);
 
     /**
+     * Retrieve the object's position.
+     *
      * @return integer
      */
     public function position();
-
-    /**
-     * @param DateTime|string $created The created date.
-     * @return Content Chainable
-     */
-    public function setCreated($created);
-
-    /**
-     * @return DateTime|null
-     */
-    public function created();
-
-    /**
-     * @param mixed $createdBy The author, at object creation.
-     * @return Content Chainable
-     */
-    public function setCreatedBy($createdBy);
-
-    /**
-     * @return mixed
-     */
-    public function createdBy();
-
-    /**
-     * @param DateTime|string $lastModified The last modified date.
-     * @return Content Chainable
-     */
-    public function setLastModified($lastModified);
-
-    /**
-     * @return DateTime
-     */
-    public function lastModified();
-
-    /**
-     * @param mixed $lastModifiedBy The author, at object modificaition (update).
-     * @return Content Chainable
-     */
-    public function setLastModifiedBy($lastModifiedBy);
-
-    /**
-     * @return mixed
-     */
-    public function lastModifiedBy();
 }

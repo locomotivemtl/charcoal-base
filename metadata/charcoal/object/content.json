@@ -1,3 +1,80 @@
 {
+	"properties": {
+		"id": {
+			"type": "id",
+			"input_type": "charcoal/admin/property/input/readonly",
+			"label": {
+				"fr": "ID",
+				"en": "ID"
+			}
+		},
+		"position": {
+			"type": "number",
+			"label": {
+				"en": "Position",
+				"fr": "Position"
+			},
+			"description": {
+				"en": "Position determines the linear sorting order of this section relative to others.",
+				"fr": "La position détermine l'ordre linéaire de cette section par rapport aux autres dans le tri des listes."
+			}
+		},
+		"active": {
+			"type": "boolean",
+			"label": {
+				"fr": "Actif",
+				"en": "Active"
+			},
+			"description": {
+				"en": "An object can be set active or inactive. An inactive object is usually excluded from query results.",
+				"fr": "Un objet peut être réglé actif ou inactif. Un objet inactif est généralement exclu des des résultats de requête."
+			}
+		}
+	},
 
+	"data": {
+		"active": true
+	},
+
+	"admin": {
+		"forms": {
+			"default": {
+				"groups": {
+					"metadata-object": {
+						"layout": {
+							"structure": [
+								{ "columns": [ 1 ] },
+								{ "columns": [ 1, 1 ] },
+								{ "columns": [ 1, 1 ] },
+								{ "columns": [ 1, 1 ] },
+								{ "columns": [ 1, 1 ] }
+							]
+						},
+						"title": {
+							"en": "Object Metadata",
+							"fr": "Métadonnées de l'objet"
+						},
+						"priority": 100,
+						"properties": [
+							"id",
+							"created",
+							"created_by",
+							"last_modified",
+							"last_modified_by",
+							"deleted",
+							"deleted_by"
+						]
+					}
+				},
+				"sidebars": {
+					"actions": {
+						"title": "Actions",
+						"properties": [],
+						"actions": {}
+					}
+				}
+			}
+		},
+		"default_form": "default"
+	}
 }
