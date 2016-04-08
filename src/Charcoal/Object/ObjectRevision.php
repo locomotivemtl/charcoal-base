@@ -147,11 +147,7 @@ class ObjectRevision extends AbstractModel implements
             return $this;
         }
         if (is_string($revTs)) {
-            try {
-                $revTs = new DateTime($revTs);
-            } catch (Exception $e) {
-                throw new InvalidArgumentException($e->getMessage());
-            }
+            $revTs = new DateTime($revTs);
         }
         if (!($revTs instanceof DateTimeInterface)) {
             throw new InvalidArgumentException(

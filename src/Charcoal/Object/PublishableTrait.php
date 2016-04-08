@@ -3,10 +3,10 @@
 namespace Charcoal\Object;
 
 // Dependencies from `PHP`
-use \DateTime as DateTime;
-use \DateTimeInterface as DateTimeInterface;
-use \Exception as Exception;
-use \InvalidArgumentException as InvalidArgumentException;
+use \DateTime;
+use \DateTimeInterface;
+use \Exception;
+use \InvalidArgumentException;
 
 /**
  * A full implementation, as trait, of the `PublishableInterface`.
@@ -39,13 +39,7 @@ trait PublishableTrait
             return $this;
         }
         if (is_string($publishDate)) {
-            try {
-                $publishDate = new DateTime($publishDate);
-            } catch (Exception $e) {
-                throw new InvalidArgumentException(
-                    'Invalid publish date: '.$e->getMessage()
-                );
-            }
+            $publishDate = new DateTime($publishDate);
         }
         if (!($publishDate instanceof DateTimeInterface)) {
             throw new InvalidArgumentException(
@@ -76,13 +70,7 @@ trait PublishableTrait
             return $this;
         }
         if (is_string($expiryDate)) {
-            try {
-                $expiryDate = new DateTime($expiryDate);
-            } catch (Exception $e) {
-                throw new InvalidArgumentException(
-                    'Invalid expiry date: '.$e->getMessage()
-                );
-            }
+            $expiryDate = new DateTime($expiryDate);
         }
         if (!($expiryDate instanceof DateTimeInterface)) {
             throw new InvalidArgumentException(
