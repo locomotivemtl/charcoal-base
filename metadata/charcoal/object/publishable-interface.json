@@ -1,0 +1,41 @@
+{
+  "properties":{
+    "publish_date": {
+        "type": "date-time",
+        "label": {
+             "en":"Publish date",
+            "fr":"Date de publication"
+        }
+    },
+    "expiry_date": {
+        "type": "date-time",
+        "label": {
+            "en":"Expiry date",
+            "fr":"Date d'expiration"
+        }
+    },
+    "publish_status": {
+        "type": "string",
+        "input_type":"charcoal/admin/property/input/select",
+        "label": {
+            "en":"Publish status",
+            "fr":"Status de publication"
+        },
+        "choices":{
+            "draft":{
+                "label":"Non-publiée"
+            },
+            "pending":{
+                "label":"En attente d'approbation"
+            },
+            "published":{
+                "label":"Publiée"
+            }
+        },
+        "description":{
+            "en":"Only the \"Published\" items should be shown on the website.",
+            "fr":"Seules les items \"publiés\" seront affichés sur le site web."
+        }
+    }
+  }
+}

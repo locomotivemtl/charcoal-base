@@ -1,3 +1,43 @@
 {
-
+  "properties":{
+    "active": {
+      "type": "boolen",
+      "label": {
+        "en":"Active",
+        "fr":"Active"
+      }
+    },
+    "created": {
+      "type": "date-time",
+      "label": {
+        "en":"Creation date",
+        "fr":"Date de création"
+      },
+      "description":{
+        "en":"The creation date should be set automatically when first saving this object in storage.",
+        "fr":"La date de création devrait être enregistrée automatiquement lors de la première sauvegarde de l'objet."
+      }
+    },
+    "created_by": {
+      "type": "string",
+      "label": {
+        "en":"Created by",
+        "fr":"Créé par"
+      }
+    },
+    "last_modified": {
+      "type": "date-time",
+      "label": {
+        "en":"Last modified",
+        "fr":"Dernière modification"
+      }
+    },
+    "last_modified_by": {
+      "type": "string",
+      "label":{
+        "en":"Last modfied by",
+        "fr":"Modifié par"
+      }
+    }
+  }
 }
