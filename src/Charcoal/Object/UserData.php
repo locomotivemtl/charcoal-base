@@ -15,7 +15,7 @@ use \Charcoal\Core\IndexableTrait;
 use \Charcoal\Object\UserDataInterface;
 
 /**
- *
+ * User Data is a base model for objects entered from the clients / users.
  */
 class UserData extends AbstractModel implements
     UserDataInterface,

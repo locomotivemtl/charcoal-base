@@ -1,3 +1,33 @@
 {
-
+  "properties":{
+    "ip":{
+      "type":"ip",
+      "label":{
+        "en":"IP address",
+        "fr":"Adresse IP"
+      },
+      "description":{
+        "en":"The remote (client) IP address at the creation time. Typically auto-genereted on save (or send).",
+        "fr":"L'adresse IP du client au moment de la création. Habituellement auto-générée lors de la sauvegarde / l'envoi."
+      }
+    },
+    "lang":{
+      "type":"lang",
+      "label":{
+        "en":"Language",
+        "fr":"Langue"
+      }
+    },
+    "ts":{
+      "type":"date-time",
+      "label":{
+        "en":"Date",
+        "fr":"Date"
+      },
+      "description":{
+        "en":"The time of creation. Typically auto-generated on save (or send).",
+        "fr":"La date (à la seconde) de création. Habituellement auto-générée lors de la sauvegarde / l'envoi."
+      }
+    }
+  }
 }
