@@ -44,16 +44,6 @@ class PublishableTraitTest extends \PHPUnit_Framework_TestCase
         $obj->setPublishDate(false);
     }
 
-    /**
-     * Assert that the `setExpiryDate` method:
-     * - throws an InvalidArgumentException if a non-ts string value is passed
-     */
-    public function testSetPublishDateBogusStringThrowsException()
-    {
-        $this->setExpectedException('\InvalidArgumentException');
-        $obj = $this->obj;
-        $obj->setPublishDate('foobar');
-    }
 
     /**
      * Assert that the `setExpiryDate` method:
@@ -76,17 +66,6 @@ class PublishableTraitTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\InvalidArgumentException');
         $obj->setExpiryDate(false);
-    }
-
-    /**
-     * Assert that the `setExpiryDate` method:
-     * - throws an InvalidArgumentException if a non-ts string value is passed
-     */
-    public function testSetExpiryDateBogusStringThrowsException()
-    {
-        $this->setExpectedException('\InvalidArgumentException');
-        $obj = $this->obj;
-        $obj->setExpiryDate('foobar');
     }
 
     public function testSetPublishStatus()

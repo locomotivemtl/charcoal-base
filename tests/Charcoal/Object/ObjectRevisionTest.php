@@ -63,12 +63,6 @@ class ObjectRevisionTest extends \PHPUnit_Framework_TestCase
         $obj->setRevTs(false);
     }
 
-    public function testSetRevTsInvalidTime()
-    {
-        $this->setExpectedException('\InvalidArgumentException');
-        $this->obj->setRevTs('A totally invalid date time');
-    }
-
     public function testSetRevUser()
     {
         $this->assertNull($this->obj->revUser());
