@@ -1,3 +1,10 @@
 {
-
+  "properties":{
+    "id":{
+      "type":"id"
+    },
+    "name":{
+      "type":"string"
+    }
+  }
 }
