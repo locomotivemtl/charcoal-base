@@ -73,7 +73,7 @@ trait CategoryTrait
      */
     public function categoryItems()
     {
-        if ($this->categoryItems == null) {
+        if ($this->categoryItems === null) {
             $this->categoryItems = $this->loadCategoryItems();
         }
         return $this->categoryItems;
