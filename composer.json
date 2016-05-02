@@ -21,10 +21,8 @@
   "minimum-stability": "dev",
   "require": {
     "php": ">=5.5.0",
-    "ext-pdo": "*",
-    "ext-fileinfo": "*",
     "locomotivemtl/charcoal-core": "dev-master",
-    "locomotivemtl/charcoal-property": "dev-master"
+    "locomotivemtl/charcoal-translation": "dev-master"
   },
   "require-dev": {
     "phpunit/phpunit": "^4.8",
