@@ -8,8 +8,6 @@ use \InvalidArgumentException;
 
 // From `charcoal-core`
 use \Charcoal\Model\AbstractModel;
-use \Charcoal\Core\IndexableInterface;
-use \Charcoal\Core\IndexableTrait;
 
 // Local namespace dependencies
 use \Charcoal\Object\UserDataInterface;
@@ -18,11 +16,8 @@ use \Charcoal\Object\UserDataInterface;
  * User Data is a base model for objects entered from the clients / users.
  */
 class UserData extends AbstractModel implements
-    UserDataInterface,
-    IndexableInterface
+    UserDataInterface
 {
-    use IndexableTrait;
-
     /**
      * @var int $ip
      */
@@ -35,7 +30,6 @@ class UserData extends AbstractModel implements
      * @var DateTime $ts
      */
     private $ts;
-
 
     /**
      * @param integer $ip The remote IP at object creation.

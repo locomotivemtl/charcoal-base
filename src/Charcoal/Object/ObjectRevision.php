@@ -10,19 +10,16 @@ use \DateTimeInterface;
 
 // From `charcoal-core`
 use \Charcoal\Model\AbstractModel;
-use \Charcoal\Core\IndexableInterface;
-use \Charcoal\Core\IndexableTrait;
 
 // Local namespace dependencies
+use \Charcoal\Object\ObjectRevisionInterface;
 use \Charcoal\Object\RevisionableInterface;
 
 /**
  *
  */
-class ObjectRevision extends AbstractModel implements
-    IndexableInterface
+class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
 {
-    use IndexableTrait;
 
     /**
      * Object type of this revision (required)

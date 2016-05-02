@@ -7,8 +7,6 @@ use \InvalidArgumentException;
 
 // From `charcoal-core`
 use \Charcoal\Model\AbstractModel;
-use \Charcoal\Core\IndexableInterface;
-use \Charcoal\Core\IndexableTrait;
 
 use \Charcoal\Object\ContentInterface;
 use \Charcoal\Object\RevisionableInterface;
@@ -19,10 +17,8 @@ use \Charcoal\Object\RevisionableTrait;
  */
 class Content extends AbstractModel implements
     ContentInterface,
-    IndexableInterface,
     RevisionableInterface
 {
-    use IndexableTrait;
     use RevisionableTrait;
 
     /**

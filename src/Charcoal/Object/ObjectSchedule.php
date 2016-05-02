@@ -11,8 +11,6 @@ use \InvalidArgumentException;
 // Module `charcoal-core` dependencies
 use \Charcoal\Model\AbstractModel;
 use \Charcoal\Model\ModelFactory;
-use \Charcoal\Core\IndexableInterface;
-use \Charcoal\Core\IndexableTrait;
 
 // Local namespace dependencies
 use \Charcoal\Object\ObjectScheduleInterface;
@@ -20,10 +18,8 @@ use \Charcoal\Object\ObjectScheduleInterface;
 /**
  * Object schedule allows object properties to be changed at a scheduled time.
  */
-class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface, IndexableInterface
+class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
 {
-    use IndexableTrait;
-
     /**
      * @var ModelFactory $modelFactory
      */

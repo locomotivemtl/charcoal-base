@@ -63,10 +63,10 @@ interface ObjectRevisionInterface
     public function revUser();
 
     /**
-     * @param array $data The previous revision data.
+     * @param array|string $data The previous revision data.
      * @return ObjectRevision
      */
-    public function setDataPrev(array $data);
+    public function setDataPrev($data);
 
     /**
      * @return array
@@ -74,10 +74,10 @@ interface ObjectRevisionInterface
     public function dataPrev();
 
     /**
-     * @param array $data The current revision (object) data.
+     * @param array|string $data The current revision (object) data.
      * @return ObjectRevision
      */
-    public function setDataObj(array $data);
+    public function setDataObj($data);
 
     /**
      * @return array
@@ -85,10 +85,10 @@ interface ObjectRevisionInterface
     public function dataObj();
 
      /**
-      * @param array $data The data diff.
+      * @param array|string $data The data diff.
       * @return ObjectRevision
       */
-    public function setDataDiff(array $data);
+    public function setDataDiff($data);
 
     /**
      * @return array
@@ -102,11 +102,10 @@ interface ObjectRevisionInterface
      * 2. Load the current item from DB
      * 3. Create diff from (1) and (2).
      *
-     * @param string $objType The object type to create the revision from.
-     * @param mixed  $objId   The object ID to create the revision from.
-     * @return ObjectRevisionInterface Chainable
+     * @param RevisionableInterface $obj The object to create the revision from.
+     * @return ObjectRevision Chainable
      */
-    public function createFromObject($objType, $objId);
+    public function createFromObject(RevisionableInterface $obj);
 
     /**
      * @param array $dataPrev Optional. The previous revision data.
@@ -125,9 +124,8 @@ interface ObjectRevisionInterface
     public function recursiveDiff(array $array1, array $array2);
 
     /**
-     * @param string $objType The object type to load the last revision of.
-     * @param mixed  $objId   The object ID to load the last revision of.
+     * @param RevisionableInterface $obj The object  to load the last revision of.
      * @return ObjectRevision The last revision for the give object.
      */
-    public function lastObjectRevision($objType, $objId);
+    public function lastObjectRevision(RevisionableInterface $obj);
 }
