@@ -5,6 +5,7 @@ namespace Charcoal\User;
 // Dependencies from `PHP`
 use \DateTime;
 use \DateTimeInterface;
+use \Exception;
 use \InvalidArgumentException;
 
 // Module `charcoal-core` dependencies
