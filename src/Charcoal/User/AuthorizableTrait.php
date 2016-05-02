@@ -2,8 +2,6 @@
 
 namespace Charcoal\User;
 
-use \Charcoal\User\UserPermissionInterface;
-
 /**
  * The `Authorizable` Trait / Interface provides authorization logic and control access to user models.
  *
@@ -14,7 +12,7 @@ trait AuthorizableTrait
     /**
      * The defined user permissions.
      *
-     * @var UserPermissionInterface[]
+     * @var \Charcoal\User\UserPermissionInterface[]
      */
     private $permissions;
 
@@ -56,8 +54,8 @@ trait AuthorizableTrait
      * Add a user permission.
      *
      * @todo   Needs implementation. Maybe like {@see \Charcoal\Source\AbstractSource\addFilter()}.
-     * @param  string|array|UserPermissionInterface $ability   The permission identifier, array, or object.
-     * @param  array|UserPermissionInterface        $arguments The user permission object/array to add.
+     * @param  string|array|\Charcoal\User\UserPermissionInterface $ability   The permission identifier, array, or object.
+     * @param  array|\Charcoal\User\UserPermissionInterface        $arguments The user permission object/array to add.
      * @return AuthorizableInterface Chainable
      */
     public function addPermission($ability, $arguments = null)
@@ -76,7 +74,7 @@ trait AuthorizableTrait
     /**
      * Retrieve user permissions.
      *
-     * @return UserPermissionInterface[] The UserPermission list (array) attached to this user.
+     * @return \Charcoal\User\UserPermissionInterface[] The UserPermission list (array) attached to this user.
      */
     public function permissions()
     {
@@ -87,8 +85,8 @@ trait AuthorizableTrait
      * Determine if the entity has a given permission.
      *
      * @todo   Needs implementation.
-     * @param  string|UserPermissionInterface $permission The desired permission.
-     * @param  mixed                          $arguments  Options or model(s) related to the tested permission.
+     * @param  string|\Charcoal\User\UserPermissionInterface $permission The desired permission.
+     * @param  mixed                                         $arguments  Options or model(s) related to the tested permission.
      * @return boolean Returns TRUE if the permission is granted, FALSE if denied.
      */
     public function isAllowed($permission, $arguments = null)
