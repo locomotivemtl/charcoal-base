@@ -40,6 +40,7 @@ trait RoutableTrait
             return isset($metadata['slug_pattern']) ? $metadata['slug_pattern'] : '';
         }
         return $this->slugPattern;
+    }
 
     /**
      * @param mixed $slug The slug.
