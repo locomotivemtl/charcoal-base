@@ -413,7 +413,7 @@ abstract class AbstractUser extends Content implements
                 'Can not set auth user; no user ID'
             );
         }
-        $_SESSION[static::sessionKey()] = $this;
+        $_SESSION[static::sessionKey()] = $this->id();
         return $this;
     }
 
@@ -542,33 +542,21 @@ abstract class AbstractUser extends Content implements
         if (!isset($_SESSION[static::sessionKey()])) {
             return null;
         }
-        $user_class = get_called_class();
-        $user = $_SESSION[static::sessionKey()];
-        if (!($user instanceof $user_class)) {
-            unset($_SESSION[static::sessionKey()]);
-            throw new Exception('Invalid user in session');
-        }
 
-        // Optionally re-init the object from source (database)
-        if ($reinit) {
-            $userId = $user->id();
-
-            $user = new $user_class([
-                'logger'=> new \Psr\Log\NullLogger()
-            ]);
-            $user->load($userId);
-            // Save back to session
-            $_SESSION[static::sessionKey()] = $user;
-        }
-
-        // Inactive users can not authenticate
-        if (!$user->active()) {
-            // @todo log error
+        $userId = $_SESSION[static::sessionKey()];
+        if (!$userId) {
             return null;
         }
 
-        // Make sure the user is valid.
-        if (!$user->id() || !$user->username()) {
+        $user_class = get_called_class();
+        $user = new $user_class([
+            'logger'=> new \Psr\Log\NullLogger()
+        ]);
+        $user->load($userId);
+
+        // Inactive users can not authenticate
+        if (!$user->id() || !$user->username() || !$user->active()) {
+            // @todo log error
             return null;
         }
 
