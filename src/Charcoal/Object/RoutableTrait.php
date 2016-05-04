@@ -11,11 +11,6 @@ use \Charcoal\Translation\TranslationString;
 trait RoutableTrait
 {
     /**
-     * @var boolean routable
-     */
-    private $routable = true;
-
-    /**
      * @var string
      */
     private $slugPattern = '';
@@ -24,24 +19,6 @@ trait RoutableTrait
      * @var string $slug
      */
     private $slug;
-
-    /**
-     * @param boolean $routable The routable flag.
-     * @return RoutableInterface Chainable
-     */
-    public function setRoutable($routable)
-    {
-        $this->routable = !!$routable;
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function routable()
-    {
-        return $this->routable;
-    }
 
     /**
      * @param mixed $pattern The slug pattern.
@@ -58,8 +35,11 @@ trait RoutableTrait
      */
     public function slugPattern()
     {
+        if (!$this->slugPattern) {
+            $metadata = $this->medatada();
+            return isset($metadata['slug_pattern']) ? $metadata['slug_pattern'] : '';
+        }
         return $this->slugPattern;
-    }
 
     /**
      * @param mixed $slug The slug.

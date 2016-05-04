@@ -8,17 +8,6 @@ namespace Charcoal\Object;
 interface RoutableInterface
 {
     /**
-     * @param boolean $routable The routable flag.
-     * @return RoutableInterface Chainable
-     */
-    public function setRoutable($routable);
-
-    /**
-     * @return boolean
-     */
-    public function routable();
-
-    /**
      * @param mixed $pattern The slug pattern.
      * @return RoutableInterface Chainable
      */

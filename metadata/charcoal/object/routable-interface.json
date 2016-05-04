@@ -1,0 +1,10 @@
+{
+    "properties":{
+        "slug":{
+            "type":"string",
+            "l10n":true
+        }
+    },
+
+    "slug_pattern":null
+}
