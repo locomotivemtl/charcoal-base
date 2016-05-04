@@ -102,7 +102,7 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @param DateTime|string|null $created The date/time at object's creation.
+     * @param \DateTime|string|null $created The date/time at object's creation.
      * @throws InvalidArgumentException If the date/time is invalid.
      * @return Content Chainable
      */
@@ -151,7 +151,7 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @param DateTime|string|null $lastModified The last modified date/time.
+     * @param \DateTime|string|null $lastModified The last modified date/time.
      * @throws InvalidArgumentException If the date/time is invalid.
      * @return Content Chainable
      */
@@ -217,6 +217,7 @@ class Content extends AbstractModel implements
     /**
      * StorableTrait > preUpdate(): Called automatically before updating the object to source.
      * For content object, set the `lastModified` property automatically.
+     *
      * @param array $properties The properties (ident) set for update.
      * @return boolean
      */
