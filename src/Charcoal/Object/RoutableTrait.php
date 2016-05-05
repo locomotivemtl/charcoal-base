@@ -36,7 +36,7 @@ trait RoutableTrait
     public function slugPattern()
     {
         if (!$this->slugPattern) {
-            $metadata = $this->medatada();
+            $metadata = $this->metadata();
             return isset($metadata['slug_pattern']) ? $metadata['slug_pattern'] : '';
         }
         return $this->slugPattern;
