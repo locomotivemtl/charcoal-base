@@ -2,7 +2,7 @@
 
 namespace Charcoal\Object;
 
-use \Charcoal\View\Viewable;
+use \Charcoal\View\ViewableInterface;
 use \Charcoal\Translation\TranslationString;
 
 /**
@@ -48,7 +48,7 @@ trait RoutableTrait
      */
     public function setSlug($slug)
     {
-        $this->slug = $slug;
+        $this->slug = new TranslationString($slug);
         return $this;
     }
 
@@ -57,9 +57,6 @@ trait RoutableTrait
      */
     public function slug()
     {
-        if ($this->slug === null) {
-            $this->slug = $this->generateSlug();
-        }
         return $this->slug;
     }
 
@@ -70,20 +67,40 @@ trait RoutableTrait
      */
     public function generateSlug()
     {
-        $pattern = $this->slugPattern();
-        if ($this instanceof Viewable) {
-            $slug = $this->render($pattern);
-        } else {
-            $slug = $pattern;
+        $patterns = $this->slugPattern();
+        $patterns = $patterns->all();
+        $slug = [];
+
+        foreach ($patterns as $lang => $pattern) {
+            if ($this instanceof ViewableInterface && $this->view() !== null) {
+                $slug[$lang] = $this->view()->render($pattern, $this->viewController());
+            } else {
+                $obj = $this;
+
+                $cb = function ($matches) use ($obj) {
+                    $method = trim($matches[1]);
+                    if (method_exists($obj, $method)) {
+                        return call_user_func([$obj, $method]);
+                    } elseif (isset($obj[$method])) {
+                        return $obj[$method];
+                    } else {
+                        return '';
+                    }
+                };
+                $slug[$lang] = preg_replace_callback('~{{(.*?)}}~i', $cb, $pattern);
+            }
         }
+
         return $slug;
     }
+
+
 
     /**
      * @return string
      */
     public function url()
     {
-        return $this->slug();
+        return (string)$this->slug();
     }
 }
