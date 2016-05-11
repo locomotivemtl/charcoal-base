@@ -121,52 +121,34 @@ trait RoutableTrait
      */
     public function slugify($str)
     {
-        // Character options
-        $separator = '_';
-        $punctuation_modifier = $separator;
-
-        // Punctuation
-        $punctuation_characters = ['&', '%', '?', ')', '(', '\\', '"', "'", ':', '#', '.', ',', ';', '!'];
-
-        // Unescaped HTML characters string
-        $unescaped_html_characters = '/&(raquo|laquo|rsaquo|lsaquo|rdquo|ldquo|rsquo|lsquo|hellip|amp|nbsp|quot|ordf|ordm);/';
 
         $separator = '-';
 
-        $slug = preg_replace('/[^\p{L}\s]/u', '-', $str);
+        $slug = preg_replace('/[^\p{L}\s]/u', $separator, $str);
 
         $slug = mb_strtolower($slug, 'UTF-8');
 
         // Strip HTML
         $slug = strip_tags($slug);
 
-        // Strip Whitespace
-        $slug = trim($slug);
-
         // Remove diacritics
         $slug = preg_replace('/&([a-zA-Z])(uml|acute|grave|circ|tilde|cedil|ring);/', '$1', htmlentities($slug, ENT_COMPAT, 'UTF-8'));
 
         // Remove unescaped HTML characters
-        $slug = preg_replace($unescaped_html_characters, '', $slug);
-
-        // Get rid of punctuation
-        $slug = str_replace($punctuation_characters, $separator, $slug);
-
-        // Post-cleanup, get rid of spaces, repeating dash symbols symbols and surround whitespace/separators
-        $slug = trim($slug);
+        $unescaped = '/&(raquo|laquo|rsaquo|lsaquo|rdquo|ldquo|rsquo|lsquo|hellip|amp|nbsp|quot|ordf|ordm);/';
+        $slug = preg_replace($unescaped, '', $slug);
 
         // Replace whitespace by seperator
-        $slug = preg_replace('/\s+/', $separator, $slug);
+        $slug = preg_replace('/\s+/', '-', $slug);
 
         // Squeeze multiple dashes or underscores
-        $slug = preg_replace('/[-_]{2,}/', '-', $slug);
+        $slug = preg_replace('/[-]{2,}/', '-', $slug);
 
         // Strip leading and trailing dashes or underscores
-        $slug = trim($slug, '-_');
+        $slug = trim($slug, '-');
 
         // Finally, remove all whitespace
-        $slug = preg_replace('/[_]+/', $separator, $slug);
-        //$slug = str_replace('_', $separator, $slug);
+        $slug = preg_replace('/[_]+/', '-', $slug);
 
         return $slug;
     }
