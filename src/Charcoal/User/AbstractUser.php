@@ -8,6 +8,9 @@ use \DateTimeInterface;
 use \Exception;
 use \InvalidArgumentException;
 
+// Module `charcoal-factory` dependencies
+use \Charcoal\Factory\FactoryInterface;
+
 // Module `charcoal-core` dependencies
 use \Charcoal\Config\ConfigurableInterface;
 use \Charcoal\Config\ConfigurableTrait;
@@ -391,6 +394,7 @@ abstract class AbstractUser extends Content implements
             if (password_needs_rehash($this->password(), PASSWORD_DEFAULT)) {
                 $hash = password_hash($password, PASSWORD_DEFAULT);
                 // @todo Update user with new hash
+                $this->setPassword($hash);
                 $this->update(['password']);
             }
 
@@ -533,11 +537,11 @@ abstract class AbstractUser extends Content implements
      *
      * Return null if there is no current user in logged into
      *
-     * @param boolean $reinit Optional. Whether to reload user data from source.
+     * @param FactoryInterface $factory The factory to create the user object with.
      * @throws Exception If the user from session is invalid.
      * @return UserInterface|null
      */
-    public static function getAuthenticated($reinit = true)
+    public static function getAuthenticated(FactoryInterface $factory)
     {
         if (!isset($_SESSION[static::sessionKey()])) {
             return null;
@@ -548,10 +552,8 @@ abstract class AbstractUser extends Content implements
             return null;
         }
 
-        $user_class = get_called_class();
-        $user = new $user_class([
-            'logger'=> new \Psr\Log\NullLogger()
-        ]);
+        $userClass = get_called_class();
+        $user = $factory->create($userClass);
         $user->load($userId);
 
         // Inactive users can not authenticate

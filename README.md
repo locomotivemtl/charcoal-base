@@ -37,7 +37,7 @@ Both namespaces are planned to move into their own module in the near future. Th
 The preferred (and only supported) way of installing _charcoal-base is with **composer**:
 
 ```shell
-★ composer require locomotivemtl/charcoal-basecharcoal-base
+★ composer require locomotivemtl/charcoal-base
 ```
 
 ## Dependencies
@@ -323,7 +323,6 @@ The charcoal-base module follows the Charcoal coding-style:
 # Authors
 
 - Mathieu Ducharme, mat@locomotive.ca
-
 
 # Changelog
 
