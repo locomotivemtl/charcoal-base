@@ -2,6 +2,8 @@
 
 namespace Charcoal\User;
 
+use \Charcoal\Factory\FactoryInterface;
+
 /**
  *
  */
@@ -130,9 +132,9 @@ interface UserInterface
     /**
      * Get the currently authenticated user.
      *
-     * @param boolean $reinit Whether to reload user data from source.
+     * @param FactoryInterface $factory The factory used to create the user object.
      * @return UserInterface|null
      */
-    public static function getAuthenticated($reinit = true);
+    public static function getAuthenticated(FactoryInterface $factory);
 }
 
