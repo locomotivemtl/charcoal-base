@@ -348,15 +348,12 @@ trait HierarchicalTrait
         }
 
         try {
-            $modelFactory = new ModelFactory();
-            $modelFactory->setArguments([
-                'logger' => $this->logger
-            ]);
-
-            $obj = $modelFactory->create($class);
+            $obj = $this->modelFactory()->create($class);
 
             if (!is_callable([$obj, 'load'])) {
-                throw new Exception('Can not load object. No loadable interface defined.');
+                throw new Exception(
+                    'Can not load object. No loadable interface defined.'
+                );
             }
 
             $obj->load($ident);
@@ -370,5 +367,10 @@ trait HierarchicalTrait
             return null;
         }
     }
+
+    /**
+     * @return FactoryInterface The model factory to create new objects.
+     */
+    abstract protected function modelFactory();
 }
 
