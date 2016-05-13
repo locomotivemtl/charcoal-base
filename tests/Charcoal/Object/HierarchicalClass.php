@@ -2,8 +2,8 @@
 
 namespace Charcoal\Tests\Object;
 
-use \Charcoal\Object\HierarchicalInterface as HierarchicalInterface;
-use \Charcoal\Object\HierarchicalTrait as HierarchicalTrait;
+use \Charcoal\Object\HierarchicalInterface;
+use \Charcoal\Object\HierarchicalTrait;
 
 class HierarchicalClass implements HierarchicalInterface
 {
@@ -12,5 +12,10 @@ class HierarchicalClass implements HierarchicalInterface
     public function loadChildren()
     {
         return [];
+    }
+
+    public function modelFactory()
+    {
+        return null;
     }
 }

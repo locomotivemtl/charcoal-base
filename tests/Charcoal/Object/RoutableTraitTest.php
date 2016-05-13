@@ -39,5 +39,4 @@ class RoutableTraitTest extends \PHPUnit_Framework_TestCase
             ['&quot;', 'quot']
         ];
     }
-
 }
