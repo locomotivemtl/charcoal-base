@@ -39,10 +39,7 @@ trait RevisionableTrait
      */
     public function revisionObject()
     {
-        $rev = new ObjectRevision([
-            'logger' => $this->logger
-        ]);
-
+        $rev = $this->modelFactory()->create('charcoal/object/object-revision');
         return $rev;
     }
 
@@ -73,4 +70,6 @@ trait RevisionableTrait
 
         return $rev;
     }
+
+    abstract protected function modelFactory();
 }

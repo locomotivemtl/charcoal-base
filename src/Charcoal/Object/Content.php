@@ -5,6 +5,11 @@ namespace Charcoal\Object;
 use \DateTime;
 use \InvalidArgumentException;
 
+
+use \Pimple\Container;
+
+use \Charcoal\Factory\FactoryInterface;
+
 // From `charcoal-core`
 use \Charcoal\Model\AbstractModel;
 
@@ -54,6 +59,41 @@ class Content extends AbstractModel implements
      * @var mixed
      */
     private $lastModifiedBy;
+
+    /**
+     * @var FactoryInterface $modelFactory
+     */
+    private $modelFactory;
+
+    /**
+     * Dependencies
+     * @param Container $container DI Container.
+     * @return void
+     */
+    public function setDependencies(Container $container)
+    {
+        parent::setDependencies($container);
+
+        $this->setModelFactory($container['model/factory']);
+    }
+
+    /**
+     * @param FactoryInterface $factory The factory used to create models.
+     * @return AdminScript Chainable
+     */
+    protected function setModelFactory(FactoryInterface $factory)
+    {
+        $this->modelFactory = $factory;
+        return $this;
+    }
+
+    /**
+     * @return FactoryInterface The model factory.
+     */
+    protected function modelFactory()
+    {
+        return $this->modelFactory;
+    }
 
     /**
      * @param boolean $active The active flag.
