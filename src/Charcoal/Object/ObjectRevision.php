@@ -3,7 +3,6 @@
 namespace Charcoal\Object;
 
 // Dependencies from `PHP`
-use \Exception;
 use \InvalidArgumentException;
 use \DateTime;
 use \DateTimeInterface;

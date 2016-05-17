@@ -2,8 +2,6 @@
 
 namespace Charcoal\Object;
 
-use \Charcoal\Object\ObjectRevision;
-
 /**
  *
  */
@@ -35,7 +33,7 @@ trait RevisionableTrait
     /**
      * This method can be overloaded in concrete implementation to provide a different (custom) ObjectRevision class.
      *
-     * @return ObjectRevisionInterface
+     * @return \Charcoal\Object\ObjectRevisionInterface
      */
     public function revisionObject()
     {
@@ -44,8 +42,8 @@ trait RevisionableTrait
     }
 
     /**
-     * @return ObjectRevision
-     * @see ObjectRevision::create_fromObject()
+     * @return \Charcoal\Object\ObjectRevision
+     * @see \Charcoal\Object\ObjectRevision::create_fromObject()
      */
     public function generateRevision()
     {
@@ -60,8 +58,8 @@ trait RevisionableTrait
     }
 
     /**
-     * @return ObjectRevision
-     * @see ObejctRevision::lastObjectRevision
+     * @return \Charcoal\Object\ObjectRevision
+     * @see \Charcoal\Object\ObejctRevision::lastObjectRevision
      */
     public function latestRevision()
     {
@@ -71,5 +69,10 @@ trait RevisionableTrait
         return $rev;
     }
 
+    /**
+     * A model factory must be provided on implementing classes.
+     *
+     * @return FactoryInterface
+     */
     abstract protected function modelFactory();
 }

@@ -8,9 +8,11 @@ use \DateTimeInterface;
 use \Exception;
 use \InvalidArgumentException;
 
+// Module `charcoal-factory` dependencies
+use \Charcoal\Factory\FactoryInterface;
+
 // Module `charcoal-core` dependencies
 use \Charcoal\Model\AbstractModel;
-use \Charcoal\Model\ModelFactory;
 
 // Local namespace dependencies
 use \Charcoal\Object\ObjectScheduleInterface;
@@ -21,7 +23,7 @@ use \Charcoal\Object\ObjectScheduleInterface;
 class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
 {
     /**
-     * @var ModelFactory $modelFactory
+     * @var FactoryInterface $modelFactory
      */
     private $modelFactory;
 
@@ -72,17 +74,17 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
     private $processedDate;
 
     /**
-     * @param ModelFactory $factory The model factory, to create objects.
+     * @param FactoryInterface $factory The model factory, to create objects.
      * @return ObjectContainerInterface Chainable
      */
-    public function setModelFactory(ModelFactory $factory)
+    public function setModelFactory(FactoryInterface $factory)
     {
         $this->modelFactory = $factory;
         return $this;
     }
 
     /**
-     * @return ModelFactory
+     * @return FactoryInterface
      */
     protected function modelFactory()
     {

@@ -8,9 +8,18 @@ class ObjectRevisionTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
+        $metadataLoader = new \Charcoal\Model\MetadataLoader([
+            'logger' => new \Psr\Log\NullLogger(),
+            'base_path' => __DIR__,
+            'paths' => ['metadata'],
+            'config' => $GLOBALS['container']['config'],
+            'cache'  => $GLOBALS['container']['cache']
+        ]);
+
         $logger = new NullLogger();
         $this->obj = new ObjectRevision([
-            'logger'=>$logger
+            'logger'=>$logger,
+            'metadata_loader' => $metadataLoader
         ]);
     }
 

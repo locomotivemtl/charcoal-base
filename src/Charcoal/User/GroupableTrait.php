@@ -2,8 +2,6 @@
 
 namespace Charcoal\User;
 
-use \Charcoal\User\UserGroupInterface;
-
 /**
  * The `Groupable` Trait / Interface allows a user model to be added to groups.
  *
@@ -14,7 +12,7 @@ trait GroupableTrait
     /**
      * The parent user groups.
      *
-     * @var UserGroupInterface[]
+     * @var \Charcoal\User\UserGroupInterface[]
      */
     private $groups;
 
@@ -54,7 +52,7 @@ trait GroupableTrait
      * Add a user group.
      *
      * @todo   Needs implementation.
-     * @param  array|UserGroupInterface $group The group this model belongs to.
+     * @param  array|\Charcoal\User\UserGroupInterface $group The group this model belongs to.
      * @return GroupableInterface Chainable
      */
     public function addGroup($group)
@@ -67,7 +65,7 @@ trait GroupableTrait
     /**
      * Retrieve the groups attached to this user.
      *
-     * @return UserGroupInterface[] The UserGroup list (array) attached to this user.
+     * @return \Charcoal\User\UserGroupInterface[] The UserGroup list (array) attached to this user.
      */
     public function groups()
     {
