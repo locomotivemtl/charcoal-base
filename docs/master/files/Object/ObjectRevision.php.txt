@@ -8,6 +8,12 @@ use \InvalidArgumentException;
 use \DateTime;
 use \DateTimeInterface;
 
+// From `pimple/pimple`
+use \Pimple\Container;
+
+// From `charcoal-factory`
+use \Charcoal\Factory\FactoryInterface;
+
 // From `charcoal-core`
 use \Charcoal\Model\AbstractModel;
 
@@ -65,6 +71,41 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
      * @var array $dataDiff
      */
     private $dataDiff;
+
+    /**
+     * @var FactoryInterface $modelFactory
+     */
+    private $modelFactory;
+
+    /**
+     * Dependencies
+     * @param Container $container DI Container.
+     * @return void
+     */
+    public function setDependencies(Container $container)
+    {
+        parent::setDependencies($container);
+
+        $this->setModelFactory($container['model/factory']);
+    }
+
+    /**
+     * @param FactoryInterface $factory The factory used to create models.
+     * @return AdminScript Chainable
+     */
+    protected function setModelFactory(FactoryInterface $factory)
+    {
+        $this->modelFactory = $factory;
+        return $this;
+    }
+
+    /**
+     * @return FactoryInterface The model factory.
+     */
+    protected function modelFactory()
+    {
+        return $this->modelFactory;
+    }
 
     /**
      * @param string $objType The object type (type-ident).
@@ -367,10 +408,8 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
             $this->source()->createTable();
         }
 
-        $classname = get_class($this);
-        $rev = new $classname([
-            'logger' => $this->logger
-        ]);
+        $rev = $this->modelFactory()->create('charcoal/object/object-revision');
+
         $rev->loadFromQuery(
             '
             SELECT
