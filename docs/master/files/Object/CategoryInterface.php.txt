@@ -31,7 +31,6 @@ interface CategoryInterface
 
     /**
      * @return array
-     * @todo Return Collection?
      */
     public function categoryItems();
 }

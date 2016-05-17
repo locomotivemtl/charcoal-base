@@ -5,9 +5,6 @@ namespace Charcoal\Object;
 use \Exception;
 use \InvalidArgumentException;
 
-// Dependency from 'charcoal-core'
-use \Charcoal\Model\ModelFactory;
-
 /**
  * Full implementation, as a trait, of the `HierarchicalInterface`
  */
@@ -369,7 +366,8 @@ trait HierarchicalTrait
     }
 
     /**
-     * @return FactoryInterface The model factory to create new objects.
+     * Hierarchical objects must provide a model factory to create new (children) objects.
+     * @return \Charcoal\Factory\FactoryInterface
      */
     abstract protected function modelFactory();
 }
