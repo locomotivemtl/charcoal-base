@@ -36,7 +36,9 @@ class RoutableTraitTest extends \PHPUnit_Framework_TestCase
             ['_this_is_a_test_', 'this-is-a-test'],
             ['Allö Bébé!', 'allo-bebe'],
             ['"Hello-#-{$}-£™¡¢∞§¶•ªº-World"', 'hello-world'],
-            ['&quot;', 'quot']
+            ['&quot;', 'quot'],
+            ['fr/14/Services Santé et Sécurité au Travail', 'fr/14/services-sante-et-securite-au-travail'],
+            ['fr/ 14/Services S   anté et Sécurité au Travail', 'fr/-14/services-s-ante-et-securite-au-travail']
         ];
     }
 }
