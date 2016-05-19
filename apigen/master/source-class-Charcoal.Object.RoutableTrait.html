@@ -245,7 +245,7 @@
 </span><span id="122" class="l"><a href="#122">122: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> slugify(<span class="php-var">$str</span>)
 </span><span id="123" class="l"><a href="#123">123: </a>    {
 </span><span id="124" class="l"><a href="#124">124: </a>        <span class="php-comment">// Do NOT remove forward slashes.</span>
-</span><span id="125" class="l"><a href="#125">125: </a>        <span class="php-var">$slug</span> = <span class="php-keyword2">preg_replace</span>(<span class="php-quote">'/[^\p{L}[\s|\/]]/u'</span>, <span class="php-quote">'-'</span>, <span class="php-var">$str</span>);
+</span><span id="125" class="l"><a href="#125">125: </a>        <span class="php-var">$slug</span> = <span class="php-keyword2">preg_replace</span>(<span class="php-quote">'/[^(\p{L}|\p{N})(\s|\/)]/u'</span>, <span class="php-quote">'-'</span>, <span class="php-var">$str</span>);
 </span><span id="126" class="l"><a href="#126">126: </a>
 </span><span id="127" class="l"><a href="#127">127: </a>        <span class="php-var">$slug</span> = <span class="php-keyword2">mb_strtolower</span>(<span class="php-var">$slug</span>, <span class="php-quote">'UTF-8'</span>);
 </span><span id="128" class="l"><a href="#128">128: </a>
