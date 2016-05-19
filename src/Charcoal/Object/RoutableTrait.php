@@ -121,7 +121,8 @@ trait RoutableTrait
      */
     public function slugify($str)
     {
-        $slug = preg_replace('/[^\p{L}\s]/u', '-', $str);
+        // Do NOT remove forward slashes.
+        $slug = preg_replace('/[^\p{L}[\s|\/]]/u', '-', $str);
 
         $slug = mb_strtolower($slug, 'UTF-8');
 
@@ -129,7 +130,11 @@ trait RoutableTrait
         $slug = strip_tags($slug);
 
         // Remove diacritics
-        $slug = preg_replace('/&([a-zA-Z])(uml|acute|grave|circ|tilde|cedil|ring);/', '$1', htmlentities($slug, ENT_COMPAT, 'UTF-8'));
+        $slug = preg_replace(
+            '/&([a-zA-Z])(uml|acute|grave|circ|tilde|cedil|ring);/',
+            '$1',
+            htmlentities($slug, ENT_COMPAT, 'UTF-8')
+        );
 
         // Remove unescaped HTML characters
         $unescaped = '/&(raquo|laquo|rsaquo|lsaquo|rdquo|ldquo|rsquo|lsquo|hellip|amp|nbsp|quot|ordf|ordm);/';
