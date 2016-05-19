@@ -122,7 +122,7 @@ trait RoutableTrait
     public function slugify($str)
     {
         // Do NOT remove forward slashes.
-        $slug = preg_replace('/[^\p{L}[\s|\/]]/u', '-', $str);
+        $slug = preg_replace('/[^(\p{L}|\p{N})(\s|\/)]/u', '-', $str);
 
         $slug = mb_strtolower($slug, 'UTF-8');
 
