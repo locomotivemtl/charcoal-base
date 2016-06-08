@@ -40,6 +40,21 @@ interface UserDataInterface
     public function lang();
 
     /**
+     * Set the origin of the object submission.
+     *
+     * @param  string $origin The source URL or identifier of the submission.
+     * @return UserDataInterface Chainable
+     */
+    public function setOrigin($origin);
+
+    /**
+     * Retrieve the origin of the object submission.
+     *
+     * @return string
+     */
+    public function origin();
+
+    /**
      * Set when the object was created.
      *
      * @param  DateTime|string|null $timestamp The timestamp at object's creation.

@@ -28,6 +28,17 @@
         "en": "The date and time of creation. Typically auto-generated on save (or send).",
         "fr": "La date (à la seconde) de création. Habituellement auto-générée lors de la sauvegarde (ou l'envoi)."
       }
+    },
+    "origin": {
+      "type": "text",
+      "label": {
+        "en": "Origin",
+        "fr": "Origine"
+      },
+      "description": {
+        "en": "The location (e.g., URL) that contained the form the user submitted or action triggered.",
+        "fr": "L'emplacement (e.g., URL) qui contenait le formulaire que l'utilisateur a soumis ou l'action exécutée."
+      }
     }
   }
 }

@@ -34,6 +34,13 @@ class UserData extends AbstractModel implements
     private $lang;
 
     /**
+     * Source URL or identifier of end-user submission.
+     *
+     * @var string
+     */
+    private $origin;
+
+    /**
      * Creation timestamp of submission.
      *
      * @var DateTime
@@ -104,6 +111,57 @@ class UserData extends AbstractModel implements
     }
 
     /**
+     * Set the origin of the object submission.
+     *
+     * @param  string $origin The source URL or identifier of the submission.
+     * @throws InvalidArgumentException If the argument is not a string.
+     * @return UserDataInterface Chainable
+     */
+    public function setOrigin($origin)
+    {
+        if ($origin !== null) {
+            if (!is_string($origin)) {
+                throw new InvalidArgumentException(
+                    'Origin must be a string.'
+                );
+            }
+        }
+
+        $this->origin = $origin;
+
+        return $this;
+    }
+
+    /**
+     * Resolve the origin of the user data.
+     *
+     * @return string
+     */
+    public function resolveOrigin()
+    {
+        $uri = 'http';
+
+        if ( getenv('HTTPS') === 'on' ) {
+            $uri .= 's';
+        }
+
+        $uri .= '://';
+        $uri .= getenv('HTTP_HOST') . getenv('REQUEST_URI');
+
+        return $uri;
+    }
+
+    /**
+     * Retrieve the origin of the object submission.
+     *
+     * @return string
+     */
+    public function origin()
+    {
+        return $this->origin;
+    }
+
+    /**
      * Set when the object was created.
      *
      * @param  DateTime|string|null $timestamp The timestamp at object's creation. NULL is accepted and instances
@@ -161,6 +219,10 @@ class UserData extends AbstractModel implements
 
         if (!isset($this->lang)) {
             $this->setLang('');
+        }
+
+        if (!isset($this->origin)) {
+            $this->setOrigin($this->resolveOrigin());
         }
 
         return $result;
