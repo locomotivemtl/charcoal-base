@@ -55,14 +55,17 @@ class UserData extends AbstractModel implements
      */
     public function setIp($ip)
     {
-        if ($ip !== null) {
-            if (is_string($ip)) {
-                $ip = ip2long($ip);
-            } elseif (is_numeric($ip)) {
-                $ip = (int)$ip;
-            } else {
-                $ip = 0;
-            }
+        if ($ip === null) {
+            $this->ip = null;
+            return $this;
+        }
+
+        if (is_string($ip)) {
+            $ip = ip2long($ip);
+        } elseif (is_numeric($ip)) {
+            $ip = (int)$ip;
+        } else {
+            $ip = 0;
         }
 
         $this->ip = $ip;
@@ -141,12 +144,12 @@ class UserData extends AbstractModel implements
     {
         $uri = 'http';
 
-        if ( getenv('HTTPS') === 'on' ) {
+        if (getenv('HTTPS') === 'on') {
             $uri .= 's';
         }
 
         $uri .= '://';
-        $uri .= getenv('HTTP_HOST') . getenv('REQUEST_URI');
+        $uri .= getenv('HTTP_HOST').getenv('REQUEST_URI');
 
         return $uri;
     }
@@ -171,22 +174,25 @@ class UserData extends AbstractModel implements
      */
     public function setTs($timestamp)
     {
-        if ($timestamp !== null) {
-            if (is_string($timestamp)) {
-                try {
-                    $timestamp = new DateTime($timestamp);
-                } catch (Exception $e) {
-                    throw new InvalidArgumentException(
-                        sprintf('Invalid timestamp: %s', $e->getMessage())
-                    );
-                }
-            }
+        if ($timestamp === null) {
+            $this->ts = null;
+            return $this;
+        }
 
-            if (!($timestamp instanceof DateTimeInterface)) {
+        if (is_string($timestamp)) {
+            try {
+                $timestamp = new DateTime($timestamp);
+            } catch (Exception $e) {
                 throw new InvalidArgumentException(
-                    'Invalid timestamp value. Must be a date/time string or a DateTime object.'
+                    sprintf('Invalid timestamp: %s', $e->getMessage())
                 );
             }
+        }
+
+        if (!($timestamp instanceof DateTimeInterface)) {
+            throw new InvalidArgumentException(
+                'Invalid timestamp value. Must be a date/time string or a DateTime object.'
+            );
         }
 
         $this->ts = $timestamp;
