@@ -14,49 +14,59 @@ use \Charcoal\Model\AbstractModel;
 use \Charcoal\Object\UserDataInterface;
 
 /**
- * User Data is a base model for objects entered from the clients / users.
+ * User Data is a base model for objects typically submitted by the end-user of the application.
  */
 class UserData extends AbstractModel implements
     UserDataInterface
 {
     /**
-     * @var int $ip
+     * Client IP address of the end-user.
+     *
+     * @var integer
      */
     private $ip;
+
     /**
-     * @var string $lang
+     * Language of the end-user or source URI.
+     *
+     * @var string
      */
     private $lang;
+
     /**
-     * @var DateTime $ts
+     * Creation timestamp of submission.
+     *
+     * @var DateTime
      */
     private $ts;
 
     /**
-     * @param integer $ip The remote IP at object creation.
-     * @throws InvalidArgumentException If the IP argument is not a string or integer.
+     * Set the client IP address.
+     *
+     * @param  integer|null $ip The remote IP at object creation.
      * @return UserDataInterface Chainable
      */
     public function setIp($ip)
     {
-        if ($ip === null) {
-            $this->ip = null;
-            return $this;
+        if ($ip !== null) {
+            if (is_string($ip)) {
+                $ip = ip2long($ip);
+            } elseif (is_numeric($ip)) {
+                $ip = (int)$ip;
+            } else {
+                $ip = 0;
+            }
         }
 
-        if (is_string($ip)) {
-            $ip = ip2long($ip);
-        } elseif (is_numeric($ip)) {
-            $ip = (int)$ip;
-        } else {
-            $ip = 0;
-        }
         $this->ip = $ip;
+
         return $this;
     }
 
     /**
-     * @return integer
+     * Retrieve the client IP address.
+     *
+     * @return integer|null
      */
     public function ip()
     {
@@ -64,7 +74,9 @@ class UserData extends AbstractModel implements
     }
 
     /**
-     * @param string $lang The language code (2-char).
+     * Set the origin language.
+     *
+     * @param  string $lang The language code.
      * @throws InvalidArgumentException If the argument is not a string.
      * @return UserDataInterface Chainable
      */
@@ -75,11 +87,15 @@ class UserData extends AbstractModel implements
                 'Language must be a string'
             );
         }
+
         $this->lang = $lang;
+
         return $this;
     }
 
     /**
+     * Retrieve the language.
+     *
      * @return string
      */
     public function lang()
@@ -88,35 +104,41 @@ class UserData extends AbstractModel implements
     }
 
     /**
-     * @param string|DateTime|null $ts Timestamp.
-     * @throws InvalidArgumentException If the timestamp is not a valid date/time.
+     * Set when the object was created.
+     *
+     * @param  DateTime|string|null $timestamp The timestamp at object's creation. NULL is accepted and instances
+     *     of DateTimeInterface are recommended; any other value will be converted (if possible) into one.
+     * @throws InvalidArgumentException If the timestamp is invalid.
      * @return UserDataInterface Chainable
      */
-    public function setTs($ts)
+    public function setTs($timestamp)
     {
-        if ($ts === null) {
-            $this->ts = null;
-            return $this;
-        }
-        if (is_string($ts)) {
-            try {
-                $ts = new DateTime($ts);
-            } catch (Exception $e) {
+        if ($timestamp !== null) {
+            if (is_string($timestamp)) {
+                try {
+                    $timestamp = new DateTime($timestamp);
+                } catch (Exception $e) {
+                    throw new InvalidArgumentException(
+                        sprintf('Invalid timestamp: %s', $e->getMessage())
+                    );
+                }
+            }
+
+            if (!($timestamp instanceof DateTimeInterface)) {
                 throw new InvalidArgumentException(
-                    sprintf('Invalid timestamp (%s)', $e->getMessage())
+                    'Invalid timestamp value. Must be a date/time string or a DateTime object.'
                 );
             }
         }
-        if (!($ts instanceof DateTimeInterface)) {
-            throw new InvalidArgumentException(
-                'Invalid "Timestamp" value. Must be a date/time string or a DateTime object.'
-            );
-        }
-        $this->ts = $ts;
+
+        $this->ts = $timestamp;
+
         return $this;
     }
 
     /**
+     * Retrieve the creation timestamp.
+     *
      * @return DateTime|null
      */
     public function ts()
@@ -125,16 +147,22 @@ class UserData extends AbstractModel implements
     }
 
     /**
-     * @return void
+     * Event called before _creating_ the object.
+     *
+     * @see    Charcoal\Source\StorableTrait::preSave() For the "create" Event.
+     * @return boolean
      */
     public function preSave()
     {
-        $ip = isset($SERVER['REMOTE_ADDR']) ? $SERVER['REMOTE_ADDR'] : '';
-        $lang = '';
-        $ts = 'now';
+        $result = parent::preSave();
 
-        $this->setIp($ip);
-        $this->setLang($lang);
-        $this->setTs($ts);
+        $this->setIp(getenv('REMOTE_ADDR') ? getenv('REMOTE_ADDR') : '');
+        $this->setTs('now');
+
+        if (!isset($this->lang)) {
+            $this->setLang('');
+        }
+
+        return $result;
     }
 }

@@ -3,41 +3,54 @@
 namespace Charcoal\Object;
 
 /**
+ * Defines a model for objects typically submitted by the end-user of the application.
  *
+ * @see UserData for basic implementation of interface.
  */
 interface UserDataInterface
 {
-
     /**
-     * @param integer $ip The IP at object creation.
+     * Set the client IP address.
+     *
+     * @param  integer|null $ip The remote IP at object creation.
      * @return UserDataInterface Chainable
      */
     public function setIp($ip);
 
     /**
-     * @return integer
+     * Retrieve the client IP address.
+     *
+     * @return integer|null
      */
     public function ip();
 
     /**
-     * @param string|DateTime $ts The time of the object creation.
-     * @return UserDataInterface Chainable
-     */
-    public function setTs($ts);
-
-    /**
-     * @return DateTime
-     */
-    public function ts();
-
-    /**
-     * @param string $lang The language code upon creation.
+     * Set the origin language.
+     *
+     * @param  string $lang The language code.
      * @return UserDataInterface Chainable
      */
     public function setLang($lang);
 
     /**
+     * Retrieve the language.
+     *
      * @return string
      */
     public function lang();
+
+    /**
+     * Set when the object was created.
+     *
+     * @param  DateTime|string|null $timestamp The timestamp at object's creation.
+     * @return UserDataInterface Chainable
+     */
+    public function setTs($timestamp);
+
+    /**
+     * Retrieve the creation timestamp.
+     *
+     * @return DateTime|null
+     */
+    public function ts();
 }

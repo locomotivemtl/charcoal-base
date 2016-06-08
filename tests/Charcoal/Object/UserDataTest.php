@@ -2,11 +2,11 @@
 
 namespace Charcoal\Tests\Object;
 
-use \DateTime as DateTime;
+use \DateTime;
 
 use \Psr\Log\NullLogger;
 
-use \Charcoal\Object\UserData as UserData;
+use \Charcoal\Object\UserData;
 
 class UserDataTest extends \PHPUnit_Framework_TestCase
 {
