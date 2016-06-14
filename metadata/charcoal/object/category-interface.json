@@ -4,7 +4,11 @@
       "type":"id"
     },
     "name":{
-      "type":"string"
+      "type":"string",
+      "l10n":true
+    },
+    "position":{
+      "type":"integer"
     }
   }
 }

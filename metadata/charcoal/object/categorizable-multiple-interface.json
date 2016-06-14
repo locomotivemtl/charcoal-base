@@ -1,0 +1,8 @@
+{
+    "properties":{
+      "categories":{
+        "type":"object",
+        "multiple":true
+      }
+  }
+}
