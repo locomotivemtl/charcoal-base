@@ -14,5 +14,5 @@ indent_size = 4
 indent_style = tab
 indent_size = 2
 
-[{*.json,*.yml,.bowerrc,.editorconfig,.env,.env.*,.gitattributes,.gitignore,.htaccess,.npmrc}]
+[{*.yml,.bowerrc,.editorconfig,.env,.env.*,.gitattributes,.gitignore,.npmrc}]
 indent_size = 2
