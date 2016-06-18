@@ -21,54 +21,54 @@
     <script src="../js/jquery.smooth-scroll.js"></script>
     <script src="../js/prism.min.js"></script>
     <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-        <script type="text/javascript">
-        function loadExternalCodeSnippets() {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-                var src = pre.getAttribute('data-src');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
 
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
 
-                pre.textContent = '';
+            pre.textContent = '';
 
-                code.textContent = 'Loading…';
+            code.textContent = 'Loading…';
 
-                pre.appendChild(code);
+            pre.appendChild(code);
 
-                var xhr = new XMLHttpRequest();
+            var xhr = new XMLHttpRequest();
 
-                xhr.open('GET', src, true);
+            xhr.open('GET', src, true);
 
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
 
-                        if (xhr.status < 400 && xhr.responseText) {
-                            code.textContent = xhr.responseText;
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
 
-                            Prism.highlightElement(code);
-                        }
-                        else if (xhr.status >= 400) {
-                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                        }
-                        else {
-                            code.textContent = '✖ Error: File does not exist or is empty';
-                        }
+                        Prism.highlightElement(code);
                     }
-                };
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
 
-                xhr.send(null);
-            });
-        }
-
-        $(document).ready(function(){
-            loadExternalCodeSnippets();
+            xhr.send(null);
         });
-        $('#source-view').on('shown', function () {
-            loadExternalCodeSnippets();
-        })
-    </script>
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
 
     <link rel="shortcut icon" href="../images/favicon.ico"/>
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
@@ -144,37 +144,37 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1268371619"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-257258746"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1268371619" class="accordion-body collapse in">
+            <div id="namespace-257258746" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-416879720"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1310195676"></a>
                                 <a href="../namespaces/Charcoal.html" style="margin-left: 30px; padding-left: 0">Charcoal</a>
             </div>
-            <div id="namespace-416879720" class="accordion-body collapse ">
+            <div id="namespace-1310195676" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-569734127"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-694332594"></a>
                                 <a href="../namespaces/Charcoal.Object.html" style="margin-left: 30px; padding-left: 0">Object</a>
             </div>
-            <div id="namespace-569734127" class="accordion-body collapse ">
+            <div id="namespace-694332594" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-867936292"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1274670981"></a>
                                 <a href="../namespaces/Charcoal.Object.Route.html" style="margin-left: 30px; padding-left: 0">Route</a>
             </div>
-            <div id="namespace-867936292" class="accordion-body collapse ">
+            <div id="namespace-1274670981" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -222,10 +222,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1322787761"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1122147726"></a>
                                 <a href="../namespaces/Charcoal.User.html" style="margin-left: 30px; padding-left: 0">User</a>
             </div>
-            <div id="namespace-1322787761" class="accordion-body collapse ">
+            <div id="namespace-1122147726" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -271,79 +271,114 @@
             <div class="row-fluid">
                 <div class="span8 content class">
                     <nav>
-                                                <a href="../namespaces/Charcoal.Object.html">\Charcoal\Object</a>
+                                                <a href="../namespaces/Charcoal.Object.html">\Charcoal\Object</a> <i class="icon-level-up"></i>
                                             </nav>
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
-                    <h1><small>\Charcoal\Object</small>ObjectRevisionInterface</h1>
-                    <p><em></em></p>
+                    <h1><small>\Charcoal\Object</small>ObjectRoute</h1>
+                    <p><em>ObjectRoute object class.</em></p>
+                    <p>Used as a single table for all routable objects.</p>
                     
-
+                                        
                     <section id="summary">
                         <h2>Summary</h2>
                         <section class="row-fluid heading">
-                            <section class="span6">
+                            <section class="span4">
                                 <a href="#methods">Methods</a>
                             </section>
-                            <section class="span6">
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
                                 <a href="#constants">Constants</a>
                             </section>
                         </section>
                         <section class="row-fluid public">
-                            <section class="span6">
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_setObjType">setObjType()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_objType">objType()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_setObjId">setObjId()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_objId">objId()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_setRevNum">setRevNum()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_revNum">revNum()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_setRevTs">setRevTs()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_revTs">revTs()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_setRevUser">setRevUser()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_revUser">revUser()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_setDataPrev">setDataPrev()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_dataPrev">dataPrev()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_setDataObj">setDataObj()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_dataObj">dataObj()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_setDataDiff">setDataDiff()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_dataDiff">dataDiff()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_createFromObject">createFromObject()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_createDiff">createDiff()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_recursiveDiff">recursiveDiff()</a><br />
-                                                                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html#method_lastObjectRevision">lastObjectRevision()</a><br />
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_setDependencies" class="">setDependencies()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_preSave" class="">preSave()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_preUpdate" class="">preUpdate()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_isSlugUnique" class="">isSlugUnique()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_generateUniqueSlugFromCurrentObjectSlug" class="">generateUniqueSlugFromCurrentObjectSlug()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_setSlug" class="">setSlug()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_setLang" class="">setLang()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_setCreationDate" class="">setCreationDate()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_setLastModificationDate" class="">setLastModificationDate()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_setRouteObjType" class="">setRouteObjType()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_setRouteObjId" class="">setRouteObjId()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_setRouteTemplate" class="">setRouteTemplate()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_slug" class="">slug()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_lang" class="">lang()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_creationDate" class="">creationDate()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_lastModificationDate" class="">lastModificationDate()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_routeObjType" class="">routeObjType()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_routeObjId" class="">routeObjId()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_routeTemplate" class="">routeTemplate()</a><br />
                                                             </section>
-                            <section class="span6">
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
                                                                     <em>No constants found</em>
                                                             </section>
                         </section>
                         <section class="row-fluid protected">
-                            <section class="span6">
-                                                                    <em>No protected methods found</em>
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_setModelFactory" class="">setModelFactory()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#method_modelFactory" class="">modelFactory()</a><br />
                                                             </section>
-                            <section class="span6">
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#property_id" class="">$id</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#property_active" class="">$active</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#property_slug" class="">$slug</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#property_lang" class="">$lang</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#property_creationDate" class="">$creationDate</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#property_lastModificationDate" class="">$lastModificationDate</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#property_routeObjType" class="">$routeObjType</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#property_routeObjId" class="">$routeObjId</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#property_routeTemplate" class="">$routeTemplate</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#property_modelFactory" class="">$modelFactory</a><br />
+                                                            </section>
+                            <section class="span4">
                                 <em>N/A</em>
                             </section>
                         </section>
                         <section class="row-fluid private">
-                            <section class="span6">
+                            <section class="span4">
                                                                     <em>No private methods found</em>
                                                             </section>
-                            <section class="span6">
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#property_originalSlug" class="">$originalSlug</a><br />
+                                                                    <a href="../classes/Charcoal.Object.ObjectRoute.html#property_slugInc" class="">$slugInc</a><br />
+                                                            </section>
+                            <section class="span4">
                                 <em>N/A</em>
                             </section>
                         </section>
                     </section>
                 </div>
                 <aside class="span4 detailsbar">
-                                        <dl>
+                                        
+                    
+                    <dl>
                         <dt>File</dt>
-                            <dd>
-                                <a href="../files/Object.ObjectRevisionInterface.html"><div class="path-wrapper">Object/ObjectRevisionInterface.php</div></a>
-                            </dd>
+                            <dd><a href="../files/Object.ObjectRoute.html"><div class="path-wrapper">Object/ObjectRoute.php</div></a></dd>
                                                 <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">\Default</div></dd>
-                                                
-                                            </dl>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\Charcoal\Model\AbstractModel</div>
+                                                                                                    <div class="namespace-wrapper">\Charcoal\Object\ObjectRoute</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                                            <dt>See also</dt>
+                                                                                    <dd><a href=""><div class="namespace-wrapper"></div></a></dd>
+                                                    
+                                                                        </dl>
                     <h2>Tags</h2>
                     <table class="table table-condensed">
                                             <tr><td colspan="2"><em>None found</em></td></tr>
@@ -351,36 +386,449 @@
                 </aside>
             </div>
 
-            
-                        <div class="row-fluid">
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
                 <div class="span8 content class">
-                    <h2>Methods</h2>
+                    <h2>Properties</h2>
                 </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_id" name="property_id" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$id</h3>
+                <pre class="signature">$id : \Charcoal\Object\number</pre>
+                <p><em>Base.</em></p>
+                
+
+                                <h4>Type</h4>
+                \Charcoal\Object\number
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_active" name="property_active" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$active</h3>
+                <pre class="signature">$active : boolean</pre>
+                <p><em>Route active?</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_slug" name="property_slug" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$slug</h3>
+                <pre class="signature">$slug : string</pre>
+                <p><em>Uniq.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_lang" name="property_lang" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$lang</h3>
+                <pre class="signature">$lang : string</pre>
+                <p><em>Route lang ident.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_creationDate" name="property_creationDate" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$creationDate</h3>
+                <pre class="signature">$creationDate : \DateTime</pre>
+                <p><em>Used for revisions, redirects, etc.</em></p>
+                
+
+                                <h4>Type</h4>
+                \DateTime
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_lastModificationDate" name="property_lastModificationDate" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$lastModificationDate</h3>
+                <pre class="signature">$lastModificationDate : \DateTime</pre>
+                <p><em>Last modification date. More of
+a log utils function. Not used in the
+genericRoute.</em></p>
+                
+
+                                <h4>Type</h4>
+                \DateTime
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_routeObjType" name="property_routeObjType" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$routeObjType</h3>
+                <pre class="signature">$routeObjType : string</pre>
+                <p><em>Object type.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_routeObjId" name="property_routeObjId" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$routeObjId</h3>
+                <pre class="signature">$routeObjId : mixed</pre>
+                <p><em>Object ID.</em></p>
+                
+
+                                <h4>Type</h4>
+                mixed
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_routeTemplate" name="property_routeTemplate" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$routeTemplate</h3>
+                <pre class="signature">$routeTemplate : string</pre>
+                <p><em>Route template ident.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_modelFactory" name="property_modelFactory" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$modelFactory</h3>
+                <pre class="signature">$modelFactory : \Charcoal\Object\FactoryInterface</pre>
+                <p><em>ModelFactory</em></p>
+                
+
+                                <h4>Type</h4>
+                \Charcoal\Object\FactoryInterface
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_originalSlug" name="property_originalSlug" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$originalSlug</h3>
+                <pre class="signature">$originalSlug : string</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_slugInc" name="property_slugInc" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$slugInc</h3>
+                <pre class="signature">$slugInc : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
                 <aside class="span4 detailsbar"></aside>
             </div>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_setObjType" name="method_setObjType" class="anchor"></a>
+            <a id="method_setDependencies" name="method_setDependencies" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">setObjType()</h3>
+                <h3 class="public ">setDependencies()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setObjType(string  <span class="argument">$objType</span>) : \Charcoal\Object\ObjectRevisionInterface</pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">setDependencies(\Pimple\Container  <span class="argument">$container</span>) </pre>
+                <p><em>Set dependencies</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>string</td>
-                                <td>$objType </td>
-                                <td><p>The object type (type-ident).</p></td>
+                                <td>\Pimple\Container</td>
+                                <td>$container </td>
+                                <td><p>Set dependencies.</p></td>
                             </tr>
                                             </table>
                 
                 
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_preSave" name="method_preSave" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">preSave()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">preSave() : void</pre>
+                <p><em>Creation date must be set</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_preUpdate" name="method_preUpdate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">preUpdate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">preUpdate(array|null  <span class="argument">$properties = null</span>) : void</pre>
+                <p><em>Creation date must be updated.</em></p>
+                <p>Update shouldn't happen tho.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array|null</td>
+                                <td>$properties </td>
+                                <td><p>[description]</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isSlugUnique" name="method_isSlugUnique" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isSlugUnique()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isSlugUnique() : boolean</pre>
+                <p><em>[isSlugUnique description]</em></p>
+                
+
+                
+                
                                     <h4>Returns</h4>
-                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html">\Charcoal\Object\ObjectRevisionInterface</a>
+                    boolean
+                                            &mdash; <p>[description]</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_generateUniqueSlugFromCurrentObjectSlug" name="method_generateUniqueSlugFromCurrentObjectSlug" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">generateUniqueSlugFromCurrentObjectSlug()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">generateUniqueSlugFromCurrentObjectSlug() : \Charcoal\Object\ObjectRoute</pre>
+                <p><em>Sets the slug to a unique slug.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.ObjectRoute.html">\Charcoal\Object\ObjectRoute</a>
                                             &mdash; <p>Chainable</p>
                                     				
                             </article>
@@ -398,19 +846,25 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_objType" name="method_objType" class="anchor"></a>
+            <a id="method_setSlug" name="method_setSlug" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">objType()</h3>
+                <h3 class="public ">setSlug()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">objType() : string</pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">setSlug(  <span class="argument">$slug</span>) </pre>
+                <p><em>SETTERS</em></p>
                 
 
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$slug </td>
+                                <td></td>
+                            </tr>
+                                            </table>
                 
                 
-                                    <h4>Returns</h4>
-                    string
-                                    				
+                				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -426,26 +880,65 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_setObjId" name="method_setObjId" class="anchor"></a>
+            <a id="method_setLang" name="method_setLang" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">setObjId()</h3>
+                <h3 class="public ">setLang()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setObjId(mixed  <span class="argument">$objId</span>) : \Charcoal\Object\ObjectRevisionInterface</pre>
+                <pre class="signature" style="margin-right: 54px;">setLang(  <span class="argument">$l</span>) </pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>mixed</td>
-                                <td>$objId </td>
-                                <td><p>The object ID.</p></td>
+                                <td></td>
+                                <td>$l </td>
+                                <td></td>
                             </tr>
                                             </table>
                 
                 
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCreationDate" name="method_setCreationDate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCreationDate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCreationDate(\DateTime|string|null  <span class="argument">$creationDate</span>) : \Charcoal\Object\ObjectRoute</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\DateTime|string|null</td>
+                                <td>$creationDate </td>
+                                <td><p>The Creation Date date/time.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the date/time is invalid.</p></dd>
+                                                                    </dl>
+                
                                     <h4>Returns</h4>
-                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html">\Charcoal\Object\ObjectRevisionInterface</a>
+                    <a href="../classes/Charcoal.Object.ObjectRoute.html">\Charcoal\Object\ObjectRoute</a>
                                             &mdash; <p>Chainable</p>
                                     				
                             </article>
@@ -463,54 +956,31 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_objId" name="method_objId" class="anchor"></a>
+            <a id="method_setLastModificationDate" name="method_setLastModificationDate" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">objId()</h3>
+                <h3 class="public ">setLastModificationDate()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">objId() : mixed</pre>
-                <p><em></em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    mixed
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_setRevNum" name="method_setRevNum" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">setRevNum()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setRevNum(integer  <span class="argument">$revNum</span>) : \Charcoal\Object\ObjectRevisionInterface</pre>
+                <pre class="signature" style="margin-right: 54px;">setLastModificationDate(\DateTime|string|null  <span class="argument">$lastModificationDate</span>) : \Charcoal\Object\ObjectRoute</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>integer</td>
-                                <td>$revNum </td>
-                                <td><p>The revision number.</p></td>
+                                <td>\DateTime|string|null</td>
+                                <td>$lastModificationDate </td>
+                                <td><p>The Last modification date date/time.</p></td>
                             </tr>
                                             </table>
                 
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the date/time is invalid.</p></dd>
+                                                                    </dl>
                 
                                     <h4>Returns</h4>
-                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html">\Charcoal\Object\ObjectRevisionInterface</a>
+                    <a href="../classes/Charcoal.Object.ObjectRoute.html">\Charcoal\Object\ObjectRoute</a>
                                             &mdash; <p>Chainable</p>
                                     				
                             </article>
@@ -528,56 +998,25 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_revNum" name="method_revNum" class="anchor"></a>
+            <a id="method_setRouteObjType" name="method_setRouteObjType" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">revNum()</h3>
+                <h3 class="public ">setRouteObjType()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">revNum() : integer</pre>
-                <p><em></em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    integer
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_setRevTs" name="method_setRevTs" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">setRevTs()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setRevTs(mixed  <span class="argument">$revTs</span>) : \Charcoal\Object\ObjectRevisionInterface</pre>
+                <pre class="signature" style="margin-right: 54px;">setRouteObjType(  <span class="argument">$type</span>) </pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>mixed</td>
-                                <td>$revTs </td>
-                                <td><p>The revision's timestamp.</p></td>
+                                <td></td>
+                                <td>$type </td>
+                                <td></td>
                             </tr>
                                             </table>
                 
                 
-                                    <h4>Returns</h4>
-                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html">\Charcoal\Object\ObjectRevisionInterface</a>
-                                            &mdash; <p>Chainable</p>
-                                    				
+                				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -593,56 +1032,25 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_revTs" name="method_revTs" class="anchor"></a>
+            <a id="method_setRouteObjId" name="method_setRouteObjId" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">revTs()</h3>
+                <h3 class="public ">setRouteObjId()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">revTs() : \Charcoal\Object\DateTime|null</pre>
-                <p><em></em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    \Charcoal\Object\DateTime|null
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_setRevUser" name="method_setRevUser" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">setRevUser()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setRevUser(string  <span class="argument">$revUser</span>) : \Charcoal\Object\ObjectRevisionInterface</pre>
+                <pre class="signature" style="margin-right: 54px;">setRouteObjId(  <span class="argument">$id</span>) </pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>string</td>
-                                <td>$revUser </td>
-                                <td><p>The revision user ident.</p></td>
+                                <td></td>
+                                <td>$id </td>
+                                <td></td>
                             </tr>
                                             </table>
                 
                 
-                                    <h4>Returns</h4>
-                    <a href="../classes/Charcoal.Object.ObjectRevisionInterface.html">\Charcoal\Object\ObjectRevisionInterface</a>
-                                            &mdash; <p>Chainable</p>
-                                    				
+                				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -658,55 +1066,25 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_revUser" name="method_revUser" class="anchor"></a>
+            <a id="method_setRouteTemplate" name="method_setRouteTemplate" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">revUser()</h3>
+                <h3 class="public ">setRouteTemplate()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">revUser() : string</pre>
-                <p><em></em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_setDataPrev" name="method_setDataPrev" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">setDataPrev()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setDataPrev(array|string  <span class="argument">$data</span>) : \Charcoal\Object\ObjectRevision</pre>
+                <pre class="signature" style="margin-right: 54px;">setRouteTemplate(  <span class="argument">$template</span>) </pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>array|string</td>
-                                <td>$data </td>
-                                <td><p>The previous revision data.</p></td>
+                                <td></td>
+                                <td>$template </td>
+                                <td></td>
                             </tr>
                                             </table>
                 
                 
-                                    <h4>Returns</h4>
-                    <a href="../classes/Charcoal.Object.ObjectRevision.html">\Charcoal\Object\ObjectRevision</a>
-                                    				
+                				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -722,19 +1100,43 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_dataPrev" name="method_dataPrev" class="anchor"></a>
+            <a id="method_slug" name="method_slug" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">dataPrev()</h3>
+                <h3 class="public ">slug()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">dataPrev() : array</pre>
+                <pre class="signature" style="margin-right: 54px;">slug() </pre>
+                <p><em>GETTERS</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_lang" name="method_lang" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">lang()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">lang() </pre>
                 <p><em></em></p>
                 
 
                 
                 
-                                    <h4>Returns</h4>
-                    array
-                                    				
+                				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -750,55 +1152,17 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_setDataObj" name="method_setDataObj" class="anchor"></a>
+            <a id="method_creationDate" name="method_creationDate" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">setDataObj()</h3>
+                <h3 class="public ">creationDate()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setDataObj(array|string  <span class="argument">$data</span>) : \Charcoal\Object\ObjectRevision</pre>
-                <p><em></em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array|string</td>
-                                <td>$data </td>
-                                <td><p>The current revision (object) data.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    <a href="../classes/Charcoal.Object.ObjectRevision.html">\Charcoal\Object\ObjectRevision</a>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_dataObj" name="method_dataObj" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">dataObj()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">dataObj() : array</pre>
+                <pre class="signature" style="margin-right: 54px;">creationDate() </pre>
                 <p><em></em></p>
                 
 
                 
                 
-                                    <h4>Returns</h4>
-                    array
-                                    				
+                				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -814,55 +1178,17 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_setDataDiff" name="method_setDataDiff" class="anchor"></a>
+            <a id="method_lastModificationDate" name="method_lastModificationDate" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">setDataDiff()</h3>
+                <h3 class="public ">lastModificationDate()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setDataDiff(array|string  <span class="argument">$data</span>) : \Charcoal\Object\ObjectRevision</pre>
-                <p><em></em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array|string</td>
-                                <td>$data </td>
-                                <td><p>The data diff.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    <a href="../classes/Charcoal.Object.ObjectRevision.html">\Charcoal\Object\ObjectRevision</a>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_dataDiff" name="method_dataDiff" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">dataDiff()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">dataDiff() : array</pre>
+                <pre class="signature" style="margin-right: 54px;">lastModificationDate() </pre>
                 <p><em></em></p>
                 
 
                 
                 
-                                    <h4>Returns</h4>
-                    array
-                                    				
+                				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -878,32 +1204,17 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_createFromObject" name="method_createFromObject" class="anchor"></a>
+            <a id="method_routeObjType" name="method_routeObjType" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">createFromObject()</h3>
+                <h3 class="public ">routeObjType()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">createFromObject(\Charcoal\Object\RevisionableInterface  <span class="argument">$obj</span>) : \Charcoal\Object\ObjectRevision</pre>
-                <p><em>Create a new revision from an object</em></p>
-                <ol>
-<li>Load the last revision</li>
-<li>Load the current item from DB</li>
-<li>Create diff from (1) and (2).</li>
-</ol>
+                <pre class="signature" style="margin-right: 54px;">routeObjType() </pre>
+                <p><em></em></p>
+                
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td><a href="../classes/Charcoal.Object.RevisionableInterface.html">\Charcoal\Object\RevisionableInterface</a></td>
-                                <td>$obj </td>
-                                <td><p>The object to create the revision from.</p></td>
-                            </tr>
-                                            </table>
                 
                 
-                                    <h4>Returns</h4>
-                    <a href="../classes/Charcoal.Object.ObjectRevision.html">\Charcoal\Object\ObjectRevision</a>
-                                            &mdash; <p>Chainable</p>
-                                    				
+                				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -919,33 +1230,77 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_createDiff" name="method_createDiff" class="anchor"></a>
+            <a id="method_routeObjId" name="method_routeObjId" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">createDiff()</h3>
+                <h3 class="public ">routeObjId()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">createDiff(array  <span class="argument">$dataPrev</span>, array  <span class="argument">$dataObj</span>) : array</pre>
+                <pre class="signature" style="margin-right: 54px;">routeObjId() </pre>
+                <p><em></em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_routeTemplate" name="method_routeTemplate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">routeTemplate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">routeTemplate() </pre>
+                <p><em></em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setModelFactory" name="method_setModelFactory" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setModelFactory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setModelFactory(  <span class="argument">$factory</span>) </pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>array</td>
-                                <td>$dataPrev </td>
-                                <td><p>Optional. The previous revision data.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$dataObj </td>
-                                <td><p>Optional. The current revision (object) data.</p></td>
+                                <td></td>
+                                <td>$factory </td>
+                                <td></td>
                             </tr>
                                             </table>
                 
                 
-                                    <h4>Returns</h4>
-                    array
-                                            &mdash; <p>The diff data</p>
-                                    				
+                				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -961,70 +1316,17 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_recursiveDiff" name="method_recursiveDiff" class="anchor"></a>
+            <a id="method_modelFactory" name="method_modelFactory" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">recursiveDiff()</h3>
+                <h3 class="protected ">modelFactory()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">recursiveDiff(array  <span class="argument">$array1</span>, array  <span class="argument">$array2</span>) : array</pre>
-                <p><em>Recursive arrayDiff.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$array1 </td>
-                                <td><p>First array.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$array2 </td>
-                                <td><p>Second array.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                            &mdash; <p>The array diff.</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_lastObjectRevision" name="method_lastObjectRevision" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">lastObjectRevision()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">lastObjectRevision(\Charcoal\Object\RevisionableInterface  <span class="argument">$obj</span>) : \Charcoal\Object\ObjectRevision</pre>
+                <pre class="signature" style="margin-right: 54px;">modelFactory() </pre>
                 <p><em></em></p>
                 
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td><a href="../classes/Charcoal.Object.RevisionableInterface.html">\Charcoal\Object\RevisionableInterface</a></td>
-                                <td>$obj </td>
-                                <td><p>The object  to load the last revision of.</p></td>
-                            </tr>
-                                            </table>
                 
                 
-                                    <h4>Returns</h4>
-                    <a href="../classes/Charcoal.Object.ObjectRevision.html">\Charcoal\Object\ObjectRevision</a>
-                                            &mdash; <p>The last revision for the give object.</p>
-                                    				
+                				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -1038,16 +1340,16 @@
         </aside>
     </div>
 
-                                                                    </div>
+                                                    </div>
     </section>
 
     <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">ObjectRevisionInterface.php</h3>
+            <h3 id="source-view-label">ObjectRoute.php</h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/Object/ObjectRevisionInterface.php.txt" class="language-php"></pre>
+            <pre data-src="../files/Object/ObjectRoute.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 
