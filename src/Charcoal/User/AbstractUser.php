@@ -100,6 +100,11 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
+     * @return string
+     */
+    abstract public static function sessionKey();
+
+    /**
      * Force a lowercase username
      *
      * @param string $username The username (also the login name).
