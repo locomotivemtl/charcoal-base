@@ -34,6 +34,11 @@ abstract class AbstractUser extends Content implements
     use ConfigurableTrait;
 
     /**
+     * @var UserInterface $authenticatedUser
+     */
+    protected static $authenticatedUser;
+
+    /**
      * The username should be unique and mandatory.
      * @var string $username
      */
@@ -533,6 +538,10 @@ abstract class AbstractUser extends Content implements
      */
     public static function getAuthenticated(FactoryInterface $factory)
     {
+        if (isset(static::$authenticatedUser[static::sessionKey()])) {
+            return static::$authenticatedUser[static::sessionKey()];
+        }
+
         if (!isset($_SESSION[static::sessionKey()])) {
             return null;
         }
@@ -552,6 +561,7 @@ abstract class AbstractUser extends Content implements
             return null;
         }
 
+        static::$authenticatedUser[static::sessionKey()] = $user;
         return $user;
     }
 
