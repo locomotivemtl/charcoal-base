@@ -40,7 +40,7 @@ abstract class AbstractUser extends Content implements
     private $username = '';
 
     /**
-     * The password is stored encrypted in the database.
+     * The password is stored encrypted in the (database) storage.
      * @var string $password
      */
     private $password;
