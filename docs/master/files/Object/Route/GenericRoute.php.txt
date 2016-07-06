@@ -187,7 +187,7 @@ class GenericRoute extends TemplateRoute
      * Get the latest path history for the given object order
      * by creationDate DESC (latest first.)
      * Should never MISS, the given object route should exist.
-     * @param  Charcoal\Object\ObjectRoute $obj   Routable Object.
+     * @param  Charcoal\Object\ObjectRoute $obj Routable Object.
      * @return Charcoal\Object\ObjectRoute        Latest route.
      */
     public function getLatestObjectPathHistory($obj)
