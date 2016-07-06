@@ -8,11 +8,12 @@ use \InvalidArgumentException;
 
 // From `charcoal-core`
 use \Charcoal\Model\AbstractModel;
+use \Charcoal\Factory\FactoryInterface;
 
 /**
  * ObjectRoute object class.
  * Used as a single table for all routable objects.
- * @see Charcoal\Object\RevisionableTrait
+ * See Charcoal\Object\RevisionableTrait
  */
 class ObjectRoute extends AbstractModel
 {
@@ -82,11 +83,17 @@ class ObjectRoute extends AbstractModel
      * @var string $originalSlug
      */
     private $originalSlug;
+
+    /**
+     * Increment var used to create a uniq slug.
+     * @var integer $slugInc
+     */
     private $slugInc = 0;
 
     /**
      * Set dependencies
      * @param Container $container Set dependencies.
+     * @return void
      */
     public function setDependencies(Container $container)
     {
@@ -109,7 +116,7 @@ class ObjectRoute extends AbstractModel
     /**
      * Creation date must be updated.
      * Update shouldn't happen tho.
-     * @param  array|null $properties [description]
+     * @param array $properties Properties.
      * @return void .
      */
     public function preUpdate(array $properties = null)
@@ -164,11 +171,21 @@ class ObjectRoute extends AbstractModel
 /**
  * SETTERS
  */
+    /**
+     * Set the slug of the current route.
+     * @param string $slug Current object / lang slug.
+     * @return ObjectRoute Chainable.
+     */
     public function setSlug($slug)
     {
         $this->slug = $slug;
         return $this;
     }
+    /**
+     * Set the lang of the current route.
+     * @param string $l Current lang.
+     * @return ObjectRoute Chainable.
+     */
     public function setLang($l)
     {
         $this->lang = $l;
@@ -220,22 +237,42 @@ class ObjectRoute extends AbstractModel
         return $this;
     }
 
+    /**
+     * Set the route obj type
+     * @param string $type Route object type.
+     * @return ObjectRoute Chainable.
+     */
     public function setRouteObjType($type)
     {
         $this->routeObjType = $type;
         return $this;
     }
+    /**
+     * Set the object route id
+     * @param string $id Object ID.
+     * @return ObjectRoute Chainable
+     */
     public function setRouteObjId($id)
     {
         $this->routeObjId = $id;
         return $this;
     }
+    /**
+     * Set the object route template
+     * @param string $template Template ident.
+     * @return ObjectRoute Chainable
+     */
     public function setRouteTemplate($template)
     {
         $this->routeTemplate = $template;
         return $this;
     }
-    protected function setModelFactory($factory)
+    /**
+     * Set the model factory.
+     * @param FactoryInterface $factory Model factory.
+     * @return ObjectRoute Chainable
+     */
+    protected function setModelFactory(FactoryInterface $factory)
     {
         $this->modelFactory = $factory;
         return $this;
@@ -244,34 +281,66 @@ class ObjectRoute extends AbstractModel
 /**
  * GETTERS
  */
+    /**
+     * Slug.
+     * @return string Slug.
+     */
     public function slug()
     {
         return $this->slug;
     }
+    /**
+     * Language.
+     * @return string Current language.
+     */
     public function lang()
     {
         return $this->lang;
     }
+    /**
+     * Creation date.
+     * @return DateTime Creation date.
+     */
     public function creationDate()
     {
         return $this->creationDate;
     }
+    /**
+     * Last modification date.
+     * @return DateTime Last modification date.
+     */
     public function lastModificationDate()
     {
         return $this->lastModificationDate;
     }
+    /**
+     * Route object type.
+     * @return string Route Object Type.
+     */
     public function routeObjType()
     {
         return $this->routeObjType;
     }
+    /**
+     * Route Object ID.
+     * @return string Route object id.
+     */
     public function routeObjId()
     {
         return $this->routeObjId;
     }
+    /**
+     * Route template.
+     * @return string Route template.
+     */
     public function routeTemplate()
     {
         return $this->routeTemplate;
     }
+    /**
+     * ModelFactory.
+     * @return FactoryInterface Model factory.
+     */
     protected function modelFactory()
     {
         return $this->modelFactory;

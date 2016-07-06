@@ -14,6 +14,11 @@ use \Pimple\Container;
 // Dependency from 'charcoal-app'
 use \Charcoal\App\Route\TemplateRoute;
 
+// From Charcoal-factory
+use \Charcoal\Factory\FactoryInterface;
+
+use \Charcoal\Loader\CollectionLoader;
+
 // From `charcoal-base`
 use \Charcoal\Object\RoutableInterface;
 
@@ -69,6 +74,11 @@ class GenericRoute extends TemplateRoute
         $this->setPath(ltrim($data['path'], '/'));
     }
 
+    /**
+     * Set dependencies.
+     * @param Container $container Dependencie container.
+     * @return void
+     */
     public function setDependencies(Container $container)
     {
         // Dependencies.
@@ -158,7 +168,9 @@ class GenericRoute extends TemplateRoute
             // Redirect 302
         }
 
-        $this->contextObject = $this->modelFactory()->create($objectRoute->routeObjType())->load($objectRoute->routeObjId());
+        $this->contextObject = $this->modelFactory()
+            ->create($objectRoute->routeObjType())
+            ->load($objectRoute->routeObjId());
 
         return $this->contextObject;
     }
@@ -190,7 +202,7 @@ class GenericRoute extends TemplateRoute
      * @param  Charcoal\Object\ObjectRoute $obj Routable Object.
      * @return Charcoal\Object\ObjectRoute        Latest route.
      */
-    public function getLatestObjectPathHistory($obj)
+    public function getLatestObjectPathHistory(ObjectRoute $obj)
     {
         // Check if current objType and ID have a more recent route.
         $objectType = $obj->routeObjType();
@@ -220,17 +232,35 @@ class GenericRoute extends TemplateRoute
 /**
  * SETTERS
  */
+
+    /**
+     * Set path.
+     * @param string $path Path.
+     * @return GenericRoute Chainable.
+     */
     protected function setPath($path)
     {
         $this->path = $path;
         return $this;
     }
-    protected function setModelFactory($modelFactory)
+
+    /**
+     * Set the model factory.
+     * @param FactoryInterface $modelFactory Model factory.
+     * @return GenericRoute Chainable.
+     */
+    protected function setModelFactory(FactoryInterface $modelFactory)
     {
         $this->modelFactory = $modelFactory;
         return $this;
     }
-    public function setCollectionLoader($loader)
+
+    /**
+     * Set the collection loader.
+     * @param CollectionLoader $loader Collection loader.
+     * @return GenericRoute Chainable.
+     */
+    public function setCollectionLoader(CollectionLoader $loader)
     {
         $this->collectionLoader = $loader;
         return $this;
@@ -238,14 +268,28 @@ class GenericRoute extends TemplateRoute
 /**
  * GETTERS
  */
+
+    /**
+     * Path.
+     * @return string Path.
+     */
     protected function path()
     {
         return $this->path;
     }
+
+    /**
+     * Model factory.
+     * @return FactoryInterface Model factory.
+     */
     protected function modelFactory()
     {
         return $this->modelFactory;
     }
+    /**
+     * Collection loader.
+     * @return CollectionLoader Collection Loader.
+     */
     protected function collectionLoader()
     {
         return $this->collectionLoader;

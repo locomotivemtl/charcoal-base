@@ -25,6 +25,12 @@ trait RoutableTrait
     private $slug;
 
     /**
+     * Latest ObjectRoute object concerning the current object.
+     * @var ObjectRoute $latestObjectRoute;
+     */
+    private $latestObjectRoute;
+
+    /**
      * @param mixed $pattern The slug pattern.
      * @return RoutableInterface Chainable
      */
@@ -112,8 +118,8 @@ trait RoutableTrait
 
     /**
      * Route generation. Saves all route to one table.
-     * @param  TranslationString $slugs Slug by langs.
-     * @return ObjectRoute  Generated route.
+     * @param  mixed $slug Slug by langs.
+     * @return void
      */
     protected function generateObjectRoute($slug = null)
     {
@@ -164,7 +170,37 @@ trait RoutableTrait
      */
     protected function getLatestObjectRoute()
     {
+        if ($this->latestObjectRoute) {
+            return $this->latestObjectRoute;
+        }
+
         // For URL.
+        $loader = new CollectionLoader([
+            'logger' => $this->logger,
+            'factory' => $this->modelFactory()
+        ]);
+
+        $model = $this->modelFactory()->create(ObjectRoute::class);
+        $loader->setModel($model);
+
+        $translator = new TranslationString();
+
+        $loader->addFilter('route_obj_type', $this->objType())
+            ->addFilter('route_obj_id', $this->id())
+            ->addFilter('lang', $translator->currentLanguage())
+            ->addOrder('creation_date', 'desc')
+            ->setPage(1)
+            ->setNumPerPage(1);
+
+        $collection = $loader->load()->objects();
+
+        if (!count($collection)) {
+            $this->latestObjectRoute = $model;
+            return $this->latestObjectRoute;
+        }
+        $this->latestObjectRoute = $collection[0];
+
+        return $this->latestObjectRoute;
     }
 
     /**
@@ -172,6 +208,10 @@ trait RoutableTrait
      */
     public function url()
     {
+        $url = (string)$this->getLatestObjectRoute()->slug();
+        if ($url) {
+            return $url;
+        }
         return (string)$this->slug();
     }
 
