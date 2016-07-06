@@ -59,6 +59,12 @@
 				<li><a href="class-Charcoal.Object.Route.GenericRoute.html">Charcoal\Object\Route\GenericRoute</a></li>
 				<li><a href="class-Charcoal.Object.UserData.html">Charcoal\Object\UserData</a></li>
 				<li><a href="class-Charcoal.User.AbstractUser.html">Charcoal\User\AbstractUser</a></li>
+				<li><a href="class-Charcoal.User.AclRole.html">Charcoal\User\AclRole</a></li>
+				<li><a href="class-Charcoal.User.Authenticator.html">Charcoal\User\Authenticator</a></li>
+				<li><a href="class-Charcoal.User.AuthToken.html">Charcoal\User\AuthToken</a></li>
+				<li><a href="class-Charcoal.User.AuthTokenMetadata.html">Charcoal\User\AuthTokenMetadata</a></li>
+				<li><a href="class-Charcoal.User.Permission.html">Charcoal\User\Permission</a></li>
+				<li><a href="class-Charcoal.User.PermissionCategory.html">Charcoal\User\PermissionCategory</a></li>
 				<li><a href="class-Charcoal.User.UserConfig.html">Charcoal\User\UserConfig</a></li>
 			</ul>
 
@@ -370,16 +376,40 @@
 </span><span id="244" class="l"><a href="#244">244: </a><span class="php-comment">/**
 </span></span><span id="245" class="l"><a href="#245">245: </a><span class="php-comment"> * GETTERS
 </span></span><span id="246" class="l"><a href="#246">246: </a><span class="php-comment"> */</span>
-</span><span id="247" class="l"><a href="#247">247: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> slug()                  { <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;slug; }
-</span><span id="248" class="l"><a href="#248">248: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> lang()                  { <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;lang; }
-</span><span id="249" class="l"><a href="#249">249: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> creationDate()          { <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;creationDate; }
-</span><span id="250" class="l"><a href="#250">250: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> lastModificationDate()  { <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;lastModificationDate; }
-</span><span id="251" class="l"><a href="#251">251: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> routeObjType()          { <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;routeObjType; }
-</span><span id="252" class="l"><a href="#252">252: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> routeObjId()            { <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;routeObjId; }
-</span><span id="253" class="l"><a href="#253">253: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> routeTemplate()         { <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;routeTemplate; }
-</span><span id="254" class="l"><a href="#254">254: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> modelFactory()       { <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;modelFactory; }
-</span><span id="255" class="l"><a href="#255">255: </a>}
-</span><span id="256" class="l"><a href="#256">256: </a></span></code></pre>
+</span><span id="247" class="l"><a href="#247">247: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> slug()
+</span><span id="248" class="l"><a href="#248">248: </a>    {
+</span><span id="249" class="l"><a href="#249">249: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;slug;
+</span><span id="250" class="l"><a href="#250">250: </a>    }
+</span><span id="251" class="l"><a href="#251">251: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> lang()
+</span><span id="252" class="l"><a href="#252">252: </a>    {
+</span><span id="253" class="l"><a href="#253">253: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;lang;
+</span><span id="254" class="l"><a href="#254">254: </a>    }
+</span><span id="255" class="l"><a href="#255">255: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> creationDate()
+</span><span id="256" class="l"><a href="#256">256: </a>    {
+</span><span id="257" class="l"><a href="#257">257: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;creationDate;
+</span><span id="258" class="l"><a href="#258">258: </a>    }
+</span><span id="259" class="l"><a href="#259">259: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> lastModificationDate()
+</span><span id="260" class="l"><a href="#260">260: </a>    {
+</span><span id="261" class="l"><a href="#261">261: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;lastModificationDate;
+</span><span id="262" class="l"><a href="#262">262: </a>    }
+</span><span id="263" class="l"><a href="#263">263: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> routeObjType()
+</span><span id="264" class="l"><a href="#264">264: </a>    {
+</span><span id="265" class="l"><a href="#265">265: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;routeObjType;
+</span><span id="266" class="l"><a href="#266">266: </a>    }
+</span><span id="267" class="l"><a href="#267">267: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> routeObjId()
+</span><span id="268" class="l"><a href="#268">268: </a>    {
+</span><span id="269" class="l"><a href="#269">269: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;routeObjId;
+</span><span id="270" class="l"><a href="#270">270: </a>    }
+</span><span id="271" class="l"><a href="#271">271: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> routeTemplate()
+</span><span id="272" class="l"><a href="#272">272: </a>    {
+</span><span id="273" class="l"><a href="#273">273: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;routeTemplate;
+</span><span id="274" class="l"><a href="#274">274: </a>    }
+</span><span id="275" class="l"><a href="#275">275: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> modelFactory()
+</span><span id="276" class="l"><a href="#276">276: </a>    {
+</span><span id="277" class="l"><a href="#277">277: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;modelFactory;
+</span><span id="278" class="l"><a href="#278">278: </a>    }
+</span><span id="279" class="l"><a href="#279">279: </a>}
+</span><span id="280" class="l"><a href="#280">280: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
@@ -387,6 +417,6 @@
 </div>
 </div>
 <script src="resources/combined.js?0ff32d6d2e37921bb308ea8b21adb0381c8bde44"></script>
-<script src="elementlist.js?3517df8f67160262eab381b3e2a394be7becde77"></script>
+<script src="elementlist.js?5f70a2537e0391d796058da4cbbeb8ab64e95af0"></script>
 </body>
 </html>
