@@ -4,6 +4,10 @@ namespace Charcoal\User\Tests;
 
 use \Psr\Log\NullLogger;
 
+use \Charcoal\Model\MetadataLoader;
+
+use \Charcoal\User\AbstractUser;
+
 class UserTest extends \PHPUnit_Framework_TestCase
 {
     public $obj;
@@ -12,16 +16,16 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         $container = $GLOBALS['container'];
 
-        $metadataLoader = new \Charcoal\Model\MetadataLoader([
-            'logger' => new \Psr\Log\NullLogger(),
+        $metadataLoader = new MetadataLoader([
+            'logger'    => new NullLogger(),
             'base_path' => __DIR__,
-            'paths' => ['metadata'],
-            'config' => $GLOBALS['container']['config'],
-            'cache'  => $GLOBALS['container']['cache']
+            'paths'     => ['metadata'],
+            'config'    => $GLOBALS['container']['config'],
+            'cache'     => $GLOBALS['container']['cache']
         ]);
 
-        $this->obj = $this->getMockForAbstractClass('\Charcoal\User\AbstractUser', [[
-            'logger'            =>$container['logger'],
+        $this->obj = $this->getMockForAbstractClass(AbstractUser::class, [[
+            'logger'            => $container['logger'],
             'metadata_loader'   => $metadataLoader
         ]]);
     }
