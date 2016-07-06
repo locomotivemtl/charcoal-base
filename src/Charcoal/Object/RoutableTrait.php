@@ -112,10 +112,10 @@ trait RoutableTrait
 
     /**
      * Route generation. Saves all route to one table.
-     * @param  TranslationString $slugs  Slug by langs.
+     * @param  TranslationString $slugs Slug by langs.
      * @return ObjectRoute  Generated route.
      */
-    protected function generateObjectRoute($slug=null)
+    protected function generateObjectRoute($slug = null)
     {
         if (!$slug) {
             $slug = $this->generateSlug();
@@ -241,8 +241,7 @@ trait RoutableTrait
             ->addFilter('route_obj_id', $this->id());
 
         $collection = $loader->load();
-        foreach ($collection as $route)
-        {
+        foreach ($collection as $route) {
             $route->delete();
         }
 

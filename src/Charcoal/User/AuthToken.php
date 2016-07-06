@@ -288,7 +288,7 @@ class AuthToken extends AbstractModel
 
         $authCookie = $_COOKIE[$cookieName];
         $vals = explode(';', $authCookie);
-        if(!isset($vals[0]) || !isset($vals[1])) {
+        if (!isset($vals[0]) || !isset($vals[1])) {
             return null;
         }
 

@@ -244,12 +244,36 @@ class ObjectRoute extends AbstractModel
 /**
  * GETTERS
  */
-    public function slug()                  { return $this->slug; }
-    public function lang()                  { return $this->lang; }
-    public function creationDate()          { return $this->creationDate; }
-    public function lastModificationDate()  { return $this->lastModificationDate; }
-    public function routeObjType()          { return $this->routeObjType; }
-    public function routeObjId()            { return $this->routeObjId; }
-    public function routeTemplate()         { return $this->routeTemplate; }
-    protected function modelFactory()       { return $this->modelFactory; }
+    public function slug()
+    {
+        return $this->slug;
+    }
+    public function lang()
+    {
+        return $this->lang;
+    }
+    public function creationDate()
+    {
+        return $this->creationDate;
+    }
+    public function lastModificationDate()
+    {
+        return $this->lastModificationDate;
+    }
+    public function routeObjType()
+    {
+        return $this->routeObjType;
+    }
+    public function routeObjId()
+    {
+        return $this->routeObjId;
+    }
+    public function routeTemplate()
+    {
+        return $this->routeTemplate;
+    }
+    protected function modelFactory()
+    {
+        return $this->modelFactory;
+    }
 }
