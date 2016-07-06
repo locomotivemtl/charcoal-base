@@ -126,7 +126,7 @@ Charcoal\App\Route\TemplateRoute
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Object.html">Object</a>\<a href="namespace-Charcoal.Object.Route.html">Route</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Object.Route.GenericRoute.html#26-253" title="Go to source code">Charcoal/Object/Route/GenericRoute.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Object.Route.GenericRoute.html#31-297" title="Go to source code">Charcoal/Object/Route/GenericRoute.php</a>
 		<br>
 	</div>
 
@@ -146,7 +146,7 @@ Charcoal\App\Route\TemplateRoute
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#62-70" title="Go to source code">__construct</a>( <span>array|ArrayAccess <var>$data</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#67-75" title="Go to source code">__construct</a>( <span>array|ArrayAccess <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -181,16 +181,21 @@ Charcoal\App\Route\TemplateRoute
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setDependencies">#</a>
-		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#72-77" title="Go to source code">setDependencies</a>( <span>Pimple\Container <var>$container</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#77-87" title="Go to source code">setDependencies</a>( <span>Pimple\Container <var>$container</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Set dependencies.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Set dependencies.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd>Dependencie container.</dd>
+				</dl></div>
 
 
 
@@ -211,7 +216,7 @@ Charcoal\App\Route\TemplateRoute
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pathResolvable">#</a>
-		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#79-98" title="Go to source code">pathResolvable</a>( <span>Pimple\Container <var>$container</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#89-108" title="Go to source code">pathResolvable</a>( <span>Pimple\Container <var>$container</var></span> )</code>
 
 		<div class="description short">
 			
@@ -250,7 +255,7 @@ Charcoal\App\Route\TemplateRoute
 
 		<td class="name"><div>
 		<a class="anchor" href="#___invoke">#</a>
-		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#100-135" title="Go to source code">__invoke</a>( <span>Pimple\Container <var>$container</var></span>, <span>Psr\Http\Message\RequestInterface <var>$request</var></span>, <span>Psr\Http\Message\ResponseInterface <var>$response</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#110-145" title="Go to source code">__invoke</a>( <span>Pimple\Container <var>$container</var></span>, <span>Psr\Http\Message\RequestInterface <var>$request</var></span>, <span>Psr\Http\Message\ResponseInterface <var>$response</var></span> )</code>
 
 		<div class="description short">
 			
@@ -293,7 +298,7 @@ Charcoal\App\Route\TemplateRoute
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadContextObject">#</a>
-		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#137-164" title="Go to source code">loadContextObject</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#147-176" title="Go to source code">loadContextObject</a>( )</code>
 
 		<div class="description short">
 			<p>Load the context object.</p>
@@ -327,7 +332,7 @@ Charcoal\App\Route\TemplateRoute
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadObjectRouteFromPath">#</a>
-		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#166-184" title="Go to source code">loadObjectRouteFromPath</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#178-196" title="Go to source code">loadObjectRouteFromPath</a>( )</code>
 
 		<div class="description short">
 			
@@ -361,7 +366,7 @@ Charcoal\App\Route\TemplateRoute
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLatestObjectPathHistory">#</a>
-		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#186-218" title="Go to source code">getLatestObjectPathHistory</a>( <span><code><a href="class-Charcoal.Object.ObjectRoute.html">Charcoal\Object\ObjectRoute</a></code> <var>$obj</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#198-230" title="Go to source code">getLatestObjectPathHistory</a>( <span><code><a href="class-Charcoal.Object.ObjectRoute.html">Charcoal\Object\ObjectRoute</a></code> <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			<p>Get the latest path history for the given object order
@@ -397,24 +402,33 @@ Should never MISS, the given object route should exist.</p>
 		<td class="attributes"><code>
 			 protected 
 
-			
+			<code><a href="class-Charcoal.Object.Route.GenericRoute.html">Charcoal\Object\Route\GenericRoute</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setPath">#</a>
-		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#220-227" title="Go to source code">setPath</a>( <span> <var>$path</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#236-245" title="Go to source code">setPath</a>( <span>string <var>$path</var></span> )</code>
 
 		<div class="description short">
-			<p>SETTERS</p>
+			<p>Set path.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>SETTERS</p>
+			<p>Set path.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd>Path.</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Object.Route.GenericRoute.html">Charcoal\Object\Route\GenericRoute</a></code><br>Chainable.
+				</div>
 
 
 
@@ -427,24 +441,33 @@ Should never MISS, the given object route should exist.</p>
 		<td class="attributes"><code>
 			 protected 
 
-			
+			<code><a href="class-Charcoal.Object.Route.GenericRoute.html">Charcoal\Object\Route\GenericRoute</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setModelFactory">#</a>
-		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#228-232" title="Go to source code">setModelFactory</a>( <span> <var>$modelFactory</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#247-256" title="Go to source code">setModelFactory</a>( <span>Charcoal\Factory\FactoryInterface <var>$modelFactory</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Set the model factory.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Set the model factory.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$modelFactory</var></dt>
+					<dd>Model factory.</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Object.Route.GenericRoute.html">Charcoal\Object\Route\GenericRoute</a></code><br>Chainable.
+				</div>
 
 
 
@@ -457,24 +480,33 @@ Should never MISS, the given object route should exist.</p>
 		<td class="attributes"><code>
 			 public 
 
-			
+			<code><a href="class-Charcoal.Object.Route.GenericRoute.html">Charcoal\Object\Route\GenericRoute</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCollectionLoader">#</a>
-		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#233-237" title="Go to source code">setCollectionLoader</a>( <span> <var>$loader</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#258-267" title="Go to source code">setCollectionLoader</a>( <span>Charcoal\Loader\CollectionLoader <var>$loader</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Set the collection loader.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Set the collection loader.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$loader</var></dt>
+					<dd>Collection loader.</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Object.Route.GenericRoute.html">Charcoal\Object\Route\GenericRoute</a></code><br>Chainable.
+				</div>
 
 
 
@@ -487,24 +519,28 @@ Should never MISS, the given object route should exist.</p>
 		<td class="attributes"><code>
 			 protected 
 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_path">#</a>
-		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#238-244" title="Go to source code">path</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#272-279" title="Go to source code">path</a>( )</code>
 
 		<div class="description short">
-			<p>GETTERS</p>
+			<p>Path.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>GETTERS</p>
+			<p>Path.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>Path.
+				</div>
 
 
 
@@ -517,24 +553,28 @@ Should never MISS, the given object route should exist.</p>
 		<td class="attributes"><code>
 			 protected 
 
-			
+			Charcoal\Factory\FactoryInterface
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_modelFactory">#</a>
-		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#245-248" title="Go to source code">modelFactory</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#281-288" title="Go to source code">modelFactory</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Model factory.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Model factory.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Factory\FactoryInterface<br>Model factory.
+				</div>
 
 
 
@@ -547,24 +587,28 @@ Should never MISS, the given object route should exist.</p>
 		<td class="attributes"><code>
 			 protected 
 
-			
+			Charcoal\Loader\CollectionLoader
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_collectionLoader">#</a>
-		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#249-252" title="Go to source code">collectionLoader</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.Route.GenericRoute.html#289-296" title="Go to source code">collectionLoader</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Collection loader.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Collection loader.</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Loader\CollectionLoader<br>Collection Loader.
+				</div>
 
 
 
