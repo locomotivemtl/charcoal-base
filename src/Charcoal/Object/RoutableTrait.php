@@ -181,6 +181,11 @@ trait RoutableTrait
         ]);
 
         $model = $this->modelFactory()->create(ObjectRoute::class);
+
+        if ($model->source()->tableExists() === false) {
+            $model->source()->createTable();
+        }
+
         $loader->setModel($model);
 
         $translator = new TranslationString();
@@ -241,7 +246,7 @@ trait RoutableTrait
         $slug = preg_replace($unescaped, '', $slug);
 
         // Replace whitespace by seperator
-        $slug = preg_replace('/\s+/', '-', $slug);
+        $slug = preg_replace('/(\s+|\|)/', '-', $slug);
 
         // Squeeze multiple dashes or underscores
         $slug = preg_replace('/[-]{2,}/', '-', $slug);
