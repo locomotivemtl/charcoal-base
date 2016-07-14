@@ -91,6 +91,10 @@ trait RoutableTrait
 
         $origLang = $translator->currentLanguage();
         foreach ($patterns as $lang => $pattern) {
+            if (!$translator->hasLanguage($lang)) {
+                continue;
+            }
+
             $translator->setCurrentLanguage($lang);
             if ($this instanceof ViewableInterface && $this->view() !== null) {
                 $slug[$lang] = $this->view()->render($pattern, $this->viewController());
