@@ -22,6 +22,8 @@ class AuthTokenTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
+        mb_internal_encoding('UTF-8');
+
         $container = $GLOBALS['container'];
 
         $metadataLoader = new MetadataLoader([
