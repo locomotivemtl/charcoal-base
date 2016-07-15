@@ -5,24 +5,34 @@ namespace Charcoal\Object;
 use \InvalidArgumentException;
 
 /**
- * Categorizable defines objects that can be in a `Category`.
+ * Defines objects that can be associated to one or more categories.
+ *
+ * Basic implementation of {@see \Charcoal\Object\CategorizableMultipleInterface}.
+ *
+ * @see \Charcoal\Object\CategoryInterface Accepted interface.
  */
 trait CategorizableMultipleTrait
 {
     /**
-     * @var string $categoryType
+     * The type of category the object can belong to.
+     *
+     * @var string
      */
     private $categoryType;
 
     /**
-     * @var mixed $category
+     * One or more categories the object belongs to.
+     *
+     * @var (mixed|CategoryInterface)[]|Traversable
      */
     private $categories;
 
     /**
+     * Set the type of category the object can belong to.
+     *
      * @param string $type The category type.
      * @throws InvalidArgumentException If the type argument is not a string.
-     * @return CategorizableInterface Chainable
+     * @return CategorizableMultipleInterface Chainable
      */
     public function setCategoryType($type)
     {
@@ -31,10 +41,15 @@ trait CategorizableMultipleTrait
                 'Category type must be a string.'
             );
         }
+
         $this->categoryType = $type;
+
         return $this;
     }
+
     /**
+     * Retrieve the type of category the object can belong to.
+     *
      * @return string
      */
     public function categoryType()
@@ -43,17 +58,22 @@ trait CategorizableMultipleTrait
     }
 
     /**
-     * @param mixed[] $categories The object's categories.
-     * @return CategorizableInterface Chainable
+     * Set the categories the object belongs to.
+     *
+     * @param array|Traversable $categories The object's categories.
+     * @return CategorizableMultipleInterface Chainable
      */
     public function setCategories($categories)
     {
         $this->categories = $categories;
+
         return $this;
     }
 
     /**
-     * @return CategoryInterface
+     * Retrieve the categories the object belongs to.
+     *
+     * @return array|Traversable
      */
     public function categories()
     {

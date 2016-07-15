@@ -2,11 +2,13 @@
 
 namespace Charcoal\User;
 
-// Dependencies from 'PSR-3' (Logging)
+use \RuntimeException;
+
+// Dependencies from PSR-3 (Logging)
 use \Psr\Log\LoggerAwareInterface;
 use \Psr\Log\LoggerAwareTrait;
 
-// Module `charcoal-factory` dependencies
+// Dependency from 'charcoal-factory'
 use \Charcoal\Factory\FactoryInterface;
 
 /**
@@ -28,26 +30,36 @@ class Authenticator implements LoggerAwareInterface
     use LoggerAwareTrait;
 
     /**
-     * @var string $userType
+     * The user object type.
+     *
+     * @var string
      */
     private $userType;
 
     /**
-     * @var FactoryInterface $userFactory
+     * Store the user model factory instance for the current class.
+     *
+     * @var FactoryInterface
      */
     private $userFactory;
 
     /**
-     * @var string $tokenType
+     * The auth-token object type.
+     *
+     * @var string
      */
     private $tokenType;
 
     /**
-     * @var FactoryInterface $tokenFactory
+     * Store the auth-token model factory instance for the current class.
+     *
+     * @var FactoryInterface
      */
     private $tokenFactory;
 
     /**
+     * Returns a new Authoricator object.
+     *
      * @param array $data Class dependencies.
      */
     public function __construct(array $data)
@@ -60,17 +72,29 @@ class Authenticator implements LoggerAwareInterface
     }
 
     /**
-     * @param string $type The user (obj) type.
+     * Set the user object type (model).
+     *
+     * @param string $type The user object type.
+     * @throws InvalidArgumentException If the user object type parameter is not a string.
      * @return AdminAuthenticator Chainable
      */
     private function setUserType($type)
     {
+        if (!is_string($type)) {
+            throw new InvalidArgumentException(
+                'User object type must be a string'
+            );
+        }
+
         $this->userType = $type;
+
         return $this;
     }
 
     /**
-     * @return string The user object type.
+     * Retrieve the user object type.
+     *
+     * @return string
      */
     protected function userType()
     {
@@ -78,35 +102,59 @@ class Authenticator implements LoggerAwareInterface
     }
 
     /**
+     * Set a user model factory.
+     *
      * @param FactoryInterface $factory The factory used to create new user instances.
      * @return AdminAuthenticator Chainable
      */
     private function setUserFactory(FactoryInterface $factory)
     {
         $this->userFactory = $factory;
+
         return $this;
     }
 
     /**
+     * Retrieve the user model factory.
+     *
+     * @throws RuntimeException If the model factory was not previously set.
      * @return FactoryInterface
      */
     protected function userFactory()
     {
+        if (!isset($this->userFactory)) {
+            throw new RuntimeException(
+                sprintf('User Factory is not defined for "%s"', get_class($this))
+            );
+        }
+
         return $this->userFactory;
     }
 
     /**
-     * @param string $type The auth-token (obj) type.
+     * Set the authorization token type (model).
+     *
+     * @param string $type The auth-token object type.
+     * @throws InvalidArgumentException If the token object type parameter is not a string.
      * @return AdminAuthenticator Chainable
      */
     private function setTokenType($type)
     {
+        if (!is_string($type)) {
+            throw new InvalidArgumentException(
+                'Token object type must be a string'
+            );
+        }
+
         $this->tokenType = $type;
+
         return $this;
     }
 
     /**
-     * @return string The auth-token type.
+     * Retrieve the auth-token object type.
+     *
+     * @return string
      */
     protected function tokenType()
     {
@@ -114,25 +162,42 @@ class Authenticator implements LoggerAwareInterface
     }
 
     /**
+     * Set a model factory for token-based authentication.
+     *
      * @param FactoryInterface $factory The factory used to create new auth-token instances.
      * @return AdminAuthenticator Chainable
      */
     private function setTokenFactory(FactoryInterface $factory)
     {
         $this->tokenFactory = $factory;
+
         return $this;
     }
 
     /**
+     * Retrieve the auth-token model factory.
+     *
+     * @throws RuntimeException If the token factory was not previously set.
      * @return FactoryInterface
      */
     protected function tokenFactory()
     {
+        if (!isset($this->tokenFactory)) {
+            throw new RuntimeException(
+                sprintf('Token Factory is not defined for "%s"', get_class($this))
+            );
+        }
+
         return $this->tokenFactory;
     }
 
     /**
-     * @return \Charcoal\User\UserInterface|null The authenticated user object, null if not authenticated.
+     * Determine if the current user is authenticated.
+     *
+     * The user is authenticated via _session ID_ or _auth token_.
+     *
+     * @return \Charcoal\User\UserInterface|null Returns the authenticated user object
+     *     or NULL if not authenticated.
      */
     public function authenticate()
     {
@@ -140,20 +205,23 @@ class Authenticator implements LoggerAwareInterface
         if ($u) {
             return $u;
         }
+
         $u = $this->authenticateByToken();
         if ($u) {
             return $u;
         }
-        return;
+
+        return null;
     }
 
     /**
-     * Returns the authenticated User, or null if no user match credentials.
+     * Attempt to authenticate a user using the given credentials.
      *
      * @param string $username Username, part of necessery credentials.
      * @param string $password Password, part of necessary credentials.
      * @throws InvalidArgumentException If username or password are invalid or empty.
-     * @return \Charcoal\User\UserInterface|null
+     * @return \Charcoal\User\UserInterface|null Returns the authenticated user object
+     *     or NULL if not authenticated.
      */
     public function authenticateByPassword($username, $password)
     {
@@ -180,6 +248,7 @@ class Authenticator implements LoggerAwareInterface
         if ($u->username() != $username) {
             return null;
         }
+
         if ($u->active() === false) {
             return null;
         }
@@ -196,25 +265,32 @@ class Authenticator implements LoggerAwareInterface
             }
 
             $u->login();
+
             return $u;
         } else {
             $this->logger->warning(
                 sprintf('Invalid login attempt for user "%s" (%s): invalid password.')
             );
+
             return null;
         }
     }
 
     /**
-     * @return \Charcoal\User\UserInterface|null
+     * Attempt to authenticate a user using their session ID.
+     *
+     * @return \Charcoal\User\UserInterface|null Returns the authenticated user object
+     *     or NULL if not authenticated.
      */
     private function authenticateBySession()
     {
-        // Call static method on user
         $u = $this->userFactory()->create($this->userType());
+        // Call static method on user
         $u = call_user_func([get_class($u), 'getAuthenticated'], $this->userFactory());
+
         if ($u && $u->id()) {
             $u->saveToSession();
+
             return $u;
         } else {
             return null;
@@ -222,7 +298,10 @@ class Authenticator implements LoggerAwareInterface
     }
 
     /**
-     * @return \Charcoal\User\UserInterface|null
+     * Attempt to authenticate a user using their auth token.
+     *
+     * @return \Charcoal\User\UserInterface|null Returns the authenticated user object
+     *     or NULL if not authenticated.
      */
     private function authenticateByToken()
     {

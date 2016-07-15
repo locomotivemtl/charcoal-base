@@ -6,46 +6,59 @@ namespace Charcoal\Object;
 use \DateTime;
 use \DateTimeInterface;
 use \Exception;
+use \RuntimeException;
 use \InvalidArgumentException;
 
-// Module `charcoal-factory` dependencies
+// Dependency from 'charcoal-factory'
 use \Charcoal\Factory\FactoryInterface;
 
-// Module `charcoal-core` dependencies
+// Dependency from 'charcoal-core'
 use \Charcoal\Model\AbstractModel;
 
 // Local namespace dependencies
 use \Charcoal\Object\ObjectScheduleInterface;
 
 /**
- * Object schedule allows object properties to be changed at a scheduled time.
+ * The object schedule class allows object properties to be changed at a scheduled time.
+ *
+ * ## Required Services
+ *
+ * - "model/factory" — {@see \Charcoal\Model\ModelFactory}
  */
 class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
 {
     /**
-     * @var FactoryInterface $modelFactory
+     * Store the factory instance for the current class.
+     *
+     * @var FactoryInterface
      */
     private $modelFactory;
 
     /**
-     * Object type of this revision (required)
-     * @var string $objType
+     * The object type of the scheduled object (required).
+     *
+     * @var string
      */
     private $objType;
 
     /**
-     * Object ID of this revision (required)
-     * @var mixed $objectId
+     * The object ID of the scheduled object (required).
+     *
+     * @var mixed
      */
     private $objId;
 
     /**
-     * @var string $propertyIdent
+     * The property identifier of the scheduled object (required).
+     *
+     * @var string
      */
     private $propertyIdent;
 
     /**
-     * @var mixed $newValue
+     * The new value for the scheduled object's property.
+     *
+     * @var mixed
      */
     private $newValue;
 
@@ -74,40 +87,58 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
     private $processedDate;
 
     /**
+     * Set an object model factory.
+     *
      * @param FactoryInterface $factory The model factory, to create objects.
      * @return ObjectContainerInterface Chainable
      */
     public function setModelFactory(FactoryInterface $factory)
     {
         $this->modelFactory = $factory;
+
         return $this;
     }
 
     /**
+     * Retrieve the object model factory.
+     *
+     * @throws RuntimeException If the model factory was not previously set.
      * @return FactoryInterface
      */
     protected function modelFactory()
     {
+        if (!isset($this->modelFactory)) {
+            throw new RuntimeException(
+                sprintf('Model Factory is not defined for "%s"', get_class($this))
+            );
+        }
+
         return $this->modelFactory;
     }
 
     /**
-     * @param string $objType The object type (type-ident).
-     * @throws InvalidArgumentException If the obj type parameter is not a string.
+     * Set the scheduled object's type.
+     *
+     * @param string $objType The object type (model).
+     * @throws InvalidArgumentException If the object type parameter is not a string.
      * @return ObjectScheduleInterface Chainable
      */
     public function setObjType($objType)
     {
         if (!is_string($objType)) {
             throw new InvalidArgumentException(
-                'Revisions obj type must be a string.'
+                'Scheduled object type must be a string.'
             );
         }
+
         $this->objType = $objType;
+
         return $this;
     }
 
     /**
+     * Retrieve the scheduled object's type.
+     *
      * @return string
      */
     public function objType()
@@ -116,16 +147,21 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
     }
 
     /**
+     * Set the scheduled object's ID.
+     *
      * @param mixed $objId The object ID.
      * @return ObjectScheduleInterface Chainable
      */
     public function setObjId($objId)
     {
         $this->objId = $objId;
+
         return $this;
     }
 
     /**
+     * Retrieve the scheduled object's ID.
+     *
      * @return mixed
      */
     public function objId()
@@ -134,16 +170,28 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
     }
 
     /**
+     * Set the scheduled property's identifier.
+     *
      * @param string $propertyIdent The property identifier.
+     * @throws InvalidArgumentException If the property identifier parameter is not a string.
      * @return ObjectScheduleInterface Chainable
      */
     public function setPropertyIdent($propertyIdent)
     {
+        if (!is_string($propertyIdent)) {
+            throw new InvalidArgumentException(
+                'Property identifier must be a string'
+            );
+        }
+
         $this->propertyIdent = $propertyIdent;
+
         return $this;
     }
 
     /**
+     * Retrieve the scheduled property's identifier.
+     *
      * @return string
      */
     public function propertyIdent()
@@ -152,16 +200,21 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
     }
 
     /**
+     * Set the new value for the scheduled object's property.
+     *
      * @param mixed $val The new value to set on object's property.
      * @return ObjectScheduleInterface Chainable
      */
     public function setNewValue($val)
     {
         $this->newValue = $val;
+
         return $this;
     }
 
     /**
+     * Retrieve the new value for the scheduled object's property.
+     *
      * @return mixed
      */
     public function newValue()
@@ -178,6 +231,7 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
     public function setProcessed($processed)
     {
         $this->processed = !!$processed;
+
         return $this;
     }
 
@@ -319,12 +373,14 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
             $this->logger->error('Can not process object schedule: no object type defined.');
             return false;
         }
+
         if ($this->objId() === null) {
             $this->logger->error(
                 sprintf('Can not process object schedule: no object "%s" ID defined.', $this->objType())
             );
             return false;
         }
+
         if ($this->propertyIdent() === null) {
             $this->logger->error('Can not process object schedule: no property identifer defined.');
             return false;
@@ -357,7 +413,6 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
         }
 
         return $update;
-
     }
 }
 

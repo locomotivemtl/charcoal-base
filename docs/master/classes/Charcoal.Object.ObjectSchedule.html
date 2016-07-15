@@ -114,7 +114,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">331</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">284</span>
                                 </a>
                             </li>
                             <li>
@@ -144,37 +144,37 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1539285022"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1704314266"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1539285022" class="accordion-body collapse in">
+            <div id="namespace-1704314266" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-82926232"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1291219677"></a>
                                 <a href="../namespaces/Charcoal.html" style="margin-left: 30px; padding-left: 0">Charcoal</a>
             </div>
-            <div id="namespace-82926232" class="accordion-body collapse ">
+            <div id="namespace-1291219677" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-420019390"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2085827550"></a>
                                 <a href="../namespaces/Charcoal.Object.html" style="margin-left: 30px; padding-left: 0">Object</a>
             </div>
-            <div id="namespace-420019390" class="accordion-body collapse ">
+            <div id="namespace-2085827550" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1276500102"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1199777934"></a>
                                 <a href="../namespaces/Charcoal.Object.Route.html" style="margin-left: 30px; padding-left: 0">Route</a>
             </div>
-            <div id="namespace-1276500102" class="accordion-body collapse ">
+            <div id="namespace-1199777934" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -222,10 +222,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1497761169"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-921720328"></a>
                                 <a href="../namespaces/Charcoal.User.html" style="margin-left: 30px; padding-left: 0">User</a>
             </div>
-            <div id="namespace-1497761169" class="accordion-body collapse ">
+            <div id="namespace-921720328" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -274,8 +274,11 @@
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
                     <h1><small>\Charcoal\Object</small>ObjectSchedule</h1>
-                    <p><em>Object schedule allows object properties to be changed at a scheduled time.</em></p>
-                    
+                    <p><em>The object schedule class allows object properties to be changed at a scheduled time.</em></p>
+                    <h2>Required Services</h2>
+<ul>
+<li>&quot;model/factory&quot; — \Charcoal\Model\ModelFactory</li>
+</ul>
                     
                                         
                     <section id="summary">
@@ -393,7 +396,7 @@
             <article class="property">
                 <h3 class="private ">$modelFactory</h3>
                 <pre class="signature">$modelFactory : \Charcoal\Factory\FactoryInterface</pre>
-                <p><em></em></p>
+                <p><em>Store the factory instance for the current class.</em></p>
                 
 
                                 <h4>Type</h4>
@@ -417,7 +420,7 @@
             <article class="property">
                 <h3 class="private ">$objType</h3>
                 <pre class="signature">$objType : string</pre>
-                <p><em>Object type of this revision (required)</em></p>
+                <p><em>The object type of the scheduled object (required).</em></p>
                 
 
                                 <h4>Type</h4>
@@ -441,7 +444,7 @@
             <article class="property">
                 <h3 class="private ">$objId</h3>
                 <pre class="signature">$objId : mixed</pre>
-                <p><em>Object ID of this revision (required)</em></p>
+                <p><em>The object ID of the scheduled object (required).</em></p>
                 
 
                                 <h4>Type</h4>
@@ -465,7 +468,7 @@
             <article class="property">
                 <h3 class="private ">$propertyIdent</h3>
                 <pre class="signature">$propertyIdent : string</pre>
-                <p><em></em></p>
+                <p><em>The property identifier of the scheduled object (required).</em></p>
                 
 
                                 <h4>Type</h4>
@@ -489,7 +492,7 @@
             <article class="property">
                 <h3 class="private ">$newValue</h3>
                 <pre class="signature">$newValue : mixed</pre>
-                <p><em></em></p>
+                <p><em>The new value for the scheduled object&#039;s property.</em></p>
                 
 
                                 <h4>Type</h4>
@@ -594,7 +597,7 @@ If NULL, 0, or a past date/time, then it should be performed immediately.</p>
                 <h3 class="public ">setModelFactory()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">setModelFactory(\Charcoal\Factory\FactoryInterface  <span class="argument">$factory</span>) : \Charcoal\Object\ObjectContainerInterface</pre>
-                <p><em></em></p>
+                <p><em>Set an object model factory.</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -631,7 +634,7 @@ If NULL, 0, or a past date/time, then it should be performed immediately.</p>
                 <h3 class="public ">setObjType()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">setObjType(string  <span class="argument">$objType</span>) : \Charcoal\Object\ObjectScheduleInterface</pre>
-                <p><em></em></p>
+                <p><em>Set the scheduled object&#039;s type.</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -639,14 +642,14 @@ If NULL, 0, or a past date/time, then it should be performed immediately.</p>
                                                     <tr>
                                 <td>string</td>
                                 <td>$objType </td>
-                                <td><p>The object type (type-ident).</p></td>
+                                <td><p>The object type (model).</p></td>
                             </tr>
                                             </table>
                 
                                     <h4>Throws</h4>
                     <dl>
                                                     <dt>\InvalidArgumentException</dt>
-                            <dd><p>If the obj type parameter is not a string.</p></dd>
+                            <dd><p>If the object type parameter is not a string.</p></dd>
                                                                     </dl>
                 
                                     <h4>Returns</h4>
@@ -673,7 +676,7 @@ If NULL, 0, or a past date/time, then it should be performed immediately.</p>
                 <h3 class="public ">objType()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">objType() : string</pre>
-                <p><em></em></p>
+                <p><em>Retrieve the scheduled object&#039;s type.</em></p>
                 
 
                 
@@ -701,7 +704,7 @@ If NULL, 0, or a past date/time, then it should be performed immediately.</p>
                 <h3 class="public ">setObjId()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">setObjId(mixed  <span class="argument">$objId</span>) : \Charcoal\Object\ObjectScheduleInterface</pre>
-                <p><em></em></p>
+                <p><em>Set the scheduled object&#039;s ID.</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -738,7 +741,7 @@ If NULL, 0, or a past date/time, then it should be performed immediately.</p>
                 <h3 class="public ">objId()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">objId() : mixed</pre>
-                <p><em></em></p>
+                <p><em>Retrieve the scheduled object&#039;s ID.</em></p>
                 
 
                 
@@ -766,7 +769,7 @@ If NULL, 0, or a past date/time, then it should be performed immediately.</p>
                 <h3 class="public ">setPropertyIdent()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">setPropertyIdent(string  <span class="argument">$propertyIdent</span>) : \Charcoal\Object\ObjectScheduleInterface</pre>
-                <p><em></em></p>
+                <p><em>Set the scheduled property&#039;s identifier.</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -778,6 +781,11 @@ If NULL, 0, or a past date/time, then it should be performed immediately.</p>
                             </tr>
                                             </table>
                 
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the property identifier parameter is not a string.</p></dd>
+                                                                    </dl>
                 
                                     <h4>Returns</h4>
                     <a href="../classes/Charcoal.Object.ObjectScheduleInterface.html">\Charcoal\Object\ObjectScheduleInterface</a>
@@ -803,7 +811,7 @@ If NULL, 0, or a past date/time, then it should be performed immediately.</p>
                 <h3 class="public ">propertyIdent()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">propertyIdent() : string</pre>
-                <p><em></em></p>
+                <p><em>Retrieve the scheduled property&#039;s identifier.</em></p>
                 
 
                 
@@ -831,7 +839,7 @@ If NULL, 0, or a past date/time, then it should be performed immediately.</p>
                 <h3 class="public ">setNewValue()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">setNewValue(mixed  <span class="argument">$val</span>) : \Charcoal\Object\ObjectScheduleInterface</pre>
-                <p><em></em></p>
+                <p><em>Set the new value for the scheduled object&#039;s property.</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -868,7 +876,7 @@ If NULL, 0, or a past date/time, then it should be performed immediately.</p>
                 <h3 class="public ">newValue()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">newValue() : mixed</pre>
-                <p><em></em></p>
+                <p><em>Retrieve the new value for the scheduled object&#039;s property.</em></p>
                 
 
                 
@@ -1177,10 +1185,15 @@ If NULL, 0, or a past date/time, then it should be performed immediately.</p>
                 <h3 class="protected ">modelFactory()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">modelFactory() : \Charcoal\Factory\FactoryInterface</pre>
-                <p><em></em></p>
+                <p><em>Retrieve the object model factory.</em></p>
                 
 
                 
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\RuntimeException</dt>
+                            <dd><p>If the model factory was not previously set.</p></dd>
+                                                                    </dl>
                 
                                     <h4>Returns</h4>
                     \Charcoal\Factory\FactoryInterface
@@ -1248,7 +1261,7 @@ If NULL, 0, or a past date/time, then it should be performed immediately.</p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on July 14th, 2016 at 16:59.
+                    on July 15th, 2016 at 17:30.
                 </section>
             </section>
         </section>
