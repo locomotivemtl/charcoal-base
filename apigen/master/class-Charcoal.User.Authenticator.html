@@ -148,7 +148,7 @@ The required dependencies are:</p>
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.User.html">User</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.User.Authenticator.html#12-255" title="Go to source code">Charcoal/User/Authenticator.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.User.Authenticator.html#14-334" title="Go to source code">Charcoal/User/Authenticator.php</a>
 		<br>
 	</div>
 
@@ -168,14 +168,14 @@ The required dependencies are:</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Charcoal.User.Authenticator.html#50-60" title="Go to source code">__construct</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-Charcoal.User.Authenticator.html#60-72" title="Go to source code">__construct</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Returns a new Authoricator object.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Returns a new Authoricator object.</p>
 
 
 				<h4>Parameters</h4>
@@ -203,20 +203,20 @@ The required dependencies are:</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_userType">#</a>
-		<code><a href="source-class-Charcoal.User.Authenticator.html#72-78" title="Go to source code">userType</a>( )</code>
+		<code><a href="source-class-Charcoal.User.Authenticator.html#94-102" title="Go to source code">userType</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Retrieve the user object type.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Retrieve the user object type.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>The user object type.
+					string
 				</div>
 
 
@@ -237,14 +237,14 @@ The required dependencies are:</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_userFactory">#</a>
-		<code><a href="source-class-Charcoal.User.Authenticator.html#90-96" title="Go to source code">userFactory</a>( )</code>
+		<code><a href="source-class-Charcoal.User.Authenticator.html#117-132" title="Go to source code">userFactory</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Retrieve the user model factory.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Retrieve the user model factory.</p>
 
 
 
@@ -253,6 +253,10 @@ The required dependencies are:</p>
 					Charcoal\Factory\FactoryInterface
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					RuntimeException<br>If the model factory was not previously set.
+				</div>
 
 
 
@@ -271,20 +275,20 @@ The required dependencies are:</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_tokenType">#</a>
-		<code><a href="source-class-Charcoal.User.Authenticator.html#108-114" title="Go to source code">tokenType</a>( )</code>
+		<code><a href="source-class-Charcoal.User.Authenticator.html#154-162" title="Go to source code">tokenType</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Retrieve the auth-token object type.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Retrieve the auth-token object type.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>The auth-token type.
+					string
 				</div>
 
 
@@ -305,14 +309,14 @@ The required dependencies are:</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_tokenFactory">#</a>
-		<code><a href="source-class-Charcoal.User.Authenticator.html#126-132" title="Go to source code">tokenFactory</a>( )</code>
+		<code><a href="source-class-Charcoal.User.Authenticator.html#177-192" title="Go to source code">tokenFactory</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Retrieve the auth-token model factory.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Retrieve the auth-token model factory.</p>
 
 
 
@@ -321,6 +325,10 @@ The required dependencies are:</p>
 					Charcoal\Factory\FactoryInterface
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					RuntimeException<br>If the token factory was not previously set.
+				</div>
 
 
 
@@ -339,20 +347,23 @@ The required dependencies are:</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_authenticate">#</a>
-		<code><a href="source-class-Charcoal.User.Authenticator.html#134-148" title="Go to source code">authenticate</a>( )</code>
+		<code><a href="source-class-Charcoal.User.Authenticator.html#194-215" title="Go to source code">authenticate</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Determine if the current user is authenticated.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Determine if the current user is authenticated.</p>
+
+<p>The user is authenticated via <em>session ID</em> or <em>auth token</em>.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.User.UserInterface.html">Charcoal\User\UserInterface</a></code>|null<br>The authenticated user object, null if not authenticated.
+					<code><a href="class-Charcoal.User.UserInterface.html">Charcoal\User\UserInterface</a></code>|null<br><p>Returns the authenticated user object
+    or NULL if not authenticated.</p>
 				</div>
 
 
@@ -373,14 +384,14 @@ The required dependencies are:</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_authenticateByPassword">#</a>
-		<code><a href="source-class-Charcoal.User.Authenticator.html#150-206" title="Go to source code">authenticateByPassword</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span> )</code>
+		<code><a href="source-class-Charcoal.User.Authenticator.html#217-277" title="Go to source code">authenticateByPassword</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span> )</code>
 
 		<div class="description short">
-			<p>Returns the authenticated User, or null if no user match credentials.</p>
+			<p>Attempt to authenticate a user using the given credentials.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Returns the authenticated User, or null if no user match credentials.</p>
+			<p>Attempt to authenticate a user using the given credentials.</p>
 
 
 				<h4>Parameters</h4>
@@ -393,7 +404,8 @@ The required dependencies are:</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.User.UserInterface.html">Charcoal\User\UserInterface</a></code>|null
+					<code><a href="class-Charcoal.User.UserInterface.html">Charcoal\User\UserInterface</a></code>|null<br><p>Returns the authenticated user object
+    or NULL if not authenticated.</p>
 				</div>
 
 				<h4>Throws</h4>

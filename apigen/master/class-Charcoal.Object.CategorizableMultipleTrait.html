@@ -124,7 +124,9 @@
 
 
 	<div class="description">
-	<p>Categorizable defines objects that can be in a <code>Category</code>.</p>
+	<p>Defines objects that can be associated to one or more categories.</p>
+
+<p>Basic implementation of <code><a href="class-Charcoal.Object.CategorizableMultipleInterface.html">Charcoal\Object\CategorizableMultipleInterface</a></code>.</p>
 	</div>
 
 
@@ -141,7 +143,9 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Object.html">Object</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Object.CategorizableMultipleTrait.html#7-62" title="Go to source code">Charcoal/Object/CategorizableMultipleTrait.php</a>
+				<b>See:</b>
+				\Charcoal\Object\CategoryInterface Accepted interface.<br>
+			<b>Located at</b> <a href="source-class-Charcoal.Object.CategorizableMultipleTrait.html#7-82" title="Go to source code">Charcoal/Object/CategorizableMultipleTrait.php</a>
 		<br>
 	</div>
 
@@ -154,21 +158,21 @@
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Object.CategorizableInterface.html">Charcoal\Object\CategorizableInterface</a></code>
+			<code><a href="class-Charcoal.Object.CategorizableMultipleInterface.html">Charcoal\Object\CategorizableMultipleInterface</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCategoryType">#</a>
-		<code><a href="source-class-Charcoal.Object.CategorizableMultipleTrait.html#22-36" title="Go to source code">setCategoryType</a>( <span>string <var>$type</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.CategorizableMultipleTrait.html#30-48" title="Go to source code">setCategoryType</a>( <span>string <var>$type</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Set the type of category the object can belong to.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Set the type of category the object can belong to.</p>
 
 
 				<h4>Parameters</h4>
@@ -179,7 +183,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Object.CategorizableInterface.html">Charcoal\Object\CategorizableInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Object.CategorizableMultipleInterface.html">Charcoal\Object\CategorizableMultipleInterface</a></code><br>Chainable
 				</div>
 
 				<h4>Throws</h4>
@@ -204,14 +208,14 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_categoryType">#</a>
-		<code><a href="source-class-Charcoal.Object.CategorizableMultipleTrait.html#37-43" title="Go to source code">categoryType</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.CategorizableMultipleTrait.html#50-58" title="Go to source code">categoryType</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Retrieve the type of category the object can belong to.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Retrieve the type of category the object can belong to.</p>
 
 
 
@@ -231,21 +235,21 @@
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Object.CategorizableInterface.html">Charcoal\Object\CategorizableInterface</a></code>
+			<code><a href="class-Charcoal.Object.CategorizableMultipleInterface.html">Charcoal\Object\CategorizableMultipleInterface</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCategories">#</a>
-		<code><a href="source-class-Charcoal.Object.CategorizableMultipleTrait.html#45-53" title="Go to source code">setCategories</a>( <span>mixed[] <var>$categories</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.CategorizableMultipleTrait.html#60-71" title="Go to source code">setCategories</a>( <span>array|Traversable <var>$categories</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Set the categories the object belongs to.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Set the categories the object belongs to.</p>
 
 
 				<h4>Parameters</h4>
@@ -256,7 +260,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Object.CategorizableInterface.html">Charcoal\Object\CategorizableInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Object.CategorizableMultipleInterface.html">Charcoal\Object\CategorizableMultipleInterface</a></code><br>Chainable
 				</div>
 
 
@@ -270,27 +274,27 @@
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Object.CategoryInterface.html">Charcoal\Object\CategoryInterface</a></code>
+			array|Traversable
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_categories">#</a>
-		<code><a href="source-class-Charcoal.Object.CategorizableMultipleTrait.html#55-61" title="Go to source code">categories</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.CategorizableMultipleTrait.html#73-81" title="Go to source code">categories</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Retrieve the categories the object belongs to.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Retrieve the categories the object belongs to.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Object.CategoryInterface.html">Charcoal\Object\CategoryInterface</a></code>
+					array|Traversable
 				</div>
 
 

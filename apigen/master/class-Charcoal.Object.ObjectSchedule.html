@@ -124,7 +124,13 @@
 
 
 	<div class="description">
-	<p>Object schedule allows object properties to be changed at a scheduled time.</p>
+	<p>The object schedule class allows object properties to be changed at a scheduled time.</p>
+
+<h2>Required Services</h2>
+
+<ul>
+<li>"model/factory" — \Charcoal\Model\ModelFactory</li>
+</ul>
 	</div>
 
 	<dl class="tree">
@@ -156,7 +162,7 @@ Charcoal\Model\AbstractModel
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Object.html">Object</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Object.ObjectSchedule.html#20-362" title="Go to source code">Charcoal/Object/ObjectSchedule.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Object.ObjectSchedule.html#21-417" title="Go to source code">Charcoal/Object/ObjectSchedule.php</a>
 		<br>
 	</div>
 
@@ -176,14 +182,14 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setModelFactory">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#76-84" title="Go to source code">setModelFactory</a>( <span>Charcoal\Factory\FactoryInterface <var>$factory</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#89-100" title="Go to source code">setModelFactory</a>( <span>Charcoal\Factory\FactoryInterface <var>$factory</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Set an object model factory.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Set an object model factory.</p>
 
 
 				<h4>Parameters</h4>
@@ -215,14 +221,14 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_modelFactory">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#86-92" title="Go to source code">modelFactory</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#102-117" title="Go to source code">modelFactory</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Retrieve the object model factory.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Retrieve the object model factory.</p>
 
 
 
@@ -231,6 +237,10 @@ Charcoal\Model\AbstractModel
 					Charcoal\Factory\FactoryInterface
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					RuntimeException<br>If the model factory was not previously set.
+				</div>
 
 
 
@@ -249,20 +259,20 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setObjType">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#94-108" title="Go to source code">setObjType</a>( <span>string <var>$objType</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#119-137" title="Go to source code">setObjType</a>( <span>string <var>$objType</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Set the scheduled object's type.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Set the scheduled object's type.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$objType</var></dt>
-					<dd>The object type (type-ident).</dd>
+					<dd>The object type (model).</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -272,7 +282,7 @@ Charcoal\Model\AbstractModel
 
 				<h4>Throws</h4>
 				<div class="list">
-					InvalidArgumentException<br>If the obj type parameter is not a string.
+					InvalidArgumentException<br>If the object type parameter is not a string.
 				</div>
 
 
@@ -294,14 +304,14 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_objType">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#110-116" title="Go to source code">objType</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#139-147" title="Go to source code">objType</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Retrieve the scheduled object's type.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Retrieve the scheduled object's type.</p>
 
 
 
@@ -330,14 +340,14 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setObjId">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#118-126" title="Go to source code">setObjId</a>( <span>mixed <var>$objId</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#149-160" title="Go to source code">setObjId</a>( <span>mixed <var>$objId</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Set the scheduled object's ID.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Set the scheduled object's ID.</p>
 
 
 				<h4>Parameters</h4>
@@ -371,14 +381,14 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_objId">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#128-134" title="Go to source code">objId</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#162-170" title="Go to source code">objId</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Retrieve the scheduled object's ID.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Retrieve the scheduled object's ID.</p>
 
 
 
@@ -407,14 +417,14 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setPropertyIdent">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#136-144" title="Go to source code">setPropertyIdent</a>( <span>string <var>$propertyIdent</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#172-190" title="Go to source code">setPropertyIdent</a>( <span>string <var>$propertyIdent</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Set the scheduled property's identifier.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Set the scheduled property's identifier.</p>
 
 
 				<h4>Parameters</h4>
@@ -428,6 +438,10 @@ Charcoal\Model\AbstractModel
 					<code><a href="class-Charcoal.Object.ObjectScheduleInterface.html">Charcoal\Object\ObjectScheduleInterface</a></code><br>Chainable
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentException<br>If the property identifier parameter is not a string.
+				</div>
 
 
 
@@ -446,14 +460,14 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_propertyIdent">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#146-152" title="Go to source code">propertyIdent</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#192-200" title="Go to source code">propertyIdent</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Retrieve the scheduled property's identifier.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Retrieve the scheduled property's identifier.</p>
 
 
 
@@ -480,14 +494,14 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setNewValue">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#154-162" title="Go to source code">setNewValue</a>( <span>mixed <var>$val</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#202-213" title="Go to source code">setNewValue</a>( <span>mixed <var>$val</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Set the new value for the scheduled object's property.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Set the new value for the scheduled object's property.</p>
 
 
 				<h4>Parameters</h4>
@@ -519,14 +533,14 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newValue">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#164-170" title="Go to source code">newValue</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#215-223" title="Go to source code">newValue</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Retrieve the new value for the scheduled object's property.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Retrieve the new value for the scheduled object's property.</p>
 
 
 
@@ -553,7 +567,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setProcessed">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#172-182" title="Go to source code">setProcessed</a>( <span>boolean <var>$processed</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#225-236" title="Go to source code">setProcessed</a>( <span>boolean <var>$processed</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the schedule's processed status.</p>
@@ -592,7 +606,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_processed">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#184-192" title="Go to source code">processed</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#238-246" title="Go to source code">processed</a>( )</code>
 
 		<div class="description short">
 			<p>Determine if the schedule has been processed.</p>
@@ -626,7 +640,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setProcessingDate">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#194-227" title="Go to source code">setProcessingDate</a>( <span>null|string|DateTimeInterface <var>$ts</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#248-281" title="Go to source code">setProcessingDate</a>( <span>null|string|DateTimeInterface <var>$ts</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the date/time the item should be processed at.</p>
@@ -671,7 +685,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_processingDate">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#229-237" title="Go to source code">processingDate</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#283-291" title="Go to source code">processingDate</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the date/time the item should be processed at.</p>
@@ -707,7 +721,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setProcessedDate">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#239-272" title="Go to source code">setProcessedDate</a>( <span>null|string|DateTimeInterface <var>$ts</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#293-326" title="Go to source code">setProcessedDate</a>( <span>null|string|DateTimeInterface <var>$ts</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the date/time the item was processed at.</p>
@@ -752,7 +766,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_processedDate">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#274-282" title="Go to source code">processedDate</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#328-336" title="Go to source code">processedDate</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the date/time the item was processed at.</p>
@@ -788,7 +802,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preSave">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#284-298" title="Go to source code">preSave</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#338-352" title="Go to source code">preSave</a>( )</code>
 
 		<div class="description short">
 			<p>Hook called before saving the item.</p>
@@ -824,7 +838,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_process">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#300-361" title="Go to source code">process</a>( <span>callable <var>$callback</var> = <span class="php-keyword1">null</span></span>, <span>callable <var>$successCallback</var> = <span class="php-keyword1">null</span></span>, <span>callable <var>$failureCallback</var> = <span class="php-keyword1">null</span> </span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectSchedule.html#354-416" title="Go to source code">process</a>( <span>callable <var>$callback</var> = <span class="php-keyword1">null</span></span>, <span>callable <var>$successCallback</var> = <span class="php-keyword1">null</span></span>, <span>callable <var>$failureCallback</var> = <span class="php-keyword1">null</span> </span> )</code>
 
 		<div class="description short">
 			<p>Process the item.</p>
