@@ -3,30 +3,39 @@
 namespace Charcoal\Object;
 
 /**
- * The `Categorizable` Trait / Interface describes objects that can be put into categories.
+ * Defines objects that can be associated to one or more categories.
+ *
+ * @see \Charcoal\Object\CategorizableInterface For objects that can only belong to a single category.
  */
 interface CategorizableMultipleInterface
 {
     /**
+     * Set the type of category the object can belong to.
+     *
      * @param string $type The category type.
-     * @return CategorizableInterface Chainable
+     * @return CategorizableMultipleInterface Chainable
      */
     public function setCategoryType($type);
 
     /**
+     * Retrieve the type of category the object can belong to.
+     *
      * @return string
      */
     public function categoryType();
 
     /**
-     * @param mixed $categories The object's categories.
-     * @return CategorizableInterface Chainable
+     * Set the categories the object belongs to.
+     *
+     * @param array|Traversable $categories The object's categories.
+     * @return CategorizableMultipleInterface Chainable
      */
     public function setCategories($categories);
 
     /**
-     * Get the category object
-     * @return CategoryInterface
+     * Retrieve the categories the object belongs to.
+     *
+     * @return array|Traversable
      */
     public function categories();
 }
