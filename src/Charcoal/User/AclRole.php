@@ -45,6 +45,11 @@ class AclRole extends AbstractModel
     private $superuser;
 
     /**
+     * @var integer
+     */
+    private $position;
+
+    /**
      * ACL Role can be used as a string (ident).
      *
      * @return string
@@ -60,15 +65,33 @@ class AclRole extends AbstractModel
      */
     public function setSuperuser($isSuper)
     {
-        $this->superuser=  !!$isSuper;
+        $this->superuser = !!$isSuper;
         return $this;
     }
 
     /**
-     * @return booleans
+     * @return boolean
      */
     public function superuser()
     {
         return $this->superuser;
+    }
+
+    /**
+     * @param integer $position The role's ordering position.
+     * @return AclRole Chainable
+     */
+    public function setPosition($position)
+    {
+        $this->position = (int)$position;
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function position()
+    {
+        return $this->position;
     }
 }

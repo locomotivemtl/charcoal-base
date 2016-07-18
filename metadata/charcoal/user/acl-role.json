@@ -33,6 +33,9 @@
                 "en":"Super users have all permissions (they are allowed everything).",
                 "fr":"Les super-utilisateurs ont toutes les permissions (tout est permis / allowed)."
             }
+        },
+        "position":{
+            "type":"number"
         }
     },
 
