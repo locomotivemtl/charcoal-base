@@ -198,7 +198,8 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
-     * @param mixed $roles
+     * @param mixed $roles The ACL roles this user belongs to.
+     * @throws InvalidArgumentException If the roles argument is invalid.
      * @return AbstractUser Chainable
      */
     public function setRoles($roles)
@@ -545,5 +546,4 @@ abstract class AbstractUser extends Content implements
         static::$authenticatedUser[static::sessionKey()] = $user;
         return $user;
     }
-
 }

@@ -128,5 +128,4 @@ interface UserInterface
      * @return UserInterface Chainable
      */
     public function resetPassword($plainPassword);
-
 }

@@ -16,7 +16,7 @@ use \Charcoal\User\UserInterface;
 
 /**
  * Authorizer helps with user authorization (permission checking).
-  *
+ *
  * ## Constructor dependencies
  *
  * Constructor dependencies are passed as an array of `key=>value` pair.
@@ -99,7 +99,7 @@ class Authorizer implements LoggerAwareInterface
     }
 
     /**
-     * @param string[] $aclRoles The ACL roles to validate against.
+     * @param string[] $aclRoles       The ACL roles to validate against.
      * @param string[] $aclPermissions The acl permissions to validate.
      * @return boolean Wether the permissions are allowed for a given list of roles.
      */
@@ -108,8 +108,8 @@ class Authorizer implements LoggerAwareInterface
         $acl = $this->acl();
         $aclResource = $this->resource();
 
-        foreach($aclRoles as $aclRole) {
-            foreach($aclPermissions as $aclPermission) {
+        foreach ($aclRoles as $aclRole) {
+            foreach ($aclPermissions as $aclPermission) {
                 if (!$acl->isAllowed($aclRole, $aclResource, $aclPermission)) {
                     $this->logger->error(
                         sprinft('Role "%s" is not allowed permission "%s"', $aclRole, $aclPermission)
@@ -122,9 +122,10 @@ class Authorizer implements LoggerAwareInterface
     }
 
     /**
-    * @param UserInterface $ser The user to validate against.
-    * @return boolean Whether the permissions are allowed for a given user.
-    */
+     * @param UserInterface $user           The user to validate against.
+     * @param string[]      $aclPermissions The acl permissions to validate.
+     * @return boolean Whether the permissions are allowed for a given user.
+     */
     public function userAllowed(UserInterface $user, array $aclPermissions)
     {
         return $this->rolesAllowed($user->roles(), $aclPermissions);
