@@ -129,11 +129,4 @@ interface UserInterface
      */
     public function resetPassword($plainPassword);
 
-    /**
-     * Get the currently authenticated user.
-     *
-     * @param FactoryInterface $factory The factory used to create the user object.
-     * @return UserInterface|null
-     */
-    public static function getAuthenticated(FactoryInterface $factory);
 }
