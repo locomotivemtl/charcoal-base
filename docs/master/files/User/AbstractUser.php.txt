@@ -19,16 +19,13 @@ use \Charcoal\Config\ConfigurableTrait;
 use \Charcoal\Object\Content;
 
 // Local namespace (charcoal-base) dependencies
-use \Charcoal\User\UserConfig;
 use \Charcoal\User\UserInterface;
-use \Charcoal\User\AuthenticatableInterface;
 
 /**
  * Full implementation, as abstract class, of the `UserInterface`.
  */
 abstract class AbstractUser extends Content implements
     UserInterface,
-    AuthenticatableInterface,
     ConfigurableInterface
 {
     use ConfigurableTrait;
@@ -59,6 +56,11 @@ abstract class AbstractUser extends Content implements
      * @var boolean $active
      */
     private $active = true;
+
+    /**
+     * @var array $roles
+     */
+    private $roles = [];
 
     /**
      * The date of the latest (successful) login
@@ -192,6 +194,33 @@ abstract class AbstractUser extends Content implements
     public function active()
     {
         return $this->active;
+    }
+
+    /**
+     * @param mixed $roles The ACL roles this user belongs to.
+     * @throws InvalidArgumentException If the roles argument is invalid.
+     * @return AbstractUser Chainable
+     */
+    public function setRoles($roles)
+    {
+        if (is_string($roles)) {
+            $roles = explode(',', $roles);
+        }
+        if (!is_array($roles)) {
+            throw new InvalidArgumentException(
+                'Roles must be a comma-separated string or an array'
+            );
+        }
+        $this->roles = $roles;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function roles()
+    {
+        return $this->roles;
     }
 
     /**
@@ -356,54 +385,6 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
-     * Attempt to log in a user with a username + password.
-     *
-     * @param string $username Username.
-     * @param string $password Password.
-     * @throws InvalidArgumentException If username or password is not a string.
-     * @return boolean Login success / failure.
-     */
-    public function authenticate($username, $password)
-    {
-        if (!is_string($username) || !is_string($password)) {
-            throw new InvalidArgumentException(
-                'Username and password must be strings'
-            );
-        }
-
-        // Force lowercase
-        $username = mb_strtolower($username);
-
-        // Load the user by username
-        $this->load($username);
-
-        if ($this->username() != $username) {
-            $this->loginFailed($username);
-            return false;
-        }
-        if ($this->active() === false) {
-            $this->loginFailed($username);
-            return false;
-        }
-
-        // Validate password
-        if (password_verify($password, $this->password())) {
-            if (password_needs_rehash($this->password(), PASSWORD_DEFAULT)) {
-                $hash = password_hash($password, PASSWORD_DEFAULT);
-                // @todo Update user with new hash
-                $this->setPassword($hash);
-                $this->update(['password']);
-            }
-
-            $this->login();
-            return true;
-        } else {
-            $this->loginFailed($username);
-            return false;
-        }
-    }
-
-    /**
      * @throws Exception If trying to save a user to session without a ID.
      * @return UserInterface Chainable
      */
@@ -563,21 +544,6 @@ abstract class AbstractUser extends Content implements
 
         static::$authenticatedUser[static::sessionKey()] = $user;
         return $user;
-    }
-
-    /**
-     * ConfigurableInterface > create_config()
-     *
-     * @param array $data Optional. Configuration data.
-     * @return UserConfig
-     */
-    public function createConfig(array $data = null)
-    {
-        $config = new UserConfig();
-        if (is_array($data)) {
-            $config->merge($data);
-        }
-        return $config;
     }
 }
 
