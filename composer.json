@@ -1,4 +1,4 @@
-    {
+{
     "name": "locomotivemtl/charcoal-base",
     "description": "Charcoal Base (Project Requirement)",
     "keywords": [ "charcoal", "locomotive", "php", "framework", "cms" ],
@@ -28,7 +28,8 @@
         "phpunit/phpunit": "^4.8",
         "squizlabs/php_codesniffer": "^2.4",
         "satooshi/php-coveralls":"~1.0.1",
-        "locomotivemtl/charcoal-app": "^0.2.1"
+        "locomotivemtl/charcoal-app": "^0.2.1",
+        "zendframework/zend-permissions-acl": "^2.6"
     },
     "autoload": {
         "psr-4": {
