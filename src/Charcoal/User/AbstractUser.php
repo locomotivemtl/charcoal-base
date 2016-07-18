@@ -19,7 +19,6 @@ use \Charcoal\Config\ConfigurableTrait;
 use \Charcoal\Object\Content;
 
 // Local namespace (charcoal-base) dependencies
-use \Charcoal\User\UserConfig;
 use \Charcoal\User\UserInterface;
 
 /**
