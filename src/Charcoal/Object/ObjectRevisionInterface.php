@@ -8,26 +8,26 @@ namespace Charcoal\Object;
 interface ObjectRevisionInterface
 {
     /**
-     * @param string $objType The object type (type-ident).
+     * @param string $targetType The object type (type-ident).
      * @return \Charcoal\Object\ObjectRevisionInterface Chainable
      */
-    public function setObjType($objType);
+    public function setTargetType($targetType);
 
     /**
      * @return string
      */
-    public function objType();
+    public function targetType();
 
     /**
-     * @param mixed $objId The object ID.
+     * @param mixed $targetId The object ID.
      * @return \Charcoal\Object\ObjectRevisionInterface Chainable
      */
-    public function setObjId($objId);
+    public function setTargetId($targetId);
 
     /**
      * @return mixed
      */
-    public function objId();
+    public function targetId();
 
     /**
      * @param integer $revNum The revision number.
