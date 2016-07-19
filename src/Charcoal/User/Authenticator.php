@@ -2,6 +2,7 @@
 
 namespace Charcoal\User;
 
+use \InvalidArgumentException;
 use \RuntimeException;
 
 // Dependencies from PSR-3 (Logging)
