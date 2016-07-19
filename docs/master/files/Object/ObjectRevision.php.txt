@@ -317,8 +317,8 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
     {
         $prevRev = $this->lastObjectRevision($obj);
 
-        $this->setObjType($obj->targetType());
-        $this->setObjId($obj->id());
+        $this->setTargetType($obj->objType());
+        $this->setTargetId($obj->id());
         $this->setRevNum($prevRev->revNum() + 1);
         $this->setRevTs('now');
 
@@ -423,7 +423,7 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
                 `rev_ts` desc
             LIMIT 1',
             [
-                'target_type' => $obj->targetType(),
+                'target_type' => $obj->objType(),
                 'target_id'   => $obj->id()
             ]
         );
