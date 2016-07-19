@@ -2,6 +2,8 @@
 
 namespace Charcoal\Object;
 
+use \Charcoal\Object\ObjectRevision;
+
 /**
  *
  */
@@ -37,7 +39,7 @@ trait RevisionableTrait
      */
     public function revisionObject()
     {
-        $rev = $this->modelFactory()->create('charcoal/object/object-revision');
+        $rev = $this->modelFactory()->create(ObjectRevision::class);
         return $rev;
     }
 

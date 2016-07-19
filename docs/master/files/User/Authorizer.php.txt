@@ -112,7 +112,7 @@ class Authorizer implements LoggerAwareInterface
             foreach ($aclPermissions as $aclPermission) {
                 if (!$acl->isAllowed($aclRole, $aclResource, $aclPermission)) {
                     $this->logger->error(
-                        sprinft('Role "%s" is not allowed permission "%s"', $aclRole, $aclPermission)
+                        sprintf('Role "%s" is not allowed permission "%s"', $aclRole, $aclPermission)
                     );
                     return false;
                 }

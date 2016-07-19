@@ -28,15 +28,15 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
 
     /**
      * Object type of this revision (required)
-     * @var string $objType
+     * @var string $targetType
      */
-    private $objType;
+    private $targetType;
 
     /**
      * Object ID of this revision (required)
      * @var mixed $objectId
      */
-    private $objId;
+    private $targetId;
 
     /**
      * Revision number. Sequential integer for each object's ID. (required)
@@ -107,45 +107,45 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
     }
 
     /**
-     * @param string $objType The object type (type-ident).
+     * @param string $targetType The object type (type-ident).
      * @throws InvalidArgumentException If the obj type parameter is not a string.
      * @return ObjectRevision Chainable
      */
-    public function setObjType($objType)
+    public function setTargetType($targetType)
     {
-        if (!is_string($objType)) {
+        if (!is_string($targetType)) {
             throw new InvalidArgumentException(
                 'Revisions obj type must be a string.'
             );
         }
-        $this->objType = $objType;
+        $this->targetType = $targetType;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function objType()
+    public function targetType()
     {
-        return $this->objType;
+        return $this->targetType;
     }
 
     /**
-     * @param mixed $objId The object ID.
+     * @param mixed $targetId The object ID.
      * @return ObjectRevision Chainable
      */
-    public function setObjId($objId)
+    public function setTargetId($targetId)
     {
-        $this->objId = $objId;
+        $this->targetId = $targetId;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function objId()
+    public function targetId()
     {
-        return $this->objId;
+        return $this->targetId;
     }
 
     /**
@@ -317,7 +317,7 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
     {
         $prevRev = $this->lastObjectRevision($obj);
 
-        $this->setObjType($obj->objType());
+        $this->setObjType($obj->targetType());
         $this->setObjId($obj->id());
         $this->setRevNum($prevRev->revNum() + 1);
         $this->setRevTs('now');
@@ -407,7 +407,7 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
             $this->source()->createTable();
         }
 
-        $rev = $this->modelFactory()->create('charcoal/object/object-revision');
+        $rev = $this->modelFactory()->create(self::class);
 
         $rev->loadFromQuery(
             '
@@ -416,15 +416,15 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
             FROM
                 `'.$this->source()->table().'`
             WHERE
-                `obj_type` = :obj_type
+                `target_type` = :target_type
             AND
-                `obj_id` = :obj_id
+                `target_id` = :target_id
             ORDER BY
                 `rev_ts` desc
             LIMIT 1',
             [
-                'obj_type' => $obj->objType(),
-                'obj_id'   => $obj->id()
+                'target_type' => $obj->targetType(),
+                'target_id'   => $obj->id()
             ]
         );
 
