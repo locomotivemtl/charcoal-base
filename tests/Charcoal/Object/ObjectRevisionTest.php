@@ -9,37 +9,37 @@ class ObjectRevisionTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $metadataLoader = new \Charcoal\Model\MetadataLoader([
-            'logger' => new \Psr\Log\NullLogger(),
+            'logger'    => new \Psr\Log\NullLogger(),
             'base_path' => __DIR__,
-            'paths' => ['metadata'],
-            'config' => $GLOBALS['container']['config'],
-            'cache'  => $GLOBALS['container']['cache']
+            'paths'     => ['metadata'],
+            'config'    => $GLOBALS['container']['config'],
+            'cache'     => $GLOBALS['container']['cache']
         ]);
 
         $logger = new NullLogger();
         $this->obj = new ObjectRevision([
-            'logger'=>$logger,
+            'logger'          => $logger,
             'metadata_loader' => $metadataLoader
         ]);
     }
 
     public function testSetObjType()
     {
-        $this->assertNull($this->obj->objType());
-        $ret = $this->obj->setObjType('foobar');
+        $this->assertNull($this->obj->targetType());
+        $ret = $this->obj->setTargetType('foobar');
         $this->assertSame($ret, $this->obj);
-        $this->assertEquals('foobar', $this->obj->objType());
+        $this->assertEquals('foobar', $this->obj->targetType());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $this->obj->setObjType(false);
+        $this->obj->setTargetType(false);
     }
 
     public function testSetObjId()
     {
-        $this->assertNull($this->obj->objId());
-        $ret = $this->obj->setObjId(42);
+        $this->assertNull($this->obj->targetId());
+        $ret = $this->obj->setTargetId(42);
         $this->assertSame($ret, $this->obj);
-        $this->assertEquals(42, $this->obj->objId());
+        $this->assertEquals(42, $this->obj->targetId());
     }
 
     public function testSetRevNum()
