@@ -448,8 +448,8 @@
 </span><span id="317" class="l"><a href="#317">317: </a>    {
 </span><span id="318" class="l"><a href="#318">318: </a>        <span class="php-var">$prevRev</span> = <span class="php-var">$this</span>-&gt;lastObjectRevision(<span class="php-var">$obj</span>);
 </span><span id="319" class="l"><a href="#319">319: </a>
-</span><span id="320" class="l"><a href="#320">320: </a>        <span class="php-var">$this</span>-&gt;setObjType(<span class="php-var">$obj</span>-&gt;targetType());
-</span><span id="321" class="l"><a href="#321">321: </a>        <span class="php-var">$this</span>-&gt;setObjId(<span class="php-var">$obj</span>-&gt;id());
+</span><span id="320" class="l"><a href="#320">320: </a>        <span class="php-var">$this</span>-&gt;setTargetType(<span class="php-var">$obj</span>-&gt;objType());
+</span><span id="321" class="l"><a href="#321">321: </a>        <span class="php-var">$this</span>-&gt;setTargetId(<span class="php-var">$obj</span>-&gt;id());
 </span><span id="322" class="l"><a href="#322">322: </a>        <span class="php-var">$this</span>-&gt;setRevNum(<span class="php-var">$prevRev</span>-&gt;revNum() + <span class="php-num">1</span>);
 </span><span id="323" class="l"><a href="#323">323: </a>        <span class="php-var">$this</span>-&gt;setRevTs(<span class="php-quote">'now'</span>);
 </span><span id="324" class="l"><a href="#324">324: </a>
@@ -554,7 +554,7 @@
 </span></span><span id="423" class="l"><a href="#423">423: </a><span class="php-quote">                `rev_ts` desc
 </span></span><span id="424" class="l"><a href="#424">424: </a><span class="php-quote">            LIMIT 1'</span>,
 </span><span id="425" class="l"><a href="#425">425: </a>            [
-</span><span id="426" class="l"><a href="#426">426: </a>                <span class="php-quote">'target_type'</span> =&gt; <span class="php-var">$obj</span>-&gt;targetType(),
+</span><span id="426" class="l"><a href="#426">426: </a>                <span class="php-quote">'target_type'</span> =&gt; <span class="php-var">$obj</span>-&gt;objType(),
 </span><span id="427" class="l"><a href="#427">427: </a>                <span class="php-quote">'target_id'</span>   =&gt; <span class="php-var">$obj</span>-&gt;id()
 </span><span id="428" class="l"><a href="#428">428: </a>            ]
 </span><span id="429" class="l"><a href="#429">429: </a>        );
