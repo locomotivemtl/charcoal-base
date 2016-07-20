@@ -561,8 +561,49 @@
 </span><span id="430" class="l"><a href="#430">430: </a>
 </span><span id="431" class="l"><a href="#431">431: </a>        <span class="php-keyword1">return</span> <span class="php-var">$rev</span>;
 </span><span id="432" class="l"><a href="#432">432: </a>    }
-</span><span id="433" class="l"><a href="#433">433: </a>}
-</span><span id="434" class="l"><a href="#434">434: </a></span></code></pre>
+</span><span id="433" class="l"><a href="#433">433: </a>
+</span><span id="434" class="l"><a href="#434">434: </a>    <span class="php-comment">/**
+</span></span><span id="435" class="l"><a href="#435">435: </a><span class="php-comment">     * Retrieve a specific object revision, by revision number.
+</span></span><span id="436" class="l"><a href="#436">436: </a><span class="php-comment">     *
+</span></span><span id="437" class="l"><a href="#437">437: </a><span class="php-comment">     * @param RevisionableInterface $obj    Target object.
+</span></span><span id="438" class="l"><a href="#438">438: </a><span class="php-comment">     * @param integer               $revNum The revision number to load.
+</span></span><span id="439" class="l"><a href="#439">439: </a><span class="php-comment">     * @return ObjectRevision
+</span></span><span id="440" class="l"><a href="#440">440: </a><span class="php-comment">     */</span>
+</span><span id="441" class="l"><a href="#441">441: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> objectRevisionNum(RevisionableInterface <span class="php-var">$obj</span>, <span class="php-var">$revNum</span>)
+</span><span id="442" class="l"><a href="#442">442: </a>    {
+</span><span id="443" class="l"><a href="#443">443: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;source()-&gt;tableExists() === <span class="php-keyword1">false</span>) {
+</span><span id="444" class="l"><a href="#444">444: </a>            <span class="php-comment">/** @todo Optionnally turn off for some models */</span>
+</span><span id="445" class="l"><a href="#445">445: </a>            <span class="php-var">$this</span>-&gt;source()-&gt;createTable();
+</span><span id="446" class="l"><a href="#446">446: </a>        }
+</span><span id="447" class="l"><a href="#447">447: </a>
+</span><span id="448" class="l"><a href="#448">448: </a>        <span class="php-var">$revNum</span> = (int)<span class="php-var">$revNum</span>;
+</span><span id="449" class="l"><a href="#449">449: </a>
+</span><span id="450" class="l"><a href="#450">450: </a>        <span class="php-var">$rev</span> = <span class="php-var">$this</span>-&gt;modelFactory()-&gt;create(self::<span class="php-keyword1">class</span>);
+</span><span id="451" class="l"><a href="#451">451: </a>
+</span><span id="452" class="l"><a href="#452">452: </a>        <span class="php-var">$rev</span>-&gt;loadFromQuery(
+</span><span id="453" class="l"><a href="#453">453: </a>            <span class="php-quote">'
+</span></span><span id="454" class="l"><a href="#454">454: </a><span class="php-quote">            SELECT
+</span></span><span id="455" class="l"><a href="#455">455: </a><span class="php-quote">                *
+</span></span><span id="456" class="l"><a href="#456">456: </a><span class="php-quote">            FROM
+</span></span><span id="457" class="l"><a href="#457">457: </a><span class="php-quote">                `'</span>.<span class="php-var">$this</span>-&gt;source()-&gt;table().<span class="php-quote">'`
+</span></span><span id="458" class="l"><a href="#458">458: </a><span class="php-quote">            WHERE
+</span></span><span id="459" class="l"><a href="#459">459: </a><span class="php-quote">                `target_type` = :target_type
+</span></span><span id="460" class="l"><a href="#460">460: </a><span class="php-quote">            AND
+</span></span><span id="461" class="l"><a href="#461">461: </a><span class="php-quote">                `target_id` = :target_id
+</span></span><span id="462" class="l"><a href="#462">462: </a><span class="php-quote">            AND
+</span></span><span id="463" class="l"><a href="#463">463: </a><span class="php-quote">                `rev_num` = :rev_num
+</span></span><span id="464" class="l"><a href="#464">464: </a><span class="php-quote">            LIMIT 1'</span>,
+</span><span id="465" class="l"><a href="#465">465: </a>            [
+</span><span id="466" class="l"><a href="#466">466: </a>                <span class="php-quote">'target_type'</span> =&gt; <span class="php-var">$obj</span>-&gt;objType(),
+</span><span id="467" class="l"><a href="#467">467: </a>                <span class="php-quote">'target_id'</span>   =&gt; <span class="php-var">$obj</span>-&gt;id(),
+</span><span id="468" class="l"><a href="#468">468: </a>                <span class="php-quote">'rev_num'</span>     =&gt; <span class="php-var">$revNum</span>
+</span><span id="469" class="l"><a href="#469">469: </a>            ]
+</span><span id="470" class="l"><a href="#470">470: </a>        );
+</span><span id="471" class="l"><a href="#471">471: </a>
+</span><span id="472" class="l"><a href="#472">472: </a>        <span class="php-keyword1">return</span> <span class="php-var">$rev</span>;
+</span><span id="473" class="l"><a href="#473">473: </a>    }
+</span><span id="474" class="l"><a href="#474">474: </a>}
+</span><span id="475" class="l"><a href="#475">475: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
