@@ -2,7 +2,11 @@
 
 namespace Charcoal\Object;
 
+use \InvalidArgumentException;
+
 use \Charcoal\Object\ObjectRevision;
+
+use \Charcoal\Loader\CollectionLoader;
 
 /**
  *
@@ -35,7 +39,7 @@ trait RevisionableTrait
     /**
      * This method can be overloaded in concrete implementation to provide a different (custom) ObjectRevision class.
      *
-     * @return \Charcoal\Object\ObjectRevisionInterface
+     * @return ObjectRevision
      */
     public function revisionObject()
     {
@@ -44,7 +48,7 @@ trait RevisionableTrait
     }
 
     /**
-     * @return \Charcoal\Object\ObjectRevision
+     * @return ObjectRevision
      * @see \Charcoal\Object\ObjectRevision::create_fromObject()
      */
     public function generateRevision()
@@ -60,7 +64,7 @@ trait RevisionableTrait
     }
 
     /**
-     * @return \Charcoal\Object\ObjectRevision
+     * @return ObjectRevision
      * @see \Charcoal\Object\ObejctRevision::lastObjectRevision
      */
     public function latestRevision()
@@ -69,6 +73,69 @@ trait RevisionableTrait
         $rev = $rev->lastObjectRevision($this);
 
         return $rev;
+    }
+
+    /**
+     * @param integer $revNum The revision number.
+     * @return ObjectRevision
+     * @see \Charcoal\Object\ObejctRevision::objectRevisionNum
+     */
+    public function revisionNum($revNum)
+    {
+        $revNum = (int)$revNum;
+        $rev = $this->revisionObject();
+        $rev = $rev->objectRevisionNum($this, $revNum);
+
+        return $rev;
+    }
+
+    /**
+     * Retrieves all revisions for the current objet
+     *
+     * @param callable $callback Optional object callback.
+     * @return array
+     */
+    public function allRevisions(callable $callback = null)
+    {
+        $loader = new CollectionLoader([
+            'logger'    => $this->logger,
+            'factory'   => $this->modelFactory()
+        ]);
+        $loader->setModel($this->revisionObject());
+        $loader->addFilter('target_type', $this->objType());
+        $loader->addFilter('target_id', $this->id());
+        $loader->addOrder('rev_ts', 'desc');
+        if ($callback !== null) {
+            $loader->setCallback($callback);
+        }
+        $revisions = $loader->load();
+
+        return $revisions->objects();
+    }
+
+    /**
+     * @param integer $revNum The revision number to revert to.
+     * @throws InvalidArgumentException If revision number is invalid.
+     * @return boolean Success / Failure.
+     */
+    public function revertToRevision($revNum)
+    {
+        $revNum = (int)$revNum;
+        if (!$revNum) {
+            throw new InvalidArgumentException(
+                'Invalid revision number'
+            );
+        }
+
+        $rev = $this->revisionNum($revNum);
+
+        if (!$rev->id()) {
+            return false;
+        }
+        $this->setData($rev->dataObj());
+        $this->update();
+
+        return true;
     }
 
     /**
