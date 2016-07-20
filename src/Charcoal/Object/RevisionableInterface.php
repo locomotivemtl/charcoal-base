@@ -34,4 +34,16 @@ interface RevisionableInterface
      * @return \Charcoal\Object\ObjectRevisionInterface
      */
     public function latestRevision();
+
+    /**
+     * @param integer $revNum The revision number to retrieve.
+     * @return \Charcoal\Object\ObjectRevisionInterface
+     * @see \Charcoal\Object\ObejctRevision::objectRevisionNum
+     */
+    public function revisionNum($revNum);
+
+    /**
+     * @return array
+     */
+    public function allRevisions();
 }

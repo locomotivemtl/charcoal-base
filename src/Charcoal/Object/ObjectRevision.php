@@ -430,4 +430,45 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
 
         return $rev;
     }
+
+    /**
+     * Retrieve a specific object revision, by revision number.
+     *
+     * @param RevisionableInterface $obj    Target object.
+     * @param integer               $revNum The revision number to load.
+     * @return ObjectRevision
+     */
+    public function objectRevisionNum(RevisionableInterface $obj, $revNum)
+    {
+        if ($this->source()->tableExists() === false) {
+            /** @todo Optionnally turn off for some models */
+            $this->source()->createTable();
+        }
+
+        $revNum = (int)$revNum;
+
+        $rev = $this->modelFactory()->create(self::class);
+
+        $rev->loadFromQuery(
+            '
+            SELECT
+                *
+            FROM
+                `'.$this->source()->table().'`
+            WHERE
+                `target_type` = :target_type
+            AND
+                `target_id` = :target_id
+            AND
+                `rev_num` = :rev_num
+            LIMIT 1',
+            [
+                'target_type' => $obj->objType(),
+                'target_id'   => $obj->id(),
+                'rev_num'     => $revNum
+            ]
+        );
+
+        return $rev;
+    }
 }
