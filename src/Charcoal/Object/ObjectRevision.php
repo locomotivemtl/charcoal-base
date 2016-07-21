@@ -21,11 +21,18 @@ use \Charcoal\Object\ObjectRevisionInterface;
 use \Charcoal\Object\RevisionableInterface;
 
 /**
+ * Represents the changeset of an object.
  *
+ * A revision is a record of modifications to an object.
+ *
+ * Intended to be used to collect all routes related to models
+ * under a single source (e.g., database table).
+ *
+ * {@see Charcoal\Object\ObjectRoute} for a similar model that aggregates data
+ * under a common source.
  */
 class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
 {
-
     /**
      * Object type of this revision (required)
      * @var string $targetType

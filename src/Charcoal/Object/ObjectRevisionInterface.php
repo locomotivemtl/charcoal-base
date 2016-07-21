@@ -3,7 +3,9 @@
 namespace Charcoal\Object;
 
 /**
+ * Defines a changeset of an object implementing {@see \Charcoal\Object\RevisionableInterface}.
  *
+ * {@see \Charcoal\Object\ObjectRevision} for a basic implementation.
  */
 interface ObjectRevisionInterface
 {
