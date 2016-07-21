@@ -1,0 +1,509 @@
+<?php
+
+namespace Charcoal\Object;
+
+use \Charcoal\View\ViewableInterface;
+use \Charcoal\Translation\TranslationString;
+use \Charcoal\Translation\TranslationConfig;
+use \Charcoal\Object\ObjectRoute;
+
+/**
+ * Full implementation, as Trait, of {@see \Charcoal\Attachment\Interfaces\AttachmentAwareInterface}
+ */
+trait RoutableTrait
+{
+    /**
+     * The object's URL slug pattern
+     *
+     * @var RoutableConfig
+     */
+    private $routableOptions;
+
+    /**
+     * The object's URL slug pattern
+     *
+     * @var string
+     */
+    private $slugPattern = '';
+
+    /**
+     * The object's canonical URL slug.
+     *
+     * @var string
+     */
+    private $slug;
+
+    /**
+     * Latest object route concerning the current object.
+     *
+     * If the object is multilingual, the latest per locale is stored.
+     *
+     * @var ObjectRoute
+     */
+    private $latestObjectRoute;
+
+    /**
+     * Set the object's routable options.
+     *
+     * @param null|array|\Traversable $options The routable options.
+     * @return RoutableInterface Chainable
+     */
+    public function setRoutableOptions($options)
+    {
+        $this->routableOptions = new RoutableObjectConfig($options);
+
+        return $this;
+    }
+
+    /**
+     * Retrieve the object's routable options.
+     *
+     * @return RoutableObjectConfig
+     */
+    public function routableOptions()
+    {
+        if (!$this->routableOptions) {
+            $this->setRoutableOptions($this->importRoutableOptions());
+        }
+
+        return $this->routableOptions;
+    }
+
+    /**
+     * Retrieve any routable options from the object's metadata.
+     *
+     * @return array
+     */
+    private function importRoutableOptions()
+    {
+        $metadata = $this->metadata();
+        $options  = (isset($metadata['routable']) ? $metadata['routable'] : []);
+
+        if (isset($metadata['slug_pattern'])) {
+            trigger_error(
+                sprintf(
+                    'The "slug_pattern" key, used by %s, is deprecated. Use "routable.pattern" instead.',
+                    get_called_class()
+                ),
+                E_USER_DEPRECATED
+            );
+            $options['pattern'] = $metadata['slug_pattern'];
+        }
+
+        return $options;
+    }
+
+    /**
+     * Set the object's URL slug pattern.
+     *
+     * @param mixed $pattern The slug pattern.
+     * @return RoutableInterface Chainable
+     */
+    public function setSlugPattern($pattern)
+    {
+        $this->slugPattern = new TranslationString($pattern);
+
+        return $this;
+    }
+
+    /**
+     * Retrieve the object's URL slug pattern.
+     *
+     * Always returned as a multilingual value object.
+     *
+     * @throws InvalidArgumentException If a slug pattern is not defined.
+     * @return TranslationString
+     */
+    public function slugPattern()
+    {
+        if (!$this->slugPattern) {
+            $options = $this->routableOptions();
+            $pattern = $options['pattern'];
+
+            if ($pattern) {
+                $this->setSlugPattern($pattern);
+            } else {
+                throw new InvalidArgumentException(
+                    sprintf('Undefined routable pattern (slug) for %s', get_called_class())
+                );
+            }
+        }
+
+        return $this->slugPattern;
+    }
+
+    /**
+     * Set the object's URL slug.
+     *
+     * @param mixed $slug The slug.
+     * @return RoutableInterface Chainable
+     */
+    public function setSlug($slug)
+    {
+        if (
+            $slug === null ||
+            (is_string($slug) && !strlen(trim($slug))) ||
+            (is_array($slug) && !array_filter($slug, 'strlen'))
+        ) {
+            $this->slug = null;
+
+            return $this;
+        }
+
+        $this->slug = new TranslationString($slug);
+        $patterns   = $this->slug->all();
+
+        foreach ($patterns as $lang => $pattern) {
+            $this->slug[$lang] = $this->slugify($pattern);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Retrieve the object's URL slug.
+     *
+     * Always returned as a multilingual value object.
+     *
+     * @return TranslationString
+     */
+    public function slug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Generate a URL slug from the object's URL slug pattern.
+     *
+     * @return TranslationString
+     */
+    public function generateSlug()
+    {
+        $translator  = TranslationConfig::instance();
+        $patterns    = $this->slugPattern()->all();
+        $options     = $this->routableOptions();
+        $isImmutable = ($this->id() && !$options['updatable']);
+        $currentSlug = $this->slug();
+        $parsedSlug  = [];
+
+        error_log(get_called_class().'::'.__FUNCTION__);
+
+        $origLang = $translator->currentLanguage();
+        foreach ($patterns as $lang => $pattern) {
+            if (!$translator->hasLanguage($lang)) {
+                continue;
+            }
+
+            error_log('-- Language        : '.$lang);
+
+            // Fetch the old (previously stored) slug, since the current object might hold a new version.
+            $oldRoute = $this->getLatestObjectRoute($lang);
+
+            // If the slug should not be updated, skip it (by returning the previously stored slug
+            // and ignoring any variant held by the current object).
+            if (
+                ($isImmutable && $oldRoute->id()) ||
+                ($currentSlug[$lang] === null && $oldRoute->id())
+            ) {
+                $parsedSlug[$lang] = $oldRoute->slug();
+                continue;
+            }
+
+            if ($currentSlug[$lang] && $oldRoute->slug() === null) {
+                $parsedSlug[$lang] = $currentSlug[$lang];
+                continue;
+            }
+
+            $translator->setCurrentLanguage($lang);
+
+            error_log('   -- Current Slug : '.var_export($currentSlug[$lang], true));
+            error_log('   -- Old Slug     : '.var_export($oldRoute->slug(), true));
+
+            $parsedSlug[$lang] = $this->generateSlugFromPattern($pattern);
+
+            error_log('   -- Parsed Slug  : '.var_export($parsedSlug[$lang], true));
+            error_log('');
+        }
+        $translator->setCurrentLanguage($origLang);
+
+        return new TranslationString($parsedSlug);
+    }
+
+    /**
+     * Generate slug from given pattern.
+     *
+     * @param  string $pattern The slug pattern.
+     * @return string Return the generated slug.
+     */
+    protected function generateSlugFromPattern($pattern)
+    {
+        if ($this instanceof ViewableInterface && $this->view() !== null) {
+            $slug = $this->view()->render($pattern, $this->viewController());
+        } else {
+            $slug = preg_replace_callback('~{{(.*?)}}~i', [ $this, 'parseSlugField' ], $pattern);
+        }
+
+        return $this->slugify($slug);
+    }
+
+    /**
+     * Retrieve field for slug from current object.
+     *
+     * @param  string|array $field The model entry to retrieve.
+     * @return string
+     */
+    protected function parseSlugField($field)
+    {
+        // Processes matches from a regular expression operation
+        if (is_array($field) && isset($field[1])) {
+            $field = $field[1];
+        }
+
+        $method = trim($field);
+        $value  = (isset($this[$method]) ? $this[$method] : '');
+
+        if ($value instanceof \DateTime) {
+            $options = $this->routableOptions();
+            $value = $value->format($options['date_format']);
+        }
+
+        return $value;
+    }
+
+    /**
+     * Route generation. Saves all route to one table.
+     * @param  mixed $slug Slug by langs.
+     * @return void
+     */
+    protected function generateObjectRoute($slug = null)
+    {
+        if (!$slug) {
+            $slug = $this->generateSlug();
+        }
+
+        error_log(get_called_class().'::'.__FUNCTION__);
+
+        // We NEED a translationString here.
+        $slugs = $slug->all();
+        error_log('-- Given Slugs: '.var_export($slugs, true));
+        foreach ($slugs as $lang => $slug) {
+            $objectRoute = $this->modelFactory()->create(ObjectRoute::class);
+
+            error_log('   -- Current Slug : '.var_export($slug, true));
+
+            $source = $objectRoute->source();
+            if (!$source->tableExists()) {
+                $source->createTable();
+            } else {
+                $oldRoute = $this->getLatestObjectRoute($lang);
+
+                error_log('   -- Old Slug     : '.var_export($oldRoute->slug(), true));
+
+                // Unchanged
+                if ($slug === $oldRoute->slug()) {
+                    error_log('   -- Skip!');
+                    continue;
+                }
+            }
+
+            $objectRoute->setData([
+                'lang'           => $lang,
+                'slug'           => $slug,
+                'route_obj_type' => $this->objType(),
+                'route_obj_id'   => $this->id(),
+                // Not used, might be too much.
+                'route_template' => $this->templateIdent(),
+                'active'         => true
+            ]);
+
+            if (!$objectRoute->isSlugUnique()) {
+                $objectRoute->generateUniqueSlug();
+                error_log('   -- Not Unique!  : '.var_export($objectRoute->slug(), true));
+            }
+
+            if ($objectRoute->id()) {
+                error_log('   -- Update!');
+                $objectRoute->update();
+            } else {
+                error_log('   -- Save!');
+                $objectRoute->save();
+            }
+        }
+    }
+
+    /**
+     * Get the latest object route.
+     *
+     * @param  string|null $lang If object is multilingual, return the object route for the specified locale.
+     * @throws InvalidArgumentException If the given language is invalid.
+     * @return ObjectRoute Latest object route.
+     */
+    protected function getLatestObjectRoute($lang = null)
+    {
+        $translator = TranslationConfig::instance();
+
+        if ($lang === null) {
+            $lang = $translator->currentLanguage();
+        } elseif (!$translator->hasLanguage($lang)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Invalid language, received %s',
+                    (is_object($lang) ? get_class($lang) : gettype($lang))
+                )
+            );
+        }
+
+        if (!isset($this->latestObjectRoute[$lang])) {
+            // For URL.
+            $proto  = $this->modelFactory()->create(ObjectRoute::class);
+            $loader = $this->collectionLoader();
+            $source = $proto->source();
+
+            $this->latestObjectRoute[$lang] = $proto;
+
+            if ($this->id()) {
+                if (!$source->tableExists()) {
+                    $source->createTable();
+                }
+
+                $loader
+                    ->reset()
+                    ->setModel($proto)
+                    ->addFilter('route_obj_type', $this->objType())
+                    ->addFilter('route_obj_id', $this->id())
+                    ->addFilter('lang', $lang)
+                    ->addFilter('active', true)
+                    ->addOrder('creation_date', 'desc')
+                    ->setPage(1)
+                    ->setNumPerPage(1);
+
+                $collection = $loader->load()->objects();
+
+                if (count($collection)) {
+                    $this->latestObjectRoute[$lang] = $collection[0];
+                }
+            }
+        }
+
+        return $this->latestObjectRoute[$lang];
+    }
+
+    /**
+     * Retrieve the object's URI.
+     *
+     * @return string
+     */
+    public function uri()
+    {
+        $uri = (string)$this->getLatestObjectRoute()->slug();
+
+        if ($uri) {
+            return $uri;
+        }
+
+        return (string)$this->slug();
+    }
+
+    /**
+     * Retrieve the fully qualified URL of the object.
+     *
+     * @return string
+     */
+    public function url()
+    {
+        return $this->getLatestObjectRoute()->url();
+    }
+
+    /**
+     * @param string $str The string to slugify.
+     * @return string The slugified string.
+     */
+    public function slugify($str)
+    {
+        // Do NOT remove forward slashes.
+        $slug = preg_replace('/[^(\p{L}|\p{N})(\s|\/)]/u', '-', $str);
+
+        $slug = mb_strtolower($slug, 'UTF-8');
+
+        // Strip HTML
+        $slug = strip_tags($slug);
+
+        // Remove diacritics
+        $slug = preg_replace(
+            '/&([a-zA-Z])(uml|acute|grave|circ|tilde|cedil|ring);/',
+            '$1',
+            htmlentities($slug, ENT_COMPAT, 'UTF-8')
+        );
+
+        // Remove unescaped HTML characters
+        $unescaped = '/&(raquo|laquo|rsaquo|lsaquo|rdquo|ldquo|rsquo|lsquo|hellip|amp|nbsp|quot|ordf|ordm);/';
+        $slug = preg_replace($unescaped, '', $slug);
+
+        // Replace whitespace by seperator
+        $slug = preg_replace('/(\s+|\|)/', '-', $slug);
+
+        // Squeeze multiple dashes or underscores
+        $slug = preg_replace('/[-]{2,}/', '-', $slug);
+
+        // Strip leading and trailing dashes or underscores
+        $slug = trim($slug, '-');
+
+        // Finally, remove all whitespace
+        $slug = preg_replace('/[_]+/', '-', $slug);
+
+        return $slug;
+    }
+
+    /**
+     * Delete all object routes. Should be called
+     * on object suppression.
+     * @return boolean Success or failure.
+     */
+    protected function deleteObjectRoutes()
+    {
+        if (!$this->objType()) {
+            return false;
+        }
+        if (!$this->id()) {
+            return false;
+        }
+
+        $proto  = $this->modelFactory()->get(ObjectRoute::class);
+        $loader = $this->collectionLoader();
+        $loader
+            ->reset()
+            ->setModel($proto)
+            ->addFilter('route_obj_type', $this->objType())
+            ->addFilter('route_obj_id', $this->id());
+
+        $collection = $loader->load();
+        foreach ($collection as $route) {
+            $route->delete();
+        }
+
+        return true;
+    }
+
+
+    /**
+     * Retrieve the object model factory.
+     *
+     * @return \Charcoal\Factory\FactoryInterface
+     */
+    abstract public function modelFactory();
+
+    /**
+     * Retrieve the model collection loader.
+     *
+     * @return \Charcoal\Loader\CollectionLoader
+     */
+    abstract public function collectionLoader();
+
+    /**
+     * The template ident defines the template
+     * used to view the current object.
+     * @return string ident/of/the/template
+     */
+    abstract public function templateIdent();
+}
+
