@@ -178,13 +178,19 @@ trait RoutableTrait
             return $this->latestObjectRoute;
         }
 
+        $model = $this->modelFactory()->create(ObjectRoute::class);
+
+        if (!$this->objType() || !$this->id()) {
+            $this->latestObjectRoute = $model;
+
+            return $this->latestObjectRoute;
+        }
+
         // For URL.
         $loader = new CollectionLoader([
-            'logger' => $this->logger,
+            'logger'  => $this->logger,
             'factory' => $this->modelFactory()
         ]);
-
-        $model = $this->modelFactory()->create(ObjectRoute::class);
 
         if ($model->source()->tableExists() === false) {
             $model->source()->createTable();
@@ -205,8 +211,10 @@ trait RoutableTrait
 
         if (!count($collection)) {
             $this->latestObjectRoute = $model;
+
             return $this->latestObjectRoute;
         }
+
         $this->latestObjectRoute = $collection[0];
 
         return $this->latestObjectRoute;
