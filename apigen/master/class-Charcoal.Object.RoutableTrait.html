@@ -67,7 +67,6 @@
 				<li><a href="class-Charcoal.Object.ContentInterface.html">ContentInterface</a></li>
 				<li><a href="class-Charcoal.Object.HierarchicalInterface.html">HierarchicalInterface</a></li>
 				<li><a href="class-Charcoal.Object.ObjectRevisionInterface.html">ObjectRevisionInterface</a></li>
-				<li><a href="class-Charcoal.Object.ObjectRouteInterface.html">ObjectRouteInterface</a></li>
 				<li><a href="class-Charcoal.Object.ObjectScheduleInterface.html">ObjectScheduleInterface</a></li>
 				<li><a href="class-Charcoal.Object.PublishableInterface.html">PublishableInterface</a></li>
 				<li><a href="class-Charcoal.Object.RevisionableInterface.html">RevisionableInterface</a></li>
@@ -142,7 +141,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Object.html">Object</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Object.RoutableTrait.html#18-668" title="Go to source code">Charcoal/Object/RoutableTrait.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Object.RoutableTrait.html#12-321" title="Go to source code">Charcoal/Object/RoutableTrait.php</a>
 		<br>
 	</div>
 
@@ -150,79 +149,6 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="setRoutableOptions" id="_setRoutableOptions">
-
-		<td class="attributes"><code>
-			 public 
-
-			<code><a href="class-Charcoal.Object.RoutableInterface.html">Charcoal\Object\RoutableInterface</a></code>
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setRoutableOptions">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#61-72" title="Go to source code">setRoutableOptions</a>( <span>array <var>$options</var></span> )</code>
-
-		<div class="description short">
-			<p>Set the object's routable options.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Set the object's routable options.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$options</var></dt>
-					<dd>The routable options.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-Charcoal.Object.RoutableInterface.html">Charcoal\Object\RoutableInterface</a></code><br>Chainable
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="routableOptions" id="_routableOptions">
-
-		<td class="attributes"><code>
-			 public 
-
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_routableOptions">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#74-86" title="Go to source code">routableOptions</a>( )</code>
-
-		<div class="description short">
-			<p>Retrieve the object's routable options.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Retrieve the object's routable options.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					array
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="setSlugPattern" id="_setSlugPattern">
 
 		<td class="attributes"><code>
@@ -235,14 +161,14 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSlugPattern">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#127-142" title="Go to source code">setSlugPattern</a>( <span>mixed <var>$pattern</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#33-41" title="Go to source code">setSlugPattern</a>( <span>mixed <var>$pattern</var></span> )</code>
 
 		<div class="description short">
-			<p>Set the object's URL slug pattern.</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Set the object's URL slug pattern.</p>
+			
 
 
 				<h4>Parameters</h4>
@@ -267,35 +193,29 @@
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translation\TranslationString|null
+			Charcoal\Translation\TranslationString
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_slugPattern">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#144-168" title="Go to source code">slugPattern</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#43-55" title="Go to source code">slugPattern</a>( )</code>
 
 		<div class="description short">
-			<p>Retrieve the object's URL slug pattern.</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Retrieve the object's URL slug pattern.</p>
-
-<p>Always returned as a multilingual value object.</p>
+			
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translation\TranslationString|null
+					Charcoal\Translation\TranslationString
 				</div>
 
-				<h4>Throws</h4>
-				<div class="list">
-					InvalidArgumentException<br>If a slug pattern is not defined.
-				</div>
 
 
 
@@ -314,14 +234,14 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSlug">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#170-215" title="Go to source code">setSlug</a>( <span>mixed <var>$slug</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#57-69" title="Go to source code">setSlug</a>( <span>mixed <var>$slug</var></span> )</code>
 
 		<div class="description short">
-			<p>Set the object's URL slug.</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Set the object's URL slug.</p>
+			
 
 
 				<h4>Parameters</h4>
@@ -346,29 +266,27 @@
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translation\TranslationString|null
+			Charcoal\Translation\TranslationString
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_slug">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#217-235" title="Go to source code">slug</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#71-77" title="Go to source code">slug</a>( )</code>
 
 		<div class="description short">
-			<p>Retrieve the object's URL slug.</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Retrieve the object's URL slug.</p>
-
-<p>Always returned as a multilingual value object.</p>
+			
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translation\TranslationString|null
+					Charcoal\Translation\TranslationString
 				</div>
 
 
@@ -389,7 +307,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_generateSlug">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#237-283" title="Go to source code">generateSlug</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#79-121" title="Go to source code">generateSlug</a>( )</code>
 
 		<div class="description short">
 			<p>Generate a URL slug from the object's URL slug pattern.</p>
@@ -411,153 +329,6 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="generateRoutePattern" id="_generateRoutePattern">
-
-		<td class="attributes"><code>
-			 protected 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_generateRoutePattern">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#285-305" title="Go to source code">generateRoutePattern</a>( <span>string <var>$pattern</var></span> )</code>
-
-		<div class="description short">
-			<p>Generate a route from the given pattern.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Generate a route from the given pattern.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$pattern</var></dt>
-					<dd>The slug pattern.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>Returns the generated route.
-				</div>
-
-
-				<h4>Uses</h4>
-				<div class="list">
-						<code><a href="class-Charcoal.Object.RoutableTrait.html#_parseRouteToken">Charcoal\Object\RoutableTrait::parseRouteToken()</a></code><br>If a view renderer is unavailable.<br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="parseRouteToken" id="_parseRouteToken">
-
-		<td class="attributes"><code>
-			 protected 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_parseRouteToken">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#307-348" title="Go to source code">parseRouteToken</a>( <span>string|array <var>$token</var></span> )</code>
-
-		<div class="description short">
-			<p>Parse the given slug (URI token) for the current object.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Parse the given slug (URI token) for the current object.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$token</var></dt>
-					<dd>The token to parse relative to the model entry.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					string
-				</div>
-
-				<h4>Throws</h4>
-				<div class="list">
-					InvalidArgumentException<br>If a route token is not a string.
-				</div>
-
-				<h4>Uses</h4>
-				<div class="list">
-						<code><a href="class-Charcoal.Object.RoutableTrait.html#_filterRouteToken">Charcoal\Object\RoutableTrait::filterRouteToken()</a></code><br>For customize the route value filtering,<br>
-				</div>
-				<h4>Used by</h4>
-				<div class="list">
-						<code><a href="class-Charcoal.Object.RoutableTrait.html#_generateRoutePattern">Charcoal\Object\RoutableTrait::generateRoutePattern()</a></code><br>If a view renderer is unavailable.<br>
-				</div>
-				<h4>Used-by</h4>
-				<div class="list">
-						self::generateRoutePattern() If a view renderer is unavailable.<br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="filterRouteToken" id="_filterRouteToken">
-
-		<td class="attributes"><code>
-			 protected 
-
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_filterRouteToken">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#350-372" title="Go to source code">filterRouteToken</a>( <span>mixed <var>$value</var></span>, <span>string <var>$token</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			<p>Filter the given value for a URI.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Filter the given value for a URI.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$value</var></dt>
-					<dd>A value to filter.</dd>
-					<dt><var>$token</var></dt>
-					<dd>The parsed token.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					string<br>The filtered $value.
-				</div>
-
-
-				<h4>Used by</h4>
-				<div class="list">
-						<code><a href="class-Charcoal.Object.RoutableTrait.html#_parseRouteToken">Charcoal\Object\RoutableTrait::parseRouteToken()</a></code><br>For customize the route value filtering,<br>
-				</div>
-				<h4>Used-by</h4>
-				<div class="list">
-						self::parseRouteToken() To resolve the token's value.<br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="generateObjectRoute" id="_generateObjectRoute">
 
 		<td class="attributes"><code>
@@ -570,16 +341,14 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_generateObjectRoute">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#374-439" title="Go to source code">generateObjectRoute</a>( <span>mixed <var>$slug</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#123-169" title="Go to source code">generateObjectRoute</a>( <span>mixed <var>$slug</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			<p>Route generation.</p>
+			<p>Route generation. Saves all route to one table.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Route generation.</p>
-
-<p>Saves all routes to <code><a href="class-Charcoal.Object.ObjectRoute.html">Charcoal\Object\ObjectRoute</a></code>.</p>
+			<p>Route generation. Saves all route to one table.</p>
 
 
 				<h4>Parameters</h4>
@@ -607,68 +376,20 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLatestObjectRoute">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#441-505" title="Go to source code">getLatestObjectRoute</a>( <span>string|null <var>$lang</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#171-221" title="Go to source code">getLatestObjectRoute</a>( )</code>
 
 		<div class="description short">
-			<p>Retrieve the latest object route.</p>
+			<p>Get the latest object route.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Retrieve the latest object route.</p>
+			<p>Get the latest object route.</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$lang</var></dt>
-					<dd>If object is multilingual, return the object route for the specified locale.</dd>
-				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
 					<code><a href="class-Charcoal.Object.ObjectRoute.html">Charcoal\Object\ObjectRoute</a></code><br>Latest object route.
-				</div>
-
-				<h4>Throws</h4>
-				<div class="list">
-					InvalidArgumentException<br>If the given language is invalid.
-				</div>
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="route" id="_route">
-
-		<td class="attributes"><code>
-			 public 
-
-			Charcoal\Translation\TranslationString|string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_route">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#507-541" title="Go to source code">route</a>( <span>string|null <var>$lang</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			<p>Retrieve the object's URI.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Retrieve the object's URI.</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$lang</var></dt>
-					<dd>If object is multilingual, return the object route for the specified locale.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					Charcoal\Translation\TranslationString|string
 				</div>
 
 
@@ -689,14 +410,14 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_url">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#543-551" title="Go to source code">url</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#223-233" title="Go to source code">url</a>( )</code>
 
 		<div class="description short">
-			<p>Alias of <a href="self::route()">self::route()</a>.</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Alias of <a href="self::route()">self::route()</a>.</p>
+			
 
 
 
@@ -723,7 +444,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_slugify">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#553-613" title="Go to source code">slugify</a>( <span>string <var>$str</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#235-273" title="Go to source code">slugify</a>( <span>string <var>$str</var></span> )</code>
 
 		<div class="description short">
 			
@@ -762,16 +483,16 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteObjectRoutes">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#615-646" title="Go to source code">deleteObjectRoutes</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#275-306" title="Go to source code">deleteObjectRoutes</a>( )</code>
 
 		<div class="description short">
-			<p>Delete all object routes.</p>
+			<p>Delete all object routes. Should be called
+on object suppression.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Delete all object routes.</p>
-
-<p>Should be called on object deletion \Charcoal\Model\AbstractModel::preDelete().</p>
+			<p>Delete all object routes. Should be called
+on object suppression.</p>
 
 
 
@@ -789,63 +510,31 @@
 	<tr data-order="modelFactory" id="_modelFactory">
 
 		<td class="attributes"><code>
-			abstract public 
+			abstract protected 
 
-			Charcoal\Factory\FactoryInterface
+			FactoryInterface
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_modelFactory">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#648-653" title="Go to source code">modelFactory</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#308-313" title="Go to source code">modelFactory</a>( )</code>
 
 		<div class="description short">
-			<p>Retrieve the object model factory.</p>
+			<p>Requires the modelFactory in order to generate the
+according objectRoute.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Retrieve the object model factory.</p>
+			<p>Requires the modelFactory in order to generate the
+according objectRoute.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Factory\FactoryInterface
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="collectionLoader" id="_collectionLoader">
-
-		<td class="attributes"><code>
-			abstract public 
-
-			Charcoal\Loader\CollectionLoader
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_collectionLoader">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#655-660" title="Go to source code">collectionLoader</a>( )</code>
-
-		<div class="description short">
-			<p>Retrieve the model collection loader.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Retrieve the model collection loader.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					Charcoal\Loader\CollectionLoader
+					FactoryInterface<br>ModelFactory
 				</div>
 
 
@@ -859,27 +548,29 @@
 		<td class="attributes"><code>
 			abstract public 
 
-			mixed
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_templateIdent">#</a>
-		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#662-667" title="Go to source code">templateIdent</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.RoutableTrait.html#315-320" title="Go to source code">templateIdent</a>( )</code>
 
 		<div class="description short">
-			<p>Retrieve the routable object's template identifier.</p>
+			<p>The template ident defines the template
+used to view the current object.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Retrieve the routable object's template identifier.</p>
+			<p>The template ident defines the template
+used to view the current object.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					mixed
+					string<br>ident/of/the/template
 				</div>
 
 
