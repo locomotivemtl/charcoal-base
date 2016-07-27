@@ -46,4 +46,10 @@ interface RevisionableInterface
      * @return array
      */
     public function allRevisions();
+
+    /**
+     * @param integer $revNum The revision number to revert to.
+     * @return boolean Success / Failure.
+     */
+    public function revertToRevision($revNum)
 }
