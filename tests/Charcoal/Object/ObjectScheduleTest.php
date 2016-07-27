@@ -4,6 +4,9 @@ use \Psr\Log\NullLogger;
 
 use \Charcoal\Object\ObjectSchedule;
 
+/**
+ *
+ */
 class ObjectScheduleTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
@@ -23,39 +26,31 @@ class ObjectScheduleTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
-    public function testSetObjType()
+    public function testSetTargetType()
     {
-        $this->assertNull($this->obj->objType());
-        $ret = $this->obj->setObjType('foobar');
+        $this->assertNull($this->obj->targetType());
+        $ret = $this->obj->setTargetType('foobar');
         $this->assertSame($ret, $this->obj);
-        $this->assertEquals('foobar', $this->obj->objType());
+        $this->assertEquals('foobar', $this->obj->targetType());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $this->obj->setObjType(false);
+        $this->obj->setTargetType(false);
     }
 
-    public function testSetObjId()
+    public function testSetTargetId()
     {
-        $this->assertNull($this->obj->objId());
-        $ret = $this->obj->setObjId(42);
+        $this->assertNull($this->obj->targetId());
+        $ret = $this->obj->setTargetId(42);
         $this->assertSame($ret, $this->obj);
-        $this->assertEquals(42, $this->obj->objId());
+        $this->assertEquals(42, $this->obj->targetId());
     }
 
-    public function testSetPropertyIdent()
+    public function testSetDataDiff()
     {
-        $this->assertNull($this->obj->propertyIdent());
-        $ret = $this->obj->setPropertyIdent('foo');
+        $this->assertEquals([], $this->obj->dataDiff());
+        $ret = $this->obj->setDataDiff(['foo'=>42]);
         $this->assertSame($ret, $this->obj);
-        $this->assertEquals('foo', $this->obj->propertyIdent());
-    }
-
-    public function testSetNewValue()
-    {
-        $this->assertNull($this->obj->newValue());
-        $ret = $this->obj->setNewValue(42);
-        $this->assertSame($ret, $this->obj);
-        $this->assertEquals(42, $this->obj->newValue());
+        $this->assertEquals(['foo'=>42], $this->obj->dataDiff());
     }
 
     public function testSetProcessed()
@@ -66,26 +61,26 @@ class ObjectScheduleTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->obj->processed());
     }
 
-    public function testSetProcessingDate()
+    public function testSetScheduledDate()
     {
         $obj = $this->obj;
-        $this->assertNull($obj->processingDate());
-        $ret = $obj->setProcessingDate('2015-01-01 13:05:45');
+        $this->assertNull($obj->scheduledDate());
+        $ret = $obj->setScheduledDate('2015-01-01 13:05:45');
         $this->assertSame($ret, $obj);
         $expected = new DateTime('2015-01-01 13:05:45');
-        $this->assertEquals($expected, $obj->processingDate());
+        $this->assertEquals($expected, $obj->scheduledDate());
 
-        $obj->setProcessingDate(null);
-        $this->assertNull($obj->processingDate());
+        $obj->setScheduledDate(null);
+        $this->assertNull($obj->scheduledDate());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $obj->setProcessingDate(false);
+        $obj->setScheduledDate(false);
     }
 
-    public function testSetProcessingDateInvalidTime()
+    public function testSetScheduledDateInvalidTime()
     {
         $this->setExpectedException('\InvalidArgumentException');
-        $this->obj->setProcessingDate('A totally invalid date time');
+        $this->obj->setScheduledDate('A totally invalid date time');
     }
 
     public function testSetProcessedDate()
@@ -117,13 +112,12 @@ class ObjectScheduleTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($this->obj->process());
 
-        $this->obj->setObjType('charcoal/object/content');
+        $this->obj->setTargetType('charcoal/object/content');
         $this->assertFalse($this->obj->process());
 
-        $this->obj->setObjId(42);
+        $this->obj->setTargetId(42);
         $this->assertFalse($this->obj->process());
 
-        $this->obj->setPropertyIdent('foo');
         //q$this->obj->process();
     }
 }

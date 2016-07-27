@@ -39,35 +39,14 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
      *
      * @var string
      */
-    private $objType;
+    private $targetType;
 
     /**
      * The object ID of the scheduled object (required).
      *
      * @var mixed
      */
-    private $objId;
-
-    /**
-     * The property identifier of the scheduled object (required).
-     *
-     * @var string
-     */
-    private $propertyIdent;
-
-    /**
-     * The new value for the scheduled object's property.
-     *
-     * @var mixed
-     */
-    private $newValue;
-
-    /**
-     * Whether the item has been processed.
-     *
-     * @var boolean $processed
-     */
-    private $processed = false;
+    private $targetId;
 
     /**
      * When the item should be processed.
@@ -75,9 +54,23 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
      * The date/time at which this queue item job should be ran.
      * If NULL, 0, or a past date/time, then it should be performed immediately.
      *
-     * @var DateTimeInterface $processingDate
+     * @var DateTimeInterface $scheduledDate
      */
-    private $processingDate;
+    private $scheduledDate;
+
+    /**
+     * The property identifier of the scheduled object (required).
+     *
+     * @var string
+     */
+    private $dataDiff = [];
+
+    /**
+     * Whether the item has been processed.
+     *
+     * @var boolean $processed
+     */
+    private $processed = false;
 
     /**
      * When the item was processed.
@@ -119,19 +112,19 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
     /**
      * Set the scheduled object's type.
      *
-     * @param string $objType The object type (model).
+     * @param string $targetType The object type (model).
      * @throws InvalidArgumentException If the object type parameter is not a string.
      * @return ObjectScheduleInterface Chainable
      */
-    public function setObjType($objType)
+    public function setTargetType($targetType)
     {
-        if (!is_string($objType)) {
+        if (!is_string($targetType)) {
             throw new InvalidArgumentException(
                 'Scheduled object type must be a string.'
             );
         }
 
-        $this->objType = $objType;
+        $this->targetType = $targetType;
 
         return $this;
     }
@@ -141,20 +134,20 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
      *
      * @return string
      */
-    public function objType()
+    public function targetType()
     {
-        return $this->objType;
+        return $this->targetType;
     }
 
     /**
      * Set the scheduled object's ID.
      *
-     * @param mixed $objId The object ID.
+     * @param mixed $targetId The object ID.
      * @return ObjectScheduleInterface Chainable
      */
-    public function setObjId($objId)
+    public function setTargetId($targetId)
     {
-        $this->objId = $objId;
+        $this->targetId = $targetId;
 
         return $this;
     }
@@ -164,62 +157,33 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
      *
      * @return mixed
      */
-    public function objId()
+    public function targetId()
     {
-        return $this->objId;
+        return $this->targetId;
     }
 
     /**
-     * Set the scheduled property's identifier.
-     *
-     * @param string $propertyIdent The property identifier.
-     * @throws InvalidArgumentException If the property identifier parameter is not a string.
-     * @return ObjectScheduleInterface Chainable
+     * @param array|string $data The data diff.
+     * @return ObjectRevision
      */
-    public function setPropertyIdent($propertyIdent)
+    public function setDataDiff($data)
     {
-        if (!is_string($propertyIdent)) {
-            throw new InvalidArgumentException(
-                'Property identifier must be a string'
-            );
+        if (!is_array($data)) {
+            $data = json_decode($data, true);
         }
-
-        $this->propertyIdent = $propertyIdent;
-
+        if ($data === null) {
+            $data = [];
+        }
+        $this->dataDiff = $data;
         return $this;
     }
 
     /**
-     * Retrieve the scheduled property's identifier.
-     *
-     * @return string
+     * @return array
      */
-    public function propertyIdent()
+    public function dataDiff()
     {
-        return $this->propertyIdent;
-    }
-
-    /**
-     * Set the new value for the scheduled object's property.
-     *
-     * @param mixed $val The new value to set on object's property.
-     * @return ObjectScheduleInterface Chainable
-     */
-    public function setNewValue($val)
-    {
-        $this->newValue = $val;
-
-        return $this;
-    }
-
-    /**
-     * Retrieve the new value for the scheduled object's property.
-     *
-     * @return mixed
-     */
-    public function newValue()
-    {
-        return $this->newValue;
+        return $this->dataDiff;
     }
 
     /**
@@ -252,10 +216,10 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
      * @throws InvalidArgumentException If the date/time is invalid.
      * @return QueueItemInterface Chainable
      */
-    public function setProcessingDate($ts)
+    public function setScheduledDate($ts)
     {
         if ($ts === null) {
-            $this->processingDate = null;
+            $this->scheduledDate = null;
             return $this;
         }
 
@@ -275,7 +239,7 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
             );
         }
 
-        $this->processingDate = $ts;
+        $this->scheduledDate = $ts;
 
         return $this;
     }
@@ -285,9 +249,9 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
      *
      * @return null|DateTimeInterface
      */
-    public function processingDate()
+    public function scheduledDate()
     {
-        return $this->processingDate;
+        return $this->scheduledDate;
     }
 
     /**
@@ -364,40 +328,41 @@ class ObjectSchedule extends AbstractModel implements ObjectScheduleInterface
         callable $successCallback = null,
         callable $failureCallback = null
     ) {
+
         if ($this->processed() === true) {
             // Do not process twice, ever.
             return null;
         }
 
-        if ($this->objType() === null) {
+        if ($this->targetType() === null) {
             $this->logger->error('Can not process object schedule: no object type defined.');
             return false;
         }
 
-        if ($this->objId() === null) {
+        if ($this->targetId() === null) {
             $this->logger->error(
-                sprintf('Can not process object schedule: no object "%s" ID defined.', $this->objType())
+                sprintf('Can not process object schedule: no object "%s" ID defined.', $this->targetType())
             );
             return false;
         }
 
-        if ($this->propertyIdent() === null) {
-            $this->logger->error('Can not process object schedule: no property identifer defined.');
+        if (empty($this->dataDiff())) {
+            $this->logger->error('Can not process object schedule: no changes (diff) defined.');
             return false;
         }
 
-        $obj = $this->modelFactory()->create($this->objType());
-        $obj->load($this->objId());
+        $obj = $this->modelFactory()->create($this->targetType());
+        $obj->load($this->targetId());
         if (!$obj->id()) {
-            $this->logger->error(sprintf('Can not load "%s" object %id', $this->objType(), $this->objId()));
+            $this->logger->error(sprintf('Can not load "%s" object %id', $this->targetType(), $this->targetId()));
         }
-        $obj[$this->propertyIdent()] = $this->newValue();
-        $update = $obj->update([$this->propertyIdent()]);
+        $obj->setData($this->dataDiff());
+        $update = $obj->update(array_keys($this->dataDiff()));
 
         if ($update) {
             $this->setProcessed(true);
             $this->setProcessedDate('now');
-            $this->update();
+            $this->update(['processed', 'processed_date']);
 
             if ($successCallback !== null) {
                 $successCallback($this);

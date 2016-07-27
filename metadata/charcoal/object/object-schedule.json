@@ -3,23 +3,32 @@
       "id":{
         "type": "id"
       },
-      "obj_type":{
-        "type": "string"
+      "target_type":{
+        "type":"string",
+        "label":{
+            "en":"Object type",
+            "fr":"Type de l'objet"
+        }
       },
-      "obj_id":{
-        "type": "string"
+      "target_id":{
+        "type":"string",
+        "label":{
+            "en":"Object identifier",
+            "fr":"Identifiant de l'objet"
+        }
       },
-      "property_ident":{
-        "type": "string"
+      "scheduled_date":{
+        "type": "date-time"
       },
-      "new_value":{
-        "type": "text"
+      "data_diff":{
+        "type":"structure",
+        "label":{
+            "en":"Diff data",
+            "fr":"Données différentes"
+        }
       },
       "processed":{
         "type": "boolean"
-      },
-      "processing_date":{
-        "type": "date-time"
       },
       "processed_date":{
         "type": "date-time"

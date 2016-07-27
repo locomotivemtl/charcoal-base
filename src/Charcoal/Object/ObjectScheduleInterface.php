@@ -8,26 +8,26 @@ namespace Charcoal\Object;
 interface ObjectScheduleInterface
 {
     /**
-     * @param string $objType The object type (type-ident).
+     * @param string $targetType The object type (type-ident).
      * @return \Charcoal\Object\ObjectRevisionInterface Chainable
      */
-    public function setObjType($objType);
+    public function setTargetType($targetType);
 
     /**
      * @return string
      */
-    public function objType();
+    public function targetType();
 
     /**
-     * @param mixed $objId The object ID.
+     * @param mixed $targetId The object ID.
      * @return \Charcoal\Object\ObjectRevisionInterface Chainable
      */
-    public function setObjId($objId);
+    public function setTargetId($targetId);
 
     /**
      * @return mixed
      */
-    public function objId();
+    public function targetId();
 
     /**
      * Set the date/time the item should be processed at.
@@ -36,14 +36,25 @@ interface ObjectScheduleInterface
      * @throws InvalidArgumentException If the date/time is invalid.
      * @return QueueItemInterface Chainable
      */
-    public function setProcessingDate($ts);
+    public function setScheduledDate($ts);
 
     /**
      * Retrieve the date/time the item should be processed at.
      *
      * @return null|DateTimeInterface
      */
-    public function processingDate();
+    public function scheduledDate();
+
+    /**
+     * @param array|string $data The data diff.
+     * @return ObjectRevision
+     */
+    public function setDataDiff($data);
+
+    /**
+     * @return array
+     */
+    public function dataDiff();
 
     /**
      * Set the date/time the item was processed at.
