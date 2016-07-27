@@ -33,7 +33,7 @@ trait PublishableTrait
      */
     public function setPublishDate($publishDate)
     {
-        if ($publishDate === null) {
+        if ($publishDate === null || $publishDate === '') {
             $this->publishDate = null;
             return $this;
         }
@@ -64,7 +64,7 @@ trait PublishableTrait
      */
     public function setExpiryDate($expiryDate)
     {
-        if ($expiryDate === null) {
+        if ($expiryDate === null || $expiryDate === '') {
             $this->expiryDate = null;
             return $this;
         }
