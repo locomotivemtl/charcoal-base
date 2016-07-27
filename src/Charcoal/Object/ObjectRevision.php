@@ -328,9 +328,11 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
         $this->setRevNum($prevRev->revNum() + 1);
         $this->setRevTs('now');
 
-        $this->setDataObj($obj->data([
-            'sortable'=>false
-        ]));
+        if (is_callable([$obj, 'lastModifiedBy'])) {
+            $this->setRevUser($obj->lastModifiedBy());
+        }
+
+        $this->setDataObj($obj->data());
         $this->setDataPrev($prevRev->dataObj());
 
         $diff = $this->createDiff();
