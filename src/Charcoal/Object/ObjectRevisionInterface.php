@@ -130,4 +130,13 @@ interface ObjectRevisionInterface
      * @return ObjectRevision The last revision for the give object.
      */
     public function lastObjectRevision(RevisionableInterface $obj);
+
+        /**
+     * Retrieve a specific object revision, by revision number.
+     *
+     * @param RevisionableInterface $obj    Target object.
+     * @param integer               $revNum The revision number to load.
+     * @return ObjectRevision
+     */
+    public function objectRevisionNum(RevisionableInterface $obj, $revNum)
 }
