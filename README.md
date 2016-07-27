@@ -23,6 +23,7 @@ Both namespaces are planned to move into their own module in the near future. Th
 		- [Revisionable](#revisionable)
 		- [Routable](#routable)
 	+ [Helpers](#helpers)
+		- [ObjectDraft](#objectdraft)
 		- [ObjectRevision](#objectrevision)
 		- [ObjectSchedule](#objectschedule)
 - [Development](#development)
@@ -75,7 +76,7 @@ The `\Charcoal\Object` namespace provides a bunch of basic classes, helpers as w
 
 ## Basic classes
 
-All charcoal project object classes should extend one of the 2 base classes, [`\Charcoal\Object\Content`](#content) or [`\Charcoal\Object\UserData`](#userdata).
+All charcoal project object classes should extend one of the 2 base classes, [`\Charcoal\Object\Content`](#content), for data created and managed by administrators or [`\Charcoal\Object\UserData`](#userdata), for data created from clients / users.
 
 ### Content
 
@@ -145,7 +146,7 @@ The **UserData** class should be used for all objects that are expected to be en
 
 > Default metadata is defined in `metadata/charcoal/object/user-data.json`
 
-##Object behaviors
+## Object behaviors
 
 - [Archivable](#archivable)
 - [Categorizable](#categorizable)
@@ -231,7 +232,6 @@ _The archivable behavior is not yet documented. It is still under heavy developm
 
 ### Publishable
 
-
 - `setPublishDate($publishDate)`
 - `publishDate()`
 - `setExpiryDate($expiryDate)`
@@ -252,17 +252,24 @@ _The archivable behavior is not yet documented. It is still under heavy developm
 
 ### Revisionable
 
+Revisionable objects implement `\Charcoal\Object\Revision\RevisionableInterface`, which can be easily implemented by using `\Charcoal\Object\Revision\RevisionableTrait`.
+
+Revisionable objects create _revisions_ which logs the changes between an object's versions, as _diffs_.
+
 **API**
 
-- `setRevisionEnabled($enabled)`
+- `setRevisionEnabled(bool$enabled)`
 - `revisionEnabled()`
 - `revisionObject()`
 - `generateRevision()`
 - `latestRevision()`
+- `revisionNum(integer $revNum)`
+- `allRevisions(callable $callback = null)`
+- `revertToRevision(integer $revNum)`
 
 **Properties (metadata)**
 
-_The revisionable behavior does not implement any properties._
+_The revisionable behavior does not implement any properties as all logic & data is self-contained in the revisions._
 
 ### Routable
 
@@ -270,9 +277,58 @@ _The routable behavior is not yet documented. It is still under heavy developmen
 
 ## Helpers
 
-###ObjectRevision
+### ObjectDraft
+
+...
+
+### ObjectRevision
+
+Upon every `update` in _storage_, a revisionable object creates a new *revision* (a `\Charcoal\Object\ObjectRevision` instance) which holds logs the changes (_diff_) between versions of an object:
+
+**Revision properties**
+
+| Property           | Type         | Default    | Description |
+| ------------------ | ------------ | ---------- | ----------- |
+| **target_type**    | `string`     | `null`     | The object type of the target object.
+| **target_id**      | `string` | `null` | The object idenfiier of the target object.
+| **rev_num**        | `integer` | `null` | Revision number, (auto-generated).
+| **ref_ts**         | `date-time`  |
+| **rev_user**       | `string` | `null` |
+| **data_prev**      | `structure`  |
+| **data_obj**       | `structure`  |
+| **data_diff**      | `structure`  |
+
+**Revision methods**
+
+- `createFromObject(RevisionableInterface $obj)`
+- `createDiff(array $dataPrev, array $dataObj)`
+- `lastObjectRevision(RevisionableInterface $obj)`
+- `objectRevisionNum(RevisionableInterface $obj, integer $revNum)`
 
 ### ObjetSchedule
+
+It is possible, (typically from the charcoal admin backend), to create *schedule* (a `\Charcaol\Object\ObjectSchedule` instance) which associate a set of changes to be applied automatically to an object:
+
+**Schedule properties**
+
+| Property           | Type         | Default    | Description |
+| ------------------ | ------------ | ---------- | ----------- |
+| **target_type**    | `string`     | `null`     | The object type of the target object.
+| **target_id**      | `string` | `null` | The object idenfiier of the target object.
+| **scheduled_date** | `date-time`  | `null`     |
+| **data_diff**      | `structure`  | `[]`       |
+| **processed**      | `boolean`    | `false`    |
+| **processed_date** |
+
+**Schedule methods (API)**
+
+- `process([callable $callback, callable $successCallback,callable $failureCallback])`
+
+> Scheduled actions should be run with a timely cron job. The [charcoal-admin](https://github.com/locomotivemtl/charcoal-admin) module contains a script to run schedules automatically:
+>
+> ```shell
+> ★ ./vendor/bin/charcoal admin/object/process-schedules`
+> ```
 
 # Development
 
@@ -323,6 +379,7 @@ The charcoal-base module follows the Charcoal coding-style:
 # Authors
 
 - Mathieu Ducharme, mat@locomotive.ca
+- Chauncey McAskill
 
 # Changelog
 
