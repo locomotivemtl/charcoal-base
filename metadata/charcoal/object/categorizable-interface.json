@@ -1,7 +1,7 @@
 {
-	"properties":{
-    "category":{
-      "type":"object"
+    "properties": {
+        "category": {
+            "type": "object"
+        }
     }
-  }
 }
