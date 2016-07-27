@@ -286,10 +286,10 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
         return $this->dataObj;
     }
 
-     /**
-      * @param array|string $data The data diff.
-      * @return ObjectRevision
-      */
+    /**
+     * @param array|string $data The data diff.
+     * @return ObjectRevision
+     */
     public function setDataDiff($data)
     {
         if (!is_array($data)) {
