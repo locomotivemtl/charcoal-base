@@ -132,6 +132,9 @@ trait RevisionableTrait
         if (!$rev->id()) {
             return false;
         }
+        if (is_callable([$this, 'setLastModifiedBy'])) {
+            $this->setLastModifiedBy($rev->revUser());
+        }
         $this->setData($rev->dataObj());
         $this->update();
 
