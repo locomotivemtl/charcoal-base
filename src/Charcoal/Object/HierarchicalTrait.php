@@ -20,7 +20,7 @@ trait HierarchicalTrait
     /**
      * In-memory copy of the object's hierarchy.
      *
-     * @var array $hierarchy
+     * @var array|null $hierarchy
      */
     private $hierarchy = null;
 

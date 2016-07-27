@@ -3,6 +3,7 @@
 namespace Charcoal\Object;
 
 use \DateTime;
+use \DateTimeInterface;
 use \InvalidArgumentException;
 
 
@@ -142,7 +143,7 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @param \DateTime|string|null $created The date/time at object's creation.
+     * @param \DateTimeInterface|string|null $created The date/time at object's creation.
      * @throws InvalidArgumentException If the date/time is invalid.
      * @return Content Chainable
      */
@@ -155,7 +156,7 @@ class Content extends AbstractModel implements
         if (is_string($created)) {
             $created = new DateTime($created);
         }
-        if (!($created instanceof DateTime)) {
+        if (!($created instanceof DateTimeInterface)) {
             throw new InvalidArgumentException(
                 'Invalid "Created" value. Must be a date/time string or a DateTime object.'
             );
@@ -165,7 +166,7 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTimeInterface|null
      */
     public function created()
     {
@@ -191,7 +192,7 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @param \DateTime|string|null $lastModified The last modified date/time.
+     * @param \DateTimeInterface|string|null $lastModified The last modified date/time.
      * @throws InvalidArgumentException If the date/time is invalid.
      * @return Content Chainable
      */
@@ -204,7 +205,7 @@ class Content extends AbstractModel implements
         if (is_string($lastModified)) {
             $lastModified = new DateTime($lastModified);
         }
-        if (!($lastModified instanceof DateTime)) {
+        if (!($lastModified instanceof DateTimeInterface)) {
             throw new InvalidArgumentException(
                 'Invalid "Last Modified" value. Must be a date/time string or a DateTime object.'
             );
@@ -214,7 +215,7 @@ class Content extends AbstractModel implements
     }
 
     /**
-     * @return DateTime
+     * @return DateTimeInterface
      */
     public function lastModified()
     {

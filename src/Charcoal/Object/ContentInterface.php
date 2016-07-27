@@ -27,13 +27,13 @@ interface ContentInterface
     public function position();
 
     /**
-     * @param DateTime|string $created The created date.
+     * @param \DateTimeInterface|string|null $created The created date.
      * @return Content Chainable
      */
     public function setCreated($created);
 
     /**
-     * @return DateTime|null
+     * @return \DateTimeInterface|null
      */
     public function created();
 
@@ -49,13 +49,13 @@ interface ContentInterface
     public function createdBy();
 
     /**
-     * @param DateTime|string $lastModified The last modified date.
+     * @param \DateTimeInterface|string|null $lastModified The last modified date.
      * @return Content Chainable
      */
     public function setLastModified($lastModified);
 
     /**
-     * @return DateTime
+     * @return \DateTimeInterface|null
      */
     public function lastModified();
 

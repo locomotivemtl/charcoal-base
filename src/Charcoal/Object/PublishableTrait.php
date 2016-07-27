@@ -13,11 +13,11 @@ use \InvalidArgumentException;
 trait PublishableTrait
 {
     /**
-     * @var DateTime $publishDate
+     * @var DateTimeInterface $publishDate
      */
     private $publishDate;
     /**
-     * @var DateTime $expiryDate
+     * @var DateTimeInterface $expiryDate
      */
     private $expiryDate;
 
@@ -27,7 +27,7 @@ trait PublishableTrait
     private $publishStatus;
 
     /**
-     * @param string|DateTime|null $publishDate The publishing date.
+     * @param string|DateTimeInterface|null $publishDate The publishing date.
      * @throws InvalidArgumentException If the date/time is invalid.
      * @return PublishableInterface Chainable
      */
@@ -50,7 +50,7 @@ trait PublishableTrait
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTimeInterface|null
      */
     public function publishDate()
     {
@@ -58,7 +58,7 @@ trait PublishableTrait
     }
 
     /**
-     * @param string|DateTime|null $expiryDate The expiry date.
+     * @param string|DateTimeInterface|null $expiryDate The expiry date.
      * @throws InvalidArgumentException If the date/time is invalid.
      * @return PublishableInterface Chainable
      */
@@ -81,7 +81,7 @@ trait PublishableTrait
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTimeInterface|null
      */
     public function expiryDate()
     {
@@ -91,7 +91,7 @@ trait PublishableTrait
     /**
      * @param string $status The publish status (draft, pending or published).
      * @throws InvalidArgumentException If the status is not one of the 3 valid status.
-     * @return PublishableTrait Chainable
+     * @return PublishableInterface Chainable
      */
     public function setPublishStatus($status)
     {

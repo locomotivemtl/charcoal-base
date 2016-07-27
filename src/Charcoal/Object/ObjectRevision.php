@@ -53,7 +53,7 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
 
     /**
      * Timestamp; when this revision was created
-     * @var string $revTs (DateTime)
+     * @var DateTimeInterface $revTs
      */
     private $revTs;
 
@@ -97,12 +97,11 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
 
     /**
      * @param FactoryInterface $factory The factory used to create models.
-     * @return AdminScript Chainable
+     * @return void
      */
     protected function setModelFactory(FactoryInterface $factory)
     {
         $this->modelFactory = $factory;
-        return $this;
     }
 
     /**
@@ -203,7 +202,7 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTimeInterface|null
      */
     public function revTs()
     {
@@ -240,7 +239,7 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
 
     /**
      * @param string|array $data The previous revision data.
-     * @return ObjectRevision
+     * @return ObjectRevision Chainable
      */
     public function setDataPrev($data)
     {
@@ -264,7 +263,7 @@ class ObjectRevision extends AbstractModel implements ObjectRevisionInterface
 
     /**
      * @param array|string $data The current revision (object) data.
-     * @return ObjectRevision
+     * @return ObjectRevision Chainable
      */
     public function setDataObj($data)
     {

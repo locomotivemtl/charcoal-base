@@ -9,7 +9,7 @@ interface PublishableInterface
 {
     /**
      * @param string|DateTime $publishDate The publish date.
-     * @return PublishableTrait Chainable
+     * @return PublishableInterface Chainable
      */
     public function setPublishDate($publishDate);
 
@@ -20,7 +20,7 @@ interface PublishableInterface
 
     /**
      * @param string|DateTime $expiryDate The expiry date.
-     * @return PublishableTrait Chainable
+     * @return PublishableInterface Chainable
      */
     public function setExpiryDate($expiryDate);
 
@@ -31,7 +31,7 @@ interface PublishableInterface
 
     /**
      * @param string $status The publish status (can be draft, pending or published).
-     * @return PublishableTrait Chainable
+     * @return PublishableInterface Chainable
      */
     public function setPublishStatus($status);
 
