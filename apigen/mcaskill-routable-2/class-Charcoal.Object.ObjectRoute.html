@@ -163,7 +163,7 @@ Charcoal\Model\AbstractModel
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Object.html">Object</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Object.ObjectRoute.html#21-392" title="Go to source code">Charcoal/Object/ObjectRoute.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Object.ObjectRoute.html#22-458" title="Go to source code">Charcoal/Object/ObjectRoute.php</a>
 		<br>
 	</div>
 
@@ -183,7 +183,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setDependencies">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#110-119" title="Go to source code">setDependencies</a>( <span>Pimple\Container <var>$container</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#118-128" title="Go to source code">setDependencies</a>( <span>Pimple\Container <var>$container</var></span> )</code>
 
 		<div class="description short">
 			<p>Inject dependencies from a DI Container.</p>
@@ -218,7 +218,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preSave">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#121-134" title="Go to source code">preSave</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#130-143" title="Go to source code">preSave</a>( )</code>
 
 		<div class="description short">
 			<p>Event called before <em>creating</em> the object.</p>
@@ -256,7 +256,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preUpdate">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#136-150" title="Go to source code">preUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#145-159" title="Go to source code">preUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Event called before <em>updating</em> the object.</p>
@@ -299,7 +299,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isSlugUnique">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#152-168" title="Go to source code">isSlugUnique</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#161-204" title="Go to source code">isSlugUnique</a>( )</code>
 
 		<div class="description short">
 			<p>Determine if the current slug is unique.</p>
@@ -333,7 +333,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_generateUniqueSlug">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#170-189" title="Go to source code">generateUniqueSlug</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#206-225" title="Go to source code">generateUniqueSlug</a>( )</code>
 
 		<div class="description short">
 			<p>Generate a unique URL slug for routable object.</p>
@@ -367,7 +367,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setModelFactory">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#195-206" title="Go to source code">setModelFactory</a>( <span>Charcoal\Factory\FactoryInterface <var>$factory</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#231-242" title="Go to source code">setModelFactory</a>( <span>Charcoal\Factory\FactoryInterface <var>$factory</var></span> )</code>
 
 		<div class="description short">
 			<p>Set an object model factory.</p>
@@ -394,6 +394,45 @@ Charcoal\Model\AbstractModel
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="setCollectionLoader" id="_setCollectionLoader">
+
+		<td class="attributes"><code>
+			 protected 
+
+			<code><a href="class-Charcoal.Object.ObjectRoute.html">Charcoal\Object\ObjectRoute</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setCollectionLoader">#</a>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#244-255" title="Go to source code">setCollectionLoader</a>( <span>Charcoal\Loader\CollectionLoader <var>$loader</var></span> )</code>
+
+		<div class="description short">
+			<p>Set a model collection loader.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set a model collection loader.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$loader</var></dt>
+					<dd>The collection loader.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Object.ObjectRoute.html">Charcoal\Object\ObjectRoute</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="setSlug" id="_setSlug">
 
 		<td class="attributes"><code>
@@ -406,7 +445,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSlug">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#208-217" title="Go to source code">setSlug</a>( <span>string <var>$slug</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#257-266" title="Go to source code">setSlug</a>( <span>string <var>$slug</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the slug of the current route.</p>
@@ -445,7 +484,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLang">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#218-227" title="Go to source code">setLang</a>( <span>string <var>$l</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#267-276" title="Go to source code">setLang</a>( <span>string <var>$l</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the lang of the current route.</p>
@@ -484,7 +523,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCreationDate">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#229-250" title="Go to source code">setCreationDate</a>( <span>DateTime|string|null <var>$creationDate</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#278-299" title="Go to source code">setCreationDate</a>( <span>DateTime|string|null <var>$creationDate</var></span> )</code>
 
 		<div class="description short">
 			
@@ -527,7 +566,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLastModificationDate">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#251-272" title="Go to source code">setLastModificationDate</a>( <span>DateTime|string|null <var>$lastModificationDate</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#300-321" title="Go to source code">setLastModificationDate</a>( <span>DateTime|string|null <var>$lastModificationDate</var></span> )</code>
 
 		<div class="description short">
 			
@@ -570,7 +609,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setRouteObjType">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#274-283" title="Go to source code">setRouteObjType</a>( <span>string <var>$type</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#323-332" title="Go to source code">setRouteObjType</a>( <span>string <var>$type</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the route obj type</p>
@@ -609,7 +648,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setRouteObjId">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#284-293" title="Go to source code">setRouteObjId</a>( <span>string <var>$id</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#333-342" title="Go to source code">setRouteObjId</a>( <span>string <var>$id</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the object route id</p>
@@ -648,7 +687,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setRouteTemplate">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#294-303" title="Go to source code">setRouteTemplate</a>( <span>string <var>$template</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#343-352" title="Go to source code">setRouteTemplate</a>( <span>string <var>$template</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the object route template</p>
@@ -687,7 +726,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_modelFactory">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#309-324" title="Go to source code">modelFactory</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#358-373" title="Go to source code">modelFactory</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the object model factory.</p>
@@ -713,6 +752,44 @@ Charcoal\Model\AbstractModel
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="collectionLoader" id="_collectionLoader">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Loader\CollectionLoader
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_collectionLoader">#</a>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#375-390" title="Go to source code">collectionLoader</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the model collection loader.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the model collection loader.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Loader\CollectionLoader
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					RuntimeException<br>If the collection loader was not previously set.
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="slug" id="_slug">
 
 		<td class="attributes"><code>
@@ -725,7 +802,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_slug">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#326-333" title="Go to source code">slug</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#392-399" title="Go to source code">slug</a>( )</code>
 
 		<div class="description short">
 			<p>Slug.</p>
@@ -759,7 +836,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lang">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#334-341" title="Go to source code">lang</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#400-407" title="Go to source code">lang</a>( )</code>
 
 		<div class="description short">
 			<p>Language.</p>
@@ -793,7 +870,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_creationDate">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#342-349" title="Go to source code">creationDate</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#408-415" title="Go to source code">creationDate</a>( )</code>
 
 		<div class="description short">
 			<p>Creation date.</p>
@@ -827,7 +904,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lastModificationDate">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#350-357" title="Go to source code">lastModificationDate</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#416-423" title="Go to source code">lastModificationDate</a>( )</code>
 
 		<div class="description short">
 			<p>Last modification date.</p>
@@ -861,7 +938,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_routeObjType">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#358-365" title="Go to source code">routeObjType</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#424-431" title="Go to source code">routeObjType</a>( )</code>
 
 		<div class="description short">
 			<p>Route object type.</p>
@@ -895,7 +972,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_routeObjId">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#366-373" title="Go to source code">routeObjId</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#432-439" title="Go to source code">routeObjId</a>( )</code>
 
 		<div class="description short">
 			<p>Route Object ID.</p>
@@ -929,7 +1006,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_routeTemplate">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#374-381" title="Go to source code">routeTemplate</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#440-447" title="Go to source code">routeTemplate</a>( )</code>
 
 		<div class="description short">
 			<p>Route template.</p>
@@ -963,7 +1040,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#383-391" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ObjectRoute.html#449-457" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			<p>Alias of <a href="self::slug()">self::slug()</a>.</p>
@@ -1007,7 +1084,7 @@ Charcoal\Model\AbstractModel
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Object.ObjectRoute.html#33-37" title="Go to source code"><var>$id</var></a>
+				<a href="source-class-Charcoal.Object.ObjectRoute.html#34-38" title="Go to source code"><var>$id</var></a>
 
 			<div class="description short">
 				<p>Base.</p>
@@ -1032,7 +1109,7 @@ Charcoal\Model\AbstractModel
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Object.ObjectRoute.html#39-43" title="Go to source code"><var>$active</var></a>
+				<a href="source-class-Charcoal.Object.ObjectRoute.html#40-44" title="Go to source code"><var>$active</var></a>
 
 			<div class="description short">
 				<p>Route active?</p>
@@ -1057,7 +1134,7 @@ Charcoal\Model\AbstractModel
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Object.ObjectRoute.html#45-49" title="Go to source code"><var>$slug</var></a>
+				<a href="source-class-Charcoal.Object.ObjectRoute.html#46-50" title="Go to source code"><var>$slug</var></a>
 
 			<div class="description short">
 				<p>Uniq.</p>
@@ -1082,7 +1159,7 @@ Charcoal\Model\AbstractModel
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Object.ObjectRoute.html#51-55" title="Go to source code"><var>$lang</var></a>
+				<a href="source-class-Charcoal.Object.ObjectRoute.html#52-56" title="Go to source code"><var>$lang</var></a>
 
 			<div class="description short">
 				<p>Route lang ident.</p>
@@ -1107,7 +1184,7 @@ Charcoal\Model\AbstractModel
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Object.ObjectRoute.html#57-61" title="Go to source code"><var>$creationDate</var></a>
+				<a href="source-class-Charcoal.Object.ObjectRoute.html#58-62" title="Go to source code"><var>$creationDate</var></a>
 
 			<div class="description short">
 				<p>Used for revisions, redirects, etc.</p>
@@ -1132,7 +1209,7 @@ Charcoal\Model\AbstractModel
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Object.ObjectRoute.html#63-69" title="Go to source code"><var>$lastModificationDate</var></a>
+				<a href="source-class-Charcoal.Object.ObjectRoute.html#64-70" title="Go to source code"><var>$lastModificationDate</var></a>
 
 			<div class="description short">
 				<p>Last modification date. More of
@@ -1161,7 +1238,7 @@ genericRoute.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Object.ObjectRoute.html#71-75" title="Go to source code"><var>$routeObjType</var></a>
+				<a href="source-class-Charcoal.Object.ObjectRoute.html#72-76" title="Go to source code"><var>$routeObjType</var></a>
 
 			<div class="description short">
 				<p>Object type.</p>
@@ -1186,7 +1263,7 @@ genericRoute.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Object.ObjectRoute.html#77-81" title="Go to source code"><var>$routeObjId</var></a>
+				<a href="source-class-Charcoal.Object.ObjectRoute.html#78-82" title="Go to source code"><var>$routeObjId</var></a>
 
 			<div class="description short">
 				<p>Object ID.</p>
@@ -1211,7 +1288,7 @@ genericRoute.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Object.ObjectRoute.html#83-87" title="Go to source code"><var>$routeTemplate</var></a>
+				<a href="source-class-Charcoal.Object.ObjectRoute.html#84-88" title="Go to source code"><var>$routeTemplate</var></a>
 
 			<div class="description short">
 				<p>Route template ident.</p>
@@ -1236,7 +1313,7 @@ genericRoute.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Object.ObjectRoute.html#89-94" title="Go to source code"><var>$modelFactory</var></a>
+				<a href="source-class-Charcoal.Object.ObjectRoute.html#104-109" title="Go to source code"><var>$modelFactory</var></a>
 
 			<div class="description short">
 				<p>Store the factory instance for the current class.</p>
