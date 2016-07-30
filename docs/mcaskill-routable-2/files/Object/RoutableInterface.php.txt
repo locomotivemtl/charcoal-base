@@ -1,0 +1,54 @@
+<?php
+
+namespace Charcoal\Object;
+
+/**
+ * Routable objects are loadable from a URL.
+ */
+interface RoutableInterface
+{
+    /**
+     * Set the object's URL slug pattern.
+     *
+     * @param mixed $pattern The slug pattern.
+     * @return RoutableInterface Chainable
+     */
+    public function setSlugPattern($pattern);
+
+    /**
+     * Retrieve the object's URL slug pattern.
+     *
+     * @return string
+     */
+    public function slugPattern();
+
+    /**
+     * Set the object's URL slug.
+     *
+     * @param mixed $slug The slug.
+     * @return RoutableInterface Chainable
+     */
+    public function setSlug($slug);
+
+    /**
+     * Retrieve the object's URL slug.
+     *
+     * @return string
+     */
+    public function slug();
+
+    /**
+     * Generate a URL slug from the object's URL slug pattern.
+     *
+     * @return string
+     */
+    public function generateSlug();
+
+    /**
+     * Retrieve the object's URI.
+     *
+     * @return string
+     */
+    public function url();
+}
+

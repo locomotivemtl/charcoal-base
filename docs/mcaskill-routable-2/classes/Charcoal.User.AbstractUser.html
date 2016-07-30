@@ -1,0 +1,2770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Charcoal.html">\Charcoal</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">289</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">4</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1956026873"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1956026873" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-398986657"></a>
+                                <a href="../namespaces/Charcoal.html" style="margin-left: 30px; padding-left: 0">Charcoal</a>
+            </div>
+            <div id="namespace-398986657" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-211652492"></a>
+                                <a href="../namespaces/Charcoal.Object.html" style="margin-left: 30px; padding-left: 0">Object</a>
+            </div>
+            <div id="namespace-211652492" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-157947708"></a>
+                                <a href="../namespaces/Charcoal.Object.Route.html" style="margin-left: 30px; padding-left: 0">Route</a>
+            </div>
+            <div id="namespace-157947708" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Object.Route.GenericRoute.html">GenericRoute</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.ArchivableInterface.html">ArchivableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.CategorizableInterface.html">CategorizableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.CategorizableMultipleInterface.html">CategorizableMultipleInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.CategoryInterface.html">CategoryInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.ContentInterface.html">ContentInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.HierarchicalInterface.html">HierarchicalInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.ObjectRevisionInterface.html">ObjectRevisionInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.ObjectRouteInterface.html">ObjectRouteInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.ObjectScheduleInterface.html">ObjectScheduleInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.PublishableInterface.html">PublishableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.RevisionableInterface.html">RevisionableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.RoutableInterface.html">RoutableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.UserDataInterface.html">UserDataInterface</a></li>
+                                                                            <li class="trait"><a href="../classes/Charcoal.Object.ArchivableTrait.html">ArchivableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Object.CategorizableMultipleTrait.html">CategorizableMultipleTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Object.CategorizableTrait.html">CategorizableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Object.CategoryTrait.html">CategoryTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Object.HierarchicalTrait.html">HierarchicalTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Object.PublishableTrait.html">PublishableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Object.RevisionableTrait.html">RevisionableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Object.RoutableTrait.html">RoutableTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Charcoal.Object.Content.html">Content</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Object.ObjectRevision.html">ObjectRevision</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Object.ObjectRoute.html">ObjectRoute</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Object.ObjectSchedule.html">ObjectSchedule</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Object.UserData.html">UserData</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-840658141"></a>
+                                <a href="../namespaces/Charcoal.User.html" style="margin-left: 30px; padding-left: 0">User</a>
+            </div>
+            <div id="namespace-840658141" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Charcoal.User.UserInterface.html">UserInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.User.AbstractUser.html">AbstractUser</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.User.AclRole.html">AclRole</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.User.Authenticator.html">Authenticator</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.User.Authorizer.html">Authorizer</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.User.AuthToken.html">AuthToken</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.User.AuthTokenMetadata.html">AuthTokenMetadata</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.User.Permission.html">Permission</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.User.PermissionCategory.html">PermissionCategory</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Charcoal.User.html">\Charcoal\User</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Charcoal\User</small>AbstractUser</h1>
+                    <p><em>Full implementation, as abstract class, of the `UserInterface`.</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Object.Content.html#method_setDependencies" class="">setDependencies()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_setActive" class="">setActive()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_active" class="">active()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#method_setPosition" class="">setPosition()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#method_position" class="">position()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#method_setCreated" class="">setCreated()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#method_created" class="">created()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#method_setCreatedBy" class="">setCreatedBy()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#method_createdBy" class="">createdBy()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#method_setLastModified" class="">setLastModified()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#method_lastModified" class="">lastModified()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#method_setLastModifiedBy" class="">setLastModifiedBy()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#method_lastModifiedBy" class="">lastModifiedBy()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#method_preSave" class="">preSave()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#method_preUpdate" class="">preUpdate()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RevisionableTrait.html#method_setRevisionEnabled" class="">setRevisionEnabled()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RevisionableTrait.html#method_revisionEnabled" class="">revisionEnabled()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RevisionableTrait.html#method_revisionObject" class="">revisionObject()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RevisionableTrait.html#method_generateRevision" class="">generateRevision()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RevisionableTrait.html#method_latestRevision" class="">latestRevision()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RevisionableTrait.html#method_revisionNum" class="">revisionNum()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RevisionableTrait.html#method_allRevisions" class="">allRevisions()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RevisionableTrait.html#method_revertToRevision" class="">revertToRevision()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_key" class="">key()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_setUsername" class="">setUsername()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_username" class="">username()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_setEmail" class="">setEmail()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_email" class="">email()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_setPassword" class="">setPassword()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_password" class="">password()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_setRoles" class="">setRoles()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_roles" class="">roles()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_setLastLoginDate" class="">setLastLoginDate()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_lastLoginDate" class="">lastLoginDate()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_setLastLoginIp" class="">setLastLoginIp()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_lastLoginIp" class="">lastLoginIp()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_setLastPasswordDate" class="">setLastPasswordDate()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_lastPasswordDate" class="">lastPasswordDate()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_setLastPasswordIp" class="">setLastPasswordIp()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_lastPasswordIp" class="">lastPasswordIp()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_setLoginToken" class="">setLoginToken()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_loginToken" class="">loginToken()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_saveToSession" class="">saveToSession()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_login" class="">login()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_logLogin" class="">logLogin()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_loginFailed" class="">loginFailed()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_logLoginFailed" class="">logLoginFailed()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_logout" class="">logout()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_resetPassword" class="">resetPassword()</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#method_getAuthenticated" class="">getAuthenticated()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Object.Content.html#method_setModelFactory" class="">setModelFactory()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RevisionableTrait.html#method_modelFactory" class="">modelFactory()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#property_authenticatedUser" class="">$authenticatedUser</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#property_active" class="">$active</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#property_position" class="">$position</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#property_created" class="">$created</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#property_createdBy" class="">$createdBy</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#property_lastModified" class="">$lastModified</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#property_lastModifiedBy" class="">$lastModifiedBy</a><br />
+                                                                    <a href="../classes/Charcoal.Object.Content.html#property_modelFactory" class="">$modelFactory</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RevisionableTrait.html#property_revisionEnabled" class="">$revisionEnabled</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#property_username" class="">$username</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#property_password" class="">$password</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#property_email" class="">$email</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#property_roles" class="">$roles</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#property_lastLoginDate" class="">$lastLoginDate</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#property_lastLoginIp" class="">$lastLoginIp</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#property_lastPasswordDate" class="">$lastPasswordDate</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#property_lastPasswordIp" class="">$lastPasswordIp</a><br />
+                                                                    <a href="../classes/Charcoal.User.AbstractUser.html#property_loginToken" class="">$loginToken</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                            <span class="label label-info">abstract</span>
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/User.AbstractUser.html"><div class="path-wrapper">User/AbstractUser.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                        <div class="namespace-wrapper">\Charcoal\Model\AbstractModel</div>
+                                                                    
+                                        <div class="namespace-wrapper"><a href="../classes/Charcoal.Object.Content.html">\Charcoal\Object\Content</a></div>
+                                                                                                    <div class="namespace-wrapper">\Charcoal\User\AbstractUser</div>
+                            </dd>
+
+                                                                            <dt>Implements</dt>
+                                                        <dd><a href="../classes/Charcoal.User.UserInterface.html"><div class="namespace-wrapper">\Charcoal\User\UserInterface</div></a></dd>
+                                                                                <dd><a href=""><div class="namespace-wrapper"></div></a></dd>
+                        
+                                                                                    <dt>Uses traits</dt>
+                                                        <dd>
+                                                                    <div class="namespace-wrapper">\Charcoal\Config\ConfigurableTrait</div>
+                                                            </dd>
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_authenticatedUser" name="property_authenticatedUser" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$authenticatedUser</h3>
+                <pre class="signature">$authenticatedUser : \Charcoal\User\UserInterface</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Charcoal.User.UserInterface.html">\Charcoal\User\UserInterface</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_active" name="property_active" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$active</h3>
+                <pre class="signature">$active : boolean</pre>
+                <p><em>Objects are active by default</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_position" name="property_position" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$position</h3>
+                <pre class="signature">$position : integer</pre>
+                <p><em>The position is used for ordering lists</em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_created" name="property_created" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$created</h3>
+                <pre class="signature">$created : \DateTime</pre>
+                <p><em>Object creation date (set automatically on save)</em></p>
+                
+
+                                <h4>Type</h4>
+                \DateTime
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_createdBy" name="property_createdBy" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$createdBy</h3>
+                <pre class="signature">$createdBy : mixed</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                mixed
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_lastModified" name="property_lastModified" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$lastModified</h3>
+                <pre class="signature">$lastModified : \DateTime</pre>
+                <p><em>Object last modified date (set automatically on save and update)</em></p>
+                
+
+                                <h4>Type</h4>
+                \DateTime
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_lastModifiedBy" name="property_lastModifiedBy" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$lastModifiedBy</h3>
+                <pre class="signature">$lastModifiedBy : mixed</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                mixed
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_modelFactory" name="property_modelFactory" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$modelFactory</h3>
+                <pre class="signature">$modelFactory : \Charcoal\Factory\FactoryInterface</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                \Charcoal\Factory\FactoryInterface
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_revisionEnabled" name="property_revisionEnabled" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$revisionEnabled</h3>
+                <pre class="signature">$revisionEnabled : boolean</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.RevisionableTrait.html"><div class="path-wrapper">\Charcoal\Object\RevisionableTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_username" name="property_username" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$username</h3>
+                <pre class="signature">$username : string</pre>
+                <p><em>The username should be unique and mandatory.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_password" name="property_password" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$password</h3>
+                <pre class="signature">$password : string</pre>
+                <p><em>The password is stored encrypted in the (database) storage.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_email" name="property_email" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$email</h3>
+                <pre class="signature">$email : string</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_roles" name="property_roles" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$roles</h3>
+                <pre class="signature">$roles : array</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_lastLoginDate" name="property_lastLoginDate" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$lastLoginDate</h3>
+                <pre class="signature">$lastLoginDate : \DateTime|null</pre>
+                <p><em>The date of the latest (successful) login</em></p>
+                
+
+                                <h4>Type</h4>
+                \DateTime|null
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_lastLoginIp" name="property_lastLoginIp" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$lastLoginIp</h3>
+                <pre class="signature">$lastLoginIp : string</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_lastPasswordDate" name="property_lastPasswordDate" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$lastPasswordDate</h3>
+                <pre class="signature">$lastPasswordDate : \DateTime|null</pre>
+                <p><em>The date of the latest password change</em></p>
+                
+
+                                <h4>Type</h4>
+                \DateTime|null
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_lastPasswordIp" name="property_lastPasswordIp" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$lastPasswordIp</h3>
+                <pre class="signature">$lastPasswordIp : string</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_loginToken" name="property_loginToken" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$loginToken</h3>
+                <pre class="signature">$loginToken : string</pre>
+                <p><em>If the login token is set (not empty), then the user should be prompted to
+reset his password after login / enter the token to continue</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDependencies" name="method_setDependencies" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDependencies()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDependencies(\Pimple\Container  <span class="argument">$container</span>) : void</pre>
+                <p><em>Dependencies</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Pimple\Container</td>
+                                <td>$container </td>
+                                <td><p>DI Container.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setActive" name="method_setActive" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setActive()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setActive(boolean  <span class="argument">$active</span>) : \Charcoal\User\UserInterface</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$active </td>
+                                <td><p>The active flag.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.User.UserInterface.html">\Charcoal\User\UserInterface</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_active" name="method_active" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">active()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">active() : boolean</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPosition" name="method_setPosition" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPosition()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPosition(integer  <span class="argument">$position</span>) : \Charcoal\Object\Content</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$position </td>
+                                <td><p>The position (for ordering purpose).</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the position is not an integer (or numeric integer string).</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.Content.html">\Charcoal\Object\Content</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_position" name="method_position" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">position()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">position() : integer</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCreated" name="method_setCreated" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCreated()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCreated(\DateTimeInterface|string|null  <span class="argument">$created</span>) : \Charcoal\Object\Content</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\DateTimeInterface|string|null</td>
+                                <td>$created </td>
+                                <td><p>The date/time at object's creation.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the date/time is invalid.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.Content.html">\Charcoal\Object\Content</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_created" name="method_created" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">created()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">created() : \DateTimeInterface|null</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \DateTimeInterface|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCreatedBy" name="method_setCreatedBy" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCreatedBy()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCreatedBy(mixed  <span class="argument">$createdBy</span>) : \Charcoal\Object\Content</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$createdBy </td>
+                                <td><p>The creator of the content object.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.Content.html">\Charcoal\Object\Content</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createdBy" name="method_createdBy" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">createdBy()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createdBy() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLastModified" name="method_setLastModified" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLastModified()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLastModified(\DateTimeInterface|string|null  <span class="argument">$lastModified</span>) : \Charcoal\Object\Content</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\DateTimeInterface|string|null</td>
+                                <td>$lastModified </td>
+                                <td><p>The last modified date/time.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the date/time is invalid.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.Content.html">\Charcoal\Object\Content</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_lastModified" name="method_lastModified" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">lastModified()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">lastModified() : \DateTimeInterface</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \DateTimeInterface
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLastModifiedBy" name="method_setLastModifiedBy" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLastModifiedBy()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLastModifiedBy(mixed  <span class="argument">$lastModifiedBy</span>) : \Charcoal\Object\Content</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$lastModifiedBy </td>
+                                <td><p>The last modification's username.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.Content.html">\Charcoal\Object\Content</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_lastModifiedBy" name="method_lastModifiedBy" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">lastModifiedBy()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">lastModifiedBy() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_preSave" name="method_preSave" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">preSave()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">preSave() : boolean</pre>
+                <p><em>StorableTrait &gt; preSavƒe(): Called automatically before saving the object to source.</em></p>
+                <p>For content object, set the <code>created</code> and <code>lastModified</code> properties automatically</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_preUpdate" name="method_preUpdate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">preUpdate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">preUpdate(array  <span class="argument">$properties = null</span>) : boolean</pre>
+                <p><em>StorableTrait &gt; preUpdate(): Called automatically before updating the object to source.</em></p>
+                <p>For content object, set the <code>lastModified</code> property automatically.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$properties </td>
+                                <td><p>The properties (ident) set for update.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setRevisionEnabled" name="method_setRevisionEnabled" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setRevisionEnabled()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setRevisionEnabled(boolean  <span class="argument">$enabled</span>) : \Charcoal\Object\RevisionableInterface</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$enabled </td>
+                                <td><p>The (revision) enabled flag.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.RevisionableInterface.html">\Charcoal\Object\RevisionableInterface</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.RevisionableTrait.html"><div class="path-wrapper">\Charcoal\Object\RevisionableTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_revisionEnabled" name="method_revisionEnabled" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">revisionEnabled()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">revisionEnabled() : boolean</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.RevisionableTrait.html"><div class="path-wrapper">\Charcoal\Object\RevisionableTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_revisionObject" name="method_revisionObject" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">revisionObject()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">revisionObject() : \Charcoal\Object\ObjectRevision</pre>
+                <p><em>This method can be overloaded in concrete implementation to provide a different (custom) ObjectRevision class.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.ObjectRevision.html">\Charcoal\Object\ObjectRevision</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.RevisionableTrait.html"><div class="path-wrapper">\Charcoal\Object\RevisionableTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_generateRevision" name="method_generateRevision" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">generateRevision()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">generateRevision() : \Charcoal\Object\ObjectRevision</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.ObjectRevision.html">\Charcoal\Object\ObjectRevision</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.RevisionableTrait.html"><div class="path-wrapper">\Charcoal\Object\RevisionableTrait</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_latestRevision" name="method_latestRevision" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">latestRevision()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">latestRevision() : \Charcoal\Object\ObjectRevision</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.ObjectRevision.html">\Charcoal\Object\ObjectRevision</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.RevisionableTrait.html"><div class="path-wrapper">\Charcoal\Object\RevisionableTrait</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_revisionNum" name="method_revisionNum" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">revisionNum()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">revisionNum(integer  <span class="argument">$revNum</span>) : \Charcoal\Object\ObjectRevision</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$revNum </td>
+                                <td><p>The revision number.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.ObjectRevision.html">\Charcoal\Object\ObjectRevision</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.RevisionableTrait.html"><div class="path-wrapper">\Charcoal\Object\RevisionableTrait</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_allRevisions" name="method_allRevisions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">allRevisions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">allRevisions(callable  <span class="argument">$callback = null</span>) : array</pre>
+                <p><em>Retrieves all revisions for the current objet</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callback </td>
+                                <td><p>Optional object callback.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.RevisionableTrait.html"><div class="path-wrapper">\Charcoal\Object\RevisionableTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_revertToRevision" name="method_revertToRevision" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">revertToRevision()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">revertToRevision(integer  <span class="argument">$revNum</span>) : boolean</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$revNum </td>
+                                <td><p>The revision number to revert to.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If revision number is invalid.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>Success / Failure.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.RevisionableTrait.html"><div class="path-wrapper">\Charcoal\Object\RevisionableTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_key" name="method_key" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">key()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">key() : string</pre>
+                <p><em>IndexableTrait &gt; key()</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setUsername" name="method_setUsername" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setUsername()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setUsername(string  <span class="argument">$username</span>) : \Charcoal\User\User</pre>
+                <p><em>Force a lowercase username</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$username </td>
+                                <td><p>The username (also the login name).</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the username is not a string.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\User\User
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_username" name="method_username" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">username()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">username() : string</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setEmail" name="method_setEmail" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setEmail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setEmail(string  <span class="argument">$email</span>) : \Charcoal\User\User</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$email </td>
+                                <td><p>The user email.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the email is not a string.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\User\User
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_email" name="method_email" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">email()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">email() : string</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPassword" name="method_setPassword" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPassword()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPassword(string|null  <span class="argument">$password</span>) : \Charcoal\User\UserInterface</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|null</td>
+                                <td>$password </td>
+                                <td><p>The user password. Encrypted in storage.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the password is not a string (or null, to reset).</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.User.UserInterface.html">\Charcoal\User\UserInterface</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_password" name="method_password" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">password()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">password() : string</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setRoles" name="method_setRoles" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setRoles()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setRoles(mixed  <span class="argument">$roles</span>) : \Charcoal\User\AbstractUser</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$roles </td>
+                                <td><p>The ACL roles this user belongs to.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the roles argument is invalid.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.User.AbstractUser.html">\Charcoal\User\AbstractUser</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_roles" name="method_roles" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">roles()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">roles() : array</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLastLoginDate" name="method_setLastLoginDate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLastLoginDate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLastLoginDate(string|\DateTime|null  <span class="argument">$lastLoginDate</span>) : \Charcoal\User\AbstractUser</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|\DateTime|null</td>
+                                <td>$lastLoginDate </td>
+                                <td><p>The last login date.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the ts is not a valid date/time.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.User.AbstractUser.html">\Charcoal\User\AbstractUser</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_lastLoginDate" name="method_lastLoginDate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">lastLoginDate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">lastLoginDate() : \DateTime|null</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \DateTime|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLastLoginIp" name="method_setLastLoginIp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLastLoginIp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLastLoginIp(string|integer|null  <span class="argument">$ip</span>) : \Charcoal\User\UserInterface</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|integer|null</td>
+                                <td>$ip </td>
+                                <td><p>The last login IP address.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the IP is not an IP string, an integer, or null.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.User.UserInterface.html">\Charcoal\User\UserInterface</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_lastLoginIp" name="method_lastLoginIp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">lastLoginIp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">lastLoginIp() : string</pre>
+                <p><em>Get the last login IP in x.x.x.x format</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLastPasswordDate" name="method_setLastPasswordDate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLastPasswordDate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLastPasswordDate(string|\DateTime|null  <span class="argument">$lastPasswordDate</span>) : \Charcoal\User\UserInterface</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|\DateTime|null</td>
+                                <td>$lastPasswordDate </td>
+                                <td><p>The last password date.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the passsword date is not a valid DateTime.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.User.UserInterface.html">\Charcoal\User\UserInterface</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_lastPasswordDate" name="method_lastPasswordDate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">lastPasswordDate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">lastPasswordDate() : \DateTime</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \DateTime
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLastPasswordIp" name="method_setLastPasswordIp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLastPasswordIp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLastPasswordIp(integer|string|null  <span class="argument">$ip</span>) : \Charcoal\User\UserInterface</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer|string|null</td>
+                                <td>$ip </td>
+                                <td><p>The last password IP.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the IP is not null, an integer or an IP string.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.User.UserInterface.html">\Charcoal\User\UserInterface</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_lastPasswordIp" name="method_lastPasswordIp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">lastPasswordIp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">lastPasswordIp() : string</pre>
+                <p><em>Get the last password change IP in x.x.x.x format</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLoginToken" name="method_setLoginToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLoginToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLoginToken(string  <span class="argument">$token</span>) : \Charcoal\User\UserInterface</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$token </td>
+                                <td><p>The login token.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the token is not a string.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.User.UserInterface.html">\Charcoal\User\UserInterface</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_loginToken" name="method_loginToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">loginToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">loginToken() : string</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_saveToSession" name="method_saveToSession" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">saveToSession()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">saveToSession() : \Charcoal\User\UserInterface</pre>
+                <p><em></em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><p>If trying to save a user to session without a ID.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.User.UserInterface.html">\Charcoal\User\UserInterface</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_login" name="method_login" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">login()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">login() : boolean</pre>
+                <p><em>Log in the user (in session)</em></p>
+                <p>Called when the authentication is successful.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>Success / Failure</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_logLogin" name="method_logLogin" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">logLogin()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">logLogin() : boolean</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_loginFailed" name="method_loginFailed" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">loginFailed()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">loginFailed(string  <span class="argument">$username</span>) : void</pre>
+                <p><em>Failed authentication callback</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$username </td>
+                                <td><p>The failed username.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_logLoginFailed" name="method_logLoginFailed" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">logLoginFailed()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">logLoginFailed(string  <span class="argument">$username</span>) : boolean</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$username </td>
+                                <td><p>The username to log failure.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_logout" name="method_logout" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">logout()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">logout() : boolean</pre>
+                <p><em>Empties the session var associated to the session key.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>Logged out or not.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_resetPassword" name="method_resetPassword" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">resetPassword()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">resetPassword(string  <span class="argument">$plainPassword</span>) : \Charcoal\User\UserInterface</pre>
+                <p><em>Reset the password.</em></p>
+                <p>Encrypt the password and re-save the object in the database.
+Also updates the last password date &amp; ip.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$plainPassword </td>
+                                <td><p>The plain (non-encrypted) password to reset to.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the plain password is not a string.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.User.UserInterface.html">\Charcoal\User\UserInterface</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAuthenticated" name="method_getAuthenticated" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAuthenticated()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAuthenticated(\Charcoal\Factory\FactoryInterface  <span class="argument">$factory</span>) : \Charcoal\User\UserInterface|null</pre>
+                <p><em>Get the currently authenticated user (from session)</em></p>
+                <p>Return null if there is no current user in logged into</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Charcoal\Factory\FactoryInterface</td>
+                                <td>$factory </td>
+                                <td><p>The factory to create the user object with.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><p>If the user from session is invalid.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.User.UserInterface.html">\Charcoal\User\UserInterface</a>|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setModelFactory" name="method_setModelFactory" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setModelFactory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setModelFactory(\Charcoal\Factory\FactoryInterface  <span class="argument">$factory</span>) : \Charcoal\Object\AdminScript</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Charcoal\Factory\FactoryInterface</td>
+                                <td>$factory </td>
+                                <td><p>The factory used to create models.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Object\AdminScript
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.Content.html"><div class="path-wrapper">\Charcoal\Object\Content</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_modelFactory" name="method_modelFactory" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">modelFactory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">modelFactory() : \Charcoal\Object\FactoryInterface</pre>
+                <p><em>A model factory must be provided on implementing classes.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Object\FactoryInterface
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                        <span class="label label-info">abstract</span>
+                                                <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.RevisionableTrait.html"><div class="path-wrapper">\Charcoal\Object\RevisionableTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">AbstractUser.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/User/AbstractUser.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Charcoal.html">\Charcoal</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on July 30th, 2016 at 22:23.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
