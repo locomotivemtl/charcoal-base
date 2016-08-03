@@ -367,6 +367,10 @@ abstract class AbstractUser extends Content implements
      */
     public function setLoginToken($token)
     {
+        if ($token === null) {
+            $this->loginToken = null;
+            return $this;
+        }
         if (!is_string($token)) {
             throw new InvalidArgumentException(
                 'Login Token must be a string'
