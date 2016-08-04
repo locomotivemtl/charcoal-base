@@ -11,6 +11,13 @@
         "fr": "Un objet peut être réglé actif ou inactif. Un objet inactif est généralement exclu des des résultats de requête."
       }
     },
+    "position":{
+        "type":"number",
+        "label":{
+            "fr":"Position",
+            "en":"Position"
+        }
+    },
     "created": {
       "type": "date-time",
       "input_type": "charcoal/admin/property/input/readonly",
