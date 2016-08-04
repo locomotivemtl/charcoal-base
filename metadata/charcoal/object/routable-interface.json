@@ -1,10 +1,14 @@
 {
-    "properties":{
-        "slug":{
-            "type":"string",
-            "l10n":true
+    "properties": {
+        "slug": {
+            "type": "string",
+            "l10n": true,
+            "label": {
+                "fr": "Permalien",
+                "en": "Permalink"
+            }
         }
     },
 
-    "slug_pattern":null
+    "slug_pattern": null
 }

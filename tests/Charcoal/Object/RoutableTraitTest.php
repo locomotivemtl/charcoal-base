@@ -18,7 +18,19 @@ class RoutableTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->obj = $this->getMockForTrait('\Charcoal\Object\RoutableTrait');
+        $this->obj = $this->getMockForTrait(
+            '\Charcoal\Object\RoutableTrait',
+            [],
+            '',
+            true,
+            true,
+            true,
+            [ 'metadata' ]
+        );
+
+        $this->obj->expects($this->any())
+            ->method('metadata')
+            ->willReturn([]);
     }
 
     /**
@@ -38,7 +50,7 @@ class RoutableTraitTest extends \PHPUnit_Framework_TestCase
             ['"Hello-#-{$}-£™¡¢∞§¶•ªº-World"', 'hello-world'],
             ['&quot;', 'quot'],
             ['fr/14/Services Santé et Sécurité au Travail', 'fr/14/services-sante-et-securite-au-travail'],
-            ['fr/ 14/Services S   anté et Sécurité au Travail', 'fr/-14/services-s-ante-et-securite-au-travail']
+            ['fr/ 14/Services S   anté et Sécurité au Travail', 'fr/14/services-s-ante-et-securite-au-travail']
         ];
     }
 }
