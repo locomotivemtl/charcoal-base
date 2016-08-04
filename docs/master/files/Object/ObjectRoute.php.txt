@@ -1,176 +1,261 @@
 <?php
 namespace Charcoal\Object;
 
-use \Pimple\Container;
-
 use \DateTime;
 use \InvalidArgumentException;
 
-// From `charcoal-core`
+use \Pimple\Container;
+
+// Dependency from PSR-7 (HTTP Messaging)
+use \Psr\Http\Message\UriInterface;
+
+// Dependencies from 'charcoal-core'
 use \Charcoal\Model\AbstractModel;
+use \Charcoal\Loader\CollectionLoader;
+
+// Dependency from 'charcoal-factory'
 use \Charcoal\Factory\FactoryInterface;
 
+// Local Dependency
+use \Charcoal\Object\ObjectRouteInterface;
+
 /**
- * ObjectRoute object class.
- * Used as a single table for all routable objects.
- * See Charcoal\Object\RevisionableTrait
+ * Represents a route to an object (i.e., a permalink).
+ *
+ * Intended to be used to collect all routes related to models
+ * under a single source (e.g., database table).
+ *
+ * {@see Charcoal\Object\ObjectRevision} for a similar model that aggregates data
+ * under a common source.
+ *
+ * Requirements:
+ *
+ * - 'model/factory'
+ * - 'model/collection/loader'
  */
-class ObjectRoute extends AbstractModel
+class ObjectRoute extends AbstractModel implements
+    ObjectRouteInterface
 {
     /**
-     * Base.
-     * @var number $id
+     * The route ID.
+     *
+     * @var integer
      */
     protected $id;
 
     /**
-     * Route active?
-     * @var boolean $active
+     * An route is active by default.
+     *
+     * @var boolean
      */
-    protected $active;
+    protected $active = true;
 
     /**
-     * Uniq.
-     * @var string $slug
+     * The route's URI.
+     *
+     * @var string
      */
     protected $slug;
 
     /**
-     * Route lang ident.
-     * @var string $lang
+     * The route's locale.
+     *
+     * @var string
      */
     protected $lang;
 
     /**
-     * Used for revisions, redirects, etc.
-     * @var DateTime $creationDate
+     * The creation timestamp.
+     *
+     * @var DateTime
      */
     protected $creationDate;
 
     /**
-     * Last modification date. More of
-     * a log utils function. Not used in the
-     * genericRoute.
-     * @var DateTime $lastModificationDate
+     * The last modification timestamp.
+     *
+     * More of a log utils function. Not used in the
+     * {@see \CharcoalObject\Route\GenericRoute}.
+     *
+     * @var DateTime
      */
     protected $lastModificationDate;
 
     /**
-     * Object type.
-     * @var string $routeObjType
+     * The foreign object type related to this route.
+     *
+     * @var string
      */
     protected $routeObjType;
 
     /**
-     * Object ID.
-     * @var mixed $routeObjId
+     * The foreign object ID related to this route.
+     *
+     * @var mixed
      */
     protected $routeObjId;
 
     /**
-     * Route template ident.
-     * @var string $routeTemplate
+     * The foreign object's template identifier.
+     *
+     * @var string
      */
     protected $routeTemplate;
 
     /**
-     * ModelFactory
-     * @var FactoryInterface $modelFactory
-     */
-    protected $modelFactory;
-
-    /**
-     * @var string $originalSlug
+     * Store a copy of the original—_preferred_—slug before alterations are made.
+     *
+     * @var string
      */
     private $originalSlug;
 
     /**
-     * Increment var used to create a uniq slug.
-     * @var integer $slugInc
+     * Store the increment used to create a unique slug.
+     *
+     * @var integer
      */
     private $slugInc = 0;
 
     /**
-     * Set dependencies
-     * @param Container $container Set dependencies.
+     * Store the factory instance for the current class.
+     *
+     * @var FactoryInterface
+     */
+    protected $modelFactory;
+
+    /**
+     * Store the collection loader for the current class.
+     *
+     * @var CollectionLoader
+     */
+    private $collectionLoader;
+
+    /**
+     * Inject dependencies from a DI Container.
+     *
+     * @param Container $container A dependencies container instance.
      * @return void
      */
     public function setDependencies(Container $container)
     {
         $this->setModelFactory($container['model/factory']);
+        $this->setCollectionLoader($container['model/collection/loader']);
     }
 
     /**
-     * Creation date must be set
-     * @return void .
+     * Event called before _creating_ the object.
+     *
+     * @see    Charcoal\Source\StorableTrait::preSave() For the "create" Event.
+     * @return boolean
      */
     public function preSave()
     {
-        $this->generateUniqueSlugFromCurrentObjectSlug();
+        $this->generateUniqueSlug();
         $this->setCreationDate('now');
         $this->setLastModificationDate('now');
 
-        parent::preSave();
+        return parent::preSave();
     }
 
     /**
-     * Creation date must be updated.
-     * Update shouldn't happen tho.
-     * @param array $properties Properties.
-     * @return void .
+     * Event called before _updating_ the object.
+     *
+     * @todo   Creation date must be updated. Update shouldn't happen tho.
+     * @see    Charcoal\Source\StorableTrait::preUpdate() For the "update" Event.
+     * @param  array $properties Optional. The list of properties to update.
+     * @return boolean
      */
     public function preUpdate(array $properties = null)
     {
         $this->setCreationDate('now');
         $this->setLastModificationDate('now');
-        parent::preUpdate($properties);
+
+        return parent::preUpdate($properties);
     }
 
     /**
-     * [isSlugUnique description]
-     * @return boolean [description]
+     * Determine if the current slug is unique.
+     *
+     * @return boolean
      */
     public function isSlugUnique()
     {
-        $obj = $this->modelFactory()->create(self::class);
-        $obj->loadFrom('slug', $this->slug());
-
-        if ($obj->id() && $obj->id() != $this->id()) {
-            // Problem.
-            return false;
+        $proto  = $this->modelFactory()->get(self::class);
+        $loader = $this->collectionLoader();
+        $loader
+            ->reset()
+            ->setModel($proto)
+            ->addFilter('active', true)
+            ->addFilter('slug', $this->slug())
+            ->addOrder('creation_date', 'desc')
+            ->setPage(1)
+            ->setNumPerPage(1);
+        $routes = $loader->load()->objects();
+        if (!$routes) {
+            return true;
         }
-
-        return true;
+        $obj = reset($routes);
+        if (!$obj->id()) {
+            return true;
+        }
+        if ($obj->id() === $this->id()) {
+            return true;
+        }
+        if ($obj->routeObjId() === $this->routeObjId() &&
+            $obj->routeObjType() === $this->routeObjType() &&
+            $obj->lang() === $this->lang()) {
+            $this->setId($obj->id());
+            return true;
+        }
+        return false;
     }
 
+
     /**
-     * Sets the slug to a unique slug.
+     * Generate a unique URL slug for routable object.
+     *
      * @return ObjectRoute Chainable
      */
-    public function generateUniqueSlugFromCurrentObjectSlug()
+    public function generateUniqueSlug()
     {
-        if ($this->isSlugUnique()) {
-            return $this;
-        }
-
-        // Remember.
-        if (!$this->originalSlug) {
-            $this->originalSlug = $this->slug();
-        }
-        $this->slugInc++;
-
-        $this->setSlug($this->slug().'-'.$this->slugInc++);
-
         if (!$this->isSlugUnique()) {
-            return $this->generateUniqueSlugFromCurrentObjectSlug();
+            if (!$this->originalSlug) {
+                $this->originalSlug = $this->slug();
+            }
+            $this->slugInc++;
+            $this->setSlug($this->originalSlug.'-'.$this->slugInc);
+            return $this->generateUniqueSlug();
         }
-
         return $this;
     }
 
 /**
  * SETTERS
  */
+
+    /**
+     * Set an object model factory.
+     *
+     * @param FactoryInterface $factory The model factory, to create objects.
+     * @return self
+     */
+    protected function setModelFactory(FactoryInterface $factory)
+    {
+        $this->modelFactory = $factory;
+        return $this;
+    }
+    /**
+     * Set a model collection loader.
+     *
+     * @param CollectionLoader $loader The collection loader.
+     * @return self
+     */
+    protected function setCollectionLoader(CollectionLoader $loader)
+    {
+        $this->collectionLoader = $loader;
+        return $this;
+    }
+
     /**
      * Set the slug of the current route.
      * @param string $slug Current object / lang slug.
@@ -267,20 +352,42 @@ class ObjectRoute extends AbstractModel
         $this->routeTemplate = $template;
         return $this;
     }
-    /**
-     * Set the model factory.
-     * @param FactoryInterface $factory Model factory.
-     * @return ObjectRoute Chainable
-     */
-    protected function setModelFactory(FactoryInterface $factory)
-    {
-        $this->modelFactory = $factory;
-        return $this;
-    }
 
 /**
  * GETTERS
  */
+
+    /**
+     * Retrieve the object model factory.
+     *
+     * @throws RuntimeException If the model factory was not previously set.
+     * @return FactoryInterface
+     */
+    public function modelFactory()
+    {
+        if (!isset($this->modelFactory)) {
+            throw new RuntimeException(
+                sprintf('Model Factory is not defined for "%s"', get_class($this))
+            );
+        }
+        return $this->modelFactory;
+    }
+    /**
+     * Retrieve the model collection loader.
+     *
+     * @throws RuntimeException If the collection loader was not previously set.
+     * @return CollectionLoader
+     */
+    public function collectionLoader()
+    {
+        if (!isset($this->collectionLoader)) {
+            throw new RuntimeException(
+                sprintf('Collection Loader is not defined for "%s"', get_class($this))
+            );
+        }
+        return $this->collectionLoader;
+    }
+
     /**
      * Slug.
      * @return string Slug.
@@ -337,13 +444,15 @@ class ObjectRoute extends AbstractModel
     {
         return $this->routeTemplate;
     }
+
     /**
-     * ModelFactory.
-     * @return FactoryInterface Model factory.
+     * Alias of {@see self::slug()}.
+     *
+     * @return string
      */
-    protected function modelFactory()
+    public function __toString()
     {
-        return $this->modelFactory;
+        return (string)$this->slug();
     }
 }
 
