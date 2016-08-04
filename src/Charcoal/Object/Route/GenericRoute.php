@@ -123,7 +123,6 @@ class GenericRoute extends TemplateRoute
 
         TranslationConfig::instance()->setCurrentLanguage($objectRoute->lang());
 
-
         $templateIdent      = (string)$contextObject->templateIdent();
         $templateController = (string)$contextObject->templateIdent();
 
@@ -186,11 +185,16 @@ class GenericRoute extends TemplateRoute
 
         // Load current slug
         // Slug are uniq
-        $mFactory = $this->modelFactory();
-        $obj = $mFactory->create(ObjectRoute::class);
-        $obj->loadFrom('slug', $this->path());
+        $route = $this->modelFactory()->create(ObjectRoute::class);
+        $route->loadFromQuery(
+            'SELECT * FROM `'.$route->source()->table().'` WHERE (`slug` = :route1 OR `slug` = :route2) LIMIT 1',
+            [
+                'route1' => '/'.$this->path(),
+                'route2' => $this->path()
+            ]
+        );
 
-        $this->objectRoute = $obj;
+        $this->objectRoute = $route;
 
         return $this->objectRoute;
     }
