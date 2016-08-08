@@ -398,8 +398,8 @@ trait RoutableTrait
 
         $slug = $this->slug();
 
-        if ($slug instanceof TranslationString) {
-            return $slug[$lang];
+        if ($slug instanceof TranslationString && $lang) {
+            return $slug->val($lang);
         }
 
         return (string)$slug;
