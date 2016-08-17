@@ -118,6 +118,15 @@ trait HierarchicalTrait
     }
 
     /**
+     * Get whether the object has any parents at all
+     * @return boolean
+     */
+    public function hasParents()
+    {
+        return !!count($this->hierarchy());
+    }
+
+    /**
      * Get all of this object's parents, from immediate to top-level.
      * @return array
      */
