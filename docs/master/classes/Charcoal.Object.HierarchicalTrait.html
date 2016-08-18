@@ -144,37 +144,37 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2135757477"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2032099952"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-2135757477" class="accordion-body collapse in">
+            <div id="namespace-2032099952" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1517499232"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-223010006"></a>
                                 <a href="../namespaces/Charcoal.html" style="margin-left: 30px; padding-left: 0">Charcoal</a>
             </div>
-            <div id="namespace-1517499232" class="accordion-body collapse ">
+            <div id="namespace-223010006" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-19262708"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1363170805"></a>
                                 <a href="../namespaces/Charcoal.Object.html" style="margin-left: 30px; padding-left: 0">Object</a>
             </div>
-            <div id="namespace-19262708" class="accordion-body collapse ">
+            <div id="namespace-1363170805" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-635913395"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2128774278"></a>
                                 <a href="../namespaces/Charcoal.Object.Route.html" style="margin-left: 30px; padding-left: 0">Route</a>
             </div>
-            <div id="namespace-635913395" class="accordion-body collapse ">
+            <div id="namespace-2128774278" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -223,10 +223,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1120716699"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-727502788"></a>
                                 <a href="../namespaces/Charcoal.User.html" style="margin-left: 30px; padding-left: 0">User</a>
             </div>
-            <div id="namespace-1120716699" class="accordion-body collapse ">
+            <div id="namespace-727502788" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -320,7 +320,7 @@
                                                                     <a href="../classes/Charcoal.Object.HierarchicalTrait.html#method_isSiblingOf" class="">isSiblingOf()</a><br />
                                                             </section>
                             <section class="span4">
-                                                                    <em>No public properties found</em>
+                                                                    <a href="../classes/Charcoal.Object.HierarchicalTrait.html#property_objectCache" class="">$objectCache</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No constants found</em>
@@ -340,6 +340,9 @@
                         <section class="row-fluid private">
                             <section class="span4">
                                                                     <a href="../classes/Charcoal.Object.HierarchicalTrait.html#method_objFromIdent" class="">objFromIdent()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.HierarchicalTrait.html#method_loadObjectFromSource" class="">loadObjectFromSource()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.HierarchicalTrait.html#method_loadObjectFromCache" class="">loadObjectFromCache()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.HierarchicalTrait.html#method_addObjectToCache" class="">addObjectToCache()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <a href="../classes/Charcoal.Object.HierarchicalTrait.html#property_master" class="">$master</a><br />
@@ -386,6 +389,30 @@
                 </div>
                 <aside class="span4 detailsbar"></aside>
             </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_objectCache" name="property_objectCache" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$objectCache</h3>
+                <pre class="signature">$objectCache : array&lt;mixed,\Charcoal\Model\ModelInterface&gt;</pre>
+                <p><em>A store of cached objects.</em></p>
+                
+
+                                <h4>Type</h4>
+                array&lt;mixed,\Charcoal\Model\ModelInterface&gt;
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
 
                                                                     <div class="row-fluid">
         <div class="span8 content class">
@@ -1384,6 +1411,121 @@
         </aside>
     </div>
 
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_loadObjectFromSource" name="method_loadObjectFromSource" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">loadObjectFromSource()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">loadObjectFromSource(mixed  <span class="argument">$id</span>) : null|\Charcoal\Model\ModelInterface</pre>
+                <p><em>Retrieve an object from the storage source by its ID.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$id </td>
+                                <td><p>The object id.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    null|\Charcoal\Model\ModelInterface
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.HierarchicalTrait.html"><div class="path-wrapper">Object/HierarchicalTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_loadObjectFromCache" name="method_loadObjectFromCache" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">loadObjectFromCache()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">loadObjectFromCache(mixed  <span class="argument">$id</span>) : null|\Charcoal\Model\ModelInterface</pre>
+                <p><em>Retrieve an object from the cache store by its ID.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$id </td>
+                                <td><p>The object id.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    null|\Charcoal\Model\ModelInterface
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.HierarchicalTrait.html"><div class="path-wrapper">Object/HierarchicalTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addObjectToCache" name="method_addObjectToCache" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">addObjectToCache()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addObjectToCache(\Charcoal\Model\ModelInterface  <span class="argument">$obj</span>) : \Charcoal\Object\HierarchicalInterface</pre>
+                <p><em>Add an object to the cache store.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Charcoal\Model\ModelInterface</td>
+                                <td>$obj </td>
+                                <td><p>The object to store.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.HierarchicalInterface.html">\Charcoal\Object\HierarchicalInterface</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.HierarchicalTrait.html"><div class="path-wrapper">Object/HierarchicalTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
                                     </div>
     </section>
 
@@ -1434,7 +1576,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 17th, 2016 at 20:58.
+                    on August 18th, 2016 at 20:07.
                 </section>
             </section>
         </section>
