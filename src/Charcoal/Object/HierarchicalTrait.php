@@ -4,6 +4,7 @@ namespace Charcoal\Object;
 
 use \Exception;
 use \InvalidArgumentException;
+use \Charcoal\Model\ModelInterface;
 
 /**
  * Full implementation, as a trait, of the `HierarchicalInterface`
@@ -37,6 +38,14 @@ trait HierarchicalTrait
      * @var array $siblings
      */
     private $siblings;
+
+    /**
+     * A store of cached objects.
+     *
+     * @var ModelInterface[] $objectCache
+     */
+    public static $objectCache = [];
+
 
     /**
      * @param mixed $master The object's parent (or master).
@@ -353,26 +362,70 @@ trait HierarchicalTrait
             );
         }
 
-        try {
-            $obj = $this->modelFactory()->create($class);
+        $cached = $this->loadObjectFromCache($ident);
+        if ($cached !== null) {
+            return $cached;
+        }
 
-            if (!is_callable([$obj, 'load'])) {
-                throw new Exception(
-                    'Can not load object. No loadable interface defined.'
-                );
-            }
+        $obj = $this->loadObjectFromSource($ident);
 
-            $obj->load($ident);
+        if ($obj !== null) {
+            $this->addObjectToCache($obj);
+        }
 
-            if ($obj->id()) {
-                return $obj;
-            } else {
-                return null;
-            }
-        } catch (Exception $e) {
+        return $obj;
+
+
+    }
+
+
+    /**
+     * Retrieve an object from the storage source by its ID.
+     *
+     * @param mixed $id The object id.
+     * @return null|ModelInterface
+     */
+    private function loadObjectFromSource($id)
+    {
+        $obj = $this->modelFactory()->create($this->objType());
+        $obj->load($id);
+
+        if ($obj->id()) {
+            return $obj;
+        } else {
             return null;
         }
     }
+
+    /**
+     * Retrieve an object from the cache store by its ID.
+     *
+     * @param mixed $id The object id.
+     * @return null|ModelInterface
+     */
+    private function loadObjectFromCache($id)
+    {
+        $objType = $this->objType();
+        if (isset(static::$objectCache[$objType][$id])) {
+            return static::$objectCache[$objType][$id];
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Add an object to the cache store.
+     *
+     * @param ModelInterface $obj The object to store.
+     * @return HierarchicalInterface Chainable
+     */
+    private function addObjectToCache(ModelInterface $obj)
+    {
+        static::$objectCache[$this->objType()][$obj->id()] = $obj;
+
+        return $this;
+    }
+
 
     /**
      * Hierarchical objects must provide a model factory to create new (children) objects.
