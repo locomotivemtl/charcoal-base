@@ -4,9 +4,12 @@ namespace Charcoal\Object;
 
 use \InvalidArgumentException;
 
-use \Charcoal\Object\ObjectRevision;
-
+// From 'charcoal-core'
 use \Charcoal\Loader\CollectionLoader;
+
+// Local Dependencies
+use \Charcoal\Object\ObjectRevision;
+use \Charcoal\Object\ObjectRevisionInterface;
 
 /**
  *
@@ -17,6 +20,16 @@ trait RevisionableTrait
      * @var bool $revisionEnabled
      */
     private $revisionEnabled = true;
+
+    /**
+     * The class name of the object revision model.
+     *
+     * Must be a fully-qualified PHP namespace and an implementation of
+     * {@see \Charcoal\Object\ObjectRevisionInterface}. Used by the model factory.
+     *
+     * @var string
+     */
+    private $objectRevisionClass = ObjectRevision::class;
 
     /**
      * @param boolean $enabled The (revision) enabled flag.
@@ -37,14 +50,45 @@ trait RevisionableTrait
     }
 
     /**
-     * This method can be overloaded in concrete implementation to provide a different (custom) ObjectRevision class.
+     * Create a revision object.
      *
-     * @return ObjectRevision
+     * @return ObjectRevisionInterface
      */
-    public function revisionObject()
+    public function createRevisionObject()
     {
-        $rev = $this->modelFactory()->create(ObjectRevision::class);
+        $rev = $this->modelFactory()->create($this->objectRevisionClass());
+
         return $rev;
+    }
+
+    /**
+     * Set the class name of the object revision model.
+     *
+     * @param  string $className The class name of the object revision model.
+     * @throws InvalidArgumentException If the class name is not a string.
+     * @return AbstractPropertyDisplay Chainable
+     */
+    protected function setObjectRevisionClass($className)
+    {
+        if (!is_string($className)) {
+            throw new InvalidArgumentException(
+                'Section class name must be a string.'
+            );
+        }
+
+        $this->objectRevisionClass = $className;
+
+        return $this;
+    }
+
+    /**
+     * Retrieve the class name of the object revision model.
+     *
+     * @return string
+     */
+    public function objectRevisionClass()
+    {
+        return $this->objectRevisionClass;
     }
 
     /**
@@ -53,7 +97,7 @@ trait RevisionableTrait
      */
     public function generateRevision()
     {
-        $rev = $this->revisionObject();
+        $rev = $this->createRevisionObject();
 
         $rev->createFromObject($this);
         if (!empty($rev->dataDiff())) {
@@ -69,7 +113,7 @@ trait RevisionableTrait
      */
     public function latestRevision()
     {
-        $rev = $this->revisionObject();
+        $rev = $this->createRevisionObject();
         $rev = $rev->lastObjectRevision($this);
 
         return $rev;
@@ -83,7 +127,7 @@ trait RevisionableTrait
     public function revisionNum($revNum)
     {
         $revNum = (int)$revNum;
-        $rev = $this->revisionObject();
+        $rev = $this->createRevisionObject();
         $rev = $rev->objectRevisionNum($this, $revNum);
 
         return $rev;
@@ -101,7 +145,7 @@ trait RevisionableTrait
             'logger'    => $this->logger,
             'factory'   => $this->modelFactory()
         ]);
-        $loader->setModel($this->revisionObject());
+        $loader->setModel($this->createRevisionObject());
         $loader->addFilter('target_type', $this->objType());
         $loader->addFilter('target_id', $this->id());
         $loader->addOrder('rev_ts', 'desc');
@@ -142,9 +186,9 @@ trait RevisionableTrait
     }
 
     /**
-     * A model factory must be provided on implementing classes.
+     * Retrieve the object model factory.
      *
-     * @return FactoryInterface
+     * @return \Charcoal\Factory\FactoryInterface
      */
-    abstract protected function modelFactory();
+    abstract public function modelFactory();
 }

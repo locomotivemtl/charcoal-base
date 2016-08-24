@@ -40,4 +40,11 @@ interface RoutableInterface
      * @return string
      */
     public function url();
+
+    /**
+     * Create a route object.
+     *
+     * @return \Charcoal\Object\ObjectRouteInterface
+     */
+    public function createRouteObject();
 }

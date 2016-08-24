@@ -4,18 +4,19 @@ namespace Charcoal\Object;
 
 use \InvalidArgumentException;
 
-// Dependencies from 'charcoal-core'
+// From 'charcoal-core'
 use \Charcoal\Loader\CollectionLoader;
 
-// Dependencies from 'charcoal-translation'
+// From 'charcoal-translation'
 use \Charcoal\Translation\TranslationString;
 use \Charcoal\Translation\TranslationConfig;
 
-// Dependency from 'charcoal-view'
+// From 'charcoal-view'
 use \Charcoal\View\ViewableInterface;
 
 // Local Dependencies
 use \Charcoal\Object\ObjectRoute;
+use \Charcoal\Object\ObjectRouteInterface;
 
 /**
  * Full implementation, as Trait, of the `RoutableInterface`.
@@ -23,20 +24,35 @@ use \Charcoal\Object\ObjectRoute;
 trait RoutableTrait
 {
     /**
-     * @var string
-     */
-    private $slugPattern = '';
-
-    /**
-     * @var string $slug
+     * The object's route.
+     *
+     * @var TranslationString|string|null
      */
     private $slug;
 
     /**
+     * The object's route pattern.
+     *
+     * @var TranslationString|string|null
+     */
+    private $slugPattern = '';
+
+    /**
      * Latest ObjectRoute object concerning the current object.
-     * @var ObjectRoute $latestObjectRoute;
+     *
+     * @var ObjectRouteInterface
      */
     private $latestObjectRoute;
+
+    /**
+     * The class name of the object route model.
+     *
+     * Must be a fully-qualified PHP namespace and an implementation of
+     * {@see \Charcoal\Object\ObjectRouteInterface}. Used by the model factory.
+     *
+     * @var string
+     */
+    private $objectRouteClass = ObjectRoute::class;
 
     /**
      * Set the object's URL slug pattern.
@@ -147,7 +163,7 @@ trait RoutableTrait
                 $newSlug[$lang] = $this->generateRoutePattern($pattern);
             }
 
-            $objectRoute = $this->modelFactory()->create(ObjectRoute::class);
+            $objectRoute = $this->createRouteObject();
             if ($objectRoute->source()->tableExists()) {
                 $objectRoute->setData([
                     'lang'           => $lang,
@@ -253,7 +269,7 @@ trait RoutableTrait
     /**
      * Route generation.
      *
-     * Saves all routes to {@see ObjectRoute}.
+     * Saves all routes to {@see \Charcoal\Object\ObjectRoute}.
      *
      * @param  mixed $slug Slug by langs.
      * @return void
@@ -278,7 +294,7 @@ trait RoutableTrait
 
             $translator->setCurrentLanguage($lang);
 
-            $objectRoute = $this->modelFactory()->create(ObjectRoute::class);
+            $objectRoute = $this->createRouteObject();
 
             $source = $objectRoute->source();
             if (!$source->tableExists()) {
@@ -320,7 +336,7 @@ trait RoutableTrait
      *
      * @param  string|null $lang If object is multilingual, return the object route for the specified locale.
      * @throws InvalidArgumentException If the given language is invalid.
-     * @return ObjectRoute Latest object route.
+     * @return ObjectRouteInterface Latest object route.
      */
     protected function getLatestObjectRoute($lang = null)
     {
@@ -341,7 +357,7 @@ trait RoutableTrait
             return $this->latestObjectRoute[$lang];
         }
 
-        $model = $this->modelFactory()->create(ObjectRoute::class);
+        $model = $this->createRouteObject();
 
         if (!$this->objType() || !$this->id()) {
             $this->latestObjectRoute[$lang] = $model;
@@ -490,7 +506,7 @@ trait RoutableTrait
             return false;
         }
 
-        $model  = $this->modelFactory()->get(ObjectRoute::class);
+        $model  = $this->modelFactory()->get($this->objectRouteClass());
         $loader = new CollectionLoader([
             'logger'  => $this->logger,
             'factory' => $this->modelFactory()
@@ -507,6 +523,48 @@ trait RoutableTrait
         }
 
         return true;
+    }
+
+    /**
+     * Create a route object.
+     *
+     * @return ObjectRouteInterface
+     */
+    public function createRouteObject()
+    {
+        $route = $this->modelFactory()->create($this->objectRouteClass());
+
+        return $route;
+    }
+
+    /**
+     * Set the class name of the object route model.
+     *
+     * @param  string $className The class name of the object route model.
+     * @throws InvalidArgumentException If the class name is not a string.
+     * @return AbstractPropertyDisplay Chainable
+     */
+    protected function setObjectRouteClass($className)
+    {
+        if (!is_string($className)) {
+            throw new InvalidArgumentException(
+                'Section class name must be a string.'
+            );
+        }
+
+        $this->objectRouteClass = $className;
+
+        return $this;
+    }
+
+    /**
+     * Retrieve the class name of the object route model.
+     *
+     * @return string
+     */
+    public function objectRouteClass()
+    {
+        return $this->objectRouteClass;
     }
 
     /**
