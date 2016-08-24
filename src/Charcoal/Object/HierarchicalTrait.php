@@ -4,6 +4,8 @@ namespace Charcoal\Object;
 
 use \Exception;
 use \InvalidArgumentException;
+
+// From 'charcoal-core'
 use \Charcoal\Model\ModelInterface;
 
 /**
@@ -12,30 +14,30 @@ use \Charcoal\Model\ModelInterface;
 trait HierarchicalTrait
 {
     /**
-     * The master, if any, in the hierarchy.
+     * The object's parent, if any, in the hierarchy.
      *
-     * @var HierarchicalInterface $master
+     * @var HierarchicalInterface|null
      */
-    private $master = null;
+    private $master;
 
     /**
-     * In-memory copy of the object's hierarchy.
+     * Store a copy of the object's ancestry.
      *
-     * @var array|null $hierarchy
+     * @var HierarchicalInterface[]|null
      */
     private $hierarchy = null;
 
     /**
-     * In-memory copy of the object's children
+     * Store a copy of the object's descendants.
      *
-     * @var array $children
+     * @var HierarchicalInterface[]|null
      */
     private $children;
 
     /**
-     * In-memory copy of the object's siblings
+     * Store a copy of the object's siblings.
      *
-     * @var array $siblings
+     * @var HierarchicalInterface[]|null
      */
     private $siblings;
 
@@ -46,21 +48,37 @@ trait HierarchicalTrait
      */
     public static $objectCache = [];
 
+    /**
+     * Reset this object's hierarchy.
+     *
+     * The object's hierarchy can be rebuilt with {@see self::hierarchy()}.
+     *
+     * @return HierarchicalInterface Chainable
+     */
+    public function resetHierarchy()
+    {
+        $this->hierarchy = null;
+
+        return $this;
+    }
 
     /**
+     * Set this object's immediate parent.
+     *
      * @param mixed $master The object's parent (or master).
      * @return HierarchicalInterface Chainable
      */
     public function setMaster($master)
     {
         $this->master = $this->objFromIdent($master);
-        // Rebuild hierarchy
-        $this->hierarchy = null;
+        $this->resetHierarchy();
+
         return $this;
     }
 
     /**
-     * Get the immediate parent (master) of this object.
+     * Retrieve this object's immediate parent.
+     *
      * @return HierarchicalInterface|null
      */
     public function master()
@@ -69,29 +87,32 @@ trait HierarchicalTrait
     }
 
     /**
-     * Get wether this object has a parent (master) or not.
+     * Determine if this object has a direct parent.
+     *
      * @return boolean
      */
     public function hasMaster()
     {
-        $master = $this->master();
-        return ($master !== null);
+        return ($this->master() !== null);
     }
 
     /**
-     * Get wether this object is toplevel or not.
-     * Top-level objects do not have a parent (master)
+     * Determine if this object is the head (top-level) of its hierarchy.
+     *
+     * Top-level objects do not have a parent (master).
+     *
      * @return boolean
      */
     public function isTopLevel()
     {
-        $master = $this->master();
-        return ($master === null);
+        return ($this->master() === null);
     }
 
     /**
-     * Get wether this object is on the last-level or not.
-     * Last level objects do not have childen
+     * Determine if this object is the tail (last-level) of its hierarchy.
+     *
+     * Last-level objects do not have a children.
+     *
      * @return boolean
      */
     public function isLastLevel()
@@ -100,8 +121,12 @@ trait HierarchicalTrait
     }
 
     /**
-     * Get the object's level in hierarchy.
-     * Starts at "1" (top-level)
+     * Retrieve this object's position (level) in its hierarchy.
+     *
+     * Starts at "1" (top-level).
+     *
+     * The level is calculated by loading all ancestors with {@see self::hierarchy()}.
+     *
      * @return integer
      */
     public function hierarchyLevel()
@@ -113,7 +138,8 @@ trait HierarchicalTrait
     }
 
     /**
-     * Get the top-level parent (master) of this object
+     * Retrieve the top-level ancestor of this object.
+     *
      * @return HierarchicalInterface|null
      */
     public function toplevelMaster()
@@ -127,7 +153,8 @@ trait HierarchicalTrait
     }
 
     /**
-     * Get whether the object has any parents at all
+     * Determine if this object has any ancestors.
+     *
      * @return boolean
      */
     public function hasParents()
@@ -136,7 +163,8 @@ trait HierarchicalTrait
     }
 
     /**
-     * Get all of this object's parents, from immediate to top-level.
+     * Retrieve this object's ancestors (from immediate parent to top-level).
+     *
      * @return array
      */
     public function hierarchy()
@@ -156,7 +184,8 @@ trait HierarchicalTrait
     }
 
     /**
-     * Get all of this object's parents, inverted from top-level to immediate.
+     * Retrieve this object's ancestors, inverted from top-level to immediate.
+     *
      * @return array
      */
     public function invertedHierarchy()
@@ -166,8 +195,9 @@ trait HierarchicalTrait
     }
 
     /**
-     * Get wether the object has a certain child directly underneath.
-     * @param mixed $child The child object (or ident) to check against.
+     * Determine if the object is the parent of the given object.
+     *
+     * @param mixed $child The child (or ID) to match against.
      * @return boolean
      */
     public function isMasterOf($child)
@@ -177,14 +207,16 @@ trait HierarchicalTrait
     }
 
     /**
-     * Get wether the object has a certain child, in its entire hierarchy
-     * @param mixed $child The child object (or ident) to check against.
+     * Determine if the object is a parent/ancestor of the given object.
+     *
+     * @param mixed $child The child (or ID) to match against.
      * @return boolean
+     * @todo Implementation needed.
      */
     public function recursiveIsMasterOf($child)
     {
         $child = $this->objFromIdent($child);
-        // TODO
+
         return false;
     }
 
@@ -242,7 +274,6 @@ trait HierarchicalTrait
         $this->children[] = $child;
         return $this;
     }
-
 
     /**
      * Get the children directly under this object.
@@ -340,7 +371,6 @@ trait HierarchicalTrait
 
     /**
      * @param mixed $ident The ident.
-     * @throws Exception If the object is not loadable.
      * @throws InvalidArgumentException If the ident is not a scalar value.
      * @return HierarchicalInterface|null
      */
@@ -374,10 +404,7 @@ trait HierarchicalTrait
         }
 
         return $obj;
-
-
     }
-
 
     /**
      * Retrieve an object from the storage source by its ID.
@@ -426,10 +453,10 @@ trait HierarchicalTrait
         return $this;
     }
 
-
     /**
-     * Hierarchical objects must provide a model factory to create new (children) objects.
+     * Retrieve the object model factory.
+     *
      * @return \Charcoal\Factory\FactoryInterface
      */
-    abstract protected function modelFactory();
+    abstract public function modelFactory();
 }
