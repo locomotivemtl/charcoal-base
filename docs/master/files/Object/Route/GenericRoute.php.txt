@@ -4,67 +4,89 @@ namespace Charcoal\Object\Route;
 
 use \Exception;
 
-// PSR-7 (http messaging) dependencies
+use \Pimple\Container;
+
+// From PSR-7 (HTTP Messaging)
 use \Psr\Http\Message\RequestInterface;
 use \Psr\Http\Message\ResponseInterface;
-
-// Dependencies from `Pimple`
-use \Pimple\Container;
 
 // Dependency from 'charcoal-app'
 use \Charcoal\App\Route\TemplateRoute;
 
-// From Charcoal-factory
+// Dependency from 'charcoal-cms'
+use \Charcoal\Cms\TemplateableInterface;
+
+// From 'charcoal-factory'
 use \Charcoal\Factory\FactoryInterface;
 
+// From 'charcoal-core'
+use \Charcoal\Model\ModelInterface;
 use \Charcoal\Loader\CollectionLoader;
 
-// From `charcoal-base`
-use \Charcoal\Object\RoutableInterface;
-
-// From `charcoal-translation`
+// From 'charcoal-translation'
 use \Charcoal\Translation\TranslationConfig;
 
-// Route object
+// Local Dependencies
 use \Charcoal\Object\ObjectRoute;
+use \Charcoal\Object\ObjectRouteInterface;
+use \Charcoal\Object\RoutableInterface;
 
 /**
- * Generic route.
- * Uses the ObjectRoute object to match routes in
- * a catchall.
+ * Generic Object Route Handler
+ *
+ * Uses implementations of {@see \Charcoal\Object\ObjectRouteInterface}
+ * to match routes for catch-all routing patterns.
  */
 class GenericRoute extends TemplateRoute
 {
     /**
-     * Charcoal\Object\ObjectRoute
-     * @var object $objectRoute
-     */
-    private $objectRoute;
-
-    /**
-     * @var string $path
+     * The URI path.
+     *
+     * @var string
      */
     private $path;
 
     /**
-     * CollectionLoader from dependencie container.
-     * @var CollectionLoader $collectionLoader
+     * The object route.
+     *
+     * @var ObjectRouteInterface
      */
-    private $collectionLoader;
+    private $objectRoute;
 
     /**
-     * ModelFactory from dependencie container;
-     * @var ModelFactory $modelFactory
-     */
-    private $modelFactory;
-
-    /**
-     * Mixed object
-     * @var Object $contextObject mixed.
+     * The target object of the {@see self::$objectRoute}.
+     *
+     * @var ModelInterface|RoutableInterface
      */
     private $contextObject;
 
     /**
+     * Store the factory instance for the current class.
+     *
+     * @var FactoryInterface
+     */
+    private $modelFactory;
+
+    /**
+     * Store the collection loader for the current class.
+     *
+     * @var CollectionLoader
+     */
+    private $collectionLoader;
+
+    /**
+     * The class name of the object route model.
+     *
+     * Must be a fully-qualified PHP namespace and an implementation of
+     * {@see \Charcoal\Object\ObjectRouteInterface}. Used by the model factory.
+     *
+     * @var string
+     */
+    protected $objectRouteClass = ObjectRoute::class;
+
+    /**
+     * Returns new template route object.
+     *
      * @param array|\ArrayAccess $data Class depdendencies.
      */
     public function __construct($data)
@@ -75,24 +97,27 @@ class GenericRoute extends TemplateRoute
     }
 
     /**
-     * Set dependencies.
-     * @param Container $container Dependencie container.
+     * Inject dependencies from a DI Container.
+     *
+     * @param  Container $container A dependencies container instance.
      * @return void
      */
     public function setDependencies(Container $container)
     {
-        // Dependencies.
         $this->setModelFactory($container['model/factory']);
         $this->setCollectionLoader($container['model/collection/loader']);
     }
 
     /**
+     * Determine if the URI path resolves to an object.
+     *
      * @param  Container $container A DI (Pimple) container.
      * @return boolean
      */
     public function pathResolvable(Container $container)
     {
         $this->setDependencies($container);
+
         $object = $this->loadObjectRouteFromPath();
         if (!$object->id()) {
             return false;
@@ -113,30 +138,34 @@ class GenericRoute extends TemplateRoute
      * @param  ResponseInterface $response  A PSR-7 compatible Response instance.
      * @return ResponseInterface
      */
-    public function __invoke(Container $container, RequestInterface $request, ResponseInterface $response)
-    {
-        $config = $this->config();
-        $this->setDependencies($container);
-
-        $objectRoute = $this->loadObjectRouteFromPath();
+    public function __invoke(
+        Container $container,
+        RequestInterface $request,
+        ResponseInterface $response
+    ) {
+        $objectRoute   = $this->loadObjectRouteFromPath();
         $contextObject = $this->loadContextObject();
+        $translator    = TranslationConfig::instance();
 
-        TranslationConfig::instance()->setCurrentLanguage($objectRoute->lang());
+        $translator->setCurrentLanguage($objectRoute->lang());
 
-        $templateIdent      = (string)$contextObject->templateIdent();
-        $templateController = (string)$contextObject->templateIdent();
+        $templateIdent = (string)$contextObject->templateIdent();
 
-        $templateFactory = $container['template/factory'];
-        $templateFactory->setDefaultClass($config['default_controller']);
+        $config = [
+            'template'   => $templateIdent,
+            'controller' => $templateIdent
+        ];
 
-        $template = $templateFactory->create($templateController);
-        $template->init($request);
+        if ($contextObject instanceof TemplateableInterface) {
+            $templateOptions = $contextObject->templateOptions();
+            if ($templateOptions) {
+                $config['template_data'] = $templateOptions;
+            }
+        }
 
-        // Set custom data from config.
-        $template->setData($config['template_data']);
-        $template->setContextObject($contextObject);
+        $this->setConfig($config);
 
-        $templateContent = $container['view']->render($templateIdent, $template);
+        $templateContent = $this->templateContent($container, $request);
 
         $response->write($templateContent);
 
@@ -144,8 +173,69 @@ class GenericRoute extends TemplateRoute
     }
 
     /**
-     * Load the context object.
-     * @return RoutableInterface Routable object.
+     * @param  Container        $container A DI (Pimple) container.
+     * @param  RequestInterface $request   The request to intialize the template with.
+     * @return string
+     */
+    protected function createTemplate(Container $container, RequestInterface $request)
+    {
+        $template = parent::createTemplate($container, $request);
+
+        $contextObject = $this->loadContextObject();
+        $template->setContextObject($contextObject);
+
+        return $template;
+    }
+
+    /**
+     * Create a route object.
+     *
+     * @return ObjectRouteInterface
+     */
+    public function createRouteObject()
+    {
+        $route = $this->modelFactory()->create($this->objectRouteClass());
+
+        return $route;
+    }
+
+    /**
+     * Set the class name of the object route model.
+     *
+     * @param  string $className The class name of the object route model.
+     * @throws InvalidArgumentException If the class name is not a string.
+     * @return AbstractPropertyDisplay Chainable
+     */
+    protected function setObjectRouteClass($className)
+    {
+        if (!is_string($className)) {
+            throw new InvalidArgumentException(
+                'Route class name must be a string.'
+            );
+        }
+
+        $this->objectRouteClass = $className;
+
+        return $this;
+    }
+
+    /**
+     * Retrieve the class name of the object route model.
+     *
+     * @return string
+     */
+    public function objectRouteClass()
+    {
+        return $this->objectRouteClass;
+    }
+
+    /**
+     * Load the object associated with the matching object route.
+     *
+     * Validating if the object ID exists is delegated to the
+     * {@see self::pathResolvable()} method.
+     *
+     * @return RoutableInterface
      */
     protected function loadContextObject()
     {
@@ -153,10 +243,6 @@ class GenericRoute extends TemplateRoute
             return $this->contextObject;
         }
 
-        // Path set in constructor
-        // Factories set above
-        // We do not check if the ID exists, this is the
-        // pathResolvable() method job.
         $objectRoute = $this->loadObjectRouteFromPath();
 
         // Could be the SAME
@@ -167,15 +253,18 @@ class GenericRoute extends TemplateRoute
             // Redirect 302
         }
 
-        $this->contextObject = $this->modelFactory()
-            ->create($objectRoute->routeObjType())
-            ->load($objectRoute->routeObjId());
+        $obj = $this->modelFactory()->create($objectRoute->routeObjType());
+        $obj->load($objectRoute->routeObjId());
+
+        $this->contextObject = $obj;
 
         return $this->contextObject;
     }
 
     /**
-     * @return \Charcoal\Object\ObjectRoute
+     * Load the object route matching the URI path.
+     *
+     * @return \Charcoal\Object\ObjectRouteInterface
      */
     protected function loadObjectRouteFromPath()
     {
@@ -185,7 +274,7 @@ class GenericRoute extends TemplateRoute
 
         // Load current slug
         // Slug are uniq
-        $route = $this->modelFactory()->create(ObjectRoute::class);
+        $route = $this->createRouteObject();
         $route->loadFromQuery(
             'SELECT * FROM `'.$route->source()->table().'` WHERE (`slug` = :route1 OR `slug` = :route2) LIMIT 1',
             [
@@ -200,37 +289,35 @@ class GenericRoute extends TemplateRoute
     }
 
     /**
-     * Get the latest path history for the given object order
-     * by creationDate DESC (latest first.)
+     * Retrieve the latest object route from the given object route's
+     * associated object.
+     *
+     * The object routes are ordered by descending creation date (latest first).
      * Should never MISS, the given object route should exist.
-     * @param  Charcoal\Object\ObjectRoute $obj Routable Object.
-     * @return Charcoal\Object\ObjectRoute        Latest route.
+     *
+     * @param  ObjectRouteInterface $route Routable Object.
+     * @return ObjectRouteInterface
      */
-    public function getLatestObjectPathHistory(ObjectRoute $obj)
+    public function getLatestObjectPathHistory(ObjectRouteInterface $route)
     {
-        // Check if current objType and ID have a more recent route.
-        $objectType = $obj->routeObjType();
-        $objectId = $obj->routeObjId();
-        $lang = $obj->lang();
-
         $loader = $this->collectionLoader();
-        $loader->setModel($obj);
+        $loader->setModel($route);
 
         $loader
             ->addFilter('active', true)
-            ->addFilter('route_obj_type', $objectType)
-            ->addFilter('route_obj_id', $objectId)
-            ->addFilter('lang', $lang)
+            ->addFilter('route_obj_type', $route->routeObjType())
+            ->addFilter('route_obj_id', $route->routeObjId())
+            ->addFilter('lang', $route->lang())
             ->addOrder('creation_date', 'desc')
             ->setPage(1)
             ->setNumPerPage(1);
 
         $collection = $loader->load();
-        $objects = $collection->objects();
+        $routes     = $collection->objects();
 
-        $verifyObject = $objects[0];
+        $latestRoute = $routes[0];
 
-        return $verifyObject;
+        return $latestRoute;
     }
 
 /**
@@ -238,44 +325,52 @@ class GenericRoute extends TemplateRoute
  */
 
     /**
-     * Set path.
-     * @param string $path Path.
-     * @return GenericRoute Chainable.
+     * Set the specified URI path.
+     *
+     * @param string $path The path to use for route resolution.
+     * @return self
      */
     protected function setPath($path)
     {
         $this->path = $path;
+
         return $this;
     }
 
     /**
-     * Set the model factory.
-     * @param FactoryInterface $modelFactory Model factory.
-     * @return GenericRoute Chainable.
+     * Set an object model factory.
+     *
+     * @param FactoryInterface $factory The model factory, to create objects.
+     * @return self
      */
-    protected function setModelFactory(FactoryInterface $modelFactory)
+    protected function setModelFactory(FactoryInterface $factory)
     {
-        $this->modelFactory = $modelFactory;
+        $this->modelFactory = $factory;
+
         return $this;
     }
 
     /**
-     * Set the collection loader.
-     * @param CollectionLoader $loader Collection loader.
-     * @return GenericRoute Chainable.
+     * Set a model collection loader.
+     *
+     * @param CollectionLoader $loader The collection loader.
+     * @return self
      */
     public function setCollectionLoader(CollectionLoader $loader)
     {
         $this->collectionLoader = $loader;
+
         return $this;
     }
+
 /**
  * GETTERS
  */
 
     /**
-     * Path.
-     * @return string Path.
+     * Retrieve the URI path.
+     *
+     * @return string
      */
     protected function path()
     {
@@ -283,19 +378,36 @@ class GenericRoute extends TemplateRoute
     }
 
     /**
-     * Model factory.
-     * @return FactoryInterface Model factory.
+     * Retrieve the object model factory.
+     *
+     * @throws RuntimeException If the model factory was not previously set.
+     * @return FactoryInterface
      */
-    protected function modelFactory()
+    public function modelFactory()
     {
+        if (!isset($this->modelFactory)) {
+            throw new RuntimeException(
+                sprintf('Model Factory is not defined for "%s"', get_class($this))
+            );
+        }
+
         return $this->modelFactory;
     }
+
     /**
-     * Collection loader.
-     * @return CollectionLoader Collection Loader.
+     * Retrieve the model collection loader.
+     *
+     * @throws RuntimeException If the collection loader was not previously set.
+     * @return CollectionLoader
      */
     protected function collectionLoader()
     {
+        if (!isset($this->collectionLoader)) {
+            throw new RuntimeException(
+                sprintf('Collection Loader is not defined for "%s"', get_class($this))
+            );
+        }
+
         return $this->collectionLoader;
     }
 }
