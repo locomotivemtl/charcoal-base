@@ -72,7 +72,7 @@ trait RevisionableTrait
     {
         if (!is_string($className)) {
             throw new InvalidArgumentException(
-                'Section class name must be a string.'
+                'Route class name must be a string.'
             );
         }
 

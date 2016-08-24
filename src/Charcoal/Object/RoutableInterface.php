@@ -47,4 +47,11 @@ interface RoutableInterface
      * @return \Charcoal\Object\ObjectRouteInterface
      */
     public function createRouteObject();
+
+    /**
+     * Retrieve the class name of the object route model.
+     *
+     * @return string
+     */
+    public function objectRouteClass();
 }

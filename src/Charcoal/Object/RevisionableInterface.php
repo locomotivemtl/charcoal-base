@@ -26,6 +26,13 @@ interface RevisionableInterface
     public function createRevisionObject();
 
     /**
+     * Retrieve the class name of the object revision model.
+     *
+     * @return string
+     */
+    public function objectRevisionClass();
+
+    /**
      * @return \Charcoal\Object\ObjectRevisionInterface
      */
     public function generateRevision();
