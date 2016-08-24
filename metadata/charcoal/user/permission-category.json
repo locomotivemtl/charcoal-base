@@ -1,17 +1,16 @@
 {
-    "properties":{
-        "id":{
-            "type":"id"
+    "properties": {
+        "id": {
+            "type": "id"
         }
     },
 
-    "category_item_type":"charcoal/user/permission",
+    "category_item_type": "charcoal/user/permission",
 
-    "sources":{
-        "default":{
-            "table":"charcoal_user_permissions_categories"
+    "sources": {
+        "default": {
+            "table": "charcoal_user_permissions_categories"
         }
     },
-    "default_source":"default"
+    "default_source": "default"
 }
-

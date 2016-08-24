@@ -1,108 +1,103 @@
 {
-    "properties":{
-      "id":{
-        "type":"id"
-      },
-      "target_type":{
-        "type":"string",
-        "label":{
-            "en":"Object type",
-            "fr":"Type de l'objet"
+    "properties": {
+        "id": {
+            "type": "id",
+            "label": "ID"
+        },
+        "target_type": {
+            "type": "string",
+            "label": {
+                "en": "Object type",
+                "fr": "Type de l'objet"
+            }
+        },
+        "target_id": {
+            "type": "string",
+            "label": {
+                "en": "Object identifier",
+                "fr": "Identifiant de l'objet"
+            }
+        },
+        "rev_num": {
+            "type": "number",
+            "label": {
+                "en": "Revision number",
+                "fr": "Numéro de la révision"
+            }
+        },
+        "rev_ts": {
+            "type": "date-time",
+            "label": {
+                "en": "Revision date",
+                "fr": "Date de la révision"
+            }
+        },
+        "rev_user": {
+            "type": "string",
+            "label": {
+                "en": "Revision author",
+                "fr": "Auteur de la révision"
+            }
+        },
+        "data_prev": {
+            "type": "structure",
+            "label": {
+                "en": "Previous revision data",
+                "fr": "Données de la révision précédente"
+            }
+        },
+        "data_obj": {
+            "type": "structure",
+            "label": {
+                "en": "Object data (current revision)",
+                "fr": "Données de l'objet (révision courante)"
+            }
+        },
+        "data_diff": {
+            "type": "structure",
+            "label": {
+                "en": "Diff data",
+                "fr": "Données différentes"
+            }
         }
-      },
-      "target_id":{
-        "type":"string",
-        "label":{
-            "en":"Object identifier",
-            "fr":"Identifiant de l'objet"
-        }
-      },
-      "rev_num":{
-        "type":"number",
-        "label":{
-            "en":"Revision number",
-            "fr":"Numéro de la révision"
-        }
-      },
-      "rev_ts":{
-        "type": "date-time",
-        "label":{
-            "en":"Revision date",
-            "fr":"Date de la révision"
-        }
-      },
-      "rev_user":{
-        "type":"string",
-        "label":{
-            "en":"Revision author",
-            "fr":"Auteur de la révision"
-        }
-      },
-      "data_prev":{
-        "type":"structure",
-        "label":{
-            "en":"Previous revision data",
-            "fr":"Données de la révision précédente"
-        }
-      },
-      "data_obj":{
-        "type":"structure",
-        "label":{
-            "en":"Object data (current revision)",
-            "fr":"Données de l'objet (révision courante)"
-        }
-      },
-      "data_diff":{
-        "type":"structure",
-        "label":{
-            "en":"Diff data",
-            "fr":"Données différentes"
-        }
-      }
-    },
-
-    "data":{
-
     },
 
     "sources": {
-      "default": {
-        "type": "database",
-        "table": "object_revisions"
-      }
+        "default": {
+            "type": "database",
+            "table": "object_revisions"
+        }
     },
     "default_source": "default",
 
-    "admin":{
-        "lists":{
-            "default":{
-                "properties":[
+    "admin": {
+        "lists": {
+            "default": {
+                "properties": [
                     "rev_num",
                     "rev_ts",
                     "rev_user"
                 ]
             }
         },
-        "default_list":"default",
+        "default_list": "default",
 
-        "forms":{
-            "default":{
-                "groups":{
-                    "info":{
-
-                    }
+        "forms": {
+            "default": {
+                "groups": {
+                    "info": {}
                 }
             }
         },
-        "default_form":"default",
+        "default_form": "default",
 
         "dashboards": {
             "admin.edit": {
-                "title":"Révisions",
+                "title": "Révisions",
                 "layout": {
-                    "structure": [
-                        { "columns": [ 1 ] }
-                    ]
+                    "structure": [{
+                        "columns": [ 1 ]
+                    }]
                 },
                 "widgets": {
                     "form": {
@@ -115,9 +110,9 @@
             "admin.table": {
                 "title": "Liste des révisions",
                 "layout": {
-                    "structure": [
-                        { "columns": [ 1 ] }
-                    ]
+                    "structure": [{
+                        "columns": [ 1 ]
+                    }]
                 },
                 "widgets": {
                     "form": {

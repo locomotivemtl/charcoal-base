@@ -1,23 +1,30 @@
 {
-    "properties":{
-        "ident":{
-            "type":"string",
-            "unique":true,
-            "label":"Identifier"
+    "properties": {
+        "ident": {
+            "type": "string",
+            "unique": true,
+            "label": {
+                "en": "Identifier",
+                "fr": "Identifiant"
+            }
         },
-        "name":{
-            "type":"string",
-            "l10n":true
+        "name": {
+            "type": "string",
+            "l10n": true,
+            "label": {
+                "en": "Name",
+                "fr": "Nom"
+            }
         },
-        "category":{
-            "obj_type":"charcoal/user/permission-category"
+        "category": {
+            "obj_type": "charcoal/user/permission-category"
         }
     },
 
-    "key":"ident",
+    "key": "ident",
 
-    "sources":{
-        "default":"charcoal_user_permissions"
+    "sources": {
+        "default": "charcoal_user_permissions"
     },
-    "default_source":"default"
+    "default_source": "default"
 }

@@ -1,14 +1,19 @@
 {
-  "properties":{
-    "id":{
-      "type":"id"
-    },
-    "name":{
-      "type":"string",
-      "l10n":true
-    },
-    "position":{
-      "type":"integer"
+    "properties": {
+        "id": {
+            "type": "id",
+            "label": "ID"
+        },
+        "name": {
+            "type": "string",
+            "l10n": true,
+            "label": {
+                "en": "Name",
+                "fr": "Nom"
+            }
+        },
+        "position": {
+            "type": "integer"
+        }
     }
-  }
 }

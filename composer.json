@@ -9,14 +9,14 @@
         "source": "https://github.com/locomotivemtl/charcoal-base"
     },
     "authors": [
-    {
-        "name": "Mathieu Ducharme",
-        "email": "mat@locomotive.ca"
-    },
-    {
-        "name": "Locomotive",
-        "homepage": "https://locomotive.ca"
-    }
+        {
+            "name": "Mathieu Ducharme",
+            "email": "mat@locomotive.ca"
+        },
+        {
+            "name": "Locomotive",
+            "homepage": "https://locomotive.ca"
+        }
     ],
     "minimum-stability": "dev",
     "require": {
@@ -38,9 +38,9 @@
     },
     "scripts": {
         "test": [
-          "@phplint",
-          "@phpcs",
-          "@phpunit"
+            "@phplint",
+            "@phpcs",
+            "@phpunit"
         ],
         "phplint": "find {src,tests} -name '*.php' -print0 | xargs -0 -n1 -P8 php -l | grep -v '^No syntax errors detected'; test $? -eq 1",
         "phpunit": "php vendor/bin/phpunit --configuration tests/phpunit.xml --coverage-text",

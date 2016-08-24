@@ -1,4 +1,11 @@
 {
+    "slug_pattern": null,
+
+    "routable": {
+        "pattern": null,
+        "prefix": null
+    },
+
     "properties": {
         "slug": {
             "type": "string",
@@ -8,7 +15,5 @@
                 "en": "Permalink"
             }
         }
-    },
-
-    "slug_pattern": null
+    }
 }
