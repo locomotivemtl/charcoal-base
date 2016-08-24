@@ -37,14 +37,7 @@ class ObjectRoute extends AbstractModel implements
     ObjectRouteInterface
 {
     /**
-     * The route ID.
-     *
-     * @var integer
-     */
-    protected $id;
-
-    /**
-     * An route is active by default.
+     * A route is active by default.
      *
      * @var boolean
      */
@@ -210,11 +203,10 @@ class ObjectRoute extends AbstractModel implements
         return false;
     }
 
-
     /**
      * Generate a unique URL slug for routable object.
      *
-     * @return ObjectRoute Chainable
+     * @return self
      */
     public function generateUniqueSlug()
     {
@@ -244,6 +236,7 @@ class ObjectRoute extends AbstractModel implements
         $this->modelFactory = $factory;
         return $this;
     }
+
     /**
      * Set a model collection loader.
      *
@@ -257,30 +250,35 @@ class ObjectRoute extends AbstractModel implements
     }
 
     /**
-     * Set the slug of the current route.
-     * @param string $slug Current object / lang slug.
-     * @return ObjectRoute Chainable.
+     * Set the object route URI.
+     *
+     * @param string $slug The route.
+     * @return self
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
         return $this;
     }
+
     /**
-     * Set the lang of the current route.
-     * @param string $l Current lang.
-     * @return ObjectRoute Chainable.
+     * Set the locale of the object route.
+     *
+     * @param string $lang The route's locale.
+     * @return self
      */
-    public function setLang($l)
+    public function setLang($lang)
     {
-        $this->lang = $l;
+        $this->lang = $lang;
+
         return $this;
     }
 
     /**
      * @param \DateTime|string|null $creationDate The Creation Date date/time.
      * @throws InvalidArgumentException If the date/time is invalid.
-     * @return ObjectRoute Chainable
+     * @return self
      */
     public function setCreationDate($creationDate)
     {
@@ -299,10 +297,11 @@ class ObjectRoute extends AbstractModel implements
         $this->creationDate = $creationDate;
         return $this;
     }
+
     /**
      * @param \DateTime|string|null $lastModificationDate The Last modification date date/time.
      * @throws InvalidArgumentException If the date/time is invalid.
-     * @return ObjectRoute Chainable
+     * @return self
      */
     public function setLastModificationDate($lastModificationDate)
     {
@@ -323,33 +322,41 @@ class ObjectRoute extends AbstractModel implements
     }
 
     /**
-     * Set the route obj type
-     * @param string $type Route object type.
-     * @return ObjectRoute Chainable.
+     * Set the foreign object type related to this route.
+     *
+     * @param string $type The object type.
+     * @return self
      */
     public function setRouteObjType($type)
     {
         $this->routeObjType = $type;
+
         return $this;
     }
+
     /**
-     * Set the object route id
-     * @param string $id Object ID.
-     * @return ObjectRoute Chainable
+     * Set the foreign object ID related to this route.
+     *
+     * @param string $id The object ID.
+     * @return self
      */
     public function setRouteObjId($id)
     {
         $this->routeObjId = $id;
+
         return $this;
     }
+
     /**
-     * Set the object route template
-     * @param string $template Template ident.
-     * @return ObjectRoute Chainable
+     * Set the foreign object's template identifier.
+     *
+     * @param string $template The template identifier.
+     * @return self
      */
     public function setRouteTemplate($template)
     {
         $this->routeTemplate = $template;
+
         return $this;
     }
 
@@ -372,6 +379,7 @@ class ObjectRoute extends AbstractModel implements
         }
         return $this->modelFactory;
     }
+
     /**
      * Retrieve the model collection loader.
      *
@@ -389,21 +397,25 @@ class ObjectRoute extends AbstractModel implements
     }
 
     /**
-     * Slug.
-     * @return string Slug.
+     * Retrieve the object route.
+     *
+     * @return string
      */
     public function slug()
     {
         return $this->slug;
     }
+
     /**
-     * Language.
-     * @return string Current language.
+     * Retrieve the locale of the object route.
+     *
+     * @return string
      */
     public function lang()
     {
         return $this->lang;
     }
+
     /**
      * Creation date.
      * @return DateTime Creation date.
@@ -412,6 +424,7 @@ class ObjectRoute extends AbstractModel implements
     {
         return $this->creationDate;
     }
+
     /**
      * Last modification date.
      * @return DateTime Last modification date.
@@ -420,25 +433,31 @@ class ObjectRoute extends AbstractModel implements
     {
         return $this->lastModificationDate;
     }
+
     /**
-     * Route object type.
-     * @return string Route Object Type.
+     * Retrieve the foreign object type related to this route.
+     *
+     * @return string
      */
     public function routeObjType()
     {
         return $this->routeObjType;
     }
+
     /**
-     * Route Object ID.
-     * @return string Route object id.
+     * Retrieve the foreign object ID related to this route.
+     *
+     * @return string
      */
     public function routeObjId()
     {
         return $this->routeObjId;
     }
+
     /**
-     * Route template.
-     * @return string Route template.
+     * Retrieve the foreign object's template identifier.
+     *
+     * @return string
      */
     public function routeTemplate()
     {
