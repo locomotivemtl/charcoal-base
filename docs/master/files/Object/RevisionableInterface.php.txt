@@ -19,11 +19,11 @@ interface RevisionableInterface
     public function revisionEnabled();
 
     /**
-     * This method can be overloaded in concrete implementation to provide a different ObjectRevision class.
+     * Create a revision object.
      *
      * @return \Charcoal\Object\ObjectRevisionInterface
      */
-    public function revisionObject();
+    public function createRevisionObject();
 
     /**
      * @return \Charcoal\Object\ObjectRevisionInterface

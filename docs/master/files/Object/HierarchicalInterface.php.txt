@@ -8,66 +8,86 @@ namespace Charcoal\Object;
 interface HierarchicalInterface
 {
     /**
-     * Get wether this object has a parent (master) or not.
+     * Determine if this object has a direct parent.
+     *
      * @return boolean
      */
     public function hasMaster();
 
     /**
-     * Get wether this object is toplevel or not.
-     * Top-level objects do not have a parent (master)
+     * Determine if this object is the head (top-level) of its hierarchy.
+     *
+     * Top-level objects do not have a parent (master).
+     *
      * @return boolean
      */
     public function isTopLevel();
 
     /**
-     * Get wether this object is on the last-level or not.
-     * Last level objects do not have childen
+     * Determine if this object is the tail (last-level) of its hierarchy.
+     *
+     * Last-level objects do not have a children.
+     *
      * @return boolean
      */
     public function isLastLevel();
 
     /**
-     * Get the object's level in hierarchy.
-     * Starts at "1" (top-level)
+     * Retrieve this object's position (level) in its hierarchy.
+     *
+     * Starts at "1" (top-level).
+     *
      * @return integer
      */
     public function hierarchyLevel();
 
     /**
-     * Get the immediate parent (master) of this object.
-     * @return HierarchicalInterface
+     * Retrieve this object's immediate parent.
+     *
+     * @return HierarchicalInterface|null
      */
     public function master();
 
     /**
-     * Get the top-level parent (master) of this object
-     * @return HierarchicalInterface
+     * Retrieve the top-level ancestor of this object.
+     *
+     * @return HierarchicalInterface|null
      */
     public function toplevelMaster();
 
     /**
-     * Get all of this object's parents, from immediate to top-level.
+     * Determine if this object has any ancestors.
+     *
+     * @return boolean
+     */
+    public function hasParents();
+
+    /**
+     * Retrieve this object's ancestors (from immediate parent to top-level).
+     *
      * @return array
      */
     public function hierarchy();
 
     /**
-     * Get all of this object's parents, inverted from top-level to immediate.
+     * Retrieve this object's ancestors, inverted from top-level to immediate.
+     *
      * @return array
      */
     public function invertedHierarchy();
 
     /**
-     * Get wether the object has a certain child directly underneath.
-     * @param mixed $child The child object (or ident) to check against.
+     * Determine if the object is the parent of the given object.
+     *
+     * @param mixed $child The child (or ID) to match against.
      * @return boolean
      */
     public function isMasterOf($child);
 
     /**
-     * Get wether the object has a certain child, in its entire hierarchy
-     * @param mixed $child The child object (or ident) to check against.
+     * Determine if the object is a parent/ancestor of the given object.
+     *
+     * @param mixed $child The child (or ID) to match against.
      * @return boolean
      */
     public function recursiveIsMasterOf($child);
