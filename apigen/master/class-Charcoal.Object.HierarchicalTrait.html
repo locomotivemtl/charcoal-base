@@ -142,7 +142,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Object.html">Object</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Object.HierarchicalTrait.html#9-435" title="Go to source code">Charcoal/Object/HierarchicalTrait.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Object.HierarchicalTrait.html#11-462" title="Go to source code">Charcoal/Object/HierarchicalTrait.php</a>
 		<br>
 	</div>
 
@@ -150,6 +150,42 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="resetHierarchy" id="_resetHierarchy">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Object.HierarchicalInterface.html">Charcoal\Object\HierarchicalInterface</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resetHierarchy">#</a>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#51-63" title="Go to source code">resetHierarchy</a>( )</code>
+
+		<div class="description short">
+			<p>Reset this object's hierarchy.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Reset this object's hierarchy.</p>
+
+<p>The object's hierarchy can be rebuilt with <a href="self::hierarchy()">self::hierarchy()</a>.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Object.HierarchicalInterface.html">Charcoal\Object\HierarchicalInterface</a></code><br>Chainable
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="setMaster" id="_setMaster">
 
 		<td class="attributes"><code>
@@ -162,14 +198,14 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setMaster">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#50-60" title="Go to source code">setMaster</a>( <span>mixed <var>$master</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#65-77" title="Go to source code">setMaster</a>( <span>mixed <var>$master</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Set this object's immediate parent.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Set this object's immediate parent.</p>
 
 
 				<h4>Parameters</h4>
@@ -201,14 +237,14 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_master">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#62-69" title="Go to source code">master</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#79-87" title="Go to source code">master</a>( )</code>
 
 		<div class="description short">
-			<p>Get the immediate parent (master) of this object.</p>
+			<p>Retrieve this object's immediate parent.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get the immediate parent (master) of this object.</p>
+			<p>Retrieve this object's immediate parent.</p>
 
 
 
@@ -235,14 +271,14 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasMaster">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#71-79" title="Go to source code">hasMaster</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#89-97" title="Go to source code">hasMaster</a>( )</code>
 
 		<div class="description short">
-			<p>Get wether this object has a parent (master) or not.</p>
+			<p>Determine if this object has a direct parent.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get wether this object has a parent (master) or not.</p>
+			<p>Determine if this object has a direct parent.</p>
 
 
 
@@ -269,16 +305,16 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isTopLevel">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#81-90" title="Go to source code">isTopLevel</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#99-109" title="Go to source code">isTopLevel</a>( )</code>
 
 		<div class="description short">
-			<p>Get wether this object is toplevel or not.
-Top-level objects do not have a parent (master)</p>
+			<p>Determine if this object is the head (top-level) of its hierarchy.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get wether this object is toplevel or not.
-Top-level objects do not have a parent (master)</p>
+			<p>Determine if this object is the head (top-level) of its hierarchy.</p>
+
+<p>Top-level objects do not have a parent (master).</p>
 
 
 
@@ -305,16 +341,16 @@ Top-level objects do not have a parent (master)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isLastLevel">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#92-100" title="Go to source code">isLastLevel</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#111-121" title="Go to source code">isLastLevel</a>( )</code>
 
 		<div class="description short">
-			<p>Get wether this object is on the last-level or not.
-Last level objects do not have childen</p>
+			<p>Determine if this object is the tail (last-level) of its hierarchy.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get wether this object is on the last-level or not.
-Last level objects do not have childen</p>
+			<p>Determine if this object is the tail (last-level) of its hierarchy.</p>
+
+<p>Last-level objects do not have a children.</p>
 
 
 
@@ -341,16 +377,18 @@ Last level objects do not have childen</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hierarchyLevel">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#102-113" title="Go to source code">hierarchyLevel</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#123-138" title="Go to source code">hierarchyLevel</a>( )</code>
 
 		<div class="description short">
-			<p>Get the object's level in hierarchy.
-Starts at "1" (top-level)</p>
+			<p>Retrieve this object's position (level) in its hierarchy.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get the object's level in hierarchy.
-Starts at "1" (top-level)</p>
+			<p>Retrieve this object's position (level) in its hierarchy.</p>
+
+<p>Starts at "1" (top-level).</p>
+
+<p>The level is calculated by loading all ancestors with <a href="self::hierarchy()">self::hierarchy()</a>.</p>
 
 
 
@@ -377,14 +415,14 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_toplevelMaster">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#115-127" title="Go to source code">toplevelMaster</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#140-153" title="Go to source code">toplevelMaster</a>( )</code>
 
 		<div class="description short">
-			<p>Get the top-level parent (master) of this object</p>
+			<p>Retrieve the top-level ancestor of this object.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get the top-level parent (master) of this object</p>
+			<p>Retrieve the top-level ancestor of this object.</p>
 
 
 
@@ -411,14 +449,14 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasParents">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#129-136" title="Go to source code">hasParents</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#155-163" title="Go to source code">hasParents</a>( )</code>
 
 		<div class="description short">
-			<p>Get whether the object has any parents at all</p>
+			<p>Determine if this object has any ancestors.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get whether the object has any parents at all</p>
+			<p>Determine if this object has any ancestors.</p>
 
 
 
@@ -445,14 +483,14 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hierarchy">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#138-156" title="Go to source code">hierarchy</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#165-184" title="Go to source code">hierarchy</a>( )</code>
 
 		<div class="description short">
-			<p>Get all of this object's parents, from immediate to top-level.</p>
+			<p>Retrieve this object's ancestors (from immediate parent to top-level).</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get all of this object's parents, from immediate to top-level.</p>
+			<p>Retrieve this object's ancestors (from immediate parent to top-level).</p>
 
 
 
@@ -479,14 +517,14 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_invertedHierarchy">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#158-166" title="Go to source code">invertedHierarchy</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#186-195" title="Go to source code">invertedHierarchy</a>( )</code>
 
 		<div class="description short">
-			<p>Get all of this object's parents, inverted from top-level to immediate.</p>
+			<p>Retrieve this object's ancestors, inverted from top-level to immediate.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get all of this object's parents, inverted from top-level to immediate.</p>
+			<p>Retrieve this object's ancestors, inverted from top-level to immediate.</p>
 
 
 
@@ -513,20 +551,20 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isMasterOf">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#168-177" title="Go to source code">isMasterOf</a>( <span>mixed <var>$child</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#197-207" title="Go to source code">isMasterOf</a>( <span>mixed <var>$child</var></span> )</code>
 
 		<div class="description short">
-			<p>Get wether the object has a certain child directly underneath.</p>
+			<p>Determine if the object is the parent of the given object.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get wether the object has a certain child directly underneath.</p>
+			<p>Determine if the object is the parent of the given object.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$child</var></dt>
-					<dd>The child object (or ident) to check against.</dd>
+					<dd>The child (or ID) to match against.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -552,20 +590,20 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_recursiveIsMasterOf">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#179-189" title="Go to source code">recursiveIsMasterOf</a>( <span>mixed <var>$child</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#209-221" title="Go to source code">recursiveIsMasterOf</a>( <span>mixed <var>$child</var></span> )</code>
 
 		<div class="description short">
-			<p>Get wether the object has a certain child, in its entire hierarchy</p>
+			<p>Determine if the object is a parent/ancestor of the given object.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get wether the object has a certain child, in its entire hierarchy</p>
+			<p>Determine if the object is a parent/ancestor of the given object.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$child</var></dt>
-					<dd>The child object (or ident) to check against.</dd>
+					<dd>The child (or ID) to match against.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -591,7 +629,7 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasChildren">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#191-199" title="Go to source code">hasChildren</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#223-231" title="Go to source code">hasChildren</a>( )</code>
 
 		<div class="description short">
 			<p>Get wether the object has any children at all</p>
@@ -625,7 +663,7 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_numChildren">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#201-209" title="Go to source code">numChildren</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#233-241" title="Go to source code">numChildren</a>( )</code>
 
 		<div class="description short">
 			<p>Get the number of children directly under this object.</p>
@@ -659,7 +697,7 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_recursiveNumChildren">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#211-220" title="Go to source code">recursiveNumChildren</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#243-252" title="Go to source code">recursiveNumChildren</a>( )</code>
 
 		<div class="description short">
 			<p>Get the total number of children in the entire hierarchy.
@@ -695,7 +733,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setChildren">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#222-233" title="Go to source code">setChildren</a>( <span>array <var>$children</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#254-265" title="Go to source code">setChildren</a>( <span>array <var>$children</var></span> )</code>
 
 		<div class="description short">
 			
@@ -734,7 +772,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addChild">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#235-244" title="Go to source code">addChild</a>( <span>mixed <var>$child</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#267-276" title="Go to source code">addChild</a>( <span>mixed <var>$child</var></span> )</code>
 
 		<div class="description short">
 			
@@ -773,7 +811,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_children">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#247-259" title="Go to source code">children</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#278-290" title="Go to source code">children</a>( )</code>
 
 		<div class="description short">
 			<p>Get the children directly under this object.</p>
@@ -807,7 +845,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadChildren">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#261-264" title="Go to source code">loadChildren</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#292-295" title="Go to source code">loadChildren</a>( )</code>
 
 		<div class="description short">
 			
@@ -841,7 +879,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isChildOf">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#266-277" title="Go to source code">isChildOf</a>( <span>mixed <var>$master</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#297-308" title="Go to source code">isChildOf</a>( <span>mixed <var>$master</var></span> )</code>
 
 		<div class="description short">
 			
@@ -880,7 +918,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_recursiveIsChildOf">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#279-290" title="Go to source code">recursiveIsChildOf</a>( <span>mixed <var>$master</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#310-321" title="Go to source code">recursiveIsChildOf</a>( <span>mixed <var>$master</var></span> )</code>
 
 		<div class="description short">
 			
@@ -919,7 +957,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasSiblings">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#292-299" title="Go to source code">hasSiblings</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#323-330" title="Go to source code">hasSiblings</a>( )</code>
 
 		<div class="description short">
 			
@@ -953,7 +991,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_numSiblings">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#301-308" title="Go to source code">numSiblings</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#332-339" title="Go to source code">numSiblings</a>( )</code>
 
 		<div class="description short">
 			
@@ -987,7 +1025,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_siblings">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#310-329" title="Go to source code">siblings</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#341-360" title="Go to source code">siblings</a>( )</code>
 
 		<div class="description short">
 			<p>Get all the objects on the same level as this one.</p>
@@ -1021,7 +1059,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isSiblingOf">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#331-339" title="Go to source code">isSiblingOf</a>( <span>mixed <var>$sibling</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#362-370" title="Go to source code">isSiblingOf</a>( <span>mixed <var>$sibling</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1051,7 +1089,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 	<tr data-order="modelFactory" id="_modelFactory">
 
 		<td class="attributes"><code>
-			abstract protected 
+			abstract public 
 
 			Charcoal\Factory\FactoryInterface
 			
@@ -1060,14 +1098,14 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_modelFactory">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#430-434" title="Go to source code">modelFactory</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalTrait.html#456-461" title="Go to source code">modelFactory</a>( )</code>
 
 		<div class="description short">
-			<p>Hierarchical objects must provide a model factory to create new (children) objects.</p>
+			<p>Retrieve the object model factory.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Hierarchical objects must provide a model factory to create new (children) objects.</p>
+			<p>Retrieve the object model factory.</p>
 
 
 
@@ -1104,7 +1142,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Object.HierarchicalTrait.html#42-47" title="Go to source code"><var>$objectCache</var></a>
+				<a href="source-class-Charcoal.Object.HierarchicalTrait.html#44-49" title="Go to source code"><var>$objectCache</var></a>
 
 			<div class="description short">
 				<p>A store of cached objects.</p>

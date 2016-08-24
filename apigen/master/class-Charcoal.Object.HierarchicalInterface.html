@@ -139,7 +139,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Object.html">Object</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Object.HierarchicalInterface.html#5-134" title="Go to source code">Charcoal/Object/HierarchicalInterface.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Object.HierarchicalInterface.html#5-154" title="Go to source code">Charcoal/Object/HierarchicalInterface.php</a>
 		<br>
 	</div>
 
@@ -159,14 +159,14 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasMaster">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#10-14" title="Go to source code">hasMaster</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#10-15" title="Go to source code">hasMaster</a>( )</code>
 
 		<div class="description short">
-			<p>Get wether this object has a parent (master) or not.</p>
+			<p>Determine if this object has a direct parent.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get wether this object has a parent (master) or not.</p>
+			<p>Determine if this object has a direct parent.</p>
 
 
 
@@ -193,16 +193,16 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isTopLevel">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#16-21" title="Go to source code">isTopLevel</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#17-24" title="Go to source code">isTopLevel</a>( )</code>
 
 		<div class="description short">
-			<p>Get wether this object is toplevel or not.
-Top-level objects do not have a parent (master)</p>
+			<p>Determine if this object is the head (top-level) of its hierarchy.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get wether this object is toplevel or not.
-Top-level objects do not have a parent (master)</p>
+			<p>Determine if this object is the head (top-level) of its hierarchy.</p>
+
+<p>Top-level objects do not have a parent (master).</p>
 
 
 
@@ -229,16 +229,16 @@ Top-level objects do not have a parent (master)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isLastLevel">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#23-28" title="Go to source code">isLastLevel</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#26-33" title="Go to source code">isLastLevel</a>( )</code>
 
 		<div class="description short">
-			<p>Get wether this object is on the last-level or not.
-Last level objects do not have childen</p>
+			<p>Determine if this object is the tail (last-level) of its hierarchy.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get wether this object is on the last-level or not.
-Last level objects do not have childen</p>
+			<p>Determine if this object is the tail (last-level) of its hierarchy.</p>
+
+<p>Last-level objects do not have a children.</p>
 
 
 
@@ -265,16 +265,16 @@ Last level objects do not have childen</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hierarchyLevel">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#30-35" title="Go to source code">hierarchyLevel</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#35-42" title="Go to source code">hierarchyLevel</a>( )</code>
 
 		<div class="description short">
-			<p>Get the object's level in hierarchy.
-Starts at "1" (top-level)</p>
+			<p>Retrieve this object's position (level) in its hierarchy.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get the object's level in hierarchy.
-Starts at "1" (top-level)</p>
+			<p>Retrieve this object's position (level) in its hierarchy.</p>
+
+<p>Starts at "1" (top-level).</p>
 
 
 
@@ -294,27 +294,27 @@ Starts at "1" (top-level)</p>
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Object.HierarchicalInterface.html">Charcoal\Object\HierarchicalInterface</a></code>
+			<code><a href="class-Charcoal.Object.HierarchicalInterface.html">Charcoal\Object\HierarchicalInterface</a></code>|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_master">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#37-41" title="Go to source code">master</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#44-49" title="Go to source code">master</a>( )</code>
 
 		<div class="description short">
-			<p>Get the immediate parent (master) of this object.</p>
+			<p>Retrieve this object's immediate parent.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get the immediate parent (master) of this object.</p>
+			<p>Retrieve this object's immediate parent.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Object.HierarchicalInterface.html">Charcoal\Object\HierarchicalInterface</a></code>
+					<code><a href="class-Charcoal.Object.HierarchicalInterface.html">Charcoal\Object\HierarchicalInterface</a></code>|null
 				</div>
 
 
@@ -328,27 +328,61 @@ Starts at "1" (top-level)</p>
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Object.HierarchicalInterface.html">Charcoal\Object\HierarchicalInterface</a></code>
+			<code><a href="class-Charcoal.Object.HierarchicalInterface.html">Charcoal\Object\HierarchicalInterface</a></code>|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_toplevelMaster">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#43-47" title="Go to source code">toplevelMaster</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#51-56" title="Go to source code">toplevelMaster</a>( )</code>
 
 		<div class="description short">
-			<p>Get the top-level parent (master) of this object</p>
+			<p>Retrieve the top-level ancestor of this object.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get the top-level parent (master) of this object</p>
+			<p>Retrieve the top-level ancestor of this object.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Object.HierarchicalInterface.html">Charcoal\Object\HierarchicalInterface</a></code>
+					<code><a href="class-Charcoal.Object.HierarchicalInterface.html">Charcoal\Object\HierarchicalInterface</a></code>|null
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hasParents" id="_hasParents">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hasParents">#</a>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#58-63" title="Go to source code">hasParents</a>( )</code>
+
+		<div class="description short">
+			<p>Determine if this object has any ancestors.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Determine if this object has any ancestors.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
 				</div>
 
 
@@ -369,14 +403,14 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hierarchy">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#49-53" title="Go to source code">hierarchy</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#65-70" title="Go to source code">hierarchy</a>( )</code>
 
 		<div class="description short">
-			<p>Get all of this object's parents, from immediate to top-level.</p>
+			<p>Retrieve this object's ancestors (from immediate parent to top-level).</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get all of this object's parents, from immediate to top-level.</p>
+			<p>Retrieve this object's ancestors (from immediate parent to top-level).</p>
 
 
 
@@ -403,14 +437,14 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_invertedHierarchy">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#55-59" title="Go to source code">invertedHierarchy</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#72-77" title="Go to source code">invertedHierarchy</a>( )</code>
 
 		<div class="description short">
-			<p>Get all of this object's parents, inverted from top-level to immediate.</p>
+			<p>Retrieve this object's ancestors, inverted from top-level to immediate.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get all of this object's parents, inverted from top-level to immediate.</p>
+			<p>Retrieve this object's ancestors, inverted from top-level to immediate.</p>
 
 
 
@@ -437,20 +471,20 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isMasterOf">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#61-66" title="Go to source code">isMasterOf</a>( <span>mixed <var>$child</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#79-85" title="Go to source code">isMasterOf</a>( <span>mixed <var>$child</var></span> )</code>
 
 		<div class="description short">
-			<p>Get wether the object has a certain child directly underneath.</p>
+			<p>Determine if the object is the parent of the given object.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get wether the object has a certain child directly underneath.</p>
+			<p>Determine if the object is the parent of the given object.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$child</var></dt>
-					<dd>The child object (or ident) to check against.</dd>
+					<dd>The child (or ID) to match against.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -476,20 +510,20 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_recursiveIsMasterOf">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#68-73" title="Go to source code">recursiveIsMasterOf</a>( <span>mixed <var>$child</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#87-93" title="Go to source code">recursiveIsMasterOf</a>( <span>mixed <var>$child</var></span> )</code>
 
 		<div class="description short">
-			<p>Get wether the object has a certain child, in its entire hierarchy</p>
+			<p>Determine if the object is a parent/ancestor of the given object.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Get wether the object has a certain child, in its entire hierarchy</p>
+			<p>Determine if the object is a parent/ancestor of the given object.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$child</var></dt>
-					<dd>The child object (or ident) to check against.</dd>
+					<dd>The child (or ID) to match against.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -515,7 +549,7 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasChildren">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#75-79" title="Go to source code">hasChildren</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#95-99" title="Go to source code">hasChildren</a>( )</code>
 
 		<div class="description short">
 			<p>Get wether the object has any children at all</p>
@@ -549,7 +583,7 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_numChildren">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#81-85" title="Go to source code">numChildren</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#101-105" title="Go to source code">numChildren</a>( )</code>
 
 		<div class="description short">
 			<p>Get the number of chidlren directly under this object.</p>
@@ -583,7 +617,7 @@ Starts at "1" (top-level)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_recursiveNumChildren">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#87-92" title="Go to source code">recursiveNumChildren</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#107-112" title="Go to source code">recursiveNumChildren</a>( )</code>
 
 		<div class="description short">
 			<p>Get the total number of children in the entire hierarchy.
@@ -619,7 +653,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_children">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#95-99" title="Go to source code">children</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#115-119" title="Go to source code">children</a>( )</code>
 
 		<div class="description short">
 			<p>Get the children directly under this object.</p>
@@ -653,7 +687,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isChildOf">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#101-105" title="Go to source code">isChildOf</a>( <span>mixed <var>$master</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#121-125" title="Go to source code">isChildOf</a>( <span>mixed <var>$master</var></span> )</code>
 
 		<div class="description short">
 			
@@ -692,7 +726,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_recursiveIsChildOf">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#107-111" title="Go to source code">recursiveIsChildOf</a>( <span>mixed <var>$master</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#127-131" title="Go to source code">recursiveIsChildOf</a>( <span>mixed <var>$master</var></span> )</code>
 
 		<div class="description short">
 			
@@ -731,7 +765,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasSiblings">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#113-116" title="Go to source code">hasSiblings</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#133-136" title="Go to source code">hasSiblings</a>( )</code>
 
 		<div class="description short">
 			
@@ -765,7 +799,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_numSiblings">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#118-121" title="Go to source code">numSiblings</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#138-141" title="Go to source code">numSiblings</a>( )</code>
 
 		<div class="description short">
 			
@@ -799,7 +833,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_siblings">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#123-127" title="Go to source code">siblings</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#143-147" title="Go to source code">siblings</a>( )</code>
 
 		<div class="description short">
 			<p>Get all the objects on the same level as this one.</p>
@@ -833,7 +867,7 @@ This method counts all children and sub-children, unlike <code>numChildren()</co
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isSiblingOf">#</a>
-		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#129-133" title="Go to source code">isSiblingOf</a>( <span>mixed <var>$sibling</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.HierarchicalInterface.html#149-153" title="Go to source code">isSiblingOf</a>( <span>mixed <var>$sibling</var></span> )</code>
 
 		<div class="description short">
 			

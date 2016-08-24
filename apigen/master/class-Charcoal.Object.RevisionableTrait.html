@@ -148,7 +148,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Object.html">Object</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Object.RevisionableTrait.html#11-150" title="Go to source code">Charcoal/Object/RevisionableTrait.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Object.RevisionableTrait.html#14-194" title="Go to source code">Charcoal/Object/RevisionableTrait.php</a>
 		<br>
 	</div>
 
@@ -168,7 +168,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setRevisionEnabled">#</a>
-		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#21-29" title="Go to source code">setRevisionEnabled</a>( <span>boolean <var>$enabled</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#34-42" title="Go to source code">setRevisionEnabled</a>( <span>boolean <var>$enabled</var></span> )</code>
 
 		<div class="description short">
 			
@@ -207,7 +207,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_revisionEnabled">#</a>
-		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#31-37" title="Go to source code">revisionEnabled</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#44-50" title="Go to source code">revisionEnabled</a>( )</code>
 
 		<div class="description short">
 			
@@ -229,32 +229,109 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="revisionObject" id="_revisionObject">
+	<tr data-order="createRevisionObject" id="_createRevisionObject">
 
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Object.ObjectRevision.html">Charcoal\Object\ObjectRevision</a></code>
+			<code><a href="class-Charcoal.Object.ObjectRevisionInterface.html">Charcoal\Object\ObjectRevisionInterface</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_revisionObject">#</a>
-		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#39-48" title="Go to source code">revisionObject</a>( )</code>
+		<a class="anchor" href="#_createRevisionObject">#</a>
+		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#52-62" title="Go to source code">createRevisionObject</a>( )</code>
 
 		<div class="description short">
-			<p>This method can be overloaded in concrete implementation to provide a different (custom) ObjectRevision class.</p>
+			<p>Create a revision object.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>This method can be overloaded in concrete implementation to provide a different (custom) ObjectRevision class.</p>
+			<p>Create a revision object.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Object.ObjectRevision.html">Charcoal\Object\ObjectRevision</a></code>
+					<code><a href="class-Charcoal.Object.ObjectRevisionInterface.html">Charcoal\Object\ObjectRevisionInterface</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setObjectRevisionClass" id="_setObjectRevisionClass">
+
+		<td class="attributes"><code>
+			 protected 
+
+			AbstractPropertyDisplay
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setObjectRevisionClass">#</a>
+		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#64-82" title="Go to source code">setObjectRevisionClass</a>( <span>string <var>$className</var></span> )</code>
+
+		<div class="description short">
+			<p>Set the class name of the object revision model.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set the class name of the object revision model.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$className</var></dt>
+					<dd>The class name of the object revision model.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					AbstractPropertyDisplay<br>Chainable
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentException<br>If the class name is not a string.
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="objectRevisionClass" id="_objectRevisionClass">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_objectRevisionClass">#</a>
+		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#84-92" title="Go to source code">objectRevisionClass</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the class name of the object revision model.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the class name of the object revision model.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
 				</div>
 
 
@@ -275,7 +352,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_generateRevision">#</a>
-		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#50-64" title="Go to source code">generateRevision</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#94-108" title="Go to source code">generateRevision</a>( )</code>
 
 		<div class="description short">
 			
@@ -313,7 +390,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_latestRevision">#</a>
-		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#66-76" title="Go to source code">latestRevision</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#110-120" title="Go to source code">latestRevision</a>( )</code>
 
 		<div class="description short">
 			
@@ -351,7 +428,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_revisionNum">#</a>
-		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#78-90" title="Go to source code">revisionNum</a>( <span>integer <var>$revNum</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#122-134" title="Go to source code">revisionNum</a>( <span>integer <var>$revNum</var></span> )</code>
 
 		<div class="description short">
 			
@@ -394,7 +471,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_allRevisions">#</a>
-		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#92-114" title="Go to source code">allRevisions</a>( <span>callable <var>$callback</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#136-158" title="Go to source code">allRevisions</a>( <span>callable <var>$callback</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Retrieves all revisions for the current objet</p>
@@ -433,7 +510,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_revertToRevision">#</a>
-		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#116-142" title="Go to source code">revertToRevision</a>( <span>integer <var>$revNum</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#160-186" title="Go to source code">revertToRevision</a>( <span>integer <var>$revNum</var></span> )</code>
 
 		<div class="description short">
 			
@@ -467,29 +544,29 @@
 	<tr data-order="modelFactory" id="_modelFactory">
 
 		<td class="attributes"><code>
-			abstract protected 
+			abstract public 
 
-			FactoryInterface
+			Charcoal\Factory\FactoryInterface
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_modelFactory">#</a>
-		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#144-149" title="Go to source code">modelFactory</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.RevisionableTrait.html#188-193" title="Go to source code">modelFactory</a>( )</code>
 
 		<div class="description short">
-			<p>A model factory must be provided on implementing classes.</p>
+			<p>Retrieve the object model factory.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>A model factory must be provided on implementing classes.</p>
+			<p>Retrieve the object model factory.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					FactoryInterface
+					Charcoal\Factory\FactoryInterface
 				</div>
 
 
