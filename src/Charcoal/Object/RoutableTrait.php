@@ -38,6 +38,20 @@ trait RoutableTrait
     private $slugPattern = '';
 
     /**
+     * A prefix for the object's route.
+     *
+     * @var TranslationString|string|null
+     */
+    private $slugPrefix = '';
+
+    /**
+     * A suffix for the object's route.
+     *
+     * @var TranslationString|string|null
+     */
+    private $slugSuffix = '';
+
+    /**
      * Latest ObjectRoute object concerning the current object.
      *
      * @var ObjectRouteInterface
@@ -94,6 +108,50 @@ trait RoutableTrait
         }
 
         return $this->slugPattern;
+    }
+
+    /**
+     * Retrieve route prefix for the object's URL slug pattern.
+     *
+     * @return TranslationString|null
+     */
+    public function slugPrefix()
+    {
+        if (!$this->slugPrefix) {
+            $metadata = $this->metadata();
+
+            if (isset($metadata['routable']['prefix'])) {
+                $affix = $metadata['routable']['prefix'];
+
+                if (TranslationString::isTranslatable($affix)) {
+                    $this->slugPrefix = new TranslationString($affix);
+                }
+            }
+        }
+
+        return $this->slugPrefix;
+    }
+
+    /**
+     * Retrieve route suffix for the object's URL slug pattern.
+     *
+     * @return TranslationString|null
+     */
+    public function slugSuffix()
+    {
+        if (!$this->slugSuffix) {
+            $metadata = $this->metadata();
+
+            if (isset($metadata['routable']['suffix'])) {
+                $affix = $metadata['routable']['suffix'];
+
+                if (TranslationString::isTranslatable($affix)) {
+                    $this->slugSuffix = new TranslationString($affix);
+                }
+            }
+        }
+
+        return $this->slugSuffix;
     }
 
     /**
@@ -480,11 +538,17 @@ trait RoutableTrait
         // Strip leading and trailing dashes or underscores
         $slug = trim($slug, $delimiters);
 
-        $sluggedArray[$str] = $slug;
-
-        if (isset($metadata['routable']['prefix'])) {
-            $slug = $metadata['routable']['prefix'].$slug;
+        $prefix = $this->slugPrefix();
+        if ($prefix) {
+            $slug = $prefix.preg_replace('!^'.preg_quote((string)$prefix).'\b!', '', $slug);
         }
+
+        $suffix = $this->slugSuffix();
+        if ($suffix) {
+            $slug = preg_replace('!\b'.preg_quote((string)$suffix).'$!', '', $slug).$suffix;
+        }
+
+        $sluggedArray[$str] = $slug;
 
         return $slug;
     }
