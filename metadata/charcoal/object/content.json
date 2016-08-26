@@ -13,9 +13,10 @@
         },
         "position": {
             "type": "number",
-            "label": {
-                "fr": "Position",
-                "en": "Position"
+            "label": "Position",
+            "description": {
+                "en": "For sorting the object in a collection.",
+                "fr": "Pour trier l'objet dans une collection."
             }
         },
         "created": {
