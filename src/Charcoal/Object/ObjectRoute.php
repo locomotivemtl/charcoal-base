@@ -67,9 +67,6 @@ class ObjectRoute extends AbstractModel implements
     /**
      * The last modification timestamp.
      *
-     * More of a log utils function. Not used in the
-     * {@see \CharcoalObject\Route\GenericRoute}.
-     *
      * @var DateTime
      */
     protected $lastModificationDate;
