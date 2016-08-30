@@ -99,6 +99,7 @@ trait PublishableTrait
             '',
             'draft',
             'pending',
+            'expired',
             'published'
         ];
         if (!in_array($status, $validStatus)) {
