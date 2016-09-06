@@ -25,7 +25,7 @@ trait CategorizableMultipleTrait
      *
      * @var (mixed|CategoryInterface)[]|Traversable
      */
-    private $categories;
+    protected $categories;
 
     /**
      * Set the type of category the object can belong to.
