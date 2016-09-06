@@ -15,16 +15,17 @@ trait PublishableTrait
     /**
      * @var DateTimeInterface $publishDate
      */
-    private $publishDate;
+    protected $publishDate;
+
     /**
      * @var DateTimeInterface $expiryDate
      */
-    private $expiryDate;
+    protected $expiryDate;
 
     /**
      * @var string $publishStatus
      */
-    private $publishStatus;
+    protected $publishStatus;
 
     /**
      * @param string|DateTimeInterface|null $publishDate The publishing date.

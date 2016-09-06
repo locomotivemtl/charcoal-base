@@ -28,7 +28,7 @@ trait RoutableTrait
      *
      * @var TranslationString|string|null
      */
-    private $slug;
+    protected $slug;
 
     /**
      * The object's route pattern.

@@ -111,7 +111,7 @@ class ObjectRoute extends AbstractModel implements
      *
      * @var FactoryInterface
      */
-    protected $modelFactory;
+    private $modelFactory;
 
     /**
      * Store the collection loader for the current class.

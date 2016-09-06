@@ -26,7 +26,7 @@ trait CategorizableTrait
      *
      * @var mixed|CategoryInterface $category
      */
-    private $category;
+    protected $category;
 
     /**
      * Set the type of category the object can belong to.

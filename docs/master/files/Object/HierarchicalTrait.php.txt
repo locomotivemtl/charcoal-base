@@ -18,7 +18,7 @@ trait HierarchicalTrait
      *
      * @var HierarchicalInterface|null
      */
-    private $master;
+    protected $master;
 
     /**
      * Store a copy of the object's ancestry.

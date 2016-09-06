@@ -19,7 +19,7 @@ trait RevisionableTrait
     /**
      * @var bool $revisionEnabled
      */
-    private $revisionEnabled = true;
+    protected $revisionEnabled = true;
 
     /**
      * The class name of the object revision model.
