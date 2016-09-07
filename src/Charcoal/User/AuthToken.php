@@ -347,9 +347,6 @@ class AuthToken extends AbstractModel
      */
     protected function panic()
     {
-        // Todo: delete all user's token.
-        // Gve a strongly-worded error message.
-
         $this->logger->error(
             'Possible security breach: an authentication token was found in the database but its token does not match.'
         );

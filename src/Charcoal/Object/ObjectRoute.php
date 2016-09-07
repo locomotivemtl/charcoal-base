@@ -3,6 +3,7 @@ namespace Charcoal\Object;
 
 use \DateTime;
 use \InvalidArgumentException;
+use \RuntimeException;
 
 use \Pimple\Container;
 
@@ -150,7 +151,6 @@ class ObjectRoute extends AbstractModel implements
     /**
      * Event called before _updating_ the object.
      *
-     * @todo   Creation date must be updated. Update shouldn't happen tho.
      * @see    Charcoal\Source\StorableTrait::preUpdate() For the "update" Event.
      * @param  array $properties Optional. The list of properties to update.
      * @return boolean
@@ -218,10 +218,6 @@ class ObjectRoute extends AbstractModel implements
         return $this;
     }
 
-/**
- * SETTERS
- */
-
     /**
      * Set an object model factory.
      *
@@ -283,6 +279,7 @@ class ObjectRoute extends AbstractModel implements
             $this->creationDate = null;
             return $this;
         }
+
         if (is_string($creationDate)) {
             $creationDate = new DateTime($creationDate);
         }
@@ -292,6 +289,7 @@ class ObjectRoute extends AbstractModel implements
             );
         }
         $this->creationDate = $creationDate;
+
         return $this;
     }
 
@@ -356,10 +354,6 @@ class ObjectRoute extends AbstractModel implements
 
         return $this;
     }
-
-/**
- * GETTERS
- */
 
     /**
      * Retrieve the object model factory.
