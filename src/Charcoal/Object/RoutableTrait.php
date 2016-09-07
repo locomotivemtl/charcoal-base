@@ -31,6 +31,16 @@ trait RoutableTrait
     protected $slug;
 
     /**
+     * Whether the slug is editable.
+     *
+     * If FALSE, the slug is always auto-generated from its pattern.
+     * If TRUE, the slug is auto-generated only if the slug is empty.
+     *
+     * @var boolean|null
+     */
+    private $isSlugEditable;
+
+    /**
      * The object's route pattern.
      *
      * @var TranslationString|string|null
@@ -155,6 +165,26 @@ trait RoutableTrait
     }
 
     /**
+     * Determine if the slug is editable.
+     *
+     * @return boolean
+     */
+    public function isSlugEditable()
+    {
+        if ($this->isSlugEditable === null) {
+            $metadata = $this->metadata();
+
+            if (isset($metadata['routable']['editable'])) {
+                $this->isSlugEditable = !!$metadata['routable']['editable'];
+            } else {
+                $this->isSlugEditable = false;
+            }
+        }
+
+        return $this->isSlugEditable;
+    }
+
+    /**
      * Set the object's URL slug.
      *
      * @param mixed $slug The slug.
@@ -215,7 +245,7 @@ trait RoutableTrait
 
             $translator->setCurrentLanguage($lang);
 
-            if (isset($curSlug[$lang]) && strlen($curSlug[$lang])) {
+            if ($this->isSlugEditable() && isset($curSlug[$lang]) && strlen($curSlug[$lang])) {
                 $newSlug[$lang] = $curSlug[$lang];
             } else {
                 $newSlug[$lang] = $this->generateRoutePattern($pattern);

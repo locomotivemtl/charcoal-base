@@ -2,6 +2,7 @@
     "slug_pattern": null,
 
     "routable": {
+        "editable": false,
         "pattern": null,
         "prefix": null
     },
