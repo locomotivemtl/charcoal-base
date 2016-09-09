@@ -4,7 +4,8 @@
     "routable": {
         "editable": false,
         "pattern": null,
-        "prefix": null
+        "prefix": null,
+        "suffix": null
     },
 
     "properties": {

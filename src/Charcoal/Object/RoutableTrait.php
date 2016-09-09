@@ -197,7 +197,7 @@ trait RoutableTrait
 
             $values = $this->slug->all();
             foreach ($values as $lang => $val) {
-                $this->slug[$lang] = $this->slugify($val);
+                $this->slug[$lang] = $this->finalizeSlug($this->slugify($val));
             }
         } else {
             /** @todo Hack used for regenerating route */
@@ -250,6 +250,8 @@ trait RoutableTrait
             } else {
                 $newSlug[$lang] = $this->generateRoutePattern($pattern);
             }
+
+            $newSlug[$lang] = $this->finalizeSlug($newSlug[$lang]);
 
             $objectRoute = $this->createRouteObject();
             if ($objectRoute->source()->tableExists()) {
@@ -510,7 +512,9 @@ trait RoutableTrait
     }
 
     /**
-     * @param string $str The string to slugify.
+     * Convert a string into a slug.
+     *
+     * @param  string $str The string to slugify.
      * @return string The slugified string.
      */
     public function slugify($str)
@@ -568,17 +572,33 @@ trait RoutableTrait
         // Strip leading and trailing dashes or underscores
         $slug = trim($slug, $delimiters);
 
+        // Cache the slugified string
+        $sluggedArray[$str] = $slug;
+
+        return $slug;
+    }
+
+    /**
+     * Finalize slug.
+     *
+     * Adds any prefix and suffix defined in the routable configuration set.
+     *
+     * @param  string $slug A slug.
+     * @return string
+     */
+    protected function finalizeSlug($slug)
+    {
         $prefix = $this->slugPrefix();
         if ($prefix) {
-            $slug = $prefix.preg_replace('!^'.preg_quote((string)$prefix).'\b!', '', $slug);
+            $prefix = $this->generateRoutePattern((string)$prefix);
+            $slug = $prefix.preg_replace('!^'.preg_quote($prefix).'\b!', '', $slug);
         }
 
         $suffix = $this->slugSuffix();
         if ($suffix) {
-            $slug = preg_replace('!\b'.preg_quote((string)$suffix).'$!', '', $slug).$suffix;
+            $suffix = $this->generateRoutePattern((string)$suffix);
+            $slug = preg_replace('!\b'.preg_quote($suffix).'$!', '', $slug).$suffix;
         }
-
-        $sluggedArray[$str] = $slug;
 
         return $slug;
     }
