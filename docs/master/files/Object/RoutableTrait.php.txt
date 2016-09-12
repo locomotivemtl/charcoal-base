@@ -197,7 +197,7 @@ trait RoutableTrait
 
             $values = $this->slug->all();
             foreach ($values as $lang => $val) {
-                $this->slug[$lang] = $this->finalizeSlug($this->slugify($val));
+                $this->slug[$lang] = $this->slugify($val);
             }
         } else {
             /** @todo Hack used for regenerating route */
