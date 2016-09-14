@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Charcoal.html">\Charcoal</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">286</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">3</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1927840944"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1927840944" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-779749073"></a>
+                                <a href="../namespaces/Charcoal.html" style="margin-left: 30px; padding-left: 0">Charcoal</a>
+            </div>
+            <div id="namespace-779749073" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1764961099"></a>
+                                <a href="../namespaces/Charcoal.Object.html" style="margin-left: 30px; padding-left: 0">Object</a>
+            </div>
+            <div id="namespace-1764961099" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.ArchivableInterface.html">ArchivableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.CategorizableInterface.html">CategorizableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.CategorizableMultipleInterface.html">CategorizableMultipleInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.CategoryInterface.html">CategoryInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.ContentInterface.html">ContentInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.HierarchicalInterface.html">HierarchicalInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.ObjectRevisionInterface.html">ObjectRevisionInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.ObjectRouteInterface.html">ObjectRouteInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.ObjectScheduleInterface.html">ObjectScheduleInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.PublishableInterface.html">PublishableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.RevisionableInterface.html">RevisionableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.RoutableInterface.html">RoutableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Object.UserDataInterface.html">UserDataInterface</a></li>
+                                                                            <li class="trait"><a href="../classes/Charcoal.Object.ArchivableTrait.html">ArchivableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Object.CategorizableMultipleTrait.html">CategorizableMultipleTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Object.CategorizableTrait.html">CategorizableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Object.CategoryTrait.html">CategoryTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Object.HierarchicalTrait.html">HierarchicalTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Object.PublishableTrait.html">PublishableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Object.RevisionableTrait.html">RevisionableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Object.RoutableTrait.html">RoutableTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Charcoal.Object.Content.html">Content</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Object.ObjectRevision.html">ObjectRevision</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Object.ObjectRoute.html">ObjectRoute</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Object.ObjectSchedule.html">ObjectSchedule</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Object.UserData.html">UserData</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1596851728"></a>
+                                <a href="../namespaces/Charcoal.User.html" style="margin-left: 30px; padding-left: 0">User</a>
+            </div>
+            <div id="namespace-1596851728" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Charcoal.User.UserInterface.html">UserInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.User.AbstractUser.html">AbstractUser</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.User.AclRole.html">AclRole</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.User.Authenticator.html">Authenticator</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.User.Authorizer.html">Authorizer</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.User.AuthToken.html">AuthToken</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.User.AuthTokenMetadata.html">AuthTokenMetadata</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.User.Permission.html">Permission</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.User.PermissionCategory.html">PermissionCategory</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Charcoal.Object.html">\Charcoal\Object</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Charcoal\Object</small>RoutableTrait</h1>
+                    <p><em>Full implementation, as Trait, of the `RoutableInterface`.</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_setSlugPattern" class="">setSlugPattern()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_slugPattern" class="">slugPattern()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_slugPrefix" class="">slugPrefix()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_slugSuffix" class="">slugSuffix()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_isSlugEditable" class="">isSlugEditable()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_setSlug" class="">setSlug()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_slug" class="">slug()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_generateSlug" class="">generateSlug()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_url" class="">url()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_slugify" class="">slugify()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_createRouteObject" class="">createRouteObject()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_objectRouteClass" class="">objectRouteClass()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_modelFactory" class="">modelFactory()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_templateIdent" class="">templateIdent()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_generateRoutePattern" class="">generateRoutePattern()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_parseRouteToken" class="">parseRouteToken()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_filterRouteToken" class="">filterRouteToken()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_generateObjectRoute" class="">generateObjectRoute()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_getLatestObjectRoute" class="">getLatestObjectRoute()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_finalizeSlug" class="">finalizeSlug()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_deleteObjectRoutes" class="">deleteObjectRoutes()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#method_setObjectRouteClass" class="">setObjectRouteClass()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#property_slug" class="">$slug</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#property_isSlugEditable" class="">$isSlugEditable</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#property_slugPattern" class="">$slugPattern</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#property_slugPrefix" class="">$slugPrefix</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#property_slugSuffix" class="">$slugSuffix</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#property_latestObjectRoute" class="">$latestObjectRoute</a><br />
+                                                                    <a href="../classes/Charcoal.Object.RoutableTrait.html#property_objectRouteClass" class="">$objectRouteClass</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Charcoal\Object\RoutableTrait</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_slug" name="property_slug" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$slug</h3>
+                <pre class="signature">$slug : \Charcoal\Translation\TranslationString|string|null</pre>
+                <p><em>The object&#039;s route.</em></p>
+                
+
+                                <h4>Type</h4>
+                \Charcoal\Translation\TranslationString|string|null
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_isSlugEditable" name="property_isSlugEditable" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$isSlugEditable</h3>
+                <pre class="signature">$isSlugEditable : boolean|null</pre>
+                <p><em>Whether the slug is editable.</em></p>
+                <p>If FALSE, the slug is always auto-generated from its pattern.
+If TRUE, the slug is auto-generated only if the slug is empty.</p>
+
+                                <h4>Type</h4>
+                boolean|null
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_slugPattern" name="property_slugPattern" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$slugPattern</h3>
+                <pre class="signature">$slugPattern : \Charcoal\Translation\TranslationString|string|null</pre>
+                <p><em>The object&#039;s route pattern.</em></p>
+                
+
+                                <h4>Type</h4>
+                \Charcoal\Translation\TranslationString|string|null
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_slugPrefix" name="property_slugPrefix" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$slugPrefix</h3>
+                <pre class="signature">$slugPrefix : \Charcoal\Translation\TranslationString|string|null</pre>
+                <p><em>A prefix for the object&#039;s route.</em></p>
+                
+
+                                <h4>Type</h4>
+                \Charcoal\Translation\TranslationString|string|null
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_slugSuffix" name="property_slugSuffix" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$slugSuffix</h3>
+                <pre class="signature">$slugSuffix : \Charcoal\Translation\TranslationString|string|null</pre>
+                <p><em>A suffix for the object&#039;s route.</em></p>
+                
+
+                                <h4>Type</h4>
+                \Charcoal\Translation\TranslationString|string|null
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_latestObjectRoute" name="property_latestObjectRoute" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$latestObjectRoute</h3>
+                <pre class="signature">$latestObjectRoute : \Charcoal\Object\ObjectRouteInterface</pre>
+                <p><em>Latest ObjectRoute object concerning the current object.</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Charcoal.Object.ObjectRouteInterface.html">\Charcoal\Object\ObjectRouteInterface</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_objectRouteClass" name="property_objectRouteClass" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$objectRouteClass</h3>
+                <pre class="signature">$objectRouteClass : string</pre>
+                <p><em>The class name of the object route model.</em></p>
+                <p>Must be a fully-qualified PHP namespace and an implementation of
+<a href="/classes/Charcoal.Object.ObjectRouteInterface.html">\Charcoal\Object\ObjectRouteInterface</a>. Used by the model factory.</p>
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setSlugPattern" name="method_setSlugPattern" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setSlugPattern()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setSlugPattern(mixed  <span class="argument">$pattern</span>) : \Charcoal\Object\RoutableInterface</pre>
+                <p><em>Set the object&#039;s URL slug pattern.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$pattern </td>
+                                <td><p>The slug pattern.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.RoutableInterface.html">\Charcoal\Object\RoutableInterface</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_slugPattern" name="method_slugPattern" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">slugPattern()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">slugPattern() : \Charcoal\Translation\TranslationString|null</pre>
+                <p><em>Retrieve the object&#039;s URL slug pattern.</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If a slug pattern is not defined.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Translation\TranslationString|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_slugPrefix" name="method_slugPrefix" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">slugPrefix()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">slugPrefix() : \Charcoal\Translation\TranslationString|null</pre>
+                <p><em>Retrieve route prefix for the object&#039;s URL slug pattern.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Translation\TranslationString|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_slugSuffix" name="method_slugSuffix" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">slugSuffix()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">slugSuffix() : \Charcoal\Translation\TranslationString|null</pre>
+                <p><em>Retrieve route suffix for the object&#039;s URL slug pattern.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Translation\TranslationString|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isSlugEditable" name="method_isSlugEditable" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isSlugEditable()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isSlugEditable() : boolean</pre>
+                <p><em>Determine if the slug is editable.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setSlug" name="method_setSlug" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setSlug()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setSlug(mixed  <span class="argument">$slug</span>) : \Charcoal\Object\RoutableInterface</pre>
+                <p><em>Set the object&#039;s URL slug.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$slug </td>
+                                <td><p>The slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.RoutableInterface.html">\Charcoal\Object\RoutableInterface</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_slug" name="method_slug" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">slug()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">slug() : \Charcoal\Translation\TranslationString|null</pre>
+                <p><em>Retrieve the object&#039;s URL slug.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Translation\TranslationString|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_generateSlug" name="method_generateSlug" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">generateSlug()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">generateSlug() : \Charcoal\Translation\TranslationString</pre>
+                <p><em>Generate a URL slug from the object&#039;s URL slug pattern.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Translation\TranslationString
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_url" name="method_url" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">url()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">url(string|null  <span class="argument">$lang = null</span>) : \Charcoal\Translation\TranslationString|string</pre>
+                <p><em>Retrieve the object&#039;s URI.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|null</td>
+                                <td>$lang </td>
+                                <td><p>If object is multilingual, return the object route for the specified locale.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Translation\TranslationString|string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_slugify" name="method_slugify" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">slugify()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">slugify(string  <span class="argument">$str</span>) : string</pre>
+                <p><em>Convert a string into a slug.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$str </td>
+                                <td><p>The string to slugify.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The slugified string.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createRouteObject" name="method_createRouteObject" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">createRouteObject()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createRouteObject() : \Charcoal\Object\ObjectRouteInterface</pre>
+                <p><em>Create a route object.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.ObjectRouteInterface.html">\Charcoal\Object\ObjectRouteInterface</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_objectRouteClass" name="method_objectRouteClass" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">objectRouteClass()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">objectRouteClass() : string</pre>
+                <p><em>Retrieve the class name of the object route model.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_modelFactory" name="method_modelFactory" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">modelFactory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">modelFactory() : \Charcoal\Factory\FactoryInterface</pre>
+                <p><em>Retrieve the object model factory.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Factory\FactoryInterface
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                        <span class="label label-info">abstract</span>
+                                                <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_templateIdent" name="method_templateIdent" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">templateIdent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">templateIdent() : mixed</pre>
+                <p><em>Retrieve the routable object&#039;s template identifier.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                        <span class="label label-info">abstract</span>
+                                                <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_generateRoutePattern" name="method_generateRoutePattern" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">generateRoutePattern()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">generateRoutePattern(string  <span class="argument">$pattern</span>) : string</pre>
+                <p><em>Generate a route from the given pattern.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$pattern </td>
+                                <td><p>The slug pattern.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Returns the generated route.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                                                            <dt>Uses</dt>
+                                                                <dd>self::parseRouteToken()</dd>
+                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseRouteToken" name="method_parseRouteToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">parseRouteToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseRouteToken(string|array  <span class="argument">$token</span>) : string</pre>
+                <p><em>Parse the given slug (URI token) for the current object.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|array</td>
+                                <td>$token </td>
+                                <td><p>The token to parse relative to the model entry.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If a route token is not a string.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                                                            <dt>Uses</dt>
+                                                                <dd>self::filterRouteToken()</dd>
+                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            used-by
+                        </th>
+                        <td>
+                                                                                            <p>self::generateRoutePattern() If a view renderer is unavailable.</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterRouteToken" name="method_filterRouteToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">filterRouteToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterRouteToken(mixed  <span class="argument">$value</span>, string  <span class="argument">$token = null</span>) : string</pre>
+                <p><em>Filter the given value for a URI.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>A value to filter.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$token </td>
+                                <td><p>The parsed token.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The filtered $value.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            used-by
+                        </th>
+                        <td>
+                                                                                            <p>self::parseRouteToken() To resolve the token's value.</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_generateObjectRoute" name="method_generateObjectRoute" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">generateObjectRoute()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">generateObjectRoute(mixed  <span class="argument">$slug = null</span>) : void</pre>
+                <p><em>Route generation.</em></p>
+                <p>Saves all routes to <a href="/classes/Charcoal.Object.ObjectRoute.html">\Charcoal\Object\ObjectRoute</a>.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$slug </td>
+                                <td><p>Slug by langs.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLatestObjectRoute" name="method_getLatestObjectRoute" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">getLatestObjectRoute()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLatestObjectRoute(string|null  <span class="argument">$lang = null</span>) : \Charcoal\Object\ObjectRouteInterface</pre>
+                <p><em>Retrieve the latest object route.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|null</td>
+                                <td>$lang </td>
+                                <td><p>If object is multilingual, return the object route for the specified locale.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the given language is invalid.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.ObjectRouteInterface.html">\Charcoal\Object\ObjectRouteInterface</a>
+                                            &mdash; <p>Latest object route.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_finalizeSlug" name="method_finalizeSlug" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">finalizeSlug()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">finalizeSlug(string  <span class="argument">$slug</span>) : string</pre>
+                <p><em>Finalize slug.</em></p>
+                <p>Adds any prefix and suffix defined in the routable configuration set.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>A slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_deleteObjectRoutes" name="method_deleteObjectRoutes" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">deleteObjectRoutes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">deleteObjectRoutes() : boolean</pre>
+                <p><em>Delete all object routes.</em></p>
+                <p>Should be called on object deletion \Charcoal\Model\AbstractModel::preDelete().</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>Success or failure.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setObjectRouteClass" name="method_setObjectRouteClass" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setObjectRouteClass()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setObjectRouteClass(string  <span class="argument">$className</span>) : \Charcoal\Object\AbstractPropertyDisplay</pre>
+                <p><em>Set the class name of the object route model.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$className </td>
+                                <td><p>The class name of the object route model.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>If the class name is not a string.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Object\AbstractPropertyDisplay
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Object.RoutableTrait.html"><div class="path-wrapper">Object/RoutableTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">RoutableTrait.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Object/RoutableTrait.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Charcoal.html">\Charcoal</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on September 14th, 2016 at 16:01.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
