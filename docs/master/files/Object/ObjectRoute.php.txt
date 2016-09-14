@@ -7,9 +7,6 @@ use \RuntimeException;
 
 use \Pimple\Container;
 
-// Dependency from PSR-7 (HTTP Messaging)
-use \Psr\Http\Message\UriInterface;
-
 // Dependencies from 'charcoal-core'
 use \Charcoal\Model\AbstractModel;
 use \Charcoal\Loader\CollectionLoader;
