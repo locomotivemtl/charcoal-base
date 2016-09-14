@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Charcoal\User\Authenticator</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-Charcoal.html">
+						Charcoal<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Charcoal.Object.html">
+						Object					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-Charcoal.User.html">
+						User					</a>
+
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Charcoal.User.AbstractUser.html">AbstractUser</a></li>
+				<li><a href="class-Charcoal.User.AclRole.html">AclRole</a></li>
+				<li class="active"><a href="class-Charcoal.User.Authenticator.html">Authenticator</a></li>
+				<li><a href="class-Charcoal.User.Authorizer.html">Authorizer</a></li>
+				<li><a href="class-Charcoal.User.AuthToken.html">AuthToken</a></li>
+				<li><a href="class-Charcoal.User.AuthTokenMetadata.html">AuthTokenMetadata</a></li>
+				<li><a href="class-Charcoal.User.Permission.html">Permission</a></li>
+				<li><a href="class-Charcoal.User.PermissionCategory.html">PermissionCategory</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Charcoal.User.UserInterface.html">UserInterface</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Charcoal.User.html" title="Summary of Charcoal\User"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Authenticator</h1>
+
+
+	<div class="description">
+	<p>Authenticator helps with user authentication / login.</p>
+
+<h2>Constructor dependencies</h2>
+
+<p>Constructor dependencies are passed as an array of <code>key=&gt;value</code> pair.
+The required dependencies are:</p>
+
+<ul>
+<li><code>logger</code> A PSR3 logger instance</li>
+<li><code>user_type</code> The user object type (FQN or ident)</li>
+<li><code>user_factory</code> The Factory used to instanciate new users.</li>
+<li><code>token_type</code> The auth token object type (FQN or ident)</li>
+<li><code>token_factory</code> The Factory used to instanciate new auth tokens.</li>
+</ul>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Charcoal\User\Authenticator</span></b>			
+			 implements 
+<span>Psr\Log\LoggerAwareInterface</span>
+			
+			 uses 
+					Psr\Log\LoggerAwareTrait (not available)
+
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.User.html">User</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Charcoal.User.Authenticator.html#15-335" title="Go to source code">Charcoal/User/Authenticator.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Charcoal.User.Authenticator.html#61-73" title="Go to source code">__construct</a>( <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			<p>Returns a new Authoricator object.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Returns a new Authoricator object.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>Class dependencies.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="userType" id="_userType">
+
+		<td class="attributes"><code>
+			 protected 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_userType">#</a>
+		<code><a href="source-class-Charcoal.User.Authenticator.html#95-103" title="Go to source code">userType</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the user object type.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the user object type.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="userFactory" id="_userFactory">
+
+		<td class="attributes"><code>
+			 protected 
+
+			Charcoal\Factory\FactoryInterface
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_userFactory">#</a>
+		<code><a href="source-class-Charcoal.User.Authenticator.html#118-133" title="Go to source code">userFactory</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the user model factory.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the user model factory.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Factory\FactoryInterface
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					RuntimeException<br>If the model factory was not previously set.
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="tokenType" id="_tokenType">
+
+		<td class="attributes"><code>
+			 protected 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_tokenType">#</a>
+		<code><a href="source-class-Charcoal.User.Authenticator.html#155-163" title="Go to source code">tokenType</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the auth-token object type.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the auth-token object type.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="tokenFactory" id="_tokenFactory">
+
+		<td class="attributes"><code>
+			 protected 
+
+			Charcoal\Factory\FactoryInterface
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_tokenFactory">#</a>
+		<code><a href="source-class-Charcoal.User.Authenticator.html#178-193" title="Go to source code">tokenFactory</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the auth-token model factory.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the auth-token model factory.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Factory\FactoryInterface
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					RuntimeException<br>If the token factory was not previously set.
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="authenticate" id="_authenticate">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.User.UserInterface.html">Charcoal\User\UserInterface</a></code>|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_authenticate">#</a>
+		<code><a href="source-class-Charcoal.User.Authenticator.html#195-216" title="Go to source code">authenticate</a>( )</code>
+
+		<div class="description short">
+			<p>Determine if the current user is authenticated.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Determine if the current user is authenticated.</p>
+
+<p>The user is authenticated via <em>session ID</em> or <em>auth token</em>.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.User.UserInterface.html">Charcoal\User\UserInterface</a></code>|null<br><p>Returns the authenticated user object
+    or NULL if not authenticated.</p>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="authenticateByPassword" id="_authenticateByPassword">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.User.UserInterface.html">Charcoal\User\UserInterface</a></code>|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_authenticateByPassword">#</a>
+		<code><a href="source-class-Charcoal.User.Authenticator.html#218-278" title="Go to source code">authenticateByPassword</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span> )</code>
+
+		<div class="description short">
+			<p>Attempt to authenticate a user using the given credentials.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Attempt to authenticate a user using the given credentials.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$username</var></dt>
+					<dd>Username, part of necessery credentials.</dd>
+					<dt><var>$password</var></dt>
+					<dd>Password, part of necessary credentials.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.User.UserInterface.html">Charcoal\User\UserInterface</a></code>|null<br><p>Returns the authenticated user object
+    or NULL if not authenticated.</p>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentException<br>If username or password are invalid or empty.
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
