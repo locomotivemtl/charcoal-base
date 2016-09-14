@@ -21,14 +21,17 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.5.0",
-        "locomotivemtl/charcoal-core": "dev-master",
+        "psr/log": "^1.0",
+        "locomotivemtl/charcoal-config": "~0.6",
+        "locomotivemtl/charcoal-factory": "~0.3",
+        "locomotivemtl/charcoal-core": "^0.1",
         "locomotivemtl/charcoal-translation": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
         "squizlabs/php_codesniffer": "^2.4",
         "satooshi/php-coveralls":"~1.0.1",
-        "locomotivemtl/charcoal-app": "^0.2.1",
+        "locomotivemtl/charcoal-app": "~0.2",
         "zendframework/zend-permissions-acl": "^2.6"
     },
     "autoload": {

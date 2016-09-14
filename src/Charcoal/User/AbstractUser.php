@@ -11,7 +11,7 @@ use \InvalidArgumentException;
 // Module `charcoal-factory` dependencies
 use \Charcoal\Factory\FactoryInterface;
 
-// Module `charcoal-core` dependencies
+// Module `charcoal-config` dependencies
 use \Charcoal\Config\ConfigurableInterface;
 use \Charcoal\Config\ConfigurableTrait;
 
