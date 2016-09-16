@@ -18,7 +18,7 @@
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
-            "dev-master": "0.1.x-dev"
+            "dev-master": "0.2.x-dev"
         }
     },
     "require": {
@@ -26,7 +26,7 @@
         "psr/log": "^1.0",
         "locomotivemtl/charcoal-config": "~0.6",
         "locomotivemtl/charcoal-factory": "~0.3",
-        "locomotivemtl/charcoal-core": "^0.1",
+        "locomotivemtl/charcoal-core": "^0.2",
         "locomotivemtl/charcoal-translation": "dev-master"
     },
     "require-dev": {
