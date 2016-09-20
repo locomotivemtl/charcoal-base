@@ -74,10 +74,12 @@ trait HierarchicalTrait
     {
         $master = $this->objFromIdent($master);
 
-        if ($master->id() === $this->id()) {
-            throw new UnexpectedValueException(
-                sprintf('Can not be ones own parent: %s', $master->id())
-            );
+        if ($master instanceof ModelInterface) {
+            if ($master->id() === $this->id()) {
+                throw new UnexpectedValueException(
+                    sprintf('Can not be ones own parent: %s', $master->id())
+                );
+            }
         }
 
         $this->master = $master;
@@ -284,10 +286,12 @@ trait HierarchicalTrait
     {
         $child = $this->objFromIdent($child);
 
-        if ($child->id() === $this->id()) {
-            throw new UnexpectedValueException(
-                sprintf('Can not be ones own child: %s', $child->id())
-            );
+        if ($child instanceof ModelInterface) {
+            if ($child->id() === $this->id()) {
+                throw new UnexpectedValueException(
+                    sprintf('Can not be ones own child: %s', $child->id())
+                );
+            }
         }
 
         $this->children[] = $child;
