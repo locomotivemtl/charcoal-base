@@ -26,6 +26,17 @@ class HierarchicalTraitTest extends \PHPUnit_Framework_TestCase
         $obj->setMaster(['foobar']);
     }
 
+    public function testParadoxes()
+    {
+        $obj = $this->obj;
+
+        $this->setExpectedException('\UnexpectedValueException');
+        $ret = $obj->setMaster($obj);
+
+        $this->setExpectedException('\UnexpectedValueException');
+        $ret = $obj->addChild($obj);
+    }
+
     public function testHasMaster()
     {
         $obj = $this->obj;
@@ -34,8 +45,6 @@ class HierarchicalTraitTest extends \PHPUnit_Framework_TestCase
         $master = $this->getMock(get_class($obj));
         $obj->setMaster($master);
         $this->assertTrue($obj->hasMaster());
-
-        //$this->assertFalse($master->hasMaster());
     }
 
     public function testIsTopLevel()
