@@ -4,6 +4,7 @@ namespace Charcoal\Object;
 
 use \Exception;
 use \InvalidArgumentException;
+use \UnexpectedValueException;
 
 // From 'charcoal-core'
 use \Charcoal\Model\ModelInterface;
@@ -65,12 +66,22 @@ trait HierarchicalTrait
     /**
      * Set this object's immediate parent.
      *
-     * @param mixed $master The object's parent (or master).
+     * @param  mixed $master The object's parent (or master).
+     * @throws UnexpectedValueException The current object cannot be its own parent.
      * @return HierarchicalInterface Chainable
      */
     public function setMaster($master)
     {
-        $this->master = $this->objFromIdent($master);
+        $master = $this->objFromIdent($master);
+
+        if ($master->id() === $this->id()) {
+            throw new UnexpectedValueException(
+                sprintf('Can not be ones own parent: %s', $master->id())
+            );
+        }
+
+        $this->master = $master;
+
         $this->resetHierarchy();
 
         return $this;
@@ -266,12 +277,21 @@ trait HierarchicalTrait
 
     /**
      * @param mixed $child The child object (or ident) to add.
+     * @throws UnexpectedValueException The current object cannot be its own child.
      * @return HierarchicalInterface Chainable
      */
     public function addChild($child)
     {
-        $this->objFromIdent($child);
+        $child = $this->objFromIdent($child);
+
+        if ($child->id() === $this->id()) {
+            throw new UnexpectedValueException(
+                sprintf('Can not be ones own child: %s', $child->id())
+            );
+        }
+
         $this->children[] = $child;
+
         return $this;
     }
 
@@ -371,7 +391,7 @@ trait HierarchicalTrait
 
     /**
      * @param mixed $ident The ident.
-     * @throws InvalidArgumentException If the ident is not a scalar value.
+     * @throws InvalidArgumentException If the identifier is not a scalar value.
      * @return HierarchicalInterface|null
      */
     private function objFromIdent($ident)
