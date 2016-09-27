@@ -244,13 +244,16 @@ trait RoutableTrait
             }
 
             $translator->setCurrentLanguage($lang);
-
             if ($this->isSlugEditable() && isset($curSlug[$lang]) && strlen($curSlug[$lang])) {
                 $newSlug[$lang] = $curSlug[$lang];
             } else {
                 $newSlug[$lang] = $this->generateRoutePattern($pattern);
+                if (!strlen($newSlug[$lang])) {
+                    throw new \UnexpectedValueException(
+                        sprintf('The slug is empty. The pattern is "%s"', $pattern)
+                    );
+                }
             }
-
             $newSlug[$lang] = $this->finalizeSlug($newSlug[$lang]);
 
             $objectRoute = $this->createRouteObject();
@@ -285,7 +288,7 @@ trait RoutableTrait
         if ($this instanceof ViewableInterface && $this->view() !== null) {
             $route = $this->view()->render($pattern, $this->viewController());
         } else {
-            $route = preg_replace_callback('~\{\{\s*(.*?)\s*\}\}~i', [ $this, 'parseRouteToken' ], $pattern);
+            $route = preg_replace_callback('~\{\{\s*(.*?)\s*\}\}~i', [$this, 'parseRouteToken'], $pattern);
         }
 
         return $this->slugify($route);
@@ -308,11 +311,11 @@ trait RoutableTrait
         }
 
         $token  = trim($token);
-        $method = [ $this, $token ];
+        $method = [$this, $token];
 
         if (is_callable($method)) {
             $value = call_user_func($method);
-        /** @see \Charcoal\Config\AbstractEntity::offsetGet() */
+            /** @see \Charcoal\Config\AbstractEntity::offsetGet() */
         } elseif (isset($this[$token])) {
             $value = $this[$token];
         } else {
@@ -551,7 +554,7 @@ trait RoutableTrait
 
         // Remove unescaped HTML characters
         $unescaped = '!&(raquo|laquo|rsaquo|lsaquo|rdquo|ldquo|rsquo|lsquo|hellip|amp|nbsp|quot|ordf|ordm);!';
-        $slug = preg_replace($unescaped, '', $slug);
+        $slug      = preg_replace($unescaped, '', $slug);
 
         // Unify all dashes/underscores as one separator character
         $flip = ($separator === '-') ? '_' : '-';
@@ -591,12 +594,18 @@ trait RoutableTrait
         $prefix = $this->slugPrefix();
         if ($prefix) {
             $prefix = $this->generateRoutePattern((string)$prefix);
+            if ($slug === $prefix) {
+                throw new \UnexpectedValueException('The slug is the same as the prefix.');
+            }
             $slug = $prefix.preg_replace('!^'.preg_quote($prefix).'\b!', '', $slug);
         }
 
         $suffix = $this->slugSuffix();
         if ($suffix) {
             $suffix = $this->generateRoutePattern((string)$suffix);
+            if ($slug === $suffix) {
+                throw new \UnexpectedValueException('The slug is the same as the suffix.');
+            }
             $slug = preg_replace('!\b'.preg_quote($suffix).'$!', '', $slug).$suffix;
         }
 
