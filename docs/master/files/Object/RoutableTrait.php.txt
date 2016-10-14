@@ -493,6 +493,38 @@ trait RoutableTrait
     }
 
     /**
+     * Sync the object routes with the object's data.
+     * @return void
+     */
+    public function syncObjectRoutes()
+    {
+        $model = $this->createRouteObject();
+
+        if (!$this->objType() || !$this->id()) {
+            return;
+        }
+
+        $loader = new CollectionLoader([
+            'logger'  => $this->logger,
+            'factory' => $this->modelFactory()
+        ]);
+
+        $loader
+            ->setModel($model)
+            ->addFilter('route_obj_type', $this->objType())
+            ->addFilter('route_obj_id', $this->id());
+
+        $collection = $loader->load();
+
+        foreach ($collection as $entry) {
+            $entry->setData([
+                'route_template' => $this->templateIdent()
+            ]);
+            $entry->update();
+        }
+    }
+
+    /**
      * Retrieve the object's URI.
      *
      * @param  string|null $lang If object is multilingual, return the object route for the specified locale.
