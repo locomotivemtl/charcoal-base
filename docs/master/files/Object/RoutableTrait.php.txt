@@ -3,6 +3,7 @@
 namespace Charcoal\Object;
 
 use \InvalidArgumentException;
+use \UnexpectedValueException;
 
 // From 'charcoal-core'
 use \Charcoal\Loader\CollectionLoader;
@@ -165,24 +166,6 @@ trait RoutableTrait
     }
 
     /**
-     * Retrieve the list of languages to translate the slug into.
-     *
-     * @return array
-     */
-    private function slugPatternLanguages()
-    {
-        $langs  = [];
-        $patterns = [ $this->slugPattern(), $this->slugPrefix(), $this->slugSuffix() ];
-        foreach ($patterns as $pattern) {
-            if ($pattern instanceof TranslationString) {
-                $langs = array_merge($langs, $pattern->all());
-            }
-        }
-
-        return array_keys($langs);
-    }
-
-    /**
      * Determine if the slug is editable.
      *
      * @return boolean
@@ -242,30 +225,19 @@ trait RoutableTrait
     /**
      * Generate a URL slug from the object's URL slug pattern.
      *
+     * @throws UnexpectedValueException If the slug is empty.
      * @return TranslationString
      */
     public function generateSlug()
     {
         $translator = TranslationConfig::instance();
-        $languages  = $this->slugPatternLanguages();
+        $languages  = $translator->availableLanguages();
         $patterns   = $this->slugPattern();
         $curSlug    = $this->slug();
         $newSlug    = new TranslationString();
 
-        if ($patterns instanceof TranslationString) {
-            $patterns = $patterns->all();
-        }
-
         $origLang = $translator->currentLanguage();
         foreach ($languages as $lang) {
-            if (!$translator->hasLanguage($lang)) {
-                continue;
-            }
-
-            if (!isset($patterns[$lang])) {
-                $patterns[$lang] = reset($patterns);
-            }
-
             $pattern = $patterns[$lang];
 
             $translator->setCurrentLanguage($lang);
@@ -274,7 +246,7 @@ trait RoutableTrait
             } else {
                 $newSlug[$lang] = $this->generateRoutePattern($pattern);
                 if (!strlen($newSlug[$lang])) {
-                    throw new \UnexpectedValueException(
+                    throw new UnexpectedValueException(
                         sprintf('The slug is empty. The pattern is "%s"', $pattern)
                     );
                 }
@@ -644,6 +616,7 @@ trait RoutableTrait
      * Adds any prefix and suffix defined in the routable configuration set.
      *
      * @param  string $slug A slug.
+     * @throws UnexpectedValueException If the slug affixes are invalid.
      * @return string
      */
     protected function finalizeSlug($slug)
@@ -652,7 +625,7 @@ trait RoutableTrait
         if ($prefix) {
             $prefix = $this->generateRoutePattern((string)$prefix);
             if ($slug === $prefix) {
-                throw new \UnexpectedValueException('The slug is the same as the prefix.');
+                throw new UnexpectedValueException('The slug is the same as the prefix.');
             }
             $slug = $prefix.preg_replace('!^'.preg_quote($prefix).'\b!', '', $slug);
         }
@@ -661,7 +634,7 @@ trait RoutableTrait
         if ($suffix) {
             $suffix = $this->generateRoutePattern((string)$suffix);
             if ($slug === $suffix) {
-                throw new \UnexpectedValueException('The slug is the same as the suffix.');
+                throw new UnexpectedValueException('The slug is the same as the suffix.');
             }
             $slug = preg_replace('!\b'.preg_quote($suffix).'$!', '', $slug).$suffix;
         }
