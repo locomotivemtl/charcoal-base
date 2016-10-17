@@ -165,6 +165,24 @@ trait RoutableTrait
     }
 
     /**
+     * Retrieve the list of languages to translate the slug into.
+     *
+     * @return array
+     */
+    private function slugPatternLanguages()
+    {
+        $langs  = [];
+        $patterns = [ $this->slugPattern(), $this->slugPrefix(), $this->slugSuffix() ];
+        foreach ($patterns as $pattern) {
+            if ($pattern instanceof TranslationString) {
+                $langs = array_merge($langs, $pattern->all());
+            }
+        }
+
+        return array_keys($langs);
+    }
+
+    /**
      * Determine if the slug is editable.
      *
      * @return boolean
@@ -229,6 +247,7 @@ trait RoutableTrait
     public function generateSlug()
     {
         $translator = TranslationConfig::instance();
+        $languages  = $this->slugPatternLanguages();
         $patterns   = $this->slugPattern();
         $curSlug    = $this->slug();
         $newSlug    = new TranslationString();
@@ -238,10 +257,16 @@ trait RoutableTrait
         }
 
         $origLang = $translator->currentLanguage();
-        foreach ($patterns as $lang => $pattern) {
+        foreach ($languages as $lang) {
             if (!$translator->hasLanguage($lang)) {
                 continue;
             }
+
+            if (!isset($patterns[$lang])) {
+                $patterns[$lang] = reset($patterns);
+            }
+
+            $pattern = $patterns[$lang];
 
             $translator->setCurrentLanguage($lang);
             if ($this->isSlugEditable() && isset($curSlug[$lang]) && strlen($curSlug[$lang])) {
