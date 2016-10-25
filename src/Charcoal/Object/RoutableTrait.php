@@ -392,8 +392,12 @@ trait RoutableTrait
             } else {
                 $oldRoute = $this->getLatestObjectRoute();
 
-                // Unchanged
+                // Unchanged but sync extra properties
                 if ($slug === $oldRoute->slug()) {
+                    $objectRoute->setData([
+                        'route_template' => $this->templateIdent()
+                    ]);
+                    $objectRoute->update();
                     continue;
                 }
             }
@@ -487,38 +491,6 @@ trait RoutableTrait
         $this->latestObjectRoute[$lang] = $collection[0];
 
         return $this->latestObjectRoute[$lang];
-    }
-
-    /**
-     * Sync the object routes with the object's data.
-     * @return void
-     */
-    public function syncObjectRoutes()
-    {
-        $model = $this->createRouteObject();
-
-        if (!$this->objType() || !$this->id()) {
-            return;
-        }
-
-        $loader = new CollectionLoader([
-            'logger'  => $this->logger,
-            'factory' => $this->modelFactory()
-        ]);
-
-        $loader
-            ->setModel($model)
-            ->addFilter('route_obj_type', $this->objType())
-            ->addFilter('route_obj_id', $this->id());
-
-        $collection = $loader->load();
-
-        foreach ($collection as $entry) {
-            $entry->setData([
-                'route_template' => $this->templateIdent()
-            ]);
-            $entry->update();
-        }
     }
 
     /**
