@@ -270,7 +270,7 @@ class Authenticator implements LoggerAwareInterface
             return $u;
         } else {
             $this->logger->warning(
-                sprintf('Invalid login attempt for user "%s" (%s): invalid password.')
+                sprintf('Invalid login attempt for user: invalid password.')
             );
 
             return null;
