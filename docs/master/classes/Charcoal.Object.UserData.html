@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-89853661"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-158155495"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-89853661" class="accordion-body collapse in">
+            <div id="namespace-158155495" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1417566825"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1189607991"></a>
                                 <a href="../namespaces/Charcoal.html" style="margin-left: 30px; padding-left: 0">Charcoal</a>
             </div>
-            <div id="namespace-1417566825" class="accordion-body collapse ">
+            <div id="namespace-1189607991" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1538651841"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-502257838"></a>
                                 <a href="../namespaces/Charcoal.Object.html" style="margin-left: 30px; padding-left: 0">Object</a>
             </div>
-            <div id="namespace-1538651841" class="accordion-body collapse ">
+            <div id="namespace-502257838" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -205,10 +205,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1773514638"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1409574776"></a>
                                 <a href="../namespaces/Charcoal.User.html" style="margin-left: 30px; padding-left: 0">User</a>
             </div>
-            <div id="namespace-1773514638" class="accordion-body collapse ">
+            <div id="namespace-1409574776" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -363,12 +363,12 @@
             <a id="property_ip" name="property_ip" class="anchor"></a>
             <article class="property">
                 <h3 class="private ">$ip</h3>
-                <pre class="signature">$ip : integer</pre>
+                <pre class="signature">$ip : integer|null</pre>
                 <p><em>Client IP address of the end-user.</em></p>
                 
 
                                 <h4>Type</h4>
-                integer
+                integer|null
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -387,12 +387,12 @@
             <a id="property_lang" name="property_lang" class="anchor"></a>
             <article class="property">
                 <h3 class="private ">$lang</h3>
-                <pre class="signature">$lang : string</pre>
+                <pre class="signature">$lang : string|null</pre>
                 <p><em>Language of the end-user or source URI.</em></p>
                 
 
                                 <h4>Type</h4>
-                string
+                string|null
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -411,12 +411,12 @@
             <a id="property_origin" name="property_origin" class="anchor"></a>
             <article class="property">
                 <h3 class="private ">$origin</h3>
-                <pre class="signature">$origin : string</pre>
+                <pre class="signature">$origin : string|null</pre>
                 <p><em>Source URL or identifier of end-user submission.</em></p>
                 
 
                                 <h4>Type</h4>
-                string
+                string|null
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -435,12 +435,12 @@
             <a id="property_ts" name="property_ts" class="anchor"></a>
             <article class="property">
                 <h3 class="private ">$ts</h3>
-                <pre class="signature">$ts : \DateTime</pre>
+                <pre class="signature">$ts : \DateTimeInterface|null</pre>
                 <p><em>Creation timestamp of submission.</em></p>
                 
 
                                 <h4>Type</h4>
-                \DateTime
+                \DateTimeInterface|null
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -709,16 +709,12 @@
                                                     <tr>
                                 <td>\DateTime|string|null</td>
                                 <td>$timestamp </td>
-                                <td><p>The timestamp at object's creation. NULL is accepted and instances
-of DateTimeInterface are recommended; any other value will be converted (if possible) into one.</p></td>
+                                <td><p>The timestamp at object's creation.
+NULL is accepted and instances of DateTimeInterface are recommended;
+any other value will be converted (if possible) into one.</p></td>
                             </tr>
                                             </table>
                 
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>If the timestamp is invalid.</p></dd>
-                                                                    </dl>
                 
                                     <h4>Returns</h4>
                     <a href="../classes/Charcoal.Object.UserDataInterface.html">\Charcoal\Object\UserDataInterface</a>
@@ -845,7 +841,7 @@ of DateTimeInterface are recommended; any other value will be converted (if poss
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on November 2nd, 2016 at 18:55.
+                    on November 3rd, 2016 at 21:27.
                 </section>
             </section>
         </section>
