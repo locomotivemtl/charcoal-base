@@ -22,28 +22,28 @@ class UserData extends AbstractModel implements
     /**
      * Client IP address of the end-user.
      *
-     * @var integer
+     * @var integer|null
      */
     private $ip;
 
     /**
      * Language of the end-user or source URI.
      *
-     * @var string
+     * @var string|null
      */
     private $lang;
 
     /**
      * Source URL or identifier of end-user submission.
      *
-     * @var string
+     * @var string|null
      */
     private $origin;
 
     /**
      * Creation timestamp of submission.
      *
-     * @var DateTime
+     * @var DateTimeInterface|null
      */
     private $ts;
 
@@ -92,10 +92,12 @@ class UserData extends AbstractModel implements
      */
     public function setLang($lang)
     {
-        if (!is_string($lang)) {
-            throw new InvalidArgumentException(
-                'Language must be a string'
-            );
+        if ($lang !== null) {
+            if (!is_string($lang)) {
+                throw new InvalidArgumentException(
+                    'Language must be a string'
+                );
+            }
         }
 
         $this->lang = $lang;
@@ -142,14 +144,18 @@ class UserData extends AbstractModel implements
      */
     public function resolveOrigin()
     {
-        $uri = 'http';
+        $host = getenv('HTTP_HOST');
+        $uri  = '';
+        if ($host) {
+            $uri = 'http';
 
-        if (getenv('HTTPS') === 'on') {
-            $uri .= 's';
+            if (getenv('HTTPS') === 'on') {
+                $uri .= 's';
+            }
+
+            $uri .= '://'.$host;
         }
-
-        $uri .= '://';
-        $uri .= getenv('HTTP_HOST').getenv('REQUEST_URI');
+        $uri .= getenv('REQUEST_URI');
 
         return $uri;
     }
@@ -167,8 +173,9 @@ class UserData extends AbstractModel implements
     /**
      * Set when the object was created.
      *
-     * @param  DateTime|string|null $timestamp The timestamp at object's creation. NULL is accepted and instances
-     *     of DateTimeInterface are recommended; any other value will be converted (if possible) into one.
+     * @param  DateTime|string|null $timestamp The timestamp at object's creation.
+     *     NULL is accepted and instances of DateTimeInterface are recommended;
+     *     any other value will be converted (if possible) into one.
      * @throws InvalidArgumentException If the timestamp is invalid.
      * @return UserDataInterface Chainable
      */
@@ -189,7 +196,7 @@ class UserData extends AbstractModel implements
             }
         }
 
-        if (!($timestamp instanceof DateTimeInterface)) {
+        if (!$timestamp instanceof DateTimeInterface) {
             throw new InvalidArgumentException(
                 'Invalid timestamp value. Must be a date/time string or a DateTime object.'
             );
@@ -220,11 +227,10 @@ class UserData extends AbstractModel implements
     {
         $result = parent::preSave();
 
-        $this->setIp(getenv('REMOTE_ADDR') ? getenv('REMOTE_ADDR') : '');
         $this->setTs('now');
 
-        if (!isset($this->lang)) {
-            $this->setLang('');
+        if (getenv('REMOTE_ADDR')) {
+            $this->setIp(getenv('REMOTE_ADDR'));
         }
 
         if (!isset($this->origin)) {

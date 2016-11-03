@@ -90,15 +90,18 @@ class UserDataTest extends \PHPUnit_Framework_TestCase
 
     public function testPreSave()
     {
-        $obj = $this->obj;
+        $obj = $this->obj
+        ;
         $this->assertSame(null, $obj->ip());
+        $this->assertSame(null, $obj->origin());
         $this->assertSame(null, $obj->lang());
         $this->assertSame(null, $obj->ts());
 
         $obj->preSave();
 
-        $this->assertNotSame(null, $obj->ip());
-        $this->assertNotSame(null, $obj->lang());
+        $this->assertSame(null, $obj->ip());
+        $this->assertSame($obj->resolveOrigin(), $obj->origin());
+        $this->assertSame(null, $obj->lang());
         $this->assertNotSame(null, $obj->ts());
 
     }
