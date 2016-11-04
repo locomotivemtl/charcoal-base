@@ -144,14 +144,18 @@ class UserData extends AbstractModel implements
      */
     public function resolveOrigin()
     {
-        $uri = 'http';
+        $host = getenv('HTTP_HOST');
+        $uri  = '';
+        if ($host) {
+            $uri = 'http';
 
-        if (getenv('HTTPS') === 'on') {
-            $uri .= 's';
+            if (getenv('HTTPS') === 'on') {
+                $uri .= 's';
+            }
+
+            $uri .= '://'.$host;
         }
-
-        $uri .= '://';
-        $uri .= getenv('HTTP_HOST').getenv('REQUEST_URI');
+        $uri .= getenv('REQUEST_URI');
 
         return $uri;
     }
