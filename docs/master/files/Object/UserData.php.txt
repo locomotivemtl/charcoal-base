@@ -172,6 +172,7 @@ class UserData extends AbstractModel implements
      * @param  DateTime|string|null $timestamp The timestamp at object's creation.
      *     NULL is accepted and instances of DateTimeInterface are recommended;
      *     any other value will be converted (if possible) into one.
+     * @throws InvalidArgumentException If the timestamp is invalid.
      * @return UserDataInterface Chainable
      */
     public function setTs($timestamp)
