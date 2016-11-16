@@ -127,7 +127,7 @@ class Content extends AbstractModel implements
         }
         if (!is_numeric($position)) {
             throw new InvalidArgumentException(
-                'Position must be an integer.'
+                sprintf('Position must be an integer (%s given).', gettype($position))
             );
         }
         $this->position = (int)$position;
