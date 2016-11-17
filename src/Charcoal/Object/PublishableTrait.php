@@ -158,7 +158,7 @@ trait PublishableTrait
             }
         } else {
             if ($now < $publish) {
-                return 'upcoming';
+                return 'pending';
             } else {
                 if (!$expiry || $now < $expiry) {
                     return 'published';
