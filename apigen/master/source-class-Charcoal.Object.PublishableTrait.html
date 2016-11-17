@@ -282,7 +282,7 @@
 </span><span id="158" class="l"><a href="#158">158: </a>            }
 </span><span id="159" class="l"><a href="#159">159: </a>        } <span class="php-keyword1">else</span> {
 </span><span id="160" class="l"><a href="#160">160: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$now</span> &lt; <span class="php-var">$publish</span>) {
-</span><span id="161" class="l"><a href="#161">161: </a>                <span class="php-keyword1">return</span> <span class="php-quote">'upcoming'</span>;
+</span><span id="161" class="l"><a href="#161">161: </a>                <span class="php-keyword1">return</span> <span class="php-quote">'pending'</span>;
 </span><span id="162" class="l"><a href="#162">162: </a>            } <span class="php-keyword1">else</span> {
 </span><span id="163" class="l"><a href="#163">163: </a>                <span class="php-keyword1">if</span> (!<span class="php-var">$expiry</span> || <span class="php-var">$now</span> &lt; <span class="php-var">$expiry</span>) {
 </span><span id="164" class="l"><a href="#164">164: </a>                    <span class="php-keyword1">return</span> <span class="php-quote">'published'</span>;
