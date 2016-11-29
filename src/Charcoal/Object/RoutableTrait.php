@@ -397,7 +397,7 @@ trait RoutableTrait
                     $oldRoute->setData([
                         'route_template' => $this->templateIdent()
                     ]);
-                    $oldRoute->update();
+                    $oldRoute->update(['route_template']);
                     continue;
                 }
             }
