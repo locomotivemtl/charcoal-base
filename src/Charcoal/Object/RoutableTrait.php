@@ -394,10 +394,10 @@ trait RoutableTrait
 
                 // Unchanged but sync extra properties
                 if ($slug === $oldRoute->slug()) {
-                    $objectRoute->setData([
+                    $oldRoute->setData([
                         'route_template' => $this->templateIdent()
                     ]);
-                    $objectRoute->update();
+                    $oldRoute->update();
                     continue;
                 }
             }
@@ -422,6 +422,7 @@ trait RoutableTrait
                 $objectRoute->save();
             }
         }
+
         $translator->setCurrentLanguage($origLang);
     }
 
