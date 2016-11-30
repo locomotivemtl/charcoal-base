@@ -57,7 +57,7 @@ interface UserDataInterface
     /**
      * Set when the object was created.
      *
-     * @param  DateTime|string|null $timestamp The timestamp at object's creation.
+     * @param  \DateTime|string|null $timestamp The timestamp at object's creation.
      * @return UserDataInterface Chainable
      */
     public function setTs($timestamp);
@@ -65,7 +65,7 @@ interface UserDataInterface
     /**
      * Retrieve the creation timestamp.
      *
-     * @return DateTime|null
+     * @return \DateTime|null
      */
     public function ts();
 }

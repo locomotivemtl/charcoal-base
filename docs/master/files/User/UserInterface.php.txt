@@ -2,8 +2,6 @@
 
 namespace Charcoal\User;
 
-use \Charcoal\Factory\FactoryInterface;
-
 /**
  *
  */
