@@ -4,7 +4,7 @@ namespace Charcoal\User\Tests;
 
 use \Psr\Log\NullLogger;
 
-use \Charcoal\Model\MetadataLoader;
+use \Charcoal\Model\Service\MetadataLoader;
 
 use \Charcoal\User\AbstractUser;
 

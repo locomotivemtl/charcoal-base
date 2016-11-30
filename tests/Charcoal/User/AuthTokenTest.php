@@ -6,7 +6,7 @@ use \DateTime;
 
 use \Psr\Log\NullLogger;
 
-use \Charcoal\Model\MetadataLoader;
+use \Charcoal\Model\Service\MetadataLoader;
 
 use \Charcoal\User\AuthToken;
 

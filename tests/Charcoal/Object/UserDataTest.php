@@ -6,14 +6,19 @@ use \DateTime;
 
 use \Psr\Log\NullLogger;
 
+use \Charcoal\Model\Service\MetadataLoader;
+
 use \Charcoal\Object\UserData;
 
+/**
+ *
+ */
 class UserDataTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $metadataLoader = new \Charcoal\Model\MetadataLoader([
-            'logger' => new \Psr\Log\NullLogger(),
+        $metadataLoader = new MetadataLoader([
+            'logger' => new NullLogger(),
             'base_path' => __DIR__,
             'paths' => ['metadata'],
             'config' => $GLOBALS['container']['config'],
@@ -30,7 +35,7 @@ class UserDataTest extends \PHPUnit_Framework_TestCase
     public function testConstructor()
     {
         $obj = $this->obj;
-        $this->assertInstanceOf('\Charcoal\Object\UserData', $obj);
+        $this->assertInstanceOf(UserData::class, $obj);
 
         $this->assertSame(null, $obj->ip());
         $this->assertSame(null, $obj->lang());

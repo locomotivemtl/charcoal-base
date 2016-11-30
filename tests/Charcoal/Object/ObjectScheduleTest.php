@@ -2,6 +2,10 @@
 
 use \Psr\Log\NullLogger;
 
+use \Charcoal\Factory\GenericFactory as Factory;
+
+use \Charcoal\Model\Service\MetadataLoader;
+
 use \Charcoal\Object\ObjectSchedule;
 
 /**
@@ -11,8 +15,8 @@ class ObjectScheduleTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $metadataLoader = new \Charcoal\Model\MetadataLoader([
-            'logger' => new \Psr\Log\NullLogger(),
+        $metadataLoader = new MetadataLoader([
+            'logger' => new NullLogger(),
             'base_path' => __DIR__,
             'paths' => ['metadata'],
             'config' => $GLOBALS['container']['config'],
@@ -107,7 +111,7 @@ class ObjectScheduleTest extends \PHPUnit_Framework_TestCase
 
     public function testProcess()
     {
-        $factory = new \Charcoal\Model\ModelFactory();
+        $factory = new Factory();
         $this->obj->setModelFactory($factory);
 
         $this->assertFalse($this->obj->process());

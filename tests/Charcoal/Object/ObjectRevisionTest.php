@@ -2,14 +2,16 @@
 
 use \Psr\Log\NullLogger;
 
+use \Charcoal\Model\Service\MetadataLoader;
+
 use \Charcoal\Object\ObjectRevision;
 
 class ObjectRevisionTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $metadataLoader = new \Charcoal\Model\MetadataLoader([
-            'logger'    => new \Psr\Log\NullLogger(),
+        $metadataLoader = new MetadataLoader([
+            'logger'    => new NullLogger(),
             'base_path' => __DIR__,
             'paths'     => ['metadata'],
             'config'    => $GLOBALS['container']['config'],

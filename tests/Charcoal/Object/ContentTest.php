@@ -2,18 +2,23 @@
 
 namespace Charcoal\Tests\Object;
 
-use \DateTime as DateTime;
+use \DateTime;
 
 use \Psr\Log\NullLogger;
 
+use \Charcoal\Model\Service\MetadataLoader;
+
 use \Charcoal\Object\Content;
 
+/**
+ *
+ */
 class ContentTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $metadataLoader = new \Charcoal\Model\MetadataLoader([
-            'logger' => new \Psr\Log\NullLogger(),
+        $metadataLoader = new MetadataLoader([
+            'logger' => new NullLogger(),
             'base_path' => __DIR__,
             'paths' => ['metadata'],
             'config' => $GLOBALS['container']['config'],
@@ -25,12 +30,6 @@ class ContentTest extends \PHPUnit_Framework_TestCase
             'logger'=>$logger,
             'metadata_loader' => $metadataLoader
         ]);
-    }
-
-    public function testConstructor()
-    {
-        $obj = $this->obj;
-        $this->assertInstanceOf('\Charcoal\Object\Content', $obj);
     }
 
     public function testSetData()
