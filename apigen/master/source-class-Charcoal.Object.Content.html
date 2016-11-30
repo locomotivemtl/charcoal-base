@@ -251,7 +251,7 @@
 </span><span id="127" class="l"><a href="#127">127: </a>        }
 </span><span id="128" class="l"><a href="#128">128: </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword2">is_numeric</span>(<span class="php-var">$position</span>)) {
 </span><span id="129" class="l"><a href="#129">129: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> InvalidArgumentException(
-</span><span id="130" class="l"><a href="#130">130: </a>                <span class="php-quote">'Position must be an integer.'</span>
+</span><span id="130" class="l"><a href="#130">130: </a>                <span class="php-keyword2">sprintf</span>(<span class="php-quote">'Position must be an integer (%s given).'</span>, <span class="php-keyword2">gettype</span>(<span class="php-var">$position</span>))
 </span><span id="131" class="l"><a href="#131">131: </a>            );
 </span><span id="132" class="l"><a href="#132">132: </a>        }
 </span><span id="133" class="l"><a href="#133">133: </a>        <span class="php-var">$this</span>-&gt;position = (int)<span class="php-var">$position</span>;
