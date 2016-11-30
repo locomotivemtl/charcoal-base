@@ -111,8 +111,8 @@ class PublishableTraitTest extends \PHPUnit_Framework_TestCase
             [null, null, 'published'],
             ['yesterday', 'tomorrow', 'published'],
             ['2 days ago', 'yesterday', 'expired'],
-            ['tomorrow', '+1 week', 'upcoming'],
-            ['tomorrow', null, 'upcoming'],
+            ['tomorrow', '+1 week', 'pending'],
+            ['tomorrow', null, 'pending'],
             [null, 'tomorrow', 'published'],
             [null, 'yesterday', 'expired']
         ];
