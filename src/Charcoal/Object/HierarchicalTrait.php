@@ -2,7 +2,6 @@
 
 namespace Charcoal\Object;
 
-use \Exception;
 use \InvalidArgumentException;
 use \UnexpectedValueException;
 
