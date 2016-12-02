@@ -239,6 +239,9 @@ class Authenticator implements LoggerAwareInterface
         }
 
         $u = $this->userFactory()->create($this->userType());
+        if (!$u->source()->tableExists()) {
+            $u->source()->createTable();
+        }
 
         // Force lowercase
         $username = mb_strtolower($username);
