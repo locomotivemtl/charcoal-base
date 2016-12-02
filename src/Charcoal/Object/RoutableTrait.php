@@ -323,9 +323,10 @@ trait RoutableTrait
         if (!is_string($value) && !is_numeric($value)) {
             throw new InvalidArgumentException(
                 sprintf(
-                    'Route token "%1$s" must be a string with %2$s',
+                    'Route token "%1$s" must be a string with %2$s; received %3$s',
                     $token,
-                    get_called_class()
+                    get_called_class(),
+                    (is_object($value) ? get_class($value) : gettype($value))
                 )
             );
         }
@@ -351,6 +352,10 @@ trait RoutableTrait
 
         if ($value instanceof \DateTime) {
             $value = $value->format('Y-m-d-H:i');
+        }
+
+        if (method_exists($value, '__toString')) {
+            $value = strval($value);
         }
 
         return $value;
