@@ -1,7 +1,7 @@
 {
     "slug_pattern": null,
 
-    "routable": {
+    "routable_spec": {
         "editable": false,
         "pattern": null,
         "prefix": null,
