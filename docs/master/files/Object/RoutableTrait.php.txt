@@ -20,7 +20,10 @@ use \Charcoal\Object\ObjectRoute;
 use \Charcoal\Object\ObjectRouteInterface;
 
 /**
- * Full implementation, as Trait, of the `RoutableInterface`.
+ * Full implementation, as Trait, of the {@see \Charcoal\Object\RoutableInterface}.
+ *
+ * This implementation uses a secondary model, {@see \Charcoal\Object\ObjectRoute},
+ * to collect all routes of routable models under a single source.
  */
 trait RoutableTrait
 {
@@ -82,7 +85,7 @@ trait RoutableTrait
     /**
      * Set the object's URL slug pattern.
      *
-     * @param mixed $pattern The slug pattern.
+     * @param  mixed $pattern The slug pattern.
      * @return RoutableInterface Chainable
      */
     public function setSlugPattern($pattern)
@@ -188,7 +191,7 @@ trait RoutableTrait
     /**
      * Set the object's URL slug.
      *
-     * @param mixed $slug The slug.
+     * @param  mixed $slug The slug.
      * @return RoutableInterface Chainable
      */
     public function setSlug($slug)

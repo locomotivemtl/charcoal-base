@@ -114,7 +114,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">286</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">281</span>
                                 </a>
                             </li>
                             <li>
@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1084905048"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1672831733"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1084905048" class="accordion-body collapse in">
+            <div id="namespace-1672831733" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1401083037"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1319564038"></a>
                                 <a href="../namespaces/Charcoal.html" style="margin-left: 30px; padding-left: 0">Charcoal</a>
             </div>
-            <div id="namespace-1401083037" class="accordion-body collapse ">
+            <div id="namespace-1319564038" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1430509100"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1860297501"></a>
                                 <a href="../namespaces/Charcoal.Object.html" style="margin-left: 30px; padding-left: 0">Object</a>
             </div>
-            <div id="namespace-1430509100" class="accordion-body collapse ">
+            <div id="namespace-1860297501" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -205,10 +205,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-158174026"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1638496492"></a>
                                 <a href="../namespaces/Charcoal.User.html" style="margin-left: 30px; padding-left: 0">User</a>
             </div>
-            <div id="namespace-158174026" class="accordion-body collapse ">
+            <div id="namespace-1638496492" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -256,8 +256,13 @@
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
                     <h1><small>\Charcoal\Object</small>RoutableInterface</h1>
-                    <p><em>Routable objects are loadable from a URL.</em></p>
-                    
+                    <p><em>Defines an object as routable.</em></p>
+                    <p>Routable objects are accessible via a URI. The interface provides a &quot;slug&quot; property
+to track the latest &quot;pretty&quot; URI path.</p>
+<p>Available implementation as trait:</p>
+<ul>
+<li><a href="/classes/Charcoal.Object.RoutableTrait.html">\Charcoal\Object\RoutableTrait</a>.</li>
+</ul>
 
                     <section id="summary">
                         <h2>Summary</h2>
@@ -334,7 +339,7 @@
                 <h3 class="public ">setSlugPattern()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">setSlugPattern(mixed  <span class="argument">$pattern</span>) : \Charcoal\Object\RoutableInterface</pre>
-                <p><em></em></p>
+                <p><em>Set the object&#039;s URL slug pattern.</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -370,14 +375,14 @@
             <article class="method">
                 <h3 class="public ">slugPattern()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">slugPattern() : string</pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">slugPattern() : string|null</pre>
+                <p><em>Retrieve the object&#039;s URL slug pattern.</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    string
+                    string|null
                                     				
                             </article>
         </div>
@@ -399,7 +404,7 @@
                 <h3 class="public ">setSlug()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">setSlug(mixed  <span class="argument">$slug</span>) : \Charcoal\Object\RoutableInterface</pre>
-                <p><em></em></p>
+                <p><em>Set the object&#039;s URL slug.</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -435,14 +440,14 @@
             <article class="method">
                 <h3 class="public ">slug()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">slug() : string</pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">slug() : string|null</pre>
+                <p><em>Retrieve the object&#039;s URL slug.</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    string
+                    string|null
                                     				
                             </article>
         </div>
@@ -463,14 +468,14 @@
             <article class="method">
                 <h3 class="public ">generateSlug()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">generateSlug() : string</pre>
+                <pre class="signature" style="margin-right: 54px;">generateSlug() : string|null</pre>
                 <p><em>Generate a URL slug from the object&#039;s URL slug pattern.</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    string
+                    string|null
                                     				
                             </article>
         </div>
@@ -491,14 +496,14 @@
             <article class="method">
                 <h3 class="public ">url()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">url() : string</pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">url() : string|null</pre>
+                <p><em>Retrieve the object&#039;s URI.</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    string
+                    string|null
                                     				
                             </article>
         </div>
@@ -619,7 +624,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on December 13th, 2016 at 21:10.
+                    on December 15th, 2016 at 17:40.
                 </section>
             </section>
         </section>

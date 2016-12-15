@@ -3,41 +3,57 @@
 namespace Charcoal\Object;
 
 /**
- * Routable objects are loadable from a URL.
+ * Defines an object as routable.
+ *
+ * Routable objects are accessible via a URI. The interface provides a "slug" property
+ * to track the latest "pretty" URI path.
+ *
+ * Available implementation as trait:
+ * - {@see \Charcoal\Object\RoutableTrait}.
  */
 interface RoutableInterface
 {
     /**
-     * @param mixed $pattern The slug pattern.
+     * Set the object's URL slug pattern.
+     *
+     * @param  mixed $pattern The slug pattern.
      * @return RoutableInterface Chainable
      */
     public function setSlugPattern($pattern);
 
     /**
-     * @return string
+     * Retrieve the object's URL slug pattern.
+     *
+     * @return string|null
      */
     public function slugPattern();
 
     /**
-     * @param mixed $slug The slug.
+     * Set the object's URL slug.
+     *
+     * @param  mixed $slug The slug.
      * @return RoutableInterface Chainable
      */
     public function setSlug($slug);
 
     /**
-     * @return string
+     * Retrieve the object's URL slug.
+     *
+     * @return string|null
      */
     public function slug();
 
     /**
      * Generate a URL slug from the object's URL slug pattern.
      *
-     * @return string
+     * @return string|null
      */
     public function generateSlug();
 
     /**
-     * @return string
+     * Retrieve the object's URI.
+     *
+     * @return string|null
      */
     public function url();
 
