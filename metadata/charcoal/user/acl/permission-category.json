@@ -5,7 +5,7 @@
         }
     },
 
-    "category_item_type": "charcoal/user/permission",
+    "category_item_type": "charcoal/user/acl/permission",
 
     "sources": {
         "default": {

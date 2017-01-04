@@ -5,7 +5,7 @@
         },
         "parent": {
             "type": "object",
-            "obj_type": "charcoal/user/acl-role"
+            "obj_type": "charcoal/user/acl/role"
         },
         "allowed": {
             "type": "string",

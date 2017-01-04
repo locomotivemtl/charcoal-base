@@ -1,12 +1,12 @@
 <?php
 
-namespace Charcoal\User;
+namespace Charcoal\User\Acl;
 
-use \Charcoal\Translation\TranslationString;
+use Charcoal\Translation\TranslationString;
 
-use \Charcoal\Object\Content;
-use \Charcoal\Object\CategoryInterface;
-use \Charcoal\Object\CategoryTrait;
+use Charcoal\Object\Content;
+use Charcoal\Object\CategoryInterface;
+use Charcoal\Object\CategoryTrait;
 
 /**
  * User permission category

@@ -1,16 +1,16 @@
 <?php
 
-namespace Charcoal\User;
+namespace Charcoal\User\Acl;
 
 // Module `charcoal-core` dependencies
-use \Charcoal\Model\AbstractModel;
+use Charcoal\Model\AbstractModel;
 
 // Module `charcoal-base` dependencies
-use \Charcoal\Object\CategorizableInterface;
-use \Charcoal\Object\CategorizableTrait;
+use Charcoal\Object\CategorizableInterface;
+use Charcoal\Object\CategorizableTrait;
 
 // Module `charcoal-translation` dependencies
-use \Charcoal\Translation\TranslationString;
+use Charcoal\Translation\TranslationString;
 
 /**
  * A permission is a simple string, that can be read with additional data (name + category) from storage.
@@ -37,6 +37,17 @@ class Permission extends AbstractModel implements CategorizableInterface
     public function __toString()
     {
         return (string)$this->ident;
+    }
+
+    public function setIdent($ident)
+    {
+        $this->ident = $ident;
+        return $this;
+    }
+
+    public function ident()
+    {
+        return $this->ident;
     }
 
     /**

@@ -17,7 +17,7 @@
             }
         },
         "category": {
-            "obj_type": "charcoal/user/permission-category"
+            "obj_type": "charcoal/user/acl/permission-category"
         }
     },
 
