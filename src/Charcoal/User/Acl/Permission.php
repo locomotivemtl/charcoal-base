@@ -2,7 +2,7 @@
 
 namespace Charcoal\User\Acl;
 
-use InvalidArgumentException;
+use InvalidArgumentExce ption;
 
 // Module `charcoal-core` dependencies
 use Charcoal\Model\AbstractModel;
@@ -43,7 +43,7 @@ class Permission extends AbstractModel implements CategorizableInterface
 
     /**
      * @param string $ident The permission identifier.
-     * @throws InvalidArgumentExcption If the ident is not a string.
+     * @throws InvalidArgumentException If the ident is not a string.
      * @return Permission Chainable
      */
     public function setIdent($ident)
