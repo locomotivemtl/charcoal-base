@@ -2,7 +2,7 @@
 
 namespace Charcoal\User\Acl;
 
-use InvalidArgumentExce ption;
+use InvalidArgumentException;
 
 // Module `charcoal-core` dependencies
 use Charcoal\Model\AbstractModel;
