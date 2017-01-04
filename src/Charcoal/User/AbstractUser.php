@@ -3,23 +3,23 @@
 namespace Charcoal\User;
 
 // Dependencies from `PHP`
-use \DateTime;
-use \DateTimeInterface;
-use \Exception;
-use \InvalidArgumentException;
+use DateTime;
+use DateTimeInterface;
+use Exception;
+use InvalidArgumentException;
 
 // Module `charcoal-factory` dependencies
-use \Charcoal\Factory\FactoryInterface;
+use Charcoal\Factory\FactoryInterface;
 
 // Module `charcoal-config` dependencies
-use \Charcoal\Config\ConfigurableInterface;
-use \Charcoal\Config\ConfigurableTrait;
+use Charcoal\Config\ConfigurableInterface;
+use Charcoal\Config\ConfigurableTrait;
 
 // Module `charcoal-base` dependencies
-use \Charcoal\Object\Content;
+use Charcoal\Object\Content;
 
 // Local namespace (charcoal-base) dependencies
-use \Charcoal\User\UserInterface;
+use Charcoal\User\UserInterface;
 
 /**
  * Full implementation, as abstract class, of the `UserInterface`.
@@ -37,7 +37,9 @@ abstract class AbstractUser extends Content implements
 
     /**
      * The username should be unique and mandatory.
-     * @var string $username
+     * It is also used as login name and main identifier (key).
+     *
+     * @var string
      */
     private $username = '';
 
@@ -48,28 +50,28 @@ abstract class AbstractUser extends Content implements
     private $password;
 
     /**
-     * @var string $email
+     * @var string
      */
     private $email;
 
     /**
-     * @var boolean $active
+     * @var boolean
      */
     private $active = true;
 
     /**
-     * @var array $roles
+     * @var string[]|null
      */
-    private $roles = [];
+    private $roles;
 
     /**
      * The date of the latest (successful) login
-     * @var DateTime|null $lastLoginDate
+     * @var DateTime|null
      */
     private $lastLoginDate;
 
     /**
-     * @var string $lastLoginIp
+     * @var string
      */
     private $lastLoginIp;
 
@@ -197,12 +199,16 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
-     * @param mixed $roles The ACL roles this user belongs to.
+     * @param string|array|null $roles The ACL roles this user belongs to.
      * @throws InvalidArgumentException If the roles argument is invalid.
      * @return AbstractUser Chainable
      */
     public function setRoles($roles)
     {
+        if ($roles === null) {
+            $this->roles = null;
+            return $this;
+        }
         if (is_string($roles)) {
             $roles = explode(',', $roles);
         }
@@ -224,7 +230,7 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
-     * @param string|DateTime|null $lastLoginDate The last login date.
+     * @param string|DateTimeInterface|null $lastLoginDate The last login date.
      * @throws InvalidArgumentException If the ts is not a valid date/time.
      * @return AbstractUser Chainable
      */
@@ -253,7 +259,7 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTimeInterface|null
      */
     public function lastLoginDate()
     {
@@ -292,7 +298,7 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
-     * @param string|DateTime|null $lastPasswordDate The last password date.
+     * @param string|DateTimeInterface|null $lastPasswordDate The last password date.
      * @throws InvalidArgumentException If the passsword date is not a valid DateTime.
      * @return UserInterface Chainable
      */
@@ -321,7 +327,7 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
-     * @return DateTime
+     * @return DateTimeInterface|null
      */
     public function lastPasswordDate()
     {

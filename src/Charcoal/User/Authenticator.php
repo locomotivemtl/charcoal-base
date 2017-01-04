@@ -2,18 +2,18 @@
 
 namespace Charcoal\User;
 
-use \InvalidArgumentException;
-use \RuntimeException;
+use InvalidArgumentException;
+use RuntimeException;
 
 // Dependencies from PSR-3 (Logging)
-use \Psr\Log\LoggerAwareInterface;
-use \Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 
 // Dependency from 'charcoal-factory'
-use \Charcoal\Factory\FactoryInterface;
+use Charcoal\Factory\FactoryInterface;
 
 /**
- * Authenticator helps with user authentication / login.
+ * The Authenticator service helps with user authentication / login.
  *
  * ## Constructor dependencies
  *

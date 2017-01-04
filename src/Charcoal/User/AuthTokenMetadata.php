@@ -2,10 +2,10 @@
 
 namespace Charcoal\User;
 
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 // From `charcoal-core`
-use \Charcoal\Model\ModelMetadata;
+use Charcoal\Model\ModelMetadata;
 
 /**
  * User Auth Token metadata
@@ -33,7 +33,9 @@ class AuthTokenMetadata extends ModelMetadata
     private $httpsOnly;
 
     /**
+     *
      * @return array
+     * @see \Charcoal\Config\ConfigInterface::defaults()
      */
     public function defaults()
     {

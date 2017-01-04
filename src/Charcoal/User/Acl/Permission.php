@@ -2,6 +2,8 @@
 
 namespace Charcoal\User\Acl;
 
+use InvalidArgumentExcption;
+
 // Module `charcoal-core` dependencies
 use Charcoal\Model\AbstractModel;
 
@@ -22,7 +24,7 @@ class Permission extends AbstractModel implements CategorizableInterface
     /**
      * @var string $ident
      */
-    public $ident;
+    private $ident;
 
     /**
      * @var TranslationString $name
@@ -39,12 +41,25 @@ class Permission extends AbstractModel implements CategorizableInterface
         return (string)$this->ident;
     }
 
+    /**
+     * @param string $ident
+     * @throws InvalidArgumentExcption If the ident is not a string
+     * @return Permission Chainable
+     */
     public function setIdent($ident)
     {
+        if (!is_string($ident)) {
+            throw new InvalidArgumentExcption(
+                'Permission ident needs to be a string'
+            );
+        }
         $this->ident = $ident;
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function ident()
     {
         return $this->ident;
