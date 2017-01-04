@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1601013478"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1690501807"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1601013478" class="accordion-body collapse in">
+            <div id="namespace-1690501807" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-118773806"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1557626257"></a>
                                 <a href="../namespaces/Charcoal.html" style="margin-left: 30px; padding-left: 0">Charcoal</a>
             </div>
-            <div id="namespace-118773806" class="accordion-body collapse ">
+            <div id="namespace-1557626257" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-305187436"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1316820064"></a>
                                 <a href="../namespaces/Charcoal.Object.html" style="margin-left: 30px; padding-left: 0">Object</a>
             </div>
-            <div id="namespace-305187436" class="accordion-body collapse ">
+            <div id="namespace-1316820064" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -205,19 +205,19 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1799485468"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-236021922"></a>
                                 <a href="../namespaces/Charcoal.User.html" style="margin-left: 30px; padding-left: 0">User</a>
             </div>
-            <div id="namespace-1799485468" class="accordion-body collapse ">
+            <div id="namespace-236021922" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1431320858"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-285082924"></a>
                                 <a href="../namespaces/Charcoal.User.Acl.html" style="margin-left: 30px; padding-left: 0">Acl</a>
             </div>
-            <div id="namespace-1431320858" class="accordion-body collapse ">
+            <div id="namespace-285082924" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -269,22 +269,13 @@
             <div class="row-fluid">
                 <div class="span8 content class">
                     <nav>
-                                                <a href="../namespaces/Charcoal.User.html">\Charcoal\User</a> <i class="icon-level-up"></i>
+                                                <a href="../namespaces/Charcoal.User.Acl.html">\Charcoal\User\Acl</a> <i class="icon-level-up"></i>
                                             </nav>
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
-                    <h1><small>\Charcoal\User</small>Authenticator</h1>
-                    <p><em>The Authenticator service helps with user authentication / login.</em></p>
-                    <h2>Constructor dependencies</h2>
-<p>Constructor dependencies are passed as an array of <code>key=&gt;value</code> pair.
-The required dependencies are:</p>
-<ul>
-<li><code>logger</code> A PSR3 logger instance</li>
-<li><code>user_type</code> The user object type (FQN or ident)</li>
-<li><code>user_factory</code> The Factory used to instanciate new users.</li>
-<li><code>token_type</code> The auth token object type (FQN or ident)</li>
-<li><code>token_factory</code> The Factory used to instanciate new auth tokens.</li>
-</ul>
+                    <h1><small>\Charcoal\User\Acl</small>Permission</h1>
+                    <p><em>A permission is a simple string, that can be read with additional data (name + category) from storage.</em></p>
+                    
                     
                                         
                     <section id="summary">
@@ -302,9 +293,15 @@ The required dependencies are:</p>
                         </section>
                         <section class="row-fluid public">
                             <section class="span4">
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#method___construct" class="">__construct()</a><br />
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#method_authenticate" class="">authenticate()</a><br />
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#method_authenticateByPassword" class="">authenticateByPassword()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.CategorizableTrait.html#method_setCategoryType" class="">setCategoryType()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.CategorizableTrait.html#method_categoryType" class="">categoryType()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.CategorizableTrait.html#method_setCategory" class="">setCategory()</a><br />
+                                                                    <a href="../classes/Charcoal.Object.CategorizableTrait.html#method_category" class="">category()</a><br />
+                                                                    <a href="../classes/Charcoal.User.Acl.Permission.html#method___toString" class="">__toString()</a><br />
+                                                                    <a href="../classes/Charcoal.User.Acl.Permission.html#method_setIdent" class="">setIdent()</a><br />
+                                                                    <a href="../classes/Charcoal.User.Acl.Permission.html#method_ident" class="">ident()</a><br />
+                                                                    <a href="../classes/Charcoal.User.Acl.Permission.html#method_setName" class="">setName()</a><br />
+                                                                    <a href="../classes/Charcoal.User.Acl.Permission.html#method_name" class="">name()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No public properties found</em>
@@ -315,13 +312,10 @@ The required dependencies are:</p>
                         </section>
                         <section class="row-fluid protected">
                             <section class="span4">
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#method_userType" class="">userType()</a><br />
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#method_userFactory" class="">userFactory()</a><br />
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#method_tokenType" class="">tokenType()</a><br />
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#method_tokenFactory" class="">tokenFactory()</a><br />
+                                                                    <em>No protected methods found</em>
                                                             </section>
                             <section class="span4">
-                                                                    <em>No protected properties found</em>
+                                                                    <a href="../classes/Charcoal.Object.CategorizableTrait.html#property_category" class="">$category</a><br />
                                                             </section>
                             <section class="span4">
                                 <em>N/A</em>
@@ -329,18 +323,12 @@ The required dependencies are:</p>
                         </section>
                         <section class="row-fluid private">
                             <section class="span4">
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#method_setUserType" class="">setUserType()</a><br />
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#method_setUserFactory" class="">setUserFactory()</a><br />
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#method_setTokenType" class="">setTokenType()</a><br />
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#method_setTokenFactory" class="">setTokenFactory()</a><br />
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#method_authenticateBySession" class="">authenticateBySession()</a><br />
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#method_authenticateByToken" class="">authenticateByToken()</a><br />
+                                                                    <em>No private methods found</em>
                                                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#property_userType" class="">$userType</a><br />
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#property_userFactory" class="">$userFactory</a><br />
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#property_tokenType" class="">$tokenType</a><br />
-                                                                    <a href="../classes/Charcoal.User.Authenticator.html#property_tokenFactory" class="">$tokenFactory</a><br />
+                                                                    <a href="../classes/Charcoal.Object.CategorizableTrait.html#property_categoryType" class="">$categoryType</a><br />
+                                                                    <a href="../classes/Charcoal.User.Acl.Permission.html#property_ident" class="">$ident</a><br />
+                                                                    <a href="../classes/Charcoal.User.Acl.Permission.html#property_name" class="">$name</a><br />
                                                             </section>
                             <section class="span4">
                                 <em>N/A</em>
@@ -353,21 +341,23 @@ The required dependencies are:</p>
                     
                     <dl>
                         <dt>File</dt>
-                            <dd><a href="../files/User.Authenticator.html"><div class="path-wrapper">User/Authenticator.php</div></a></dd>
+                            <dd><a href="../files/User.Acl.Permission.html"><div class="path-wrapper">User/Acl/Permission.php</div></a></dd>
                                                 <dt>Package</dt>
                             <dd><div class="namespace-wrapper">Default</div></dd>
                                                 <dt>Class hierarchy</dt>
                             <dd class="hierarchy">
-                                                                                                                                                                    <div class="namespace-wrapper">\Charcoal\User\Authenticator</div>
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\Charcoal\Model\AbstractModel</div>
+                                                                                                    <div class="namespace-wrapper">\Charcoal\User\Acl\Permission</div>
                             </dd>
 
                                                                             <dt>Implements</dt>
-                                                        <dd><a href=""><div class="namespace-wrapper"></div></a></dd>
+                                                        <dd><a href="../classes/Charcoal.Object.CategorizableInterface.html"><div class="namespace-wrapper">\Charcoal\Object\CategorizableInterface</div></a></dd>
                         
                                                                                     <dt>Uses traits</dt>
                                                         <dd>
-                                                                    <div class="namespace-wrapper">\Psr\Log\LoggerAwareTrait</div>
-                                                            </dd>
+                                <a href="../classes/Charcoal.Object.CategorizableTrait.html">                                    <div class="namespace-wrapper">\Charcoal\Object\CategorizableTrait</div>
+                                </a>                            </dd>
                         
                         
                         
@@ -388,13 +378,65 @@ The required dependencies are:</p>
                 <aside class="span4 detailsbar"></aside>
             </div>
 
-                                                                    <div class="row-fluid">
+                                                    <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_userType" name="property_userType" class="anchor"></a>
+            <a id="property_category" name="property_category" class="anchor"></a>
             <article class="property">
-                <h3 class="private ">$userType</h3>
-                <pre class="signature">$userType : string</pre>
-                <p><em>The user object type.</em></p>
+                <h3 class="protected ">$category</h3>
+                <pre class="signature">$category : mixed|\Charcoal\Object\CategoryInterface</pre>
+                <p><em>The category the object belongs to.</em></p>
+                
+
+                                <h4>Type</h4>
+                mixed|<a href="../classes/Charcoal.Object.CategoryInterface.html">\Charcoal\Object\CategoryInterface</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.CategorizableTrait.html"><div class="path-wrapper">\Charcoal\Object\CategorizableTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_categoryType" name="property_categoryType" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$categoryType</h3>
+                <pre class="signature">$categoryType : string</pre>
+                <p><em>The type of category the object can belong to.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.CategorizableTrait.html"><div class="path-wrapper">\Charcoal\Object\CategorizableTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ident" name="property_ident" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$ident</h3>
+                <pre class="signature">$ident : string</pre>
+                <p><em></em></p>
                 
 
                                 <h4>Type</h4>
@@ -414,63 +456,15 @@ The required dependencies are:</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_userFactory" name="property_userFactory" class="anchor"></a>
+            <a id="property_name" name="property_name" class="anchor"></a>
             <article class="property">
-                <h3 class="private ">$userFactory</h3>
-                <pre class="signature">$userFactory : \Charcoal\Factory\FactoryInterface</pre>
-                <p><em>Store the user model factory instance for the current class.</em></p>
+                <h3 class="private ">$name</h3>
+                <pre class="signature">$name : \Charcoal\Translation\TranslationString</pre>
+                <p><em></em></p>
                 
 
                                 <h4>Type</h4>
-                \Charcoal\Factory\FactoryInterface
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_tokenType" name="property_tokenType" class="anchor"></a>
-            <article class="property">
-                <h3 class="private ">$tokenType</h3>
-                <pre class="signature">$tokenType : string</pre>
-                <p><em>The auth-token object type.</em></p>
-                
-
-                                <h4>Type</h4>
-                string
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_tokenFactory" name="property_tokenFactory" class="anchor"></a>
-            <article class="property">
-                <h3 class="private ">$tokenFactory</h3>
-                <pre class="signature">$tokenFactory : \Charcoal\Factory\FactoryInterface</pre>
-                <p><em>Store the auth-token model factory instance for the current class.</em></p>
-                
-
-                                <h4>Type</h4>
-                \Charcoal\Factory\FactoryInterface
+                \Charcoal\Translation\TranslationString
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -493,109 +487,41 @@ The required dependencies are:</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <a id="method_setCategoryType" name="method_setCategoryType" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">__construct()</h3>
+                <h3 class="public ">setCategoryType()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(array  <span class="argument">$data</span>) </pre>
-                <p><em>Returns a new Authoricator object.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$data </td>
-                                <td><p>Class dependencies.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_authenticate" name="method_authenticate" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">authenticate()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">authenticate() : \Charcoal\User\UserInterface|null</pre>
-                <p><em>Determine if the current user is authenticated.</em></p>
-                <p>The user is authenticated via <em>session ID</em> or <em>auth token</em>.</p>
-
-                
-                
-                                    <h4>Returns</h4>
-                    <a href="../classes/Charcoal.User.UserInterface.html">\Charcoal\User\UserInterface</a>|null
-                                            &mdash; <p>Returns the authenticated user object
-or NULL if not authenticated.</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_authenticateByPassword" name="method_authenticateByPassword" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">authenticateByPassword()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">authenticateByPassword(string  <span class="argument">$username</span>, string  <span class="argument">$password</span>) : \Charcoal\User\UserInterface|null</pre>
-                <p><em>Attempt to authenticate a user using the given credentials.</em></p>
+                <pre class="signature" style="margin-right: 54px;">setCategoryType(string  <span class="argument">$type</span>) : \Charcoal\Object\CategorizableInterface</pre>
+                <p><em>Set the type of category the object can belong to.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td>string</td>
-                                <td>$username </td>
-                                <td><p>Username, part of necessery credentials.</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$password </td>
-                                <td><p>Password, part of necessary credentials.</p></td>
+                                <td>$type </td>
+                                <td><p>The category type.</p></td>
                             </tr>
                                             </table>
                 
                                     <h4>Throws</h4>
                     <dl>
                                                     <dt>\InvalidArgumentException</dt>
-                            <dd><p>If username or password are invalid or empty.</p></dd>
+                            <dd><p>If the type argument is not a string.</p></dd>
                                                                     </dl>
                 
                                     <h4>Returns</h4>
-                    <a href="../classes/Charcoal.User.UserInterface.html">\Charcoal\User\UserInterface</a>|null
-                                            &mdash; <p>Returns the authenticated user object
-or NULL if not authenticated.</p>
+                    <a href="../classes/Charcoal.Object.CategorizableInterface.html">\Charcoal\Object\CategorizableInterface</a>
+                                            &mdash; <p>Chainable</p>
                                     				
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.CategorizableTrait.html"><div class="path-wrapper">\Charcoal\Object\CategorizableTrait</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -603,14 +529,113 @@ or NULL if not authenticated.</p>
         </aside>
     </div>
 
-                                                    <div class="row-fluid">
+                                    <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_userType" name="method_userType" class="anchor"></a>
+            <a id="method_categoryType" name="method_categoryType" class="anchor"></a>
             <article class="method">
-                <h3 class="protected ">userType()</h3>
+                <h3 class="public ">categoryType()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">userType() : string</pre>
-                <p><em>Retrieve the user object type.</em></p>
+                <pre class="signature" style="margin-right: 54px;">categoryType() : string</pre>
+                <p><em>Retrieve the type of category the object can belong to.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.CategorizableTrait.html"><div class="path-wrapper">\Charcoal\Object\CategorizableTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCategory" name="method_setCategory" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCategory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCategory(mixed  <span class="argument">$category</span>) : \Charcoal\Object\CategorizableInterface</pre>
+                <p><em>Set the category the object belongs to.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$category </td>
+                                <td><p>The object's category.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Object.CategorizableInterface.html">\Charcoal\Object\CategorizableInterface</a>
+                                            &mdash; <p>Chainable</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.CategorizableTrait.html"><div class="path-wrapper">\Charcoal\Object\CategorizableTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_category" name="method_category" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">category()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">category() : mixed</pre>
+                <p><em>Retrieve the category the object belongs to.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Object.CategorizableTrait.html"><div class="path-wrapper">\Charcoal\Object\CategorizableTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___toString" name="method___toString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__toString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__toString() : string</pre>
+                <p><em>Permission can be used as a string (ident).</em></p>
                 
 
                 
@@ -633,23 +658,32 @@ or NULL if not authenticated.</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_userFactory" name="method_userFactory" class="anchor"></a>
+            <a id="method_setIdent" name="method_setIdent" class="anchor"></a>
             <article class="method">
-                <h3 class="protected ">userFactory()</h3>
+                <h3 class="public ">setIdent()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">userFactory() : \Charcoal\Factory\FactoryInterface</pre>
-                <p><em>Retrieve the user model factory.</em></p>
+                <pre class="signature" style="margin-right: 54px;">setIdent(string  <span class="argument">$ident</span>) : \Charcoal\User\Acl\Permission</pre>
+                <p><em></em></p>
                 
 
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$ident </td>
+                                <td><p>The permission identifier.</p></td>
+                            </tr>
+                                            </table>
                 
                                     <h4>Throws</h4>
                     <dl>
-                                                    <dt>\RuntimeException</dt>
-                            <dd><p>If the model factory was not previously set.</p></dd>
+                                                    <dt>\Charcoal\User\Acl\InvalidArgumentExcption</dt>
+                            <dd><p>If the ident is not a string.</p></dd>
                                                                     </dl>
                 
                                     <h4>Returns</h4>
-                    \Charcoal\Factory\FactoryInterface
+                    <a href="../classes/Charcoal.User.Acl.Permission.html">\Charcoal\User\Acl\Permission</a>
+                                            &mdash; <p>Chainable</p>
                                     				
                             </article>
         </div>
@@ -666,12 +700,12 @@ or NULL if not authenticated.</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_tokenType" name="method_tokenType" class="anchor"></a>
+            <a id="method_ident" name="method_ident" class="anchor"></a>
             <article class="method">
-                <h3 class="protected ">tokenType()</h3>
+                <h3 class="public ">ident()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">tokenType() : string</pre>
-                <p><em>Retrieve the auth-token object type.</em></p>
+                <pre class="signature" style="margin-right: 54px;">ident() : string</pre>
+                <p><em></em></p>
                 
 
                 
@@ -694,64 +728,26 @@ or NULL if not authenticated.</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_tokenFactory" name="method_tokenFactory" class="anchor"></a>
+            <a id="method_setName" name="method_setName" class="anchor"></a>
             <article class="method">
-                <h3 class="protected ">tokenFactory()</h3>
+                <h3 class="public ">setName()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">tokenFactory() : \Charcoal\Factory\FactoryInterface</pre>
-                <p><em>Retrieve the auth-token model factory.</em></p>
-                
-
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\RuntimeException</dt>
-                            <dd><p>If the token factory was not previously set.</p></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    \Charcoal\Factory\FactoryInterface
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_setUserType" name="method_setUserType" class="anchor"></a>
-            <article class="method">
-                <h3 class="private ">setUserType()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setUserType(string  <span class="argument">$type</span>) : \Charcoal\User\AdminAuthenticator</pre>
-                <p><em>Set the user object type (model).</em></p>
+                <pre class="signature" style="margin-right: 54px;">setName(mixed  <span class="argument">$name</span>) : \Charcoal\User\Acl\Permission</pre>
+                <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>string</td>
-                                <td>$type </td>
-                                <td><p>The user object type.</p></td>
+                                <td>mixed</td>
+                                <td>$name </td>
+                                <td><p>The permission name / label.</p></td>
                             </tr>
                                             </table>
                 
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>If the user object type parameter is not a string.</p></dd>
-                                                                    </dl>
                 
                                     <h4>Returns</h4>
-                    \Charcoal\User\AdminAuthenticator
+                    <a href="../classes/Charcoal.User.Acl.Permission.html">\Charcoal\User\Acl\Permission</a>
                                             &mdash; <p>Chainable</p>
                                     				
                             </article>
@@ -769,27 +765,18 @@ or NULL if not authenticated.</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_setUserFactory" name="method_setUserFactory" class="anchor"></a>
+            <a id="method_name" name="method_name" class="anchor"></a>
             <article class="method">
-                <h3 class="private ">setUserFactory()</h3>
+                <h3 class="public ">name()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setUserFactory(\Charcoal\Factory\FactoryInterface  <span class="argument">$factory</span>) : \Charcoal\User\AdminAuthenticator</pre>
-                <p><em>Set a user model factory.</em></p>
+                <pre class="signature" style="margin-right: 54px;">name() : \Charcoal\Translation\TranslationString</pre>
+                <p><em></em></p>
                 
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\Charcoal\Factory\FactoryInterface</td>
-                                <td>$factory </td>
-                                <td><p>The factory used to create new user instances.</p></td>
-                            </tr>
-                                            </table>
                 
                 
                                     <h4>Returns</h4>
-                    \Charcoal\User\AdminAuthenticator
-                                            &mdash; <p>Chainable</p>
+                    \Charcoal\Translation\TranslationString
                                     				
                             </article>
         </div>
@@ -804,155 +791,16 @@ or NULL if not authenticated.</p>
         </aside>
     </div>
 
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_setTokenType" name="method_setTokenType" class="anchor"></a>
-            <article class="method">
-                <h3 class="private ">setTokenType()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setTokenType(string  <span class="argument">$type</span>) : \Charcoal\User\AdminAuthenticator</pre>
-                <p><em>Set the authorization token type (model).</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$type </td>
-                                <td><p>The auth-token object type.</p></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>If the token object type parameter is not a string.</p></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    \Charcoal\User\AdminAuthenticator
-                                            &mdash; <p>Chainable</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_setTokenFactory" name="method_setTokenFactory" class="anchor"></a>
-            <article class="method">
-                <h3 class="private ">setTokenFactory()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setTokenFactory(\Charcoal\Factory\FactoryInterface  <span class="argument">$factory</span>) : \Charcoal\User\AdminAuthenticator</pre>
-                <p><em>Set a model factory for token-based authentication.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\Charcoal\Factory\FactoryInterface</td>
-                                <td>$factory </td>
-                                <td><p>The factory used to create new auth-token instances.</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \Charcoal\User\AdminAuthenticator
-                                            &mdash; <p>Chainable</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_authenticateBySession" name="method_authenticateBySession" class="anchor"></a>
-            <article class="method">
-                <h3 class="private ">authenticateBySession()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">authenticateBySession() : \Charcoal\User\UserInterface|null</pre>
-                <p><em>Attempt to authenticate a user using their session ID.</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    <a href="../classes/Charcoal.User.UserInterface.html">\Charcoal\User\UserInterface</a>|null
-                                            &mdash; <p>Returns the authenticated user object
-or NULL if not authenticated.</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_authenticateByToken" name="method_authenticateByToken" class="anchor"></a>
-            <article class="method">
-                <h3 class="private ">authenticateByToken()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">authenticateByToken() : \Charcoal\User\UserInterface|null</pre>
-                <p><em>Attempt to authenticate a user using their auth token.</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    <a href="../classes/Charcoal.User.UserInterface.html">\Charcoal\User\UserInterface</a>|null
-                                            &mdash; <p>Returns the authenticated user object
-or NULL if not authenticated.</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    </div>
+                                                                    </div>
     </section>
 
     <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">Authenticator.php</h3>
+            <h3 id="source-view-label">Permission.php</h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/User/Authenticator.php.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/User/Acl/Permission.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 

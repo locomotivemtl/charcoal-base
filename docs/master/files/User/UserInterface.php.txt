@@ -2,10 +2,13 @@
 
 namespace Charcoal\User;
 
+// Dependency from 'charcoal-core'
+use Charcoal\Object\ContentInterface;
+
 /**
- *
+ * User Interface, based on charcoal/object/content-interface.
  */
-interface UserInterface
+interface UserInterface extends ContentInterface
 {
     /**
      * @return string
@@ -21,6 +24,8 @@ interface UserInterface
     public function setUsername($username);
 
     /**
+     * The username is also used as login name and main identifier (key).
+     *
      * @return string
      */
     public function username();

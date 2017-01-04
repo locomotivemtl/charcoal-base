@@ -2,13 +2,15 @@
 
 namespace Charcoal\User;
 
-use \DateTime;
-use \DateTimeInterface;
-use \InvalidArgumentException;
+use DateTime;
+use DateTimeInterface;
+use InvalidArgumentException;
 
-use \Charcoal\Model\AbstractModel;
+// Dependency from 'charcoal-core'
+use Charcoal\Model\AbstractModel;
 
-use \Charcoal\User\AuthTokenMetadata;
+// Local depdendency
+use Charcoal\User\AuthTokenMetadata;
 
 /**
  * Authorization token; to keep a user logged in
@@ -17,35 +19,35 @@ class AuthToken extends AbstractModel
 {
 
     /**
-     * @var string $ident
+     * @var string
      */
     private $ident;
 
     /**
-     * @var string $token
+     * @var string
      */
     private $token;
 
     /**
      * The username should be unique and mandatory.
-     * @var string $username
+     * @var string
      */
     private $username;
 
     /**
-     * @var Datetime $expiry
+     * @var DatetimeInterface
      */
     private $expiry;
 
     /**
      * Token creation date (set automatically on save)
-     * @var DateTime $Created
+     * @var DateTimeInterface
      */
     private $created;
 
     /**
      * Token last modified date (set automatically on save and update)
-     * @var DateTime $LastModified
+     * @var DateTimeInterface
      */
     private $lastModified;
 

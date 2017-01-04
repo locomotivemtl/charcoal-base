@@ -2,12 +2,15 @@
 
 namespace Charcoal\Object;
 
+// Dependency from 'charcoal-core'
+use Charcoal\Model\ModelInterface;
+
 /**
  * Defines a model for objects typically submitted by the end-user of the application.
  *
  * @see UserData for basic implementation of interface.
  */
-interface UserDataInterface
+interface UserDataInterface extends ModelInterface
 {
     /**
      * Set the client IP address.

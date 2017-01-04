@@ -2,7 +2,13 @@
 
 namespace Charcoal\Object;
 
-interface ContentInterface
+// Dependency from 'charcoal-core'
+use Charcoal\Model\ModelInterface;
+
+/**
+ * Content Interface, based on charcoal/model/model-interface.
+ */
+interface ContentInterface extends ModelInterface
 {
     /**
      * @param boolean $active The active flag.

@@ -2,20 +2,20 @@
 
 namespace Charcoal\User;
 
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 // Dependencies from `zendframework/zend-permissions`
-use \Zend\Permissions\Acl\Acl;
+use Zend\Permissions\Acl\Acl;
 
 // Dependencies from 'PSR-3' (Logging)
-use \Psr\Log\LoggerAwareInterface;
-use \Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 
 // Intra-module (`charcoal-base`) dependencies
-use \Charcoal\User\UserInterface;
+use Charcoal\User\UserInterface;
 
 /**
- * Authorizer helps with user authorization (permission checking).
+ * The authorizer service helps with user authorization (permission checking).
  *
  * ## Constructor dependencies
  *
