@@ -31,10 +31,16 @@
 						</li>
 				<li>
 					<a href="namespace-Charcoal.User.html">
-						User					</a>
+						User<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Charcoal.User.Acl.html">
+						Acl					</a>
 
 						</li>
-							</ul></li>
+							</ul></li></ul></li>
 			</ul>
 		</div>
 
@@ -117,20 +123,33 @@
 	<h1>Interface ContentInterface</h1>
 
 
+	<div class="description">
+	<p>Content Interface, based on charcoal/model/model-interface.</p>
+	</div>
 
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Charcoal\Object\ContentInterface</span></b>			
+			 implements 
+<span>Charcoal\Model\ModelInterface</span>
+			
+			
+		</dd>
+	</dl>
 
 
 
 
 	<div>
 		<h4>Direct known implementers</h4>
-			<a href="class-Charcoal.Object.Content.html">Charcoal\Object\Content</a>
+			<a href="class-Charcoal.Object.Content.html">Charcoal\Object\Content</a>, 
+			<a href="class-Charcoal.User.UserInterface.html">Charcoal\User\UserInterface</a>
 	</div>
 
 	<div>
 		<h4>Indirect known implementers</h4>
 			<a href="class-Charcoal.User.AbstractUser.html">Charcoal\User\AbstractUser</a>, 
-			<a href="class-Charcoal.User.PermissionCategory.html">Charcoal\User\PermissionCategory</a>
+			<a href="class-Charcoal.User.Acl.PermissionCategory.html">Charcoal\User\Acl\PermissionCategory</a>
 	</div>
 
 
@@ -141,7 +160,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Object.html">Object</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Object.ContentInterface.html#5-72" title="Go to source code">Charcoal/Object/ContentInterface.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Object.ContentInterface.html#8-78" title="Go to source code">Charcoal/Object/ContentInterface.php</a>
 		<br>
 	</div>
 
@@ -161,7 +180,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setActive">#</a>
-		<code><a href="source-class-Charcoal.Object.ContentInterface.html#7-11" title="Go to source code">setActive</a>( <span>boolean <var>$active</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ContentInterface.html#13-17" title="Go to source code">setActive</a>( <span>boolean <var>$active</var></span> )</code>
 
 		<div class="description short">
 			
@@ -200,7 +219,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_active">#</a>
-		<code><a href="source-class-Charcoal.Object.ContentInterface.html#13-16" title="Go to source code">active</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ContentInterface.html#19-22" title="Go to source code">active</a>( )</code>
 
 		<div class="description short">
 			
@@ -234,7 +253,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setPosition">#</a>
-		<code><a href="source-class-Charcoal.Object.ContentInterface.html#18-22" title="Go to source code">setPosition</a>( <span>integer <var>$position</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ContentInterface.html#24-28" title="Go to source code">setPosition</a>( <span>integer <var>$position</var></span> )</code>
 
 		<div class="description short">
 			
@@ -273,7 +292,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_position">#</a>
-		<code><a href="source-class-Charcoal.Object.ContentInterface.html#24-27" title="Go to source code">position</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ContentInterface.html#30-33" title="Go to source code">position</a>( )</code>
 
 		<div class="description short">
 			
@@ -307,7 +326,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCreated">#</a>
-		<code><a href="source-class-Charcoal.Object.ContentInterface.html#29-33" title="Go to source code">setCreated</a>( <span>DateTimeInterface|string|null <var>$created</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ContentInterface.html#35-39" title="Go to source code">setCreated</a>( <span>DateTimeInterface|string|null <var>$created</var></span> )</code>
 
 		<div class="description short">
 			
@@ -346,7 +365,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_created">#</a>
-		<code><a href="source-class-Charcoal.Object.ContentInterface.html#35-38" title="Go to source code">created</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ContentInterface.html#41-44" title="Go to source code">created</a>( )</code>
 
 		<div class="description short">
 			
@@ -380,7 +399,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCreatedBy">#</a>
-		<code><a href="source-class-Charcoal.Object.ContentInterface.html#40-44" title="Go to source code">setCreatedBy</a>( <span>mixed <var>$createdBy</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ContentInterface.html#46-50" title="Go to source code">setCreatedBy</a>( <span>mixed <var>$createdBy</var></span> )</code>
 
 		<div class="description short">
 			
@@ -419,7 +438,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createdBy">#</a>
-		<code><a href="source-class-Charcoal.Object.ContentInterface.html#46-49" title="Go to source code">createdBy</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ContentInterface.html#52-55" title="Go to source code">createdBy</a>( )</code>
 
 		<div class="description short">
 			
@@ -453,7 +472,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLastModified">#</a>
-		<code><a href="source-class-Charcoal.Object.ContentInterface.html#51-55" title="Go to source code">setLastModified</a>( <span>DateTimeInterface|string|null <var>$lastModified</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ContentInterface.html#57-61" title="Go to source code">setLastModified</a>( <span>DateTimeInterface|string|null <var>$lastModified</var></span> )</code>
 
 		<div class="description short">
 			
@@ -492,7 +511,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lastModified">#</a>
-		<code><a href="source-class-Charcoal.Object.ContentInterface.html#57-60" title="Go to source code">lastModified</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ContentInterface.html#63-66" title="Go to source code">lastModified</a>( )</code>
 
 		<div class="description short">
 			
@@ -526,7 +545,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLastModifiedBy">#</a>
-		<code><a href="source-class-Charcoal.Object.ContentInterface.html#62-66" title="Go to source code">setLastModifiedBy</a>( <span>mixed <var>$lastModifiedBy</var></span> )</code>
+		<code><a href="source-class-Charcoal.Object.ContentInterface.html#68-72" title="Go to source code">setLastModifiedBy</a>( <span>mixed <var>$lastModifiedBy</var></span> )</code>
 
 		<div class="description short">
 			
@@ -565,7 +584,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lastModifiedBy">#</a>
-		<code><a href="source-class-Charcoal.Object.ContentInterface.html#68-71" title="Go to source code">lastModifiedBy</a>( )</code>
+		<code><a href="source-class-Charcoal.Object.ContentInterface.html#74-77" title="Go to source code">lastModifiedBy</a>( )</code>
 
 		<div class="description short">
 			

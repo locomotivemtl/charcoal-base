@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class Charcoal\User\Permission</title>
+	<title>Class Charcoal\User\Acl\Permission</title>
 
 	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
 
@@ -31,10 +31,16 @@
 						</li>
 				<li class="active">
 					<a href="namespace-Charcoal.User.html">
-						User					</a>
+						User<span></span>
+					</a>
+
+						<ul>
+				<li class="active">
+					<a href="namespace-Charcoal.User.Acl.html">
+						Acl					</a>
 
 						</li>
-							</ul></li>
+							</ul></li></ul></li>
 			</ul>
 		</div>
 
@@ -44,20 +50,12 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Charcoal.User.AbstractUser.html">AbstractUser</a></li>
-				<li><a href="class-Charcoal.User.AclRole.html">AclRole</a></li>
-				<li><a href="class-Charcoal.User.Authenticator.html">Authenticator</a></li>
-				<li><a href="class-Charcoal.User.Authorizer.html">Authorizer</a></li>
-				<li><a href="class-Charcoal.User.AuthToken.html">AuthToken</a></li>
-				<li><a href="class-Charcoal.User.AuthTokenMetadata.html">AuthTokenMetadata</a></li>
-				<li class="active"><a href="class-Charcoal.User.Permission.html">Permission</a></li>
-				<li><a href="class-Charcoal.User.PermissionCategory.html">PermissionCategory</a></li>
+				<li><a href="class-Charcoal.User.Acl.Manager.html">Manager</a></li>
+				<li class="active"><a href="class-Charcoal.User.Acl.Permission.html">Permission</a></li>
+				<li><a href="class-Charcoal.User.Acl.PermissionCategory.html">PermissionCategory</a></li>
+				<li><a href="class-Charcoal.User.Acl.Role.html">Role</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-Charcoal.User.UserInterface.html">UserInterface</a></li>
-			</ul>
 
 
 
@@ -82,7 +80,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="namespace-Charcoal.User.html" title="Summary of Charcoal\User"><span>Namespace</span></a>
+				<a href="namespace-Charcoal.User.Acl.html" title="Summary of Charcoal\User\Acl"><span>Namespace</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -109,7 +107,7 @@ Charcoal\Model\AbstractModel
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>Charcoal\User\Permission</span></b>			
+<b><span>Charcoal\User\Acl\Permission</span></b>			
 			 implements 
 				<a href="class-Charcoal.Object.CategorizableInterface.html"><span>Charcoal\Object\CategorizableInterface</span></a>
 			
@@ -129,10 +127,10 @@ Charcoal\Model\AbstractModel
 	<div class="info">
 		
 		
-		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.User.html">User</a><br>
+		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.User.html">User</a>\<a href="namespace-Charcoal.User.Acl.html">Acl</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.User.Permission.html#15-59" title="Go to source code">Charcoal/User/Permission.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.User.Acl.Permission.html#17-85" title="Go to source code">Charcoal/User/Acl/Permission.php</a>
 		<br>
 	</div>
 
@@ -152,7 +150,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-Charcoal.User.Permission.html#32-40" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-Charcoal.User.Acl.Permission.html#34-42" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			<p>Permission can be used as a string (ident).</p>
@@ -174,19 +172,96 @@ Charcoal\Model\AbstractModel
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="setIdent" id="_setIdent">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.User.Acl.Permission.html">Charcoal\User\Acl\Permission</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setIdent">#</a>
+		<code><a href="source-class-Charcoal.User.Acl.Permission.html#44-58" title="Go to source code">setIdent</a>( <span>string <var>$ident</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$ident</var></dt>
+					<dd>The permission identifier.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.User.Acl.Permission.html">Charcoal\User\Acl\Permission</a></code><br>Chainable
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentExcption<br>If the ident is not a string.
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="ident" id="_ident">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_ident">#</a>
+		<code><a href="source-class-Charcoal.User.Acl.Permission.html#60-66" title="Go to source code">ident</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="setName" id="_setName">
 
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.User.Permission.html">Charcoal\User\Permission</a></code>
+			<code><a href="class-Charcoal.User.Acl.Permission.html">Charcoal\User\Acl\Permission</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setName">#</a>
-		<code><a href="source-class-Charcoal.User.Permission.html#42-50" title="Go to source code">setName</a>( <span>mixed <var>$name</var></span> )</code>
+		<code><a href="source-class-Charcoal.User.Acl.Permission.html#68-76" title="Go to source code">setName</a>( <span>mixed <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -204,7 +279,7 @@ Charcoal\Model\AbstractModel
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.User.Permission.html">Charcoal\User\Permission</a></code><br>Chainable
+					<code><a href="class-Charcoal.User.Acl.Permission.html">Charcoal\User\Acl\Permission</a></code><br>Chainable
 				</div>
 
 
@@ -225,7 +300,7 @@ Charcoal\Model\AbstractModel
 
 		<td class="name"><div>
 		<a class="anchor" href="#_name">#</a>
-		<code><a href="source-class-Charcoal.User.Permission.html#52-58" title="Go to source code">name</a>( )</code>
+		<code><a href="source-class-Charcoal.User.Acl.Permission.html#78-84" title="Go to source code">name</a>( )</code>
 
 		<div class="description short">
 			
@@ -282,34 +357,6 @@ Charcoal\Model\AbstractModel
 
 
 
-	<table class="summary properties" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="ident" id="$ident">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Charcoal.User.Permission.html#22-25" title="Go to source code"><var>$ident</var></a>
-
-			<div class="description short">
-				<p>$ident</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>$ident</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$ident" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
-	</table>
 
 
 	<table class="summary used">

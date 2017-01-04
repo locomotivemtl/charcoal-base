@@ -31,10 +31,16 @@
 						</li>
 				<li class="active">
 					<a href="namespace-Charcoal.User.html">
-						User					</a>
+						User<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Charcoal.User.Acl.html">
+						Acl					</a>
 
 						</li>
-							</ul></li>
+							</ul></li></ul></li>
 			</ul>
 		</div>
 
@@ -45,13 +51,10 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-Charcoal.User.AbstractUser.html">AbstractUser</a></li>
-				<li><a href="class-Charcoal.User.AclRole.html">AclRole</a></li>
 				<li><a href="class-Charcoal.User.Authenticator.html">Authenticator</a></li>
 				<li><a href="class-Charcoal.User.Authorizer.html">Authorizer</a></li>
 				<li><a href="class-Charcoal.User.AuthToken.html">AuthToken</a></li>
 				<li><a href="class-Charcoal.User.AuthTokenMetadata.html">AuthTokenMetadata</a></li>
-				<li><a href="class-Charcoal.User.Permission.html">Permission</a></li>
-				<li><a href="class-Charcoal.User.PermissionCategory.html">PermissionCategory</a></li>
 			</ul>
 
 			<h3>Interfaces</h3>
@@ -97,7 +100,19 @@
 	<h1>Interface UserInterface</h1>
 
 
+	<div class="description">
+	<p>User Interface, based on charcoal/object/content-interface.</p>
+	</div>
 
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Charcoal\User\UserInterface</span></b>			
+			 implements 
+				<a href="class-Charcoal.Object.ContentInterface.html"><span>Charcoal\Object\ContentInterface</span></a>
+			
+			
+		</dd>
+	</dl>
 
 
 
@@ -116,7 +131,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.User.html">User</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.User.UserInterface.html#5-129" title="Go to source code">Charcoal/User/UserInterface.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.User.UserInterface.html#8-134" title="Go to source code">Charcoal/User/UserInterface.php</a>
 		<br>
 	</div>
 
@@ -136,7 +151,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sessionKey">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#10-13" title="Go to source code">sessionKey</a>( )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#13-16" title="Go to source code">sessionKey</a>( )</code>
 
 		<div class="description short">
 			
@@ -170,7 +185,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setUsername">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#15-21" title="Go to source code">setUsername</a>( <span>string <var>$username</var></span> )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#18-24" title="Go to source code">setUsername</a>( <span>string <var>$username</var></span> )</code>
 
 		<div class="description short">
 			<p>Force a lowercase username</p>
@@ -209,14 +224,14 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_username">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#23-26" title="Go to source code">username</a>( )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#26-31" title="Go to source code">username</a>( )</code>
 
 		<div class="description short">
-			
+			<p>The username is also used as login name and main identifier (key).</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>The username is also used as login name and main identifier (key).</p>
 
 
 
@@ -243,7 +258,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setEmail">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#28-32" title="Go to source code">setEmail</a>( <span>string <var>$email</var></span> )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#33-37" title="Go to source code">setEmail</a>( <span>string <var>$email</var></span> )</code>
 
 		<div class="description short">
 			
@@ -282,7 +297,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_email">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#34-37" title="Go to source code">email</a>( )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#39-42" title="Go to source code">email</a>( )</code>
 
 		<div class="description short">
 			
@@ -316,7 +331,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setPassword">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#39-43" title="Go to source code">setPassword</a>( <span>string|null <var>$password</var></span> )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#44-48" title="Go to source code">setPassword</a>( <span>string|null <var>$password</var></span> )</code>
 
 		<div class="description short">
 			
@@ -355,7 +370,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_password">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#45-48" title="Go to source code">password</a>( )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#50-53" title="Go to source code">password</a>( )</code>
 
 		<div class="description short">
 			
@@ -389,7 +404,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setActive">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#50-54" title="Go to source code">setActive</a>( <span>boolean <var>$active</var></span> )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#55-59" title="Go to source code">setActive</a>( <span>boolean <var>$active</var></span> )</code>
 
 		<div class="description short">
 			
@@ -413,6 +428,8 @@
 
 
 
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Object.ContentInterface.html#_setActive">Charcoal\Object\ContentInterface::setActive()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
@@ -428,7 +445,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_active">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#56-59" title="Go to source code">active</a>( )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#61-64" title="Go to source code">active</a>( )</code>
 
 		<div class="description short">
 			
@@ -447,6 +464,8 @@
 
 
 
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Object.ContentInterface.html#_active">Charcoal\Object\ContentInterface::active()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
@@ -462,7 +481,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLastLoginDate">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#61-65" title="Go to source code">setLastLoginDate</a>( <span>string|DateTime <var>$ts</var></span> )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#66-70" title="Go to source code">setLastLoginDate</a>( <span>string|DateTime <var>$ts</var></span> )</code>
 
 		<div class="description short">
 			
@@ -501,7 +520,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lastLoginDate">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#67-70" title="Go to source code">lastLoginDate</a>( )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#72-75" title="Go to source code">lastLoginDate</a>( )</code>
 
 		<div class="description short">
 			
@@ -535,7 +554,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLastLoginIp">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#72-76" title="Go to source code">setLastLoginIp</a>( <span>string|integer|null <var>$ip</var></span> )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#77-81" title="Go to source code">setLastLoginIp</a>( <span>string|integer|null <var>$ip</var></span> )</code>
 
 		<div class="description short">
 			
@@ -574,7 +593,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lastLoginIp">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#78-82" title="Go to source code">lastLoginIp</a>( )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#83-87" title="Go to source code">lastLoginIp</a>( )</code>
 
 		<div class="description short">
 			<p>Get the last login IP in x.x.x.x format</p>
@@ -608,7 +627,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLastPasswordDate">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#84-88" title="Go to source code">setLastPasswordDate</a>( <span>string|DateTime <var>$ts</var></span> )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#89-93" title="Go to source code">setLastPasswordDate</a>( <span>string|DateTime <var>$ts</var></span> )</code>
 
 		<div class="description short">
 			
@@ -647,7 +666,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lastPasswordDate">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#90-93" title="Go to source code">lastPasswordDate</a>( )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#95-98" title="Go to source code">lastPasswordDate</a>( )</code>
 
 		<div class="description short">
 			
@@ -681,7 +700,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLastPasswordIp">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#95-99" title="Go to source code">setLastPasswordIp</a>( <span>integer|string|null <var>$ip</var></span> )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#100-104" title="Go to source code">setLastPasswordIp</a>( <span>integer|string|null <var>$ip</var></span> )</code>
 
 		<div class="description short">
 			
@@ -720,7 +739,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lastPasswordIp">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#101-106" title="Go to source code">lastPasswordIp</a>( )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#106-111" title="Go to source code">lastPasswordIp</a>( )</code>
 
 		<div class="description short">
 			<p>Get the last password change IP in x.x.x.x format.</p>
@@ -754,7 +773,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLoginToken">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#108-112" title="Go to source code">setLoginToken</a>( <span>string <var>$token</var></span> )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#113-117" title="Go to source code">setLoginToken</a>( <span>string <var>$token</var></span> )</code>
 
 		<div class="description short">
 			
@@ -793,7 +812,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loginToken">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#114-117" title="Go to source code">loginToken</a>( )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#119-122" title="Go to source code">loginToken</a>( )</code>
 
 		<div class="description short">
 			
@@ -827,7 +846,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resetPassword">#</a>
-		<code><a href="source-class-Charcoal.User.UserInterface.html#119-128" title="Go to source code">resetPassword</a>( <span>string <var>$plainPassword</var></span> )</code>
+		<code><a href="source-class-Charcoal.User.UserInterface.html#124-133" title="Go to source code">resetPassword</a>( <span>string <var>$plainPassword</var></span> )</code>
 
 		<div class="description short">
 			<p>Reset the password.</p>
@@ -859,6 +878,23 @@ Also updates the last password date &amp; ip.</p>
 	</tr>
 	</table>
 
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Charcoal.Object.ContentInterface.html#methods">Charcoal\Object\ContentInterface</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Object.ContentInterface.html#_created">created()</a>, 
+			<a href="class-Charcoal.Object.ContentInterface.html#_createdBy">createdBy()</a>, 
+			<a href="class-Charcoal.Object.ContentInterface.html#_lastModified">lastModified()</a>, 
+			<a href="class-Charcoal.Object.ContentInterface.html#_lastModifiedBy">lastModifiedBy()</a>, 
+			<a href="class-Charcoal.Object.ContentInterface.html#_position">position()</a>, 
+			<a href="class-Charcoal.Object.ContentInterface.html#_setCreated">setCreated()</a>, 
+			<a href="class-Charcoal.Object.ContentInterface.html#_setCreatedBy">setCreatedBy()</a>, 
+			<a href="class-Charcoal.Object.ContentInterface.html#_setLastModified">setLastModified()</a>, 
+			<a href="class-Charcoal.Object.ContentInterface.html#_setLastModifiedBy">setLastModifiedBy()</a>, 
+			<a href="class-Charcoal.Object.ContentInterface.html#_setPosition">setPosition()</a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
