@@ -36,6 +36,9 @@
         "locomotivemtl/charcoal-app": "~0.2",
         "zendframework/zend-permissions-acl": "^2.6"
     },
+    "suggest":{
+        "zendframework/zend-permissions-acl":"To add ACL to users."
+    },
     "autoload": {
         "psr-4": {
             "Charcoal\\": "src/Charcoal"
