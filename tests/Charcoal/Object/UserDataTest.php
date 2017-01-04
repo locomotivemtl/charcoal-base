@@ -108,6 +108,5 @@ class UserDataTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($obj->resolveOrigin(), $obj->origin());
         $this->assertSame(null, $obj->lang());
         $this->assertNotSame(null, $obj->ts());
-
     }
 }

@@ -2,18 +2,20 @@
 
 namespace Charcoal\User\Tests;
 
-use \DateTime;
+use PHPUnit_Framework_TestCase;
 
-use \Psr\Log\NullLogger;
+use DateTime;
 
-use \Charcoal\Model\Service\MetadataLoader;
+use Psr\Log\NullLogger;
 
-use \Charcoal\User\AuthToken;
+use Charcoal\Model\Service\MetadataLoader;
+
+use Charcoal\User\AuthToken;
 
 /**
  *
  */
-class AuthTokenTest extends \PHPUnit_Framework_TestCase
+class AuthTokenTest extends PHPUnit_Framework_TestCase
 {
     public $obj;
 
@@ -102,7 +104,6 @@ class AuthTokenTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\Exception');
         $this->obj->setExpiry('fsdjkfsadg');
-
     }
 
     /**
@@ -117,7 +118,6 @@ class AuthTokenTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\Exception');
         $this->obj->setCreated('fsdjkfsadg');
-
     }
 
     /**
@@ -132,6 +132,5 @@ class AuthTokenTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\Exception');
         $this->obj->setLastModified('fsdjkfsadg');
-
     }
 }

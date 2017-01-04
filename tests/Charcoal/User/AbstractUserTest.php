@@ -2,16 +2,29 @@
 
 namespace Charcoal\User\Tests;
 
-use \Psr\Log\NullLogger;
+use PHPUnit_Framework_TestCase;
 
-use \Charcoal\Model\Service\MetadataLoader;
+use DateTime;
 
-use \Charcoal\User\AbstractUser;
+use Psr\Log\NullLogger;
 
+use Charcoal\Model\Service\MetadataLoader;
+
+use Charcoal\User\AbstractUser;
+
+/**
+ *
+ */
 class UserTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Instance of object under test
+     */
     public $obj;
 
+    /**
+     *
+     */
     public function setUp()
     {
         $container = $GLOBALS['container'];
@@ -54,6 +67,9 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $ret = $obj->setData([
             'username'=>'Foo',
             'email'=>'test@example.com',
+            'roles'=>[
+                'foo', 'bar'
+            ],
             'loginToken'=>'token',
             'active'=>false
         ]);
@@ -72,6 +88,9 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($obj->password())
     }*/
 
+    /**
+     *
+     */
     public function testSetUsername()
     {
         $obj = $this->obj;
@@ -83,14 +102,106 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $obj->setUsername(false);
     }
 
+    /**
+     *
+     */
     public function testSetEmail()
     {
-        $obj = $this->obj;
-        $ret = $obj->setEmail('test@example.com');
-        $this->assertSame($ret, $obj);
-        $this->assertEquals('test@example.com', $obj->email());
+        $ret = $this->obj->setEmail('test@example.com');
+        $this->assertSame($ret, $this->obj);
+        $this->assertEquals('test@example.com', $this->obj->email());
 
         $this->setExpectedException('\InvalidArgumentException');
-        $obj->setEmail(false);
+        $this->obj->setEmail(false);
+    }
+
+    /**
+     *
+     */
+    public function testSetRoles()
+    {
+        $ret = $this->obj->setRoles(null);
+        $this->assertSame($ret, $this->obj);
+        $this->assertNull($this->obj->roles());
+
+        $this->obj->setRoles('foo,bar');
+        $this->assertEquals(['foo', 'bar'], $this->obj->roles());
+
+        $this->obj->setRoles(['foobar', 'baz']);
+        $this->assertEquals(['foobar', 'baz'], $this->obj->roles());
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $this->obj->setRoles(false);
+    }
+
+    /**
+     *
+     */
+    public function testSetLastLoginDate()
+    {
+        $ret = $this->obj->setLastLoginDate('today');
+        $this->assertSame($ret, $this->obj);
+        $this->assertEquals(new DateTime('today'), $this->obj->lastLoginDate());
+
+        $this->obj->setLastLoginDate(null);
+        $this->assertNull($this->obj->lastLoginDate());
+
+        $date = new DateTime('tomorrow');
+        $this->obj->setLastLoginDate($date);
+        $this->assertEquals($date, $this->obj->lastLoginDate());
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $this->obj->setLastLoginDate(false);
+    }
+
+
+    /**
+     *
+     */
+    public function testSetLastLoginIp()
+    {
+        $ret = $this->obj->setLastLoginIp('8.8.8.8');
+        $this->assertSame($ret, $this->obj);
+
+        $this->assertEquals('8.8.8.8', $this->obj->lastLoginIp());
+    }
+
+    /**
+     *
+     */
+    public function testSetLastPasswordDate()
+    {
+        $ret = $this->obj->setLastPasswordDate('today');
+        $this->assertSame($ret, $this->obj);
+        $this->assertEquals(new DateTime('today'), $this->obj->lastPasswordDate());
+
+        $this->obj->setLastPasswordDate(null);
+        $this->assertNull($this->obj->lastPasswordDate());
+
+        $date = new DateTime('tomorrow');
+        $this->obj->setLastPasswordDate($date);
+        $this->assertEquals($date, $this->obj->lastPasswordDate());
+
+        $this->setExpectedException('\InvalidArgumentException');
+        $this->obj->setLastPasswordDate(false);
+    }
+
+    /**
+     *
+     */
+    public function testSetLastPasswordIp()
+    {
+        $ret = $this->obj->setLastPasswordIp('8.8.8.8');
+        $this->assertSame($ret, $this->obj);
+
+        $this->assertEquals('8.8.8.8', $this->obj->lastPasswordIp());
+    }
+
+    public function testSetLoginToken()
+    {
+        $ret = $this->obj->setLoginToken('abc');
+        $this->assertSame($ret, $this->obj);
+
+        $this->assertEquals('abc', $this->obj->loginToken());
     }
 }

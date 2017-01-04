@@ -2,21 +2,21 @@
 
 namespace Charcoal\User\Tests;
 
-use \Psr\Log\NullLogger;
+use PHPUnit_Framework_TestCase;
 
-use \Charcoal\Factory\GenericFactory as Factory;
+use Psr\Log\NullLogger;
 
-use \Charcoal\User\Authenticator;
+use Charcoal\Factory\GenericFactory as Factory;
 
-class AuthenticatorTest extends \PHPUnit_Framework_TestCase
+use Charcoal\User\Authenticator;
+
+class AuthenticatorTest extends PHPUnit_Framework_TestCase
 {
     public $obj;
 
     public function setUp()
     {
-        $factory = new Factory([
-
-        ]);
+        $factory = new Factory([]);
 
         $this->obj = new Authenticator([
             'logger'            => new NullLogger(),

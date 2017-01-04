@@ -2,6 +2,8 @@
 
 namespace Charcoal\Tests\Object;
 
+use \PHPUnit_Framework_TestCase;
+
 use \DateTime;
 
 use \Psr\Log\NullLogger;
@@ -13,7 +15,7 @@ use \Charcoal\Object\Content;
 /**
  *
  */
-class ContentTest extends \PHPUnit_Framework_TestCase
+class ContentTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
@@ -132,7 +134,6 @@ class ContentTest extends \PHPUnit_Framework_TestCase
         $obj->preSave();
         $this->assertNotSame(null, $obj->created());
         $this->assertNotSame(null, $obj->lastModified());
-
     }
 
     // public function testSetPreUpdate()
