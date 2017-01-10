@@ -16,7 +16,7 @@ class PermissionCategory extends Content implements CategoryInterface
     use CategoryTrait;
 
     /**
-     * @var TranslationString $name
+     * @var TranslationString|null
      */
     private $name;
 
@@ -31,7 +31,7 @@ class PermissionCategory extends Content implements CategoryInterface
     }
 
     /**
-     * @return TranslationString
+     * @return TranslationString|null
      */
     public function name()
     {

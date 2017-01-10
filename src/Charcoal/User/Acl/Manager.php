@@ -12,8 +12,7 @@ use Psr\Log\LoggerAwareTrait;
 
 // Dependencies from `zendframework/zend-permissions`
 use Zend\Permissions\Acl\Acl;
-use Zend\Permissions\Acl\Role\GenericRole as Role;
-use Zend\Permissions\Acl\Resource\GenericResource as Resource;
+use Zend\Permissions\Acl\Role\GenericRole;
 
 /**
  * Manage ACL roles and permissions from config (arrays) or database.
@@ -95,7 +94,7 @@ class Manager implements LoggerAwareInterface
         if (!$acl->hasRole($role)) {
             // Add role
             $parentRole = isset($permissions['parent']) ? $permissions['parent'] : null;
-            $newRole = new Role($role);
+            $newRole = new GenericRole($role);
             $acl->addRole($newRole, $parentRole);
         }
 
