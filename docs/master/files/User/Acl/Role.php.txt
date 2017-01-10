@@ -45,7 +45,7 @@ class Role extends AbstractModel
     /**
      * @var boolean
      */
-    private $superuser;
+    private $superuser = false;
 
     /**
      * @var integer
@@ -94,7 +94,7 @@ class Role extends AbstractModel
 
         if (is_string($allowed)) {
             $allowed = explode(self::SEPARATOR, $allowed);
-            $allowed = array_walk('trim', $allowed);
+            $allowed = array_map('trim', $allowed);
         }
         if (!is_array($allowed)) {
             throw new InvalidArgumentException(
@@ -110,7 +110,7 @@ class Role extends AbstractModel
      */
     public function allowed()
     {
-        return $this->allowed();
+        return $this->allowed;
     }
 
     /**
