@@ -60,9 +60,9 @@ abstract class AbstractUser extends Content implements
     private $active = true;
 
     /**
-     * @var string[]|null
+     * @var string[]
      */
-    private $roles;
+    private $roles = [];
 
     /**
      * The date of the latest (successful) login
@@ -199,14 +199,14 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
-     * @param string|array|null $roles The ACL roles this user belongs to.
+     * @param string|string[]|null $roles The ACL roles this user belongs to.
      * @throws InvalidArgumentException If the roles argument is invalid.
      * @return AbstractUser Chainable
      */
     public function setRoles($roles)
     {
         if ($roles === null) {
-            $this->roles = null;
+            $this->roles = [];
             return $this;
         }
         if (is_string($roles)) {
@@ -222,7 +222,7 @@ abstract class AbstractUser extends Content implements
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function roles()
     {
