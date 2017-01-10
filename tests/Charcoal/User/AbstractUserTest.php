@@ -122,7 +122,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         $ret = $this->obj->setRoles(null);
         $this->assertSame($ret, $this->obj);
-        $this->assertNull($this->obj->roles());
+        $this->assertEquals([], $this->obj->roles());
 
         $this->obj->setRoles('foo,bar');
         $this->assertEquals(['foo', 'bar'], $this->obj->roles());

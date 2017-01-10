@@ -52,5 +52,4 @@ class AuthTokenMetadataTest extends PHPUnit_Framework_TestCase
         $this->setExpectedException('\InvalidArgumentException');
         $this->obj->setCookieDuration(false);
     }
-
 }

@@ -19,22 +19,27 @@ use \Charcoal\User\Authorizer;
  */
 class AuthorizerTest extends TestCase
 {
-    public $obj;
 
-    public function setUp()
+    public function testRolesAllowed()
     {
         $acl = new Acl();
-        $acl->addResource(new Resource('test'));
+        $acl->addResource('test');
 
         $this->obj = new Authorizer([
             'logger'            => new NullLogger(),
             'acl'               => $acl,
             'resource'          => 'test'
         ]);
-    }
 
-    public function testConstructor()
-    {
-        $this->assertInstanceOf(Authorizer::class, $this->obj);
+        $acl->addRole('foo');
+        $this->assertFalse($this->obj->rolesAllowed(['foo'], ['bar']));
+
+        $acl->allow('foo', 'test', 'bar');
+        $this->assertTrue($this->obj->rolesAllowed(['foo'], ['bar']));
+
+        $this->assertFalse($this->obj->rolesAllowed([null], ['bar']));
+
+        $acl->allow(null, 'test');
+        $this->assertTrue($this->obj->rolesAllowed([null], ['bar']));
     }
 }
