@@ -55,7 +55,7 @@ class Manager implements LoggerAwareInterface
     public function loadDatabasePermissions(Acl &$acl, PDO $db, $table, $resource = '')
     {
         // Quick-and-dirty sanitization
-        $table = preg_replace('/[^A-Za-z0-9 ]/', '', $table);
+        $table = preg_replace('/[^A-Za-z0-9_]/', '', $table);
 
         $q = '
             SELECT
@@ -94,12 +94,14 @@ class Manager implements LoggerAwareInterface
         if (!$acl->hasRole($role)) {
             // Add role
             $parentRole = isset($permissions['parent']) ? $permissions['parent'] : null;
+            $parentRole = $parentRole ?: null;
             $newRole = new GenericRole($role);
             $acl->addRole($newRole, $parentRole);
         }
 
         if (isset($permissions['superuser']) && $permissions['superuser']) {
             $acl->allow($role);
+
             return;
         }
 
