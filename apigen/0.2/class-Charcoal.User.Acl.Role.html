@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Charcoal\User\Acl\Role</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-Charcoal.html">
+						Charcoal<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Charcoal.Object.html">
+						Object					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-Charcoal.User.html">
+						User<span></span>
+					</a>
+
+						<ul>
+				<li class="active">
+					<a href="namespace-Charcoal.User.Acl.html">
+						Acl					</a>
+
+						</li>
+							</ul></li></ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Charcoal.User.Acl.Manager.html">Manager</a></li>
+				<li><a href="class-Charcoal.User.Acl.Permission.html">Permission</a></li>
+				<li><a href="class-Charcoal.User.Acl.PermissionCategory.html">PermissionCategory</a></li>
+				<li class="active"><a href="class-Charcoal.User.Acl.Role.html">Role</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Charcoal.User.Acl.html" title="Summary of Charcoal\User\Acl"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Role</h1>
+
+
+	<div class="description">
+	<p>ACL Roles define hierarchical allowed and denied permissions.</p>
+
+<p>They can be attached to user accounts for fine-grained permission control.</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+Charcoal\Model\AbstractModel
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Charcoal\User\Acl\Role</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.User.html">User</a>\<a href="namespace-Charcoal.User.Acl.html">Acl</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Charcoal.User.Acl.Role.html#8-184" title="Go to source code">Charcoal/User/Acl/Role.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__toString" id="___toString">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___toString">#</a>
+		<code><a href="source-class-Charcoal.User.Acl.Role.html#55-63" title="Go to source code">__toString</a>( )</code>
+
+		<div class="description short">
+			<p>ACL Role can be used as a string (ident).</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>ACL Role can be used as a string (ident).</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setParent" id="_setParent">
+
+		<td class="attributes"><code>
+			 public 
+
+			AclRole
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setParent">#</a>
+		<code><a href="source-class-Charcoal.User.Acl.Role.html#65-73" title="Go to source code">setParent</a>( <span>string <var>$parent</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parent</var></dt>
+					<dd>Role's parent.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					AclRole<br>Chainable
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="parent" id="_parent">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_parent">#</a>
+		<code><a href="source-class-Charcoal.User.Acl.Role.html#75-81" title="Go to source code">parent</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setAllowed" id="_setAllowed">
+
+		<td class="attributes"><code>
+			 public 
+
+			AclRole
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setAllowed">#</a>
+		<code><a href="source-class-Charcoal.User.Acl.Role.html#83-106" title="Go to source code">setAllowed</a>( <span>string[]|string|null <var>$allowed</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$allowed</var></dt>
+					<dd>The allowed permissions for this role.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					AclRole<br>Chainable
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentException<br>If the passed arguments is not an array, null, or a comma-separated string.
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="allowed" id="_allowed">
+
+		<td class="attributes"><code>
+			 public 
+
+			string[]|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_allowed">#</a>
+		<code><a href="source-class-Charcoal.User.Acl.Role.html#108-114" title="Go to source code">allowed</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string[]|null
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setDenied" id="_setDenied">
+
+		<td class="attributes"><code>
+			 public 
+
+			AclRole
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setDenied">#</a>
+		<code><a href="source-class-Charcoal.User.Acl.Role.html#116-139" title="Go to source code">setDenied</a>( <span>string[]|string|null <var>$denied</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$denied</var></dt>
+					<dd>The denied permissions for this role.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					AclRole<br>Chainable
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentException<br>If the passed arguments is not an array, null, or a comma-separated string.
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="denied" id="_denied">
+
+		<td class="attributes"><code>
+			 public 
+
+			string[]|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_denied">#</a>
+		<code><a href="source-class-Charcoal.User.Acl.Role.html#141-147" title="Go to source code">denied</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string[]|null
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setSuperuser" id="_setSuperuser">
+
+		<td class="attributes"><code>
+			 public 
+
+			AclRole
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setSuperuser">#</a>
+		<code><a href="source-class-Charcoal.User.Acl.Role.html#149-157" title="Go to source code">setSuperuser</a>( <span>boolean <var>$isSuper</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$isSuper</var></dt>
+					<dd>The superuser flag.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					AclRole<br>Chainable
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="superuser" id="_superuser">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_superuser">#</a>
+		<code><a href="source-class-Charcoal.User.Acl.Role.html#159-165" title="Go to source code">superuser</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setPosition" id="_setPosition">
+
+		<td class="attributes"><code>
+			 public 
+
+			AclRole
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setPosition">#</a>
+		<code><a href="source-class-Charcoal.User.Acl.Role.html#167-175" title="Go to source code">setPosition</a>( <span>integer <var>$position</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$position</var></dt>
+					<dd>The role's ordering position.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					AclRole<br>Chainable
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="position" id="_position">
+
+		<td class="attributes"><code>
+			 public 
+
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_position">#</a>
+		<code><a href="source-class-Charcoal.User.Acl.Role.html#177-183" title="Go to source code">position</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					integer
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+	<table class="summary constants" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="SEPARATOR" id="SEPARATOR">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-Charcoal.User.Acl.Role.html#15" title="Go to source code"><b>SEPARATOR</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#SEPARATOR" class="anchor">#</a>
+				<code><span class="php-quote">','</span></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="ident" id="$ident">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.User.Acl.Role.html#17-20" title="Go to source code"><var>$ident</var></a>
+
+			<div class="description short">
+				<p>$ident</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$ident</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$ident" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="parent" id="$parent">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.User.Acl.Role.html#22-29" title="Go to source code"><var>$parent</var></a>
+
+			<div class="description short">
+				<p>The parent ACL role.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The parent ACL role.</p>
+
+<p>This role will inherit all of its parent's permissions.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$parent" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="allowed" id="$allowed">
+		<td class="attributes"><code>
+			public  
+			string[]|null
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.User.Acl.Role.html#31-36" title="Go to source code"><var>$allowed</var></a>
+
+			<div class="description short">
+				<p>List of explicitely allowed permissions.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>List of explicitely allowed permissions.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$allowed" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="denied" id="$denied">
+		<td class="attributes"><code>
+			public  
+			string[]|null
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.User.Acl.Role.html#38-43" title="Go to source code"><var>$denied</var></a>
+
+			<div class="description short">
+				<p>List of explicitely denied permissions.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>List of explicitely denied permissions.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$denied" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

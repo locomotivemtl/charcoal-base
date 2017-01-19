@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Charcoal\User\Authorizer</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-Charcoal.html">
+						Charcoal<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Charcoal.Object.html">
+						Object					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-Charcoal.User.html">
+						User<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Charcoal.User.Acl.html">
+						Acl					</a>
+
+						</li>
+							</ul></li></ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Charcoal.User.AbstractUser.html">AbstractUser</a></li>
+				<li><a href="class-Charcoal.User.Authenticator.html">Authenticator</a></li>
+				<li class="active"><a href="class-Charcoal.User.Authorizer.html">Authorizer</a></li>
+				<li><a href="class-Charcoal.User.AuthToken.html">AuthToken</a></li>
+				<li><a href="class-Charcoal.User.AuthTokenMetadata.html">AuthTokenMetadata</a></li>
+				<li><a href="class-Charcoal.User.GenericUser.html">GenericUser</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Charcoal.User.UserInterface.html">UserInterface</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Charcoal.User.html" title="Summary of Charcoal\User"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Authorizer</h1>
+
+
+	<div class="description">
+	<p>The authorizer service helps with user authorization (permission checking).</p>
+
+<h2>Constructor dependencies</h2>
+
+<p>Constructor dependencies are passed as an array of <code>key=&gt;value</code> pair.
+The required dependencies are:</p>
+
+<ul>
+<li><code>logger</code> A PSR3 logger instance.</li>
+<li><code>acl</code> A Zend ACL (Access-Control-List) instance.</li>
+<li><code>resource</code> The ACL resource identifier (string).</li>
+</ul>
+
+<h2>Checking permissions</h2>
+
+<p>To check if a given ACL (passed in constructor) allows a list of permissions (aka privileges):</p>
+
+<ul>
+<li><code>userAllowed(UserInterface $user, string[] $aclPermissions)</code></li>
+<li><code>rolesAllowed(string[] $roles, string[] $aclPermissions)</code></li>
+</ul>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Charcoal\User\Authorizer</span></b>			
+			 implements 
+<span>Psr\Log\LoggerAwareInterface</span>
+			
+			 uses 
+					Psr\Log\LoggerAwareTrait (not available)
+
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.User.html">User</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Charcoal.User.Authorizer.html#17-133" title="Go to source code">Charcoal/User/Authorizer.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Charcoal.User.Authorizer.html#51-59" title="Go to source code">__construct</a>( <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>Class dependencies.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="acl" id="_acl">
+
+		<td class="attributes"><code>
+			 protected 
+
+			Zend\Permissions\Acl\Acl
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_acl">#</a>
+		<code><a href="source-class-Charcoal.User.Authorizer.html#70-76" title="Go to source code">acl</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Zend\Permissions\Acl\Acl
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="resource" id="_resource">
+
+		<td class="attributes"><code>
+			 protected 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resource">#</a>
+		<code><a href="source-class-Charcoal.User.Authorizer.html#93-99" title="Go to source code">resource</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="rolesAllowed" id="_rolesAllowed">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_rolesAllowed">#</a>
+		<code><a href="source-class-Charcoal.User.Authorizer.html#101-122" title="Go to source code">rolesAllowed</a>( <span>array <var>$aclRoles</var></span>, <span>array <var>$aclPermissions</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$aclRoles</var></dt>
+					<dd>The ACL roles to validate against.</dd>
+					<dt><var>$aclPermissions</var></dt>
+					<dd>The acl permissions to validate.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>Wether the permissions are allowed for a given list of roles.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="userAllowed" id="_userAllowed">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_userAllowed">#</a>
+		<code><a href="source-class-Charcoal.User.Authorizer.html#124-132" title="Go to source code">userAllowed</a>( <span><code><a href="class-Charcoal.User.UserInterface.html">Charcoal\User\UserInterface</a></code> <var>$user</var></span>, <span>array <var>$aclPermissions</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$user</var></dt>
+					<dd>The user to validate against.</dd>
+					<dt><var>$aclPermissions</var></dt>
+					<dd>The acl permissions to validate.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>Whether the permissions are allowed for a given user.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
