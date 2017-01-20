@@ -8,11 +8,11 @@
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
-            "dev-master": "0.2.x-dev"
+            "dev-master": "0.3.x-dev"
         }
     },
     "require": {
-        "locomotivemtl/charcoal-user": "dev-master",
-	"locomotivemtl/charcoal-object": "dev-master"
+        "locomotivemtl/charcoal-user": "~0.1",
+        "locomotivemtl/charcoal-object": "~0.1"
     }
 }
